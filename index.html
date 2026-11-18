@@ -1821,6 +1821,152 @@
       .fx-tabs2-ind { position: absolute; bottom: -2px; left: 0; width: 33.333%; height: 3px; border-radius: 3px; background: var(--accent); transition: left .35s cubic-bezier(.22,.8,.32,1), width .35s cubic-bezier(.22,.8,.32,1); }
       .fx-tabs2-body { padding: 8px 4px 2px; font-size: 12px; color: var(--muted); min-height: 22px; }
 
+      /* ---------- Đợt 3 ---------- */
+      /* 41 Image Reveal / Clip-path Reveal */
+      .fx-clip-inner { padding: 8px; display: grid; gap: 7px; }
+      .fx-clip-img { height: 86px; border-radius: 9px; background: linear-gradient(130deg, var(--navy-soft), var(--accent)); display: grid; place-items: center; color: #fff; font-weight: 800; font-size: 12px; text-shadow: 0 1px 4px rgba(5,46,87,.4); clip-path: circle(14% at 50% 50%); will-change: clip-path, transform; }
+      .fx-clip-cap { font-size: 10.5px; font-weight: 700; color: var(--muted); text-align: center; }
+
+      /* 42 Toggle Switch Morph */
+      .fx-tm { position: relative; display: inline-flex; align-items: center; gap: 9px; cursor: pointer; }
+      .fx-tm input { position: absolute; opacity: 0; width: 0; height: 0; }
+      .fx-tm-track { width: 52px; height: 30px; border-radius: 20px; background: var(--border); position: relative; transition: border-radius .35s ease, background .35s ease; flex: none; }
+      .fx-tm-thumb { position: absolute; left: 4px; top: 4px; width: 22px; height: 22px; border-radius: 50%; background: #fff; box-shadow: 0 1px 4px rgba(5,46,87,.3); display: grid; place-items: center; color: var(--ok); font-size: 12px; font-weight: 800; transition: transform .35s ease, border-radius .35s ease; }
+      .fx-tm-thumb::after { content: "✓"; opacity: 0; transform: scale(.4); transition: opacity .25s, transform .25s; }
+      .fx-tm input:checked + .fx-tm-track { background: var(--ok); border-radius: 8px; }
+      .fx-tm input:checked + .fx-tm-track .fx-tm-thumb { transform: translateX(22px); border-radius: 7px; }
+      .fx-tm input:checked + .fx-tm-track .fx-tm-thumb::after { opacity: 1; transform: scale(1); }
+      .fx-tm input:focus-visible + .fx-tm-track { outline: 2px solid var(--accent); outline-offset: 2px; }
+      .fx-tm-lbl { font-size: 12.5px; font-weight: 700; text-align: left; }
+      .fx-tm-lbl small { display: block; color: var(--muted); font-weight: 600; font-size: 11px; line-height: 1.35; }
+
+      /* 43 Tooltip Fade */
+      .fx-tip-row { display: flex; gap: 8px; justify-content: center; }
+      .fx-tip-btn { position: relative; width: 38px; height: 38px; min-height: 38px; border-radius: 10px; border: 1px solid var(--border); background: var(--surface); color: var(--navy); display: grid; place-items: center; cursor: pointer; padding: 0; }
+      @media (prefers-color-scheme: dark) { .fx-tip-btn { color: #9cc4ee; } }
+      .fx-tip-btn::after { content: attr(data-tip); position: absolute; left: 50%; bottom: calc(100% + 7px); transform: translate(-50%, 3px); background: var(--navy); color: #fff; font-size: 10.5px; font-weight: 700; padding: 3px 8px; border-radius: 6px; white-space: nowrap; opacity: 0; pointer-events: none; transition: opacity .2s ease, transform .2s ease; z-index: 5; }
+      @media (prefers-color-scheme: dark) { .fx-tip-btn::after { background: #1d3a58; } }
+      .fx-tip-btn:hover::after, .fx-tip-btn:focus-visible::after { opacity: 1; transform: translate(-50%, 0); }
+      .stage:has(.fx-tip-row) { overflow: visible; }
+
+      /* 44 Rating Stars Fill */
+      .fx-stars { display: flex; flex-direction: column; align-items: center; gap: 4px; }
+      .fx-stars-row { display: flex; gap: 3px; }
+      .fx-star { background: none; border: 0; padding: 2px; min-height: 34px; font-size: 25px; line-height: 1; color: var(--border); cursor: pointer; transition: color .25s ease, transform .2s ease; font-family: inherit; }
+      .fx-star.on { color: #ffc107; }
+      .fx-star.hov { transform: scale(1.15); }
+      .fx-stars-lbl { font-size: 11.5px; font-weight: 700; color: var(--muted); min-height: 15px; }
+      .fx-mini-btn { background: none; border: 0; font: inherit; font-size: 11px; font-weight: 700; color: var(--accent); cursor: pointer; padding: 2px 6px; min-height: 24px; text-decoration: underline; }
+
+      /* 45 Slider Thumb Grow */
+      .fx-sld-wrap { width: 100%; max-width: 176px; text-align: left; }
+      .fx-sld-top { display: flex; justify-content: space-between; font-size: 11.5px; font-weight: 700; margin-bottom: 2px; }
+      .fx-sld-top b { color: var(--accent); font-variant-numeric: tabular-nums; }
+      .fx-sld { -webkit-appearance: none; appearance: none; width: 100%; height: 6px; border-radius: 99px; background: var(--border); outline: none; margin: 10px 0 6px; padding: 0; }
+      .fx-sld::-webkit-slider-thumb { -webkit-appearance: none; width: 22px; height: 22px; border-radius: 50%; background: var(--accent); border: 3px solid #fff; box-shadow: 0 1px 5px rgba(5,46,87,.35); cursor: pointer; transition: transform .2s ease; }
+      .fx-sld:active::-webkit-slider-thumb { transform: scale(1.3); }
+      .fx-sld::-moz-range-thumb { width: 16px; height: 16px; border-radius: 50%; background: var(--accent); border: 3px solid #fff; box-shadow: 0 1px 5px rgba(5,46,87,.35); cursor: pointer; transition: transform .2s ease; }
+      .fx-sld:active::-moz-range-thumb { transform: scale(1.3); }
+
+      /* 46 Staggered List Entrance */
+      .fx-stag { width: 100%; max-width: 178px; display: grid; gap: 5px; text-align: left; }
+      .fx-stag-item { display: flex; align-items: center; gap: 7px; background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 5px 9px; font-size: 11.5px; font-weight: 600; opacity: 0; transform: translateY(14px); transition: opacity .4s ease, transform .4s ease; }
+      .fx-stag.play .fx-stag-item { opacity: 1; transform: none; }
+      .fx-stag-item .dotn { width: 17px; height: 17px; border-radius: 50%; background: var(--navy); color: #fff; font-size: 9.5px; font-weight: 800; display: grid; place-items: center; flex: none; }
+      @media (prefers-color-scheme: dark) { .fx-stag-item .dotn { background: var(--navy-soft); } }
+
+      /* 47 Popover Scale-in */
+      .fx-pop-wrap { position: relative; width: 100%; max-width: 180px; height: 104px; flex: none; }
+      .fx-pop-btn-pos { position: absolute; left: 50%; top: 4px; transform: translateX(-50%); }
+      .fx-pop { position: absolute; left: 50%; top: 44px; transform: translateX(-50%) scale(.92); transform-origin: top center; width: 158px; background: var(--surface); border: 1px solid var(--border); border-radius: 10px; box-shadow: var(--shadow); padding: 8px 10px; text-align: left; opacity: 0; pointer-events: none; transition: opacity .22s ease, transform .22s ease; z-index: 6; }
+      .fx-pop-wrap.open .fx-pop { opacity: 1; transform: translateX(-50%) scale(1); pointer-events: auto; }
+      .fx-pop::before { content: ""; position: absolute; left: 50%; top: -5px; width: 9px; height: 9px; background: var(--surface); border-left: 1px solid var(--border); border-top: 1px solid var(--border); transform: translateX(-50%) rotate(45deg); }
+      .fx-pop > b { font-size: 11.5px; display: block; margin-bottom: 4px; }
+      .fx-pop .prow { display: flex; justify-content: space-between; font-size: 11px; color: var(--muted); padding: 2px 0; }
+      .fx-pop .prow b { color: var(--ink); font-size: 11px; }
+
+      /* 48 Toast Stack */
+      .fx-tstack-wrap { position: relative; width: 100%; max-width: 180px; height: 108px; flex: none; }
+      .fx-tstack { position: absolute; left: 50%; bottom: 6px; transform: translateX(-50%); width: 158px; height: 62px; opacity: 0; pointer-events: none; transition: opacity .3s; }
+      .fx-tstack.show { opacity: 1; pointer-events: auto; }
+      .fx-tstack .tst { position: absolute; left: 0; right: 0; bottom: 0; background: var(--navy); color: #fff; font-size: 11px; font-weight: 600; border-radius: 9px; padding: 7px 10px; box-shadow: var(--shadow); display: flex; gap: 6px; align-items: center; transition: transform .4s ease; white-space: nowrap; overflow: hidden; }
+      @media (prefers-color-scheme: dark) { .fx-tstack .tst { background: #1d3a58; } }
+      .fx-tstack .tst .tick { color: var(--ok); font-weight: 800; }
+      .fx-tstack .tst:nth-child(1) { transform: translateY(0) scale(1); z-index: 3; }
+      .fx-tstack .tst:nth-child(2) { transform: translateY(-13px) scale(.95); z-index: 2; }
+      .fx-tstack .tst:nth-child(3) { transform: translateY(-26px) scale(.9); z-index: 1; }
+      .fx-tstack:hover .tst:nth-child(2), .fx-tstack.exp .tst:nth-child(2) { transform: translateY(-34px) scale(1); }
+      .fx-tstack:hover .tst:nth-child(3), .fx-tstack.exp .tst:nth-child(3) { transform: translateY(-68px) scale(1); }
+
+      /* 49 Text Gradient Flow */
+      .fx-gflow { font-size: 19px; font-weight: 800; text-align: center; line-height: 1.3; padding: 0 4px; background: linear-gradient(90deg, #7c5cd6, #0aa5c4, #1d9e6c, #fc7a01, #7c5cd6); background-size: 200% 100%; -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; color: transparent; animation: fxGFlow 6s linear infinite; }
+      @keyframes fxGFlow { from { background-position: 0% 0; } to { background-position: -200% 0; } }
+
+      /* 50 Rotating Badge */
+      .fx-rot { position: relative; width: 94px; height: 94px; flex: none; }
+      .fx-rot svg.ring { position: absolute; inset: 0; width: 100%; height: 100%; animation: fxRotSpin 20s linear infinite; }
+      .fx-rot:hover svg.ring { animation-duration: 5s; }
+      @keyframes fxRotSpin { to { transform: rotate(360deg); } }
+      .fx-rot text { font-size: 10.5px; font-weight: 800; letter-spacing: 2.5px; fill: var(--navy); }
+      @media (prefers-color-scheme: dark) { .fx-rot text { fill: #9cc4ee; } }
+      .fx-rot-c { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); width: 34px; height: 34px; border-radius: 50%; background: var(--accent); color: #fff; display: grid; place-items: center; animation: fxRotBob 1.8s ease-in-out infinite; }
+      @keyframes fxRotBob { 0%, 100% { margin-top: 0; } 30% { margin-top: -5px; } 55% { margin-top: 1px; } }
+
+      /* 51 Skeleton to Content Morph */
+      .fx-morph-list { width: 100%; max-width: 178px; display: grid; gap: 6px; text-align: left; }
+      .fx-mcard { position: relative; border: 1px solid var(--border); border-radius: 9px; background: var(--surface); padding: 7px 9px; min-height: 42px; overflow: hidden; }
+      .fx-mcard .msk { position: absolute; inset: 7px 9px; display: flex; gap: 8px; align-items: center; transition: opacity .16s ease; }
+      .fx-mcard:not(.done) .msk { animation: fxMskPulse 1.1s ease-in-out infinite alternate; }
+      @keyframes fxMskPulse { from { opacity: .45; } to { opacity: 1; } }
+      .fx-mcard .msk .av { width: 26px; height: 26px; border-radius: 50%; background: var(--border); flex: none; }
+      .fx-mcard .msk .ln { display: grid; gap: 5px; flex: 1; }
+      .fx-mcard .msk .ln i { display: block; height: 7px; border-radius: 4px; background: var(--border); }
+      .fx-mcard .mct { display: flex; gap: 8px; align-items: center; opacity: 0; transform: translateY(10px); transition: opacity .36s ease, transform .36s ease; }
+      .fx-mcard.done .msk { opacity: 0; }
+      .fx-mcard.done .mct { opacity: 1; transform: none; }
+      .fx-mcard .mct .av2 { width: 26px; height: 26px; border-radius: 50%; color: #fff; font-size: 10px; font-weight: 800; display: grid; place-items: center; flex: none; }
+      .fx-mcard .mct b { font-size: 11.5px; display: block; line-height: 1.25; }
+      .fx-mcard .mct small { color: var(--muted); font-size: 10.5px; display: block; line-height: 1.3; }
+
+      /* 52 Progress Ring Animate */
+      .fx-ring-wrap { display: flex; align-items: center; gap: 12px; }
+      .fx-ring-box { position: relative; width: 76px; height: 76px; flex: none; }
+      .fx-ring-svg { transform: rotate(-90deg); display: block; }
+      .fx-ring-bg { stroke: var(--border); }
+      .fx-ring-val { stroke: var(--accent); transition: stroke-dashoffset .6s ease-in-out; }
+      .fx-ring-ctr { position: absolute; inset: 0; display: grid; place-items: center; font-weight: 800; font-size: 15px; color: var(--navy); font-variant-numeric: tabular-nums; }
+      @media (prefers-color-scheme: dark) { .fx-ring-ctr { color: #9cc4ee; } }
+      .fx-ring-side { display: grid; gap: 5px; justify-items: start; text-align: left; }
+      .fx-ring-side label { font-size: 11.5px; font-weight: 700; }
+      .fx-ring-side small { color: var(--muted); font-size: 10.5px; font-weight: 600; }
+      .fx-ring-side input[type="range"] { width: 84px; accent-color: var(--accent); margin: 0; }
+
+      /* 53 Stepper Progress Animate */
+      .fx-stepper { width: 100%; max-width: 178px; }
+      .fx-steps { position: relative; display: flex; justify-content: space-between; }
+      .fx-steps::before { content: ""; position: absolute; left: 12px; right: 12px; top: 12px; height: 3px; border-radius: 3px; background: var(--border); }
+      .fx-steps-fill { position: absolute; left: 12px; top: 12px; height: 3px; width: calc(100% - 24px); border-radius: 3px; background: var(--accent); transform-origin: left; transform: scaleX(0); transition: transform .45s ease; }
+      .fx-step { position: relative; z-index: 1; display: flex; flex-direction: column; align-items: center; gap: 3px; width: 40px; }
+      .fx-step .cir { width: 24px; height: 24px; border-radius: 50%; background: var(--surface); border: 2px solid var(--border); color: var(--muted); font-size: 11px; font-weight: 800; display: grid; place-items: center; transition: transform .3s cubic-bezier(.2,2.2,.4,1), background .3s, border-color .3s, color .3s; }
+      .fx-step .slbl { font-size: 9px; font-weight: 700; color: var(--muted); text-align: center; line-height: 1.15; }
+      .fx-step.act .cir { background: var(--navy); border-color: var(--navy); color: #fff; transform: scale(1.12); }
+      @media (prefers-color-scheme: dark) { .fx-step.act .cir { background: var(--navy-soft); border-color: var(--navy-soft); } }
+      .fx-step.done .cir { background: var(--ok); border-color: var(--ok); color: #fff; }
+      .fx-step.done .slbl, .fx-step.act .slbl { color: var(--ink); }
+      .fx-step-body { margin-top: 7px; font-size: 11.5px; color: var(--muted); text-align: center; min-height: 16px; font-weight: 600; }
+      .fx-step-nav { display: flex; gap: 6px; justify-content: center; margin-top: 5px; }
+
+      /* 54 Map Pin Drop */
+      .fx-map { position: relative; width: 100%; max-width: 178px; height: 92px; border-radius: 10px; border: 1px solid var(--border); overflow: hidden; flex: none; background: repeating-linear-gradient(0deg, transparent 0 21px, rgba(5,46,87,.10) 21px 22px), repeating-linear-gradient(90deg, transparent 0 21px, rgba(5,46,87,.10) 21px 22px), var(--surface-2); }
+      .fx-map::before { content: ""; position: absolute; left: -10px; right: -10px; top: 54%; height: 9px; background: rgba(252,122,1,.35); transform: rotate(-7deg); border-radius: 99px; }
+      .fx-pin { position: absolute; width: 20px; height: 26px; margin-left: -10px; margin-top: -24px; opacity: 0; filter: drop-shadow(0 3px 3px rgba(5,46,87,.3)); }
+      .fx-map.drop .fx-pin { animation: fxPinDrop .55s cubic-bezier(.3,1.4,.5,1) forwards; }
+      .fx-map.drop .fx-pin.p2 { animation-delay: .14s; }
+      .fx-map.drop .fx-pin.p3 { animation-delay: .28s; }
+      @keyframes fxPinDrop { 0% { opacity: 0; transform: translateY(-52px); } 60% { opacity: 1; transform: translateY(2px); } 80% { transform: translateY(-4px); } 100% { opacity: 1; transform: translateY(0); } }
+      .fx-map.drop .fx-pin.sel { animation: fxPinDrop .55s cubic-bezier(.3,1.4,.5,1) forwards, fxPinBounce 1.6s ease-in-out .75s infinite; }
+      @keyframes fxPinBounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-6px); } }
+
       /* Mobile: thẻ hiệu ứng giống thẻ thành phần */
       @media (max-width: 720px) {
         tr.fxgroup { display: block; }
@@ -1955,6 +2101,22 @@
       .fx-overlay-stage .fx-tabs2 { max-width: 560px; }
       .fx-overlay-stage .fx-tabs2-head button { font-size: 15px; }
       .fx-overlay-stage .fx-tabs2-body { font-size: 14px; }
+      .fx-overlay-stage .fx-clip-img { height: 240px; font-size: 17px; }
+      .fx-overlay-stage .fx-tstack-wrap { max-width: 430px; height: 240px; }
+      .fx-overlay-stage .fx-tstack { width: 380px; }
+      .fx-overlay-stage .fx-tstack .tst { font-size: 13.5px; padding: 10px 13px; }
+      .fx-overlay-stage .fx-pop-wrap { max-width: 430px; height: 240px; }
+      .fx-overlay-stage .fx-pop { width: 320px; top: 52px; }
+      .fx-overlay-stage .fx-stag, .fx-overlay-stage .fx-morph-list, .fx-overlay-stage .fx-stepper { max-width: 480px; }
+      .fx-overlay-stage .fx-stag-item { font-size: 14px; padding: 10px 13px; }
+      .fx-overlay-stage .fx-mcard { padding: 12px 14px; }
+      .fx-overlay-stage .fx-mcard .mct b { font-size: 14px; } .fx-overlay-stage .fx-mcard .mct small { font-size: 12.5px; }
+      .fx-overlay-stage .fx-map { max-width: 560px; height: 260px; }
+      .fx-overlay-stage .fx-gflow { font-size: 40px; }
+      .fx-overlay-stage .fx-rot { width: 170px; height: 170px; }
+      .fx-overlay-stage .fx-sld-wrap { max-width: 430px; }
+      .fx-overlay-stage .fx-star { font-size: 36px; }
+      .fx-overlay-stage .fx-tip-btn { width: 48px; height: 48px; }
       .fx-overlay-stage .fx-expand-btn { display: none; }
       .fx-overlay-hint { margin: 0; color: var(--muted); font-size: 13.5px; text-align: center; }
       body.fx-locked { overflow: hidden; }
@@ -2010,7 +2172,7 @@
         <div class="toprow">
           <div class="ptabs" role="tablist" aria-label="Chọn mục tra cứu">
             <button type="button" role="tab" id="tabComp" aria-selected="true" aria-controls="panel-components"><span class="tab-ic" aria-hidden="true"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="8" height="8" rx="2"/><rect x="13" y="3" width="8" height="5" rx="2"/><rect x="13" y="10" width="8" height="11" rx="2"/><rect x="3" y="13" width="8" height="8" rx="2"/></svg></span><span class="tab-label">Thành phần web</span> <span class="pcount" id="tabCompCount"></span></button>
-            <button type="button" role="tab" id="tabFx" aria-selected="false" aria-controls="panel-effects"><span class="tab-ic" aria-hidden="true"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l1.7 4.6L18 9.2l-4.3 1.6L12 15.4l-1.7-4.6L6 9.2l4.3-1.6z"/><path d="M19 15l.8 2.2L22 18l-2.2.8L19 21l-.8-2.2L16 18l2.2-.8z"/><path d="M5 16l.6 1.7L7.3 18.3l-1.7.6L5 20.6l-.6-1.7L2.7 18.3l1.7-.6z"/></svg></span><span class="tab-label">Hiệu ứng chuyển động</span> <span class="pcount">40</span></button>
+            <button type="button" role="tab" id="tabFx" aria-selected="false" aria-controls="panel-effects"><span class="tab-ic" aria-hidden="true"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l1.7 4.6L18 9.2l-4.3 1.6L12 15.4l-1.7-4.6L6 9.2l4.3-1.6z"/><path d="M19 15l.8 2.2L22 18l-2.2.8L19 21l-.8-2.2L16 18l2.2-.8z"/><path d="M5 16l.6 1.7L7.3 18.3l-1.7.6L5 20.6l-.6-1.7L2.7 18.3l1.7-.6z"/></svg></span><span class="tab-label">Hiệu ứng chuyển động</span> <span class="pcount">54</span></button>
           </div>
           <div class="searchbar">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.8-3.8"/></svg>
@@ -2875,7 +3037,7 @@
               </tr>
             </thead>
             <tbody id="fxTbody">
-              <tr class="fxgroup"><td colspan="3">Hiệu ứng cuộn <span class="gcnt">6 hiệu ứng</span></td></tr>
+              <tr class="fxgroup"><td colspan="3">Hiệu ứng cuộn <span class="gcnt">7 hiệu ứng</span></td></tr>
 
               <tr class="fxcomp" data-search="scroll reveal fade up hiện dần khi cuộn aos intersection observer">
                 <td class="demo"><div class="stage"><div class="fx-frame fx-scroll" id="fxRevealFrame"><div class="fx-rv"><div class="fx-rv-card">Thẻ 1 — cuộn khung này xuống</div><div class="fx-rv-card">Thẻ 2 — hiện dần + trượt lên</div><div class="fx-rv-card">Thẻ 3 — lần lượt từng thẻ</div><div class="fx-rv-card">Thẻ 4 — chỉ chạy 1 lần</div><div class="fx-rv-card">Thẻ 5 — nhẹ, không replay</div><div class="fx-rv-card">Thẻ 6 — hết khung</div></div></div></div></td>
@@ -2887,6 +3049,12 @@
                 <td class="demo"><div class="stage"><div class="fx-frame fx-scroll" id="fxPxFrame"><div class="fx-px-inner"><div class="fx-px-bg" id="fxPxBg"></div><div class="fx-px-txt">Nền trôi chậm hơn chữ</div><div class="fx-px-lines"><i style="width:82%"></i><i style="width:60%"></i><i style="width:74%"></i><i style="width:48%"></i><i style="width:66%"></i></div></div></div></div></td>
                 <td class="name-cell"><span class="name">Parallax</span><span class="vi-name">Cuộn thị sai (parallax)</span></td>
                 <td class="desc">Lớp nền <b>di chuyển chậm hơn lớp chữ phía trước</b> để tạo chiều sâu — dùng cho hero/section kể chuyện; giữ tỉ lệ lệch ≤ 0,3 trên điện thoại để tránh chóng mặt.<div class="fx-meta"><span class="fx-badge tech">Thư viện · GSAP ScrollTrigger</span><span class="fx-badge mob-warn">Mobile: Cẩn trọng</span></div></td>
+              </tr>
+
+              <tr class="fxcomp" data-search="image reveal clip-path reveal ảnh hiện dần mặt nạ cắt mở màn wipe circle scrub gsap scrolltrigger portfolio hero">
+                <td class="demo"><div class="stage"><div class="fx-frame fx-scroll" id="fxClipFrame"><div class="fx-clip-inner"><div class="fx-clip-img" id="fxClipImg">Ảnh vịnh Hạ Long</div><div class="fx-lines" style="padding:0"><i style="width:84%"></i><i style="width:62%"></i><i style="width:76%"></i><i style="width:50%"></i><i style="width:70%"></i><i style="width:44%"></i></div><div class="fx-clip-cap">— Cuộn khung này: mặt nạ mở theo tiến độ cuộn —</div></div></div></div></td>
+                <td class="name-cell"><span class="name">Image Reveal / Clip-path Reveal</span><span class="vi-name">Ảnh hiện dần bằng mặt nạ cắt</span></td>
+                <td class="desc">Ảnh <b>xuất hiện qua một hình mặt nạ (tròn, chữ nhật, wipe từ dưới lên) mở rộng dần theo cuộn trang</b> thay vì chỉ mờ dần — dùng cho ảnh hero, portfolio hay ảnh sản phẩm để tạo cảm giác “mở màn” ấn tượng; trên máy yếu nên rút gọn thành wipe đơn giản hoặc chỉ chạy 1 lần. Cuộn khung demo thử nhé.<div class="fx-meta"><span class="fx-badge tech">Thư viện · GSAP ScrollTrigger (demo: CSS + JS nhẹ)</span><span class="fx-badge mob-warn">Mobile: Cẩn trọng</span></div></td>
               </tr>
 
               <tr class="fxcomp" data-search="smooth scroll lenis cuộn mượt quán tính darkroom">
@@ -2913,7 +3081,7 @@
                 <td class="desc">Thanh mỏng <b>dài ra theo tỉ lệ nội dung đã cuộn</b> để người đọc biết còn bao nhiêu — dùng cho bài viết dài, tài liệu và trang hướng dẫn. Cuộn thử trong khung demo nhé.<div class="fx-meta"><span class="fx-badge tech">CSS + JS nhẹ · Motion useScroll / scaleX</span><span class="fx-badge mob-ok">Mobile: An toàn</span></div></td>
               </tr>
 
-              <tr class="fxgroup"><td colspan="3">Hover &amp; tương tác nhỏ <span class="gcnt">8 hiệu ứng</span></td></tr>
+              <tr class="fxgroup"><td colspan="3">Hover &amp; tương tác nhỏ <span class="gcnt">12 hiệu ứng</span></td></tr>
 
               <tr class="fxcomp" data-search="magnetic button nút nam châm hút con trỏ cta lò xo spring">
                 <td class="demo"><div class="stage"><div class="fx-mag-zone" id="fxMagZone"><button class="fx-mag" id="fxMagBtn" type="button">Đăng ký ngay</button></div></div></td>
@@ -2963,7 +3131,31 @@
                 <td class="desc">Dãy avatar <b>xếp chồng, xòe ra khi hover hoặc chạm/focus</b> để xem từng người mà vẫn gọn khi thu lại — dùng cho bằng chứng xã hội, thành viên nhóm và người đang xem.<div class="fx-meta"><span class="fx-badge tech">CSS + JS nhẹ · transition margin / transform</span><span class="fx-badge mob-bad">Mobile: Hạn chế · cảm ứng cần chạm/focus</span></div></td>
               </tr>
 
-              <tr class="fxgroup"><td colspan="3">Chuyển trang &amp; hiện nội dung <span class="gcnt">10 hiệu ứng</span></td></tr>
+              <tr class="fxcomp" data-search="toggle switch morph công tắc biến hình bật tắt đổi hình dạng dấu tick cài đặt thông báo morphing toggle">
+                <td class="demo"><div class="stage"><label class="fx-tm"><input type="checkbox" id="fxTmInput" /><span class="fx-tm-track"><span class="fx-tm-thumb"></span></span><span class="fx-tm-lbl">Thông báo<small>Bấm công tắc: rãnh và núm cùng biến hình, hiện dấu tick</small></span></label></div></td>
+                <td class="name-cell"><span class="name">Toggle Switch Morph</span><span class="vi-name">Công tắc biến hình</span></td>
+                <td class="desc">Khi bật/tắt, <b>không chỉ núm trượt sang mà cả hình dạng cũng biến đổi</b> — rãnh tròn thành bo góc, núm tròn thành hình bo vuông và hiện dấu tick — dùng cho công tắc chế độ tối, thông báo hay cài đặt để trạng thái mới nhìn là hiểu ngay. Bấm thử nhé.<div class="fx-meta"><span class="fx-badge tech">CSS-only · transition border-radius / transform</span><span class="fx-badge mob-ok">Mobile: An toàn</span></div></td>
+              </tr>
+
+              <tr class="fxcomp" data-search="tooltip fade chú thích mờ hiện hover focus nút icon radix tippy floating ui giải thích thuật ngữ">
+                <td class="demo"><div class="stage"><div class="fx-tip-row"><button type="button" class="fx-tip-btn" data-tip="Lưu lại" aria-label="Lưu lại"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><path d="M17 21v-8H7v8"/><path d="M7 3v5h8"/></svg></button><button type="button" class="fx-tip-btn" data-tip="Chia sẻ" aria-label="Chia sẻ"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="m8.6 13.5 6.8 4"/><path d="m15.4 6.5-6.8 4"/></svg></button><button type="button" class="fx-tip-btn" data-tip="Thông báo" aria-label="Thông báo"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8a6 6 0 1 0-12 0c0 7-3 8-3 8h18s-3-1-3-8"/><path d="M10.3 21a2 2 0 0 0 3.4 0"/></svg></button><button type="button" class="fx-tip-btn" data-tip="Trợ giúp" aria-label="Trợ giúp"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.1 9a3 3 0 0 1 5.8 1c0 2-3 2.6-3 4"/><path d="M12 17h.01"/></svg></button></div></div></td>
+                <td class="name-cell"><span class="name">Tooltip Fade</span><span class="vi-name">Tooltip mờ hiện</span></td>
+                <td class="desc">Chú thích nhỏ <b>mờ dần và trượt vài pixel từ phía nút</b> khi rê chuột hoặc focus vào biểu tượng — dùng để giải thích nút chỉ có icon, thuật ngữ hay nút bị vô hiệu mà không chiếm chỗ giao diện; trên cảm ứng không có hover nên đừng nhét nội dung quan trọng vào tooltip. Rê chuột vào các nút thử nhé.<div class="fx-meta"><span class="fx-badge tech">CSS-only · Radix Tooltip / Floating UI khi cần định vị</span><span class="fx-badge mob-ok">Mobile: An toàn</span></div></td>
+              </tr>
+
+              <tr class="fxcomp" data-search="rating stars fill sao đánh giá tô đầy hover chọn sao review sản phẩm nhà hàng năm sao">
+                <td class="demo"><div class="stage"><div class="fx-stars" id="fxStars"><div class="fx-stars-row" role="radiogroup" aria-label="Đánh giá mẫu 5 sao"><button type="button" class="fx-star" data-v="1" aria-label="1 sao">★</button><button type="button" class="fx-star" data-v="2" aria-label="2 sao">★</button><button type="button" class="fx-star" data-v="3" aria-label="3 sao">★</button><button type="button" class="fx-star" data-v="4" aria-label="4 sao">★</button><button type="button" class="fx-star" data-v="5" aria-label="5 sao">★</button></div><div class="fx-stars-lbl"><span id="fxStarsLbl">Rê chuột / chạm để chọn</span><button type="button" class="fx-mini-btn" id="fxStarsClear">Xoá</button></div></div></div></td>
+                <td class="name-cell"><span class="name">Rating Stars Fill</span><span class="vi-name">Sao đánh giá tô đầy</span></td>
+                <td class="desc">Khi rê chuột qua các ngôi sao, <b>sao đang chọn và mọi sao trước nó tô vàng lần lượt kèm phóng to nhẹ</b> — dùng cho form đánh giá sản phẩm, nhà hàng hay bài viết để người dùng thấy trước mức mình sắp chọn; trên điện thoại thì chạm trực tiếp vào sao. Thử chọn sao nhé.<div class="fx-meta"><span class="fx-badge tech">CSS-only · :hover + :has() (demo: JS nhẹ để chốt chọn)</span><span class="fx-badge mob-ok">Mobile: An toàn</span></div></td>
+              </tr>
+
+              <tr class="fxcomp" data-search="slider thumb grow núm trượt phóng to khi kéo âm lượng range input chỉnh giá trị active scale">
+                <td class="demo"><div class="stage"><div class="fx-sld-wrap"><div class="fx-sld-top"><span>Âm lượng</span><b id="fxSldVal">60</b></div><input type="range" class="fx-sld" id="fxSld" min="0" max="100" value="60" aria-label="Âm lượng mẫu" /><div style="font-size:10.5px;color:var(--muted);font-weight:600">Giữ và kéo: núm phóng to 1,3 lần</div></div></div></td>
+                <td class="name-cell"><span class="name">Slider Thumb Grow</span><span class="vi-name">Núm trượt phóng to</span></td>
+                <td class="desc">Núm của thanh trượt (âm lượng, giá, độ sáng) <b>phóng to khoảng 1,3 lần và đậm bóng khi đang kéo</b> — để ngón tay/chuột bám chắc hơn và người dùng cảm nhận rõ mình đang chỉnh giá trị nào; giữ núm đủ to (≥ 22px) cho ngón tay. Kéo thử nhé.<div class="fx-meta"><span class="fx-badge tech">CSS-only · :active ::-webkit-slider-thumb scale(1.3)</span><span class="fx-badge mob-ok">Mobile: An toàn</span></div></td>
+              </tr>
+
+              <tr class="fxgroup"><td colspan="3">Chuyển trang &amp; hiện nội dung <span class="gcnt">13 hiệu ứng</span></td></tr>
 
               <tr class="fxcomp" data-search="hero entrance animation hiệu ứng mở đầu hero staggered fade up landing">
                 <td class="demo"><div class="stage"><div class="fx-col"><div class="fx-hero" id="fxHero"><div class="fx-hero-el fx-hero-t">Tiêu đề thật ấn tượng</div><div class="fx-hero-el d2 fx-hero-s">Phụ đề xuất hiện ngay sau đó</div><div class="fx-hero-el d3"><span class="fx-hero-cta">Bắt đầu ngay</span></div></div><button class="fx-btn" id="fxHeroReplay" type="button">↻ Phát lại</button></div></div></td>
@@ -3025,7 +3217,25 @@
                 <td class="desc"><b>Gạch chân của tab đang chọn trượt mượt sang tab mới</b> khi bấm, giúp người dùng luôn biết mình đang ở đâu — dùng cho tab Tổng quan / Hoạt động / Cài đặt và thanh điều hướng. Bấm các tab thử nhé.<div class="fx-meta"><span class="fx-badge tech">Thư viện · Motion layoutId (FLIP)</span><span class="fx-badge mob-ok">Mobile: An toàn</span></div></td>
               </tr>
 
-              <tr class="fxgroup"><td colspan="3">Hiệu ứng chữ <span class="gcnt">3 hiệu ứng</span></td></tr>
+              <tr class="fxcomp" data-search="staggered list entrance danh sách hiện lần lượt so le stagger motion delaychildren cascade lưới sản phẩm menu kết quả tìm kiếm">
+                <td class="demo"><div class="stage"><div class="fx-col"><div class="fx-stag" id="fxStag"><div class="fx-stag-item" style="transition-delay:0ms"><span class="dotn">1</span>Tư vấn miễn phí</div><div class="fx-stag-item" style="transition-delay:60ms"><span class="dotn">2</span>Hồ sơ xử lý trong ngày</div><div class="fx-stag-item" style="transition-delay:120ms"><span class="dotn">3</span>Báo tiến độ mỗi bước</div><div class="fx-stag-item" style="transition-delay:180ms"><span class="dotn">4</span>Tỉ lệ đậu 98%</div></div><button class="fx-btn" id="fxStagBtn" type="button">↻ Hiện lại</button></div></div></td>
+                <td class="name-cell"><span class="name">Staggered List Entrance</span><span class="vi-name">Danh sách hiện lần lượt</span></td>
+                <td class="desc">Các mục trong danh sách, lưới thẻ hay menu <b>hiện nối tiếp nhau, mỗi mục lệch nhau khoảng 60–100ms</b> — dùng cho kết quả tìm kiếm, bảng tính năng hay lưới sản phẩm để mắt người xem có thứ tự đọc thay vì mọi thứ ập ra cùng lúc; giữ tổng thời gian so le dưới ~400ms. Bấm Hiện lại thử nhé.<div class="fx-meta"><span class="fx-badge tech">Thư viện · Motion stagger (demo: CSS + JS nhẹ)</span><span class="fx-badge mob-ok">Mobile: An toàn</span></div></td>
+              </tr>
+
+              <tr class="fxcomp" data-search="popover scale-in popover phóng to hiện ra bảng nhỏ neo nút bấm radix origin bộ lọc cài đặt nhanh xem trước">
+                <td class="demo"><div class="stage"><div class="fx-pop-wrap" id="fxPopWrap"><button class="fx-btn fx-pop-btn-pos" id="fxPopBtn" type="button" aria-haspopup="true">Cài đặt hiển thị</button><div class="fx-pop"><b>Hiển thị</b><div class="prow"><span>Mật độ dòng</span><b>Thoải mái</b></div><div class="prow"><span>Cỡ chữ</span><b>Vừa</b></div><div class="prow"><span>Ảnh bìa</span><b>Có</b></div></div></div></div></td>
+                <td class="name-cell"><span class="name">Popover Scale-in</span><span class="vi-name">Popover phóng to hiện ra</span></td>
+                <td class="desc">Bảng nội dung nhỏ (bộ lọc, chỉnh hiển thị, chi tiết) <b>bật ra từ nút bấm bằng cách phóng to từ 0,95 lên 1 kèm mờ dần, mọc ra từ phía nút</b> — dùng cho menu lọc, cài đặt nhanh hay xem trước mà không cần mở modal che cả màn hình; bấm ra ngoài hoặc Esc để đóng. Bấm nút thử nhé.<div class="fx-meta"><span class="fx-badge tech">CSS + JS nhẹ · Radix UI Popover</span><span class="fx-badge mob-ok">Mobile: An toàn</span></div></td>
+              </tr>
+
+              <tr class="fxcomp" data-search="toast stack toast xếp chồng sonner thông báo chồng lớp xòe ra vuốt bỏ dismiss nhiều thông báo cùng lúc">
+                <td class="demo"><div class="stage"><div class="fx-tstack-wrap"><button class="fx-btn acc fx-toast-btn-pos" id="fxTstackBtn" type="button">Gửi 3 thông báo</button><div class="fx-tstack" id="fxTstack"><div class="tst"><span class="tick">✓</span>Đã lưu hồ sơ</div><div class="tst"><span class="tick">✓</span>Đã gửi email xác nhận</div><div class="tst"><span class="tick">✓</span>Đã đồng bộ dữ liệu</div></div></div></div></td>
+                <td class="name-cell"><span class="name">Toast Stack</span><span class="vi-name">Toast xếp chồng</span></td>
+                <td class="desc">Nhiều thông báo <b>không xếp thành cột dài mà chồng lên nhau như bộ bài</b> — toast mới ở trước, toast cũ lùi lại và thu nhỏ 5% mỗi lớp — dùng khi nhiều tác vụ xong cùng lúc (lưu, gửi, đồng bộ) để thông báo không che hết màn hình; chỉ hiện tối đa 3 toast, rê chuột/chạm vào xấp để xòe ra. Bấm Gửi thử nhé.<div class="fx-meta"><span class="fx-badge tech">Thư viện · Sonner (demo: CSS + JS nhẹ)</span><span class="fx-badge mob-warn">Mobile: Cẩn trọng</span></div></td>
+              </tr>
+
+              <tr class="fxgroup"><td colspan="3">Hiệu ứng chữ <span class="gcnt">4 hiệu ứng</span></td></tr>
 
               <tr class="fxcomp" data-search="text reveal split letters typewriter chữ hiện từng ký tự tách chữ gõ máy headline splittext">
                 <td class="demo"><div class="stage"><div class="fx-col"><div class="fx-split" id="fxSplit">Chữ hiện từng ký tự</div><div class="fx-type"><span id="fxTypeTxt"></span><span class="caret"></span></div><button class="fx-btn" id="fxSplitReplay" type="button">↻ Phát lại</button></div></div></td>
@@ -3045,7 +3255,13 @@
                 <td class="desc">Một <b>dải sáng hẹp quét ngang qua dòng chữ</b> theo chu kỳ để tạo cảm giác cao cấp — dùng cho nhãn “Mới”, tiêu đề phụ và tên gói Premium; chỉ áp cho chữ ngắn, không dùng cho đoạn văn dài.<div class="fx-meta"><span class="fx-badge tech">CSS + JS nhẹ · background-clip: text (MotionKit Shiny Text)</span><span class="fx-badge mob-ok">Mobile: An toàn</span></div></td>
               </tr>
 
-              <tr class="fxgroup"><td colspan="3">Nền &amp; trang trí <span class="gcnt">4 hiệu ứng</span></td></tr>
+              <tr class="fxcomp" data-search="text gradient flow chữ gradient chảy nhiều màu chạy qua chữ background-clip text animated gradient text hero headline">
+                <td class="demo"><div class="stage"><div class="fx-gflow">Khám phá ngay hôm nay</div></div></td>
+                <td class="name-cell"><span class="name">Text Gradient Flow</span><span class="vi-name">Chữ gradient chảy</span></td>
+                <td class="desc">Dải màu gradient <b>nhiều sắc chạy xuyên qua từng chữ cái của tiêu đề</b> (chữ đứng yên, chỉ màu chảy) — dùng cho một tiêu đề hero hoặc cụm từ nhấn mạnh; khác Chữ lấp lánh ở chỗ đây là nhiều màu chảy liên tục, còn lấp lánh là một vệt sáng quét qua chữ một màu. Chỉ dùng cho 1 tiêu đề lớn vì trình duyệt phải vẽ lại chữ mỗi khung hình.<div class="fx-meta"><span class="fx-badge tech">CSS-only · background-clip: text + background-position</span><span class="fx-badge mob-warn">Mobile: Cẩn trọng</span></div></td>
+              </tr>
+
+              <tr class="fxgroup"><td colspan="3">Nền &amp; trang trí <span class="gcnt">5 hiệu ứng</span></td></tr>
 
               <tr class="fxcomp" data-search="gradient animation gradient chuyển động nền hero stripe minigl webgl">
                 <td class="demo"><div class="stage"><div class="fx-grad"></div></div></td>
@@ -3071,12 +3287,24 @@
                 <td class="desc"><b>Viền của thẻ hoặc nút đổi màu liên tục quanh chu vi</b> để làm nổi bật mà không che nội dung — dùng cho thẻ “Được đề xuất”, nút CTA chính và khung AI; trình duyệt cũ chỉ hiện viền tĩnh.<div class="fx-meta"><span class="fx-badge tech">CSS-only · @property + conic-gradient</span><span class="fx-badge mob-warn">Mobile: Cẩn trọng · cần trình duyệt mới để xoay mượt</span></div></td>
               </tr>
 
-              <tr class="fxgroup"><td colspan="3">Phản hồi &amp; số liệu <span class="gcnt">9 hiệu ứng</span></td></tr>
+              <tr class="fxcomp" data-search="rotating badge huy hiệu xoay tròn chữ vòng tròn circular text con dấu cuộn xuống khám phá svg textpath chứng nhận giảm giá">
+                <td class="demo"><div class="stage"><div class="fx-rot" role="img" aria-label="Huy hiệu xoay tròn: Khám phá ngay, cuộn xuống"><svg class="ring" viewBox="0 0 100 100" aria-hidden="true"><defs><path id="fxRotPath" d="M50,50 m-38,0 a38,38 0 1,1 76,0 a38,38 0 1,1 -76,0" /></defs><text><textPath href="#fxRotPath">KHÁM PHÁ NGAY • CUỘN XUỐNG •</textPath></text></svg><span class="fx-rot-c"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v14m0 0 6-6m-6 6-6-6"/></svg></span></div></div></td>
+                <td class="name-cell"><span class="name">Rotating Badge</span><span class="vi-name">Huy hiệu xoay tròn</span></td>
+                <td class="desc">Dòng chữ <b>xếp thành vòng tròn và xoay chậm quanh một biểu tượng ở giữa</b> — dùng làm huy hiệu “cuộn xuống khám phá”, con dấu giảm giá hay nhãn chứng nhận trên hero/pricing để tạo điểm nhấn mà không chiếm chỗ; rê chuột vào huy hiệu demo để thấy nó xoay nhanh hơn.<div class="fx-meta"><span class="fx-badge tech">CSS-only · SVG textPath + keyframes rotate</span><span class="fx-badge mob-ok">Mobile: An toàn</span></div></td>
+              </tr>
+
+              <tr class="fxgroup"><td colspan="3">Phản hồi &amp; số liệu <span class="gcnt">13 hiệu ứng</span></td></tr>
 
               <tr class="fxcomp" data-search="skeleton shimmer khung chờ lấp lánh đang tải loading placeholder">
                 <td class="demo"><div class="stage"><div class="fx-col"><div class="skel" id="fxSkel"><div class="row"><i></i><div><i style="width:80%"></i><i style="width:55%"></i></div></div><i style="width:92%"></i></div><div class="fx-skel-real" id="fxSkelReal" hidden><b>Hồ sơ visa Úc</b><small>Đã tải xong — nội dung thật thay cho khung chờ.</small></div><button class="fx-btn" id="fxSkelBtn" type="button">Tải xong</button></div></div></td>
                 <td class="name-cell"><span class="name">Skeleton Shimmer</span><span class="vi-name">Khung chờ lấp lánh (skeleton)</span></td>
                 <td class="desc">Khung xám <b>đúng hình dáng nội dung sắp hiện</b>, có dải sáng trượt qua để báo “đang tải” — dùng cho danh sách/card khi tải dữ liệu để người dùng thấy bố cục trước thay vì màn hình trắng.<div class="fx-meta"><span class="fx-badge tech">CSS-only · gradient trên ::after</span><span class="fx-badge mob-ok">Mobile: An toàn</span></div></td>
+              </tr>
+
+              <tr class="fxcomp" data-search="skeleton to content morph skeleton biến thành nội dung khung chờ thành nội dung thật swap tải xong không giật layout danh sách thẻ hồ sơ">
+                <td class="demo"><div class="stage"><div class="fx-col"><div class="fx-morph-list" id="fxSwapList"><div class="fx-mcard"><span class="msk"><span class="av"></span><span class="ln"><i style="width:78%"></i><i style="width:52%"></i></span></span><span class="mct"><span class="av2" style="background:#0a4177">HL</span><span><b>Hồ sơ visa Hàn</b><small>Tải xong · 3 giấy tờ</small></span></span></div><div class="fx-mcard"><span class="msk"><span class="av"></span><span class="ln"><i style="width:70%"></i><i style="width:58%"></i></span></span><span class="mct"><span class="av2" style="background:#fc7a01">UC</span><span><b>Hồ sơ visa Úc</b><small>Tải xong · 5 giấy tờ</small></span></span></div><div class="fx-mcard"><span class="msk"><span class="av"></span><span class="ln"><i style="width:82%"></i><i style="width:48%"></i></span></span><span class="mct"><span class="av2" style="background:#1d9e6c">MY</span><span><b>Hồ sơ visa Mỹ</b><small>Tải xong · 4 giấy tờ</small></span></span></div></div><button class="fx-btn" id="fxSwapBtn" type="button">↻ Tải lại</button></div></div></td>
+                <td class="name-cell"><span class="name">Skeleton to Content Morph</span><span class="vi-name">Skeleton biến thành nội dung</span></td>
+                <td class="desc">Khi dữ liệu tải xong, <b>khung xám skeleton mờ dần và nội dung thật trồi lên thay thế đúng vị trí cũ</b> — dùng cho danh sách bài viết, thẻ sản phẩm hay trang hồ sơ để tránh giật layout; khác Khung chờ lấp lánh (chỉ là lúc đang chờ), đây là khoảnh khắc chuyển đổi. Bấm Tải lại để xem lại nhé.<div class="fx-meta"><span class="fx-badge tech">CSS + JS nhẹ · fade 160ms + trồi 10px/360ms</span><span class="fx-badge mob-ok">Mobile: An toàn</span></div></td>
               </tr>
 
               <tr class="fxcomp" data-search="loading spinner variations vòng xoay tải nhiều kiểu chấm nhảy tiến trình đang xử lý">
@@ -3126,6 +3354,24 @@
                 <td class="name-cell"><span class="name">Chart Animate on Load</span><span class="vi-name">Biểu đồ động khi tải</span></td>
                 <td class="desc">Cột và đường của biểu đồ <b>mọc lên hoặc vẽ dần khi tải xong</b> để người xem theo dõi xu hướng thay vì thấy số liệu khô — dùng cho dashboard, báo cáo và trang thống kê. Bấm Tải lại để xem lại.<div class="fx-meta"><span class="fx-badge tech">Thư viện · Chart.js / D3 (demo: CSS transition)</span><span class="fx-badge mob-warn">Mobile: Cẩn trọng · chỉ chạy khi tải lần đầu</span></div></td>
               </tr>
+
+              <tr class="fxcomp" data-search="progress ring animate vòng tròn tiến độ động phần trăm hoàn thành svg stroke dashoffset tải file hồ sơ mục tiêu circular progress">
+                <td class="demo"><div class="stage"><div class="fx-ring-wrap"><div class="fx-ring-box"><svg class="fx-ring-svg" width="76" height="76" viewBox="0 0 76 76" aria-hidden="true"><circle class="fx-ring-bg" cx="38" cy="38" r="30" fill="none" stroke-width="7"></circle><circle class="fx-ring-val" id="fxRingVal" cx="38" cy="38" r="30" fill="none" stroke-width="7" stroke-linecap="round" stroke-dasharray="188.5" stroke-dashoffset="47.1"></circle></svg><span class="fx-ring-ctr" id="fxRingPct">75%</span></div><div class="fx-ring-side"><label for="fxRingRange">Hoàn thành hồ sơ</label><input type="range" id="fxRingRange" min="0" max="100" value="75" /><small>Kéo để vòng chạy theo %</small></div></div></div></td>
+                <td class="name-cell"><span class="name">Progress Ring Animate</span><span class="vi-name">Vòng tròn tiến độ động</span></td>
+                <td class="desc">Vòng tròn <b>vẽ dần quanh viền theo phần trăm hoàn thành, thường kèm số % ở giữa</b> — dùng cho tiến độ tải file, mức hoàn thành hồ sơ, mục tiêu sức khỏe hay đếm ngược để hiển thị tiến độ gọn trong một ô vuông nhỏ; khác Thanh tiến trình cuộn (theo cuộn trang), vòng này chạy theo giá trị. Kéo thanh trượt thử nhé.<div class="fx-meta"><span class="fx-badge tech">CSS-only · SVG stroke-dashoffset (JS nhẹ để gán %)</span><span class="fx-badge mob-ok">Mobile: An toàn</span></div></td>
+              </tr>
+
+              <tr class="fxcomp" data-search="stepper progress animate tiến trình nhiều bước đường nối tô dần dấu tick đăng ký thanh toán onboarding các bước">
+                <td class="demo"><div class="stage"><div class="fx-col"><div class="fx-stepper" id="fxStepper"><div class="fx-steps"><span class="fx-steps-fill" id="fxStepsFill"></span><div class="fx-step act"><span class="cir">1</span><span class="slbl">Tài khoản</span></div><div class="fx-step"><span class="cir">2</span><span class="slbl">Hồ sơ</span></div><div class="fx-step"><span class="cir">3</span><span class="slbl">Gói</span></div><div class="fx-step"><span class="cir">4</span><span class="slbl">Xem lại</span></div></div><div class="fx-step-body" id="fxStepBody">Bước 1/4 — Tạo tài khoản</div><div class="fx-step-nav"><button class="fx-btn" id="fxStepPrev" type="button">← Trước</button><button class="fx-btn acc" id="fxStepNext" type="button">Tiếp →</button></div></div></div></div></td>
+                <td class="name-cell"><span class="name">Stepper Progress Animate</span><span class="vi-name">Tiến trình nhiều bước</span></td>
+                <td class="desc">Thanh nhiều bước (đăng ký, thanh toán, onboarding) có <b>đường nối tô dần từ trái sang phải, vòng bước hiện tại phồng lên và bước xong bật dấu tick</b> — dùng để người dùng luôn biết mình đang ở bước mấy trên tổng số mấy; đường nối chạy bằng scaleX nên không gây giật layout. Bấm Tiếp thử nhé.<div class="fx-meta"><span class="fx-badge tech">CSS + JS nhẹ · Motion (connector scaleX)</span><span class="fx-badge mob-ok">Mobile: An toàn</span></div></td>
+              </tr>
+
+              <tr class="fxcomp" data-search="map pin drop ghim bản đồ rơi xuống nảy bounce drop google maps marker địa điểm cửa hàng giao hàng vị trí">
+                <td class="demo"><div class="stage"><div class="fx-col"><div class="fx-map drop" id="fxMap"><svg class="fx-pin p2" style="left:26%;top:42%" viewBox="0 0 24 30" aria-hidden="true"><path d="M12 0C5.9 0 1 4.9 1 11c0 8.2 11 19 11 19s11-10.8 11-19C23 4.9 18.1 0 12 0z" fill="#0a4177"/><circle cx="12" cy="11" r="4.2" fill="#fff"/></svg><svg class="fx-pin p3" style="left:74%;top:36%" viewBox="0 0 24 30" aria-hidden="true"><path d="M12 0C5.9 0 1 4.9 1 11c0 8.2 11 19 11 19s11-10.8 11-19C23 4.9 18.1 0 12 0z" fill="#1d9e6c"/><circle cx="12" cy="11" r="4.2" fill="#fff"/></svg><svg class="fx-pin p1 sel" style="left:50%;top:60%" viewBox="0 0 24 30" aria-hidden="true"><path d="M12 0C5.9 0 1 4.9 1 11c0 8.2 11 19 11 19s11-10.8 11-19C23 4.9 18.1 0 12 0z" fill="#fc7a01"/><circle cx="12" cy="11" r="4.2" fill="#fff"/></svg></div><button class="fx-btn" id="fxMapBtn" type="button">↻ Thả ghim lại</button></div></div></td>
+                <td class="name-cell"><span class="name">Map Pin Drop</span><span class="vi-name">Ghim bản đồ rơi xuống</span></td>
+                <td class="desc">Ghim địa điểm <b>rơi từ trên cao xuống đúng vị trí trên bản đồ rồi nảy nhẹ một cái</b> — dùng khi mở bản đồ cửa hàng, địa điểm giao hàng hay kết quả tìm kiếm theo vị trí để thu hút mắt vào điểm cần xem. Lưu ý: hiệu ứng tự nó rất nhẹ, nhưng bản đồ thật (Google Maps) nặng nên chỉ dùng khi trang đã có sẵn bản đồ. Bấm Thả ghim lại thử nhé.<div class="fx-meta"><span class="fx-badge tech">CSS + JS nhẹ · bản đồ thật cần Google Maps API</span><span class="fx-badge mob-warn">Mobile: Cẩn trọng</span></div></td>
+              </tr>
             </tbody>
           </table>
         </div>
@@ -3134,7 +3380,7 @@
 
         <section class="refs" aria-label="Nguồn tham khảo hiệu ứng chuyển động">
           <h2>Nguồn tham khảo hiệu ứng</h2>
-          <p class="sub">Danh sách hiệu ứng được tổng hợp và kiểm chứng ngày 18/11/2026 từ các nguồn dưới đây:</p>
+          <p class="sub">Danh sách hiệu ứng được tổng hợp và kiểm chứng ngày 18/11/2026 từ các nguồn dưới đây (đợt bổ sung thứ ba — 14 hiệu ứng — cũng kiểm chứng ngày 18/11/2026):</p>
           <ul>
             <li><a href="https://gsap.com/" target="_blank" rel="noopener">GSAP</a><span class="d">Thư viện animation chuẩn cho scroll/parallax/pin; miễn phí hoàn toàn từ 30/04/2025.</span></li>
             <li><a href="https://motion.dev/" target="_blank" rel="noopener">Motion</a><span class="d">Layout, scroll, gesture cho React, Vue và JavaScript — tên cũ là Framer Motion.</span></li>
@@ -3143,6 +3389,13 @@
             <li><a href="https://motionkit.io/blog/cool-website-animation-examples" target="_blank" rel="noopener">MotionKit</a><span class="d">Bài tổng hợp 32 ví dụ animation trên web thật, kèm phân loại hiệu ứng.</span></li>
             <li><a href="https://www.motionkitui.com/components/flip-card" target="_blank" rel="noopener">MotionKit UI — Flip Card / Shiny Text</a><span class="d">Trang component mẫu cho Thẻ lật 3D và Chữ lấp lánh, kèm thông số lò xo và cách xử lý giảm chuyển động.</span></li>
             <li><a href="https://tailwindcss.com/docs/animation" target="_blank" rel="noopener">Tailwind CSS — Animation</a><span class="d">Tài liệu các animation có sẵn: pulse, ping, bounce, spin và keyframes tuỳ chỉnh như wiggle.</span></li>
+            <li><a href="https://motion.dev/docs/stagger" target="_blank" rel="noopener">Motion — Stagger</a><span class="d">Tài liệu hiệu ứng hiện lần lượt (stagger) cho danh sách, lưới và menu.</span></li>
+            <li><a href="https://www.radix-ui.com/primitives/docs/components/popover" target="_blank" rel="noopener">Radix UI — Popover</a><span class="d">Mẫu popover phóng to từ vị trí nút bấm (scale-in theo transform-origin).</span></li>
+            <li><a href="https://emilkowal.ski/ui/building-a-toast-component?utm_source=reactdigest&utm_medium&utm_campaign=1711" target="_blank" rel="noopener">Sonner — Toast xếp chồng</a><span class="d">Bài của Emil Kowalski về cơ chế toast chồng lớp, xòe ra khi hover và vuốt để bỏ.</span></li>
+            <li><a href="https://www.shadcn.io/text/circular-text" target="_blank" rel="noopener">shadcn.io — Circular Text</a><span class="d">Huy hiệu chữ vòng tròn xoay chậm bằng CSS-only (SVG textPath), một vòng 20 giây.</span></li>
+            <li><a href="https://developers.google.com/maps/documentation/javascript/examples/marker-animations" target="_blank" rel="noopener">Google Maps — Marker Animations</a><span class="d">Ví dụ chính thức: ghim rơi (DROP) và nảy (BOUNCE) trên bản đồ.</span></li>
+            <li><a href="https://www.designlounge.live/p/skeleton-to-content-swap" target="_blank" rel="noopener">Design Lounge — Skeleton to Content</a><span class="d">Thông số khoảnh khắc skeleton mờ đi (160ms), nội dung trồi lên 10px thay thế mà không giật layout.</span></li>
+            <li><a href="https://lab.good-fella.com/blog/gsap-scrolltrigger-examples" target="_blank" rel="noopener">Good Fella Lab — ScrollTrigger Examples</a><span class="d">Ví dụ ảnh hiện bằng mặt nạ clip-path mở theo tiến độ cuộn (scrub).</span></li>
           </ul>
         </section>
       </section>
@@ -4512,6 +4765,171 @@
           pxhLayers.forEach(function (l) { l.style.transform = ""; });
         });
       }
+
+      /* ---------- Đợt 3: Image Reveal / Clip-path Reveal ---------- */
+      var clipFrame = document.getElementById("fxClipFrame");
+      var clipImg = document.getElementById("fxClipImg");
+      if (clipFrame && clipImg) {
+        var updClip = function () {
+          var max = clipFrame.scrollHeight - clipFrame.clientHeight;
+          var p = max > 0 ? Math.min(1, clipFrame.scrollTop / max) : 0;
+          if (rm) p = 1;
+          clipImg.style.clipPath = "circle(" + (14 + p * 72) + "% at 50% 50%)";
+          clipImg.style.transform = "scale(" + (1.18 - p * 0.18).toFixed(3) + ")";
+        };
+        clipFrame.addEventListener("scroll", updClip, { passive: true });
+        updClip();
+      }
+
+      /* ---------- Đợt 3: Rating Stars Fill ---------- */
+      var starsBox = document.getElementById("fxStars");
+      if (starsBox) {
+        var starBtns = Array.prototype.slice.call(starsBox.querySelectorAll(".fx-star"));
+        var starLbl = document.getElementById("fxStarsLbl");
+        var starVal = 0;
+        var paintStars = function (n, hovIdx) {
+          starBtns.forEach(function (b, i) {
+            b.classList.toggle("on", i < n);
+            b.classList.toggle("hov", i === hovIdx);
+          });
+        };
+        starBtns.forEach(function (b, i) {
+          b.addEventListener("mouseenter", function () { paintStars(i + 1, i); });
+          b.addEventListener("focus", function () { paintStars(i + 1, i); });
+          b.addEventListener("click", function () {
+            starVal = i + 1;
+            paintStars(starVal, -1);
+            if (starLbl) starLbl.textContent = "Bạn chọn " + starVal + "/5 sao";
+          });
+        });
+        starsBox.addEventListener("mouseleave", function () { paintStars(starVal, -1); });
+        var starClear = document.getElementById("fxStarsClear");
+        if (starClear) starClear.addEventListener("click", function () {
+          starVal = 0;
+          paintStars(0, -1);
+          if (starLbl) starLbl.textContent = "Rê chuột / chạm để chọn";
+        });
+      }
+
+      /* ---------- Đợt 3: Slider Thumb Grow ---------- */
+      var sld = document.getElementById("fxSld");
+      var sldVal = document.getElementById("fxSldVal");
+      if (sld) {
+        var updSld = function () {
+          var v = parseInt(sld.value, 10) || 0;
+          sld.style.background = "linear-gradient(90deg, var(--accent) " + v + "%, var(--border) " + v + "%)";
+          if (sldVal) sldVal.textContent = v;
+        };
+        sld.addEventListener("input", updSld);
+        updSld();
+      }
+
+      /* ---------- Đợt 3: Staggered List Entrance ---------- */
+      var stag = document.getElementById("fxStag");
+      if (stag) {
+        var playStag = function () { stag.classList.add("play"); };
+        if ("IntersectionObserver" in window && !rm) {
+          var stObs = new IntersectionObserver(function (entries) {
+            entries.forEach(function (e) { if (e.isIntersecting) { playStag(); stObs.disconnect(); } });
+          }, { threshold: 0.3 });
+          stObs.observe(stag);
+        } else playStag();
+        var stagBtn = document.getElementById("fxStagBtn");
+        if (stagBtn) stagBtn.addEventListener("click", function () {
+          stag.classList.remove("play");
+          void stag.offsetWidth;
+          setTimeout(playStag, 60);
+        });
+      }
+
+      /* ---------- Đợt 3: Popover Scale-in ---------- */
+      var popWrap = document.getElementById("fxPopWrap");
+      var popBtn = document.getElementById("fxPopBtn");
+      if (popWrap && popBtn) {
+        popBtn.addEventListener("click", function (e) { e.stopPropagation(); popWrap.classList.toggle("open"); });
+        document.addEventListener("click", function (e) { if (!popWrap.contains(e.target)) popWrap.classList.remove("open"); });
+      }
+
+      /* ---------- Đợt 3: Toast Stack ---------- */
+      var tsBtn = document.getElementById("fxTstackBtn");
+      var tsBox = document.getElementById("fxTstack");
+      if (tsBtn && tsBox) {
+        var tsTimer = null;
+        tsBtn.addEventListener("click", function () {
+          tsBox.classList.add("show");
+          if (tsTimer) clearTimeout(tsTimer);
+          tsTimer = setTimeout(function () { tsBox.classList.remove("show"); tsBox.classList.remove("exp"); }, 6000);
+        });
+        tsBox.addEventListener("click", function () { tsBox.classList.toggle("exp"); });
+      }
+
+      /* ---------- Đợt 3: Skeleton to Content Morph ---------- */
+      var swapList = document.getElementById("fxSwapList");
+      if (swapList) {
+        var swapCards = Array.prototype.slice.call(swapList.querySelectorAll(".fx-mcard"));
+        var swapRun = function () {
+          swapCards.forEach(function (c) { c.classList.remove("done"); });
+          swapCards.forEach(function (c, i) {
+            setTimeout(function () { c.classList.add("done"); }, rm ? 60 : 1000 + i * 140);
+          });
+        };
+        if ("IntersectionObserver" in window && !rm) {
+          var swObs = new IntersectionObserver(function (entries) {
+            entries.forEach(function (e) { if (e.isIntersecting) { swapRun(); swObs.disconnect(); } });
+          }, { threshold: 0.3 });
+          swObs.observe(swapList);
+        } else swapCards.forEach(function (c) { c.classList.add("done"); });
+        var swapBtn = document.getElementById("fxSwapBtn");
+        if (swapBtn) swapBtn.addEventListener("click", swapRun);
+      }
+
+      /* ---------- Đợt 3: Progress Ring Animate ---------- */
+      var ringRange = document.getElementById("fxRingRange");
+      var ringValEl = document.getElementById("fxRingVal");
+      var ringPct = document.getElementById("fxRingPct");
+      if (ringRange && ringValEl) {
+        var CIRC = 188.5;
+        var updRing = function () {
+          var v = parseInt(ringRange.value, 10) || 0;
+          ringValEl.style.strokeDashoffset = (CIRC * (1 - v / 100)).toFixed(1);
+          if (ringPct) ringPct.textContent = v + "%";
+        };
+        ringRange.addEventListener("input", updRing);
+        updRing();
+      }
+
+      /* ---------- Đợt 3: Stepper Progress Animate ---------- */
+      var stepper = document.getElementById("fxStepper");
+      if (stepper) {
+        var stSteps = Array.prototype.slice.call(stepper.querySelectorAll(".fx-step"));
+        var stFill = document.getElementById("fxStepsFill");
+        var stBody = document.getElementById("fxStepBody");
+        var stTexts = ["Bước 1/4 — Tạo tài khoản", "Bước 2/4 — Điền hồ sơ", "Bước 3/4 — Chọn gói dịch vụ", "Bước 4/4 — Xem lại & gửi"];
+        var stIdx = 0;
+        var stRender = function () {
+          stSteps.forEach(function (s, i) {
+            s.classList.toggle("done", i < stIdx);
+            s.classList.toggle("act", i === stIdx);
+            s.querySelector(".cir").textContent = i < stIdx ? "✓" : (i + 1);
+          });
+          if (stFill) stFill.style.transform = "scaleX(" + (stIdx / (stSteps.length - 1)) + ")";
+          if (stBody) stBody.textContent = stTexts[stIdx];
+        };
+        var stPrev = document.getElementById("fxStepPrev");
+        var stNext = document.getElementById("fxStepNext");
+        if (stPrev) stPrev.addEventListener("click", function () { if (stIdx > 0) { stIdx--; stRender(); } });
+        if (stNext) stNext.addEventListener("click", function () { if (stIdx < stSteps.length - 1) { stIdx++; stRender(); } });
+        stRender();
+      }
+
+      /* ---------- Đợt 3: Map Pin Drop ---------- */
+      var mapBox = document.getElementById("fxMap");
+      var mapBtn = document.getElementById("fxMapBtn");
+      if (mapBox && mapBtn) mapBtn.addEventListener("click", function () {
+        mapBox.classList.remove("drop");
+        void mapBox.offsetWidth;
+        mapBox.classList.add("drop");
+      });
     })();
     </script>
   </body>
