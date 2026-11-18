@@ -9,6 +9,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;600;700;800&family=Anton&family=Be+Vietnam+Pro:wght@400;500;600;700;800;900&family=Caveat:wght@500;600;700&family=Comfortaa:wght@400;500;600;700&family=Dancing+Script:wght@500;600;700&family=Great+Vibes&family=Inter:wght@400;600;700;800&family=Itim&family=Josefin+Sans:wght@400;500;600;700&family=Kanit:wght@400;500;600;700;800&family=Lexend:wght@400;500;600;700;800&family=Lobster&family=Manrope:wght@400;600;700;800&family=Montserrat:wght@400;600;700;800;900&family=Mulish:wght@400;600;700;800;900&family=Nunito:wght@400;600;700;800;900&family=Open+Sans:wght@400;600;700;800&family=Oswald:wght@400;500;600;700&family=Pacifico&family=Playfair+Display:wght@500;600;700;800;900&family=Quicksand:wght@400;500;600;700&family=Roboto:wght@400;500;700;900&family=Roboto+Condensed:wght@400;600;700&family=Space+Grotesk:wght@400;500;600;700&family=Work+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
     <style>
       button, [role="button"], select, summary, input:not([type="checkbox"], [type="radio"]) { min-height: 2rem; }
       * { box-sizing: border-box; }
@@ -2160,6 +2161,370 @@
         .tab-label { font-size: 14.5px; }
       }
 
+      /* ================================================================
+         TAB ĐỔI MÀU CHO WEB — gộp từ dự án "Trình Xem Bảng Màu 3 Khung"
+         Biến --p-* và --f-* chỉ sống trong .cp-app, không đụng màu trang chính.
+         ================================================================ */
+      .cp-app {
+        --p-bg: #E9F3FB;
+        --p-primary: #5B9BD5;
+        --p-secondary: #63B3A6;
+        --p-accent: #F08A3C;
+        --p-dark: #173A5E;
+        --on-primary: #FFFFFF;
+        --on-accent: #FFFFFF;
+        --p-soft: color-mix(in srgb, var(--p-primary) 16%, var(--p-bg));
+        --p-soft2: color-mix(in srgb, var(--p-secondary) 20%, var(--p-bg));
+        --p-band: color-mix(in srgb, var(--p-primary) 58%, var(--p-bg));
+        --p-line: color-mix(in srgb, var(--p-dark) 14%, var(--p-bg));
+        --p-muted: color-mix(in srgb, var(--p-dark) 58%, var(--p-bg));
+        --p-card: color-mix(in srgb, #FFFFFF 88%, var(--p-bg));
+        --f-head: "Be Vietnam Pro", system-ui, sans-serif;
+        --f-body: "Be Vietnam Pro", system-ui, sans-serif;
+        --ui-bg: var(--bg);
+        --ui-panel: var(--surface);
+        --ui-ink: var(--ink);
+        --ui-muted: var(--muted);
+        --ui-line: var(--border);
+        --ui-chip: var(--surface-2);
+        display: grid;
+        grid-template-columns: minmax(0, 11fr) minmax(0, 8fr) 252px;
+        gap: 14px;
+        align-items: start;
+      }
+      .cp-col {
+        background: var(--ui-panel);
+        border: 1px solid var(--ui-line);
+        border-radius: 16px;
+        box-shadow: var(--shadow);
+        display: flex;
+        flex-direction: column;
+        min-height: 0;
+        overflow: hidden;
+      }
+      .cp-col-head {
+        display: flex; align-items: center; justify-content: space-between; gap: 10px;
+        padding: 13px 16px;
+        border-bottom: 1px solid var(--ui-line);
+        flex: 0 0 auto;
+      }
+      .cp-col-head h2 { margin: 0; font-size: 15px; font-weight: 800; color: var(--navy); }
+      @media (prefers-color-scheme: dark) { .cp-col-head h2 { color: #9cc4ee; } }
+      .cp-col-head .cp-sub { font-size: 12px; color: var(--ui-muted); margin-top: 2px; }
+      .cp-col-body { overflow-y: auto; padding: 16px; flex: 1 1 auto; min-height: 0; max-height: 76vh; scrollbar-width: thin; }
+      .cp-live-badge {
+        display: inline-flex; align-items: center; gap: 6px;
+        font-size: 11.5px; font-weight: 700; color: var(--ui-muted);
+        background: var(--ui-chip); border: 1px solid var(--ui-line);
+        padding: 5px 10px; border-radius: 999px; white-space: nowrap;
+      }
+      .cp-live-dot { width: 8px; height: 8px; border-radius: 50%; background: #2FBF71; animation: cpPulse 1.6s infinite; }
+      @keyframes cpPulse { 0% { box-shadow: 0 0 0 0 rgba(47,191,113,.45);} 70% { box-shadow: 0 0 0 7px rgba(47,191,113,0);} 100% { box-shadow: 0 0 0 0 rgba(47,191,113,0);} }
+      @media (prefers-reduced-motion: reduce) { .cp-live-dot { animation: none; } }
+
+      .cp-themed, .cp-themed *, .cp-themed *::before, .cp-themed *::after {
+        transition: background-color .55s ease, border-color .55s ease, color .35s ease, fill .55s ease, stroke .55s ease, box-shadow .55s ease;
+      }
+      @media (prefers-reduced-motion: reduce) {
+        .cp-themed, .cp-themed *, .cp-themed *::before, .cp-themed *::after { transition: none; }
+      }
+      .cp-themed { font-family: var(--f-body); }
+      .cp-themed h1, .cp-themed h3, .cp-themed h4, .cp-themed .cp-logo, .cp-themed .cp-amount,
+      .cp-themed .cp-kpi b, .cp-themed .cp-nm, .cp-themed .cp-btn-start, .cp-themed .cp-phone h5,
+      .cp-themed .cp-gia, .cp-themed .cp-stats b { font-family: var(--f-head); }
+
+      /* ----- Khung trái: trang chủ mẫu ----- */
+      .cp-browser {
+        background: var(--p-bg); color: var(--p-dark);
+        border-radius: 16px; overflow: hidden;
+        box-shadow: 0 18px 40px rgba(20, 24, 40, .16);
+        border: 1px solid var(--p-line);
+      }
+      .cp-browser-bar {
+        display: flex; align-items: center; gap: 10px;
+        background: var(--p-card); padding: 9px 14px;
+        border-bottom: 1px solid var(--p-line);
+      }
+      .cp-win-dots { display: flex; gap: 6px; }
+      .cp-win-dots i { width: 10px; height: 10px; border-radius: 50%; display: block; }
+      .cp-win-dots i:nth-child(1) { background: var(--p-accent); }
+      .cp-win-dots i:nth-child(2) { background: var(--p-secondary); }
+      .cp-win-dots i:nth-child(3) { background: var(--p-primary); }
+      .cp-url-pill {
+        flex: 1; max-width: 300px; margin: 0 auto;
+        background: var(--p-soft); color: var(--p-muted);
+        font-size: 11px; text-align: center;
+        padding: 4px 10px; border-radius: 999px;
+      }
+      .cp-site-nav { display: flex; align-items: center; gap: 18px; padding: 16px 26px 4px; }
+      .cp-logo { font-weight: 900; letter-spacing: .12em; font-size: 13px; color: var(--p-dark); }
+      .cp-logo b { color: var(--p-accent); }
+      .cp-site-nav nav { margin-left: auto; display: flex; gap: 16px; font-size: 11.5px; font-weight: 500; }
+      .cp-site-nav nav span { color: var(--p-muted); cursor: pointer; }
+      .cp-site-nav nav span:first-child { color: var(--p-dark); font-weight: 700; }
+      .cp-btn-buy {
+        background: var(--p-accent); color: var(--on-accent);
+        border: none; font: inherit; font-size: 11.5px; font-weight: 700;
+        padding: 7px 16px; border-radius: 999px; cursor: pointer; min-height: 32px;
+      }
+      .cp-hero { display: grid; grid-template-columns: 1.05fr .95fr; gap: 10px; padding: 26px 26px 0; align-items: center; }
+      .cp-hero h1 { margin: 0 0 12px; font-size: clamp(24px, 2.6vw, 36px); line-height: 1.14; font-weight: 800; letter-spacing: -.01em; }
+      .cp-hero h1 .cp-hl { background-image: linear-gradient(to top, var(--p-accent) 30%, transparent 30%); padding: 0 2px; }
+      .cp-hero p { margin: 0 0 18px; font-size: 12.5px; line-height: 1.65; color: var(--p-muted); max-width: 34ch; }
+      .cp-btn-more {
+        background: var(--p-secondary); color: var(--p-dark);
+        border: none; font: inherit; font-size: 12px; font-weight: 700;
+        padding: 10px 22px; border-radius: 999px; cursor: pointer; min-height: 38px;
+      }
+      .cp-hero-art { position: relative; display: flex; justify-content: center; padding-top: 6px; }
+      .cp-blob {
+        position: absolute; width: 62%; aspect-ratio: 1; border-radius: 46% 54% 58% 42% / 50% 44% 56% 50%;
+        background: var(--p-soft2); top: 16%; right: 2%;
+      }
+      .cp-phone {
+        position: relative; width: 148px; aspect-ratio: 9 / 18.4;
+        background: var(--p-card);
+        border: 5px solid var(--p-dark); border-radius: 26px;
+        box-shadow: 10px 14px 0 color-mix(in srgb, var(--p-accent) 55%, var(--p-bg)), 0 22px 34px rgba(20,24,40,.18);
+        padding: 14px 11px; overflow: hidden;
+        transform: rotate(4deg);
+      }
+      .cp-phone h5 { margin: 2px 0 2px; font-size: 10px; font-weight: 800; text-align: center; }
+      .cp-phone .cp-tiny { font-size: 6.5px; color: var(--p-muted); text-align: center; margin-bottom: 9px; }
+      .cp-phone .cp-avatar {
+        width: 34px; height: 34px; border-radius: 50%; margin: 0 auto 9px;
+        background: var(--p-primary); color: var(--on-primary);
+        display: flex; align-items: center; justify-content: center;
+        font-weight: 800; font-size: 13px;
+        box-shadow: 0 0 0 5px var(--p-soft), 0 0 0 9px var(--p-soft2);
+      }
+      .cp-phone .cp-row { display: flex; align-items: center; gap: 6px; margin-bottom: 7px; }
+      .cp-phone .cp-row i { width: 13px; height: 13px; border-radius: 50%; flex: 0 0 auto; }
+      .cp-phone .cp-row s { height: 5px; border-radius: 3px; background: var(--p-line); flex: 1; text-decoration: none; display: block; }
+      .cp-phone .cp-row s.cp-short { flex: 0 0 45%; }
+      .cp-phone .cp-cta {
+        margin-top: 9px; background: var(--p-primary); color: var(--on-primary);
+        font-size: 7.5px; font-weight: 700; text-align: center;
+        padding: 6px 4px; border-radius: 7px;
+      }
+      .cp-phone .cp-cta.cp-alt { background: var(--p-soft); color: var(--p-dark); }
+      .cp-float-badge {
+        position: absolute; width: 44px; height: 44px; border-radius: 50%;
+        display: flex; align-items: center; justify-content: center;
+        box-shadow: 0 10px 20px rgba(20,24,40,.18); z-index: 2;
+      }
+      .cp-float-badge svg { width: 20px; height: 20px; }
+      .cp-fb-like { background: var(--p-secondary); color: var(--p-dark); left: 2%; top: 24%; }
+      .cp-fb-up { background: var(--p-card); color: var(--p-secondary); right: 0; bottom: 16%; border: 1px solid var(--p-line); }
+      .cp-wave { display: block; width: 100%; margin-top: -6px; }
+      .cp-band { background: var(--p-band); padding: 6px 26px 22px; margin-top: -1px; }
+      .cp-features { display: grid; grid-template-columns: repeat(5, 1fr); gap: 12px; text-align: center; color: var(--p-dark); }
+      .cp-feat svg { width: 30px; height: 30px; stroke: var(--p-dark); margin-bottom: 7px; }
+      .cp-feat h4 { margin: 0 0 4px; font-size: 11px; font-weight: 700; }
+      .cp-feat p { margin: 0; font-size: 9.5px; line-height: 1.5; color: color-mix(in srgb, var(--p-dark) 72%, var(--p-band)); }
+      .cp-cta-wrap { display: flex; justify-content: center; padding: 22px 16px 4px; }
+      .cp-btn-start {
+        background: var(--p-dark); color: var(--p-bg);
+        border: 2px solid color-mix(in srgb, var(--p-bg) 65%, var(--p-dark));
+        font: inherit; font-size: clamp(15px, 1.4vw, 19px); font-weight: 800;
+        padding: 13px 34px; border-radius: 14px; cursor: pointer;
+        display: inline-flex; align-items: center; gap: 10px; min-height: 52px;
+      }
+      .cp-site-foot {
+        background: var(--p-dark); color: var(--p-bg);
+        display: flex; align-items: center; justify-content: space-between; gap: 12px;
+        padding: 14px 26px; margin-top: 20px;
+      }
+      .cp-site-foot span { font-size: 11px; font-weight: 600; }
+      .cp-site-foot button {
+        background: var(--p-soft2); color: var(--p-dark); border: none; font: inherit;
+        font-size: 11px; font-weight: 700; padding: 7px 16px; border-radius: 999px; cursor: pointer; min-height: 32px;
+      }
+
+      /* ----- Khung giữa: các trang chức năng nhỏ ----- */
+      .cp-mini-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+      .cp-mini {
+        background: var(--p-bg); color: var(--p-dark);
+        border: 1px solid var(--p-line); border-radius: 14px;
+        overflow: hidden; box-shadow: 0 8px 20px rgba(20,24,40,.08);
+      }
+      .cp-mini-head {
+        display: flex; align-items: center; gap: 7px;
+        padding: 8px 12px; font-size: 11.5px; font-weight: 700;
+        background: var(--p-card); border-bottom: 1px solid var(--p-line);
+      }
+      .cp-mini-head .cp-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--p-accent); }
+      .cp-mini-body { padding: 13px; }
+      .cp-login-logo { width: 34px; height: 34px; border-radius: 11px; background: var(--p-primary); color: var(--on-primary); display: flex; align-items: center; justify-content: center; font-weight: 900; font-size: 15px; margin-bottom: 9px; }
+      .cp-mini h3 { margin: 0 0 3px; font-size: 13.5px; font-weight: 800; }
+      .cp-mini .cp-muted { color: var(--p-muted); font-size: 10.5px; line-height: 1.55; }
+      .cp-field { background: var(--p-card); border: 1px solid var(--p-line); border-radius: 9px; padding: 7px 10px; font-size: 10.5px; color: var(--p-muted); margin-top: 8px; }
+      .cp-btn-block {
+        width: 100%; margin-top: 10px; background: var(--p-primary); color: var(--on-primary);
+        border: none; font: inherit; font-size: 11.5px; font-weight: 700;
+        padding: 9px; border-radius: 9px; cursor: pointer; min-height: 36px;
+      }
+      .cp-btn-block.cp-ghost { background: var(--p-soft); color: var(--p-dark); }
+      .cp-price-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+      .cp-price { background: var(--p-card); border: 1px solid var(--p-line); border-radius: 11px; padding: 10px 8px; text-align: center; }
+      .cp-price.cp-hot { background: var(--p-primary); color: var(--on-primary); border-color: transparent; }
+      .cp-price .cp-tier { font-size: 9.5px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; opacity: .85; }
+      .cp-price .cp-amount { font-size: 16px; font-weight: 900; margin: 4px 0 2px; }
+      .cp-price .cp-per { font-size: 9px; opacity: .75; }
+      .cp-price ul { list-style: none; margin: 8px 0 0; padding: 0; font-size: 9px; line-height: 1.9; opacity: .9; }
+      .cp-kpis { display: flex; gap: 8px; margin-bottom: 11px; }
+      .cp-kpi { flex: 1; background: var(--p-card); border: 1px solid var(--p-line); border-radius: 10px; padding: 8px 9px; }
+      .cp-kpi b { display: block; font-size: 14px; font-weight: 900; }
+      .cp-kpi span { font-size: 9px; color: var(--p-muted); }
+      .cp-chart { display: flex; align-items: flex-end; gap: 7px; height: 74px; padding: 0 2px; }
+      .cp-bar { flex: 1; border-radius: 5px 5px 2px 2px; min-height: 8px; }
+      .cp-chart-labels { display: flex; gap: 7px; margin-top: 5px; }
+      .cp-chart-labels span { flex: 1; text-align: center; font-size: 8.5px; color: var(--p-muted); }
+      .cp-prod-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 9px; }
+      .cp-prod { background: var(--p-card); border: 1px solid var(--p-line); border-radius: 11px; overflow: hidden; }
+      .cp-prod .cp-art { height: 62px; display: flex; align-items: center; justify-content: center; }
+      .cp-prod .cp-art svg { width: 40px; height: 40px; }
+      .cp-prod .cp-info { padding: 8px 9px 10px; }
+      .cp-prod .cp-pname { font-size: 10.5px; font-weight: 700; }
+      .cp-prod .cp-price-row { display: flex; align-items: center; justify-content: space-between; margin-top: 4px; }
+      .cp-prod .cp-gia { font-size: 11.5px; font-weight: 900; color: var(--p-accent); }
+      .cp-prod .cp-add { background: var(--p-primary); color: var(--on-primary); border: none; width: 24px; height: 24px; min-height: 24px; border-radius: 8px; font-size: 14px; line-height: 1; cursor: pointer; }
+      .cp-post { display: flex; gap: 10px; padding: 8px 0; border-bottom: 1px dashed var(--p-line); }
+      .cp-post:last-child { border-bottom: none; padding-bottom: 0; }
+      .cp-post:first-child { padding-top: 0; }
+      .cp-post .cp-thumb { width: 46px; height: 46px; border-radius: 10px; flex: 0 0 auto; }
+      .cp-post .cp-tt { font-size: 11px; font-weight: 700; line-height: 1.45; }
+      .cp-post .cp-meta { font-size: 9px; color: var(--p-muted); margin-top: 3px; }
+      .cp-tag { display: inline-block; background: var(--p-soft2); color: var(--p-dark); font-size: 8.5px; font-weight: 700; padding: 2px 7px; border-radius: 999px; margin-top: 4px; }
+      .cp-profile-top { display: flex; gap: 11px; align-items: center; }
+      .cp-profile-top .cp-ava { width: 48px; height: 48px; border-radius: 50%; background: var(--p-secondary); color: var(--p-dark); display: flex; align-items: center; justify-content: center; font-weight: 900; font-size: 17px; flex: 0 0 auto; }
+      .cp-profile-top .cp-nm { font-size: 13px; font-weight: 800; }
+      .cp-stats { display: flex; gap: 8px; margin-top: 11px; }
+      .cp-stats div { flex: 1; text-align: center; background: var(--p-soft); border-radius: 9px; padding: 7px 2px; }
+      .cp-stats b { display: block; font-size: 12.5px; font-weight: 900; }
+      .cp-stats span { font-size: 8.5px; color: var(--p-muted); }
+      .cp-follow-row { display: flex; gap: 8px; margin-top: 10px; }
+      .cp-follow-row button { flex: 1; border: none; font: inherit; font-size: 11px; font-weight: 700; padding: 8px; border-radius: 9px; cursor: pointer; min-height: 34px; }
+      .cp-follow-row .cp-f1 { background: var(--p-accent); color: var(--on-accent); }
+      .cp-follow-row .cp-f2 { background: var(--p-card); color: var(--p-dark); border: 1px solid var(--p-line); flex: 0 0 34%; }
+
+      /* ----- Khung phải: bảng màu ----- */
+      .cp-col-pal .cp-col-body { padding: 12px; }
+      .cp-pal-list { display: flex; flex-direction: column; gap: 7px; }
+      .cp-pal-btn {
+        display: block; width: 100%; text-align: left; cursor: pointer;
+        background: transparent; border: 1px solid transparent; border-radius: 14px;
+        padding: 8px 10px 9px; font: inherit; color: var(--ui-ink);
+      }
+      .cp-pal-btn:hover { background: var(--ui-chip); border-color: var(--ui-line); }
+      .cp-pal-btn .cp-pal-name { font-size: 12px; font-weight: 600; color: var(--ui-muted); margin-bottom: 6px; display: flex; justify-content: space-between; align-items: center; }
+      .cp-pal-btn .cp-check { opacity: 0; color: var(--ui-ink); }
+      .cp-pal-btn.cp-active { background: var(--navy); border-color: var(--navy); }
+      .cp-pal-btn.cp-active .cp-pal-name { color: #C9CEDA; }
+      .cp-pal-btn.cp-active .cp-check { opacity: 1; color: #fff; }
+      @media (prefers-color-scheme: dark) {
+        .cp-pal-btn.cp-active { background: #0d2138; border-color: #0d2138; }
+        .cp-pal-btn.cp-active .cp-pal-name { color: #bcd6f2; }
+        .cp-pal-btn.cp-active .cp-check { color: #fff; }
+      }
+      .cp-dots { display: flex; gap: 5px; }
+      .cp-dots i { width: 26px; height: 26px; border-radius: 50%; display: block; box-shadow: inset 0 0 0 1px rgba(0,0,0,.08); flex: 0 0 auto; }
+      .cp-pal-section-title { font-size: 11.5px; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; color: var(--navy); margin: 18px 2px 9px; }
+      @media (prefers-color-scheme: dark) { .cp-pal-section-title { color: #9cc4ee; } }
+      .cp-role-row {
+        display: flex; align-items: center; gap: 9px;
+        background: var(--ui-chip); border: 1px solid var(--ui-line);
+        border-radius: 12px; padding: 6px 8px 6px 6px; margin-bottom: 7px;
+      }
+      .cp-role-row .cp-color-input {
+        width: 38px; height: 38px; min-height: 38px; flex: 0 0 auto;
+        border: none; padding: 0; background: none; cursor: pointer; border-radius: 10px;
+        appearance: none; -webkit-appearance: none;
+      }
+      .cp-role-row .cp-color-input::-webkit-color-swatch-wrapper { padding: 0; }
+      .cp-role-row .cp-color-input::-webkit-color-swatch { border: 1px solid rgba(0,0,0,.12); border-radius: 10px; }
+      .cp-role-row .cp-color-input::-moz-color-swatch { border: 1px solid rgba(0,0,0,.12); border-radius: 10px; }
+      .cp-role-row .cp-role-name { font-size: 11px; color: var(--ui-muted); line-height: 1.3; }
+      .cp-role-row .cp-hex { font-size: 12.5px; font-weight: 700; font-variant-numeric: tabular-nums; }
+      .cp-copy-btn {
+        margin-left: auto; background: transparent; border: 1px solid var(--ui-line);
+        color: var(--ui-muted); border-radius: 9px; width: 36px; height: 36px; min-height: 36px;
+        display: flex; align-items: center; justify-content: center; cursor: pointer; flex: 0 0 auto;
+      }
+      .cp-copy-btn:hover { color: var(--ui-ink); }
+      .cp-copy-btn svg { width: 15px; height: 15px; }
+      .cp-btn-random {
+        width: 100%; margin-top: 4px; cursor: pointer; font: inherit;
+        background: var(--navy); color: #fff;
+        border: none; border-radius: 12px; padding: 11px;
+        font-size: 13px; font-weight: 700; min-height: 44px;
+        display: flex; align-items: center; justify-content: center; gap: 8px;
+      }
+      @media (prefers-color-scheme: dark) { .cp-btn-random { background: var(--navy-soft); } }
+      .cp-btn-random svg { width: 16px; height: 16px; }
+      .cp-pal-note { font-size: 11.5px; color: var(--ui-muted); line-height: 1.6; margin: 12px 2px 0; }
+      .cp-toast {
+        position: fixed; left: 50%; bottom: 22px; transform: translate(-50%, 16px);
+        background: var(--navy); color: #fff; font-size: 13px; font-weight: 600;
+        padding: 10px 18px; border-radius: 999px; opacity: 0; pointer-events: none;
+        transition: opacity .25s ease, transform .25s ease; z-index: 70;
+        box-shadow: 0 12px 28px rgba(0,0,0,.25);
+      }
+      @media (prefers-color-scheme: dark) { .cp-toast { background: var(--navy-soft); } }
+      .cp-toast.cp-show { opacity: 1; transform: translate(-50%, 0); }
+      .cp-count-row { display: flex; align-items: center; justify-content: space-between; gap: 8px; margin-bottom: 10px; }
+      .cp-count-row > span { font-size: 12.5px; font-weight: 600; }
+      .cp-stepper { display: flex; align-items: center; gap: 2px; background: var(--ui-chip); border: 1px solid var(--ui-line); border-radius: 999px; padding: 2px; }
+      .cp-stepper button { width: 30px; height: 30px; min-height: 30px; border: none; background: transparent; color: var(--ui-ink); border-radius: 50%; font-size: 17px; line-height: 1; cursor: pointer; display: flex; align-items: center; justify-content: center; }
+      .cp-stepper button:disabled { opacity: .3; cursor: default; }
+      .cp-stepper b { min-width: 20px; text-align: center; font-size: 13px; font-variant-numeric: tabular-nums; }
+      .cp-fld-label { display: block; font-size: 11.5px; font-weight: 600; color: var(--ui-muted); margin: 10px 2px 5px; }
+      .cp-font-select { width: 100%; font-size: 13.5px; padding: 8px 10px; min-height: 40px; border-radius: 10px; border: 1px solid var(--ui-line); background: var(--ui-chip); color: var(--ui-ink); }
+      .cp-specimen { background: var(--ui-chip); border: 1px solid var(--ui-line); border-radius: 12px; padding: 11px 12px; margin-top: 11px; }
+      .cp-spec-head { font-family: var(--f-head); font-size: 16.5px; font-weight: 700; line-height: 1.35; }
+      .cp-spec-body { font-family: var(--f-body); font-size: 12px; color: var(--ui-muted); line-height: 1.6; margin-top: 4px; }
+      .cp-btn-upload {
+        width: 100%; margin-top: 10px; cursor: pointer; font: inherit;
+        background: transparent; color: var(--ui-ink);
+        border: 1.5px dashed var(--ui-line); border-radius: 12px; padding: 11px;
+        font-size: 12.5px; font-weight: 700; min-height: 44px;
+        display: flex; align-items: center; justify-content: center; gap: 8px;
+      }
+      .cp-btn-upload:hover { border-color: var(--ui-muted); }
+      .cp-btn-upload svg { width: 16px; height: 16px; }
+
+      /* ----- Tab Đổi Màu: responsive ----- */
+      @media (max-width: 1180px) {
+        .cp-app { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) 224px; }
+        .cp-features { grid-template-columns: repeat(3, 1fr); }
+        .cp-feat:nth-child(n+4) { display: none; }
+      }
+      @media (max-width: 900px) {
+        .cp-app { display: flex; flex-direction: column; }
+        .cp-col { width: 100%; }
+        .cp-col-body { overflow: visible; max-height: none; }
+        .cp-col-home { order: 1; }
+        .cp-col-pal { order: 2; }
+        .cp-col-mini { order: 3; }
+        .cp-pal-list { display: grid; grid-template-columns: 1fr 1fr; gap: 7px; }
+        .cp-hero { grid-template-columns: 1fr; }
+        .cp-hero-art { padding-bottom: 10px; }
+        .cp-features { grid-template-columns: repeat(3, 1fr); }
+        .cp-feat:nth-child(n+4) { display: block; }
+        .cp-site-nav nav { display: none; }
+        .ptabs { flex: 1 1 100%; }
+        .ptabs button { flex: 1 1 0; justify-content: center; }
+      }
+      @media (max-width: 520px) {
+        .cp-mini-grid { grid-template-columns: 1fr; }
+        .cp-features { grid-template-columns: repeat(2, 1fr); }
+        .cp-pal-list { grid-template-columns: 1fr; }
+        .cp-site-foot { flex-direction: column; text-align: center; }
+        .cp-col-body { padding: 12px; }
+        .cp-hero { padding: 20px 18px 0; }
+        .cp-site-nav, .cp-band, .cp-site-foot { padding-left: 18px; padding-right: 18px; }
+      }
+
     </style>
   </head>
   <body>
@@ -2173,6 +2538,7 @@
           <div class="ptabs" role="tablist" aria-label="Chọn mục tra cứu">
             <button type="button" role="tab" id="tabComp" aria-selected="true" aria-controls="panel-components"><span class="tab-ic" aria-hidden="true"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="8" height="8" rx="2"/><rect x="13" y="3" width="8" height="5" rx="2"/><rect x="13" y="10" width="8" height="11" rx="2"/><rect x="3" y="13" width="8" height="8" rx="2"/></svg></span><span class="tab-label">Thành phần web</span> <span class="pcount" id="tabCompCount"></span></button>
             <button type="button" role="tab" id="tabFx" aria-selected="false" aria-controls="panel-effects"><span class="tab-ic" aria-hidden="true"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l1.7 4.6L18 9.2l-4.3 1.6L12 15.4l-1.7-4.6L6 9.2l4.3-1.6z"/><path d="M19 15l.8 2.2L22 18l-2.2.8L19 21l-.8-2.2L16 18l2.2-.8z"/><path d="M5 16l.6 1.7L7.3 18.3l-1.7.6L5 20.6l-.6-1.7L2.7 18.3l1.7-.6z"/></svg></span><span class="tab-label">Hiệu ứng chuyển động</span> <span class="pcount">54</span></button>
+            <button type="button" role="tab" id="tabColor" aria-selected="false" aria-controls="panel-color"><span class="tab-ic" aria-hidden="true"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22a10 10 0 1 1 10-10c0 2.2-1.8 4-4 4h-2.2a2.3 2.3 0 0 0-1.8 3.6c.4.5.6 1 .6 1.4 0 .6-.4 1-2.6 1Z"/><circle cx="7.5" cy="10.5" r="1.15" fill="currentColor" stroke="none"/><circle cx="12" cy="7.5" r="1.15" fill="currentColor" stroke="none"/><circle cx="16.5" cy="10.5" r="1.15" fill="currentColor" stroke="none"/></svg></span><span class="tab-label">Đổi Màu cho Web</span></button>
           </div>
           <div class="searchbar">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.8-3.8"/></svg>
@@ -3400,6 +3766,280 @@
         </section>
       </section>
 
+      <section class="panel" id="panel-color" hidden aria-label="Đổi màu cho web">
+        <div class="cp-app" id="cpApp">
+
+          <!-- Khung trái: trang chủ mẫu -->
+          <section class="cp-col cp-col-home" aria-label="Trang chủ mẫu">
+            <div class="cp-col-head">
+              <div>
+                <h2>Trang chủ mẫu</h2>
+                <div class="cp-sub">Khung lớn — giao diện chính</div>
+              </div>
+              <span class="cp-live-badge"><span class="cp-live-dot"></span>Đổi màu trực tiếp</span>
+            </div>
+            <div class="cp-col-body">
+              <div class="cp-browser cp-themed">
+                <div class="cp-browser-bar">
+                  <div class="cp-win-dots"><i></i><i></i><i></i></div>
+                  <div class="cp-url-pill">trangchu.mau</div>
+                  <div style="width:42px"></div>
+                </div>
+                <div class="cp-site">
+                  <div class="cp-site-nav">
+                    <div class="cp-logo">ACCENT<b>ICO</b></div>
+                    <nav><span>Tổng quan</span><span>Bảng giá</span><span>Blog</span><span>Phản hồi</span></nav>
+                    <button class="cp-btn-buy" type="button">Mua ngay</button>
+                  </div>
+
+                  <div class="cp-hero">
+                    <div>
+                      <h1>Trải nghiệm <span class="cp-hl">mua vé</span> tốt nhất cho mọi chuyến đi</h1>
+                      <p>Phần quan trọng nhất là các mẫu giao diện. Bộ mẫu gồm nhiều trang dùng được ngay, hoặc bạn tự ghép thêm khối mới theo ý mình.</p>
+                      <button class="cp-btn-more" type="button">Tìm hiểu thêm</button>
+                    </div>
+                    <div class="cp-hero-art">
+                      <div class="cp-blob"></div>
+                      <div class="cp-float-badge cp-fb-like">
+                        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7 22V11L12.5 2.6c1.9.3 3 1.7 3 3.5 0 1-.3 2-.7 2.9H21a2 2 0 0 1 2 2.3l-1.2 7.4A2 2 0 0 1 19.8 20H7Zm-5 0h4V11H2v11Z" transform="scale(0.92) translate(1 0)"/></svg>
+                      </div>
+                      <div class="cp-phone">
+                        <h5>Bắt đầu nào</h5>
+                        <div class="cp-tiny">Đăng nhập để tiếp tục</div>
+                        <div class="cp-avatar">A</div>
+                        <div class="cp-row"><i style="background:var(--p-accent)"></i><s></s></div>
+                        <div class="cp-row"><i style="background:var(--p-secondary)"></i><s class="cp-short"></s></div>
+                        <div class="cp-row"><i style="background:var(--p-primary)"></i><s></s></div>
+                        <div class="cp-cta">Tiếp tục với Email</div>
+                        <div class="cp-cta cp-alt">Tiếp tục với Google</div>
+                        <div class="cp-cta cp-alt">Tiếp tục với Apple</div>
+                      </div>
+                      <div class="cp-float-badge cp-fb-up">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19V5"/><path d="m5 12 7-7 7 7"/></svg>
+                      </div>
+                    </div>
+                  </div>
+
+                  <svg class="cp-wave" viewBox="0 0 600 46" preserveAspectRatio="none" aria-hidden="true"><path d="M0,46 L0,20 C140,44 300,2 450,14 C530,20 575,28 600,22 L600,46 Z" fill="var(--p-band)"/></svg>
+
+                  <div class="cp-band">
+                    <div class="cp-features">
+                      <div class="cp-feat">
+                        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                        <h4>Đa thiết bị</h4><p>Giao diện co giãn đẹp trên mọi kích thước màn hình.</p>
+                      </div>
+                      <div class="cp-feat">
+                        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg>
+                        <h4>Sắc nét Retina</h4><p>Hiển thị rõ ràng trên các màn hình độ phân giải cao.</p>
+                      </div>
+                      <div class="cp-feat">
+                        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v3M12 18v3M3 12h3M18 12h3M5.6 5.6l2.1 2.1M16.3 16.3l2.1 2.1M18.4 5.6l-2.1 2.1M7.7 16.3l-2.1 2.1"/><path d="M12 8.5 13.2 11 16 11.3 14 13.2 14.6 16 12 14.6 9.4 16 10 13.2 8 11.3 10.8 11Z"/></svg>
+                        <h4>Khối dựng sẵn</h4><p>Nhiều khối nội dung hoàn chỉnh, ghép vào là dùng.</p>
+                      </div>
+                      <div class="cp-feat">
+                        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 10v12"/><path d="M15 5.88 14 10h5.83a2 2 0 0 1 1.92 2.56l-2.33 8A2 2 0 0 1 17.5 22H4a2 2 0 0 1-2-2v-8a2 2 0 0 1 2-2h2.76a2 2 0 0 0 1.79-1.11L12 2a3.13 3.13 0 0 1 3 3.88Z"/></svg>
+                        <h4>Dễ sử dụng</h4><p>Thao tác đơn giản, ai mở lên cũng dùng được ngay.</p>
+                      </div>
+                      <div class="cp-feat">
+                        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3.85 8.62a4 4 0 0 1 4.78-4.77 4 4 0 0 1 6.74 0 4 4 0 0 1 4.78 4.78 4 4 0 0 1 0 6.74 4 4 0 0 1-4.77 4.78 4 4 0 0 1-6.75 0 4 4 0 0 1-4.78-4.77 4 4 0 0 1 0-6.76Z"/><path d="m9 12 2 2 4-4"/></svg>
+                        <h4>Thiết kế đẹp</h4><p>Mọi chi tiết đều được chăm chút tỉ mỉ, đồng nhất.</p>
+                      </div>
+                    </div>
+                    <div class="cp-cta-wrap">
+                      <button class="cp-btn-start" type="button">Bắt đầu tạo ngay
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l1.8 5.7L19.5 9l-5.7 1.3L12 16l-1.8-5.7L4.5 9l5.7-1.3L12 2Zm7 11 .9 2.6 2.6.9-2.6.9L19 20l-.9-2.6-2.6-.9 2.6-.9L19 13ZM5 15l.8 2.2L8 18l-2.2.8L5 21l-.8-2.2L2 18l2.2-.8L5 15Z"/></svg>
+                      </button>
+                    </div>
+                  </div>
+
+                  <div class="cp-site-foot">
+                    <span>Hai mươi lăm trang web mẫu tuyệt đẹp</span>
+                    <button type="button">Dùng thử ngay</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- Khung giữa: các trang chức năng -->
+          <section class="cp-col cp-col-mini" aria-label="Các trang chức năng">
+            <div class="cp-col-head">
+              <div>
+                <h2>Các trang chức năng</h2>
+                <div class="cp-sub">6 trang nhỏ — cùng đổi màu theo bảng đang chọn</div>
+              </div>
+            </div>
+            <div class="cp-col-body">
+              <div class="cp-mini-grid">
+
+                <article class="cp-mini cp-themed">
+                  <div class="cp-mini-head"><span class="cp-dot"></span>Đăng nhập</div>
+                  <div class="cp-mini-body">
+                    <div class="cp-login-logo">A</div>
+                    <h3>Chào mừng trở lại</h3>
+                    <div class="cp-muted">Đăng nhập để tiếp tục vào tài khoản của bạn.</div>
+                    <div class="cp-field">Địa chỉ email</div>
+                    <div class="cp-field">Mật khẩu ••••••••</div>
+                    <button class="cp-btn-block" type="button">Đăng nhập</button>
+                    <button class="cp-btn-block cp-ghost" type="button">Tiếp tục với Google</button>
+                  </div>
+                </article>
+
+                <article class="cp-mini cp-themed">
+                  <div class="cp-mini-head"><span class="cp-dot"></span>Bảng giá</div>
+                  <div class="cp-mini-body">
+                    <div class="cp-price-grid">
+                      <div class="cp-price">
+                        <div class="cp-tier">Cơ bản</div><div class="cp-amount">0đ</div><div class="cp-per">miễn phí</div>
+                        <ul><li>1 dự án</li><li>5 trang mẫu</li><li>Hỗ trợ email</li></ul>
+                      </div>
+                      <div class="cp-price cp-hot">
+                        <div class="cp-tier">Chuyên nghiệp</div><div class="cp-amount">299k</div><div class="cp-per">/ tháng</div>
+                        <ul><li>10 dự án</li><li>25 trang mẫu</li><li>Hỗ trợ ưu tiên</li></ul>
+                      </div>
+                      <div class="cp-price">
+                        <div class="cp-tier">Doanh nghiệp</div><div class="cp-amount">899k</div><div class="cp-per">/ tháng</div>
+                        <ul><li>Không giới hạn</li><li>Mọi trang mẫu</li><li>Hỗ trợ 24/7</li></ul>
+                      </div>
+                    </div>
+                  </div>
+                </article>
+
+                <article class="cp-mini cp-themed">
+                  <div class="cp-mini-head"><span class="cp-dot"></span>Thống kê</div>
+                  <div class="cp-mini-body">
+                    <div class="cp-kpis">
+                      <div class="cp-kpi"><b>12.480</b><span>Lượt truy cập</span></div>
+                      <div class="cp-kpi"><b>3.214</b><span>Đơn hàng</span></div>
+                      <div class="cp-kpi"><b>+18%</b><span>Tăng trưởng</span></div>
+                    </div>
+                    <div class="cp-chart">
+                      <div class="cp-bar" style="height:42%;background:var(--p-primary)"></div>
+                      <div class="cp-bar" style="height:64%;background:var(--p-secondary)"></div>
+                      <div class="cp-bar" style="height:50%;background:var(--p-accent)"></div>
+                      <div class="cp-bar" style="height:82%;background:var(--p-x1, var(--p-primary))"></div>
+                      <div class="cp-bar" style="height:70%;background:var(--p-x2, var(--p-secondary))"></div>
+                      <div class="cp-bar" style="height:95%;background:var(--p-x3, var(--p-accent))"></div>
+                    </div>
+                    <div class="cp-chart-labels"><span>T2</span><span>T3</span><span>T4</span><span>T5</span><span>T6</span><span>T7</span></div>
+                  </div>
+                </article>
+
+                <article class="cp-mini cp-themed">
+                  <div class="cp-mini-head"><span class="cp-dot"></span>Sản phẩm</div>
+                  <div class="cp-mini-body">
+                    <div class="cp-prod-grid">
+                      <div class="cp-prod">
+                        <div class="cp-art" style="background:var(--p-soft)">
+                          <svg viewBox="0 0 24 24" fill="none" stroke="var(--p-primary)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 7h15l-1.5 9h-12z"/><path d="M6 7L5 3H2"/><circle cx="9" cy="20" r="1.6"/><circle cx="17" cy="20" r="1.6"/></svg>
+                        </div>
+                        <div class="cp-info"><div class="cp-pname">Túi vải canvas</div>
+                          <div class="cp-price-row"><span class="cp-gia">189.000đ</span><button class="cp-add" type="button" aria-label="Thêm túi vải canvas vào giỏ">+</button></div>
+                        </div>
+                      </div>
+                      <div class="cp-prod">
+                        <div class="cp-art" style="background:var(--p-soft2)">
+                          <svg viewBox="0 0 24 24" fill="none" stroke="var(--p-accent)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>
+                        </div>
+                        <div class="cp-info"><div class="cp-pname">Đồng hồ tối giản</div>
+                          <div class="cp-price-row"><span class="cp-gia">1.290.000đ</span><button class="cp-add" type="button" aria-label="Thêm đồng hồ vào giỏ">+</button></div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </article>
+
+                <article class="cp-mini cp-themed">
+                  <div class="cp-mini-head"><span class="cp-dot"></span>Bài viết</div>
+                  <div class="cp-mini-body">
+                    <div class="cp-post">
+                      <div class="cp-thumb" style="background:var(--p-primary)"></div>
+                      <div><div class="cp-tt">5 nguyên tắc phối màu cho trang web hiện đại</div><div class="cp-meta">12 thg 11 · 4 phút đọc</div><span class="cp-tag">Thiết kế</span></div>
+                    </div>
+                    <div class="cp-post">
+                      <div class="cp-thumb" style="background:var(--p-x1, var(--p-secondary))"></div>
+                      <div><div class="cp-tt">Cách chọn bảng màu hợp với thương hiệu của bạn</div><div class="cp-meta">8 thg 11 · 6 phút đọc</div><span class="cp-tag">Thương hiệu</span></div>
+                    </div>
+                    <div class="cp-post">
+                      <div class="cp-thumb" style="background:var(--p-x2, var(--p-accent))"></div>
+                      <div><div class="cp-tt">Xu hướng giao diện năm nay: nhẹ, sáng và nhiều màu</div><div class="cp-meta">2 thg 11 · 5 phút đọc</div><span class="cp-tag">Xu hướng</span></div>
+                    </div>
+                  </div>
+                </article>
+
+                <article class="cp-mini cp-themed">
+                  <div class="cp-mini-head"><span class="cp-dot"></span>Hồ sơ cá nhân</div>
+                  <div class="cp-mini-body">
+                    <div class="cp-profile-top">
+                      <div class="cp-ava">K</div>
+                      <div><div class="cp-nm">Khách dùng mẫu</div><div class="cp-muted">Nhà thiết kế giao diện · Hà Nội</div></div>
+                    </div>
+                    <div class="cp-stats">
+                      <div><b>128</b><span>Bài viết</span></div>
+                      <div><b>4.2k</b><span>Người theo dõi</span></div>
+                      <div><b>312</b><span>Đang theo dõi</span></div>
+                    </div>
+                    <div class="cp-follow-row">
+                      <button class="cp-f1" type="button">Theo dõi</button>
+                      <button class="cp-f2" type="button">Nhắn tin</button>
+                    </div>
+                  </div>
+                </article>
+
+              </div>
+            </div>
+          </section>
+
+          <!-- Khung phải: bảng màu -->
+          <aside class="cp-col cp-col-pal" aria-label="Bảng màu">
+            <div class="cp-col-head">
+              <div>
+                <h2>Bảng màu</h2>
+                <div class="cp-sub">Chạm để áp dụng ngay</div>
+              </div>
+              <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><line x1="4" y1="7" x2="20" y2="7"/><circle cx="9" cy="7" r="2.2" fill="var(--surface)"/><line x1="4" y1="17" x2="20" y2="17"/><circle cx="15" cy="17" r="2.2" fill="var(--surface)"/></svg>
+            </div>
+            <div class="cp-col-body">
+              <div class="cp-count-row">
+                <span>Số màu trong bảng</span>
+                <div class="cp-stepper">
+                  <button type="button" id="cpCntMinus" aria-label="Giảm số màu">−</button>
+                  <b id="cpCntVal">5</b>
+                  <button type="button" id="cpCntPlus" aria-label="Tăng số màu">+</button>
+                </div>
+              </div>
+              <div class="cp-pal-list" id="cpPalList"></div>
+
+              <div class="cp-pal-section-title">Màu đang dùng — tự chỉnh</div>
+              <div id="cpRoleList"></div>
+
+              <button class="cp-btn-random" id="cpBtnRandom" type="button">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="4"/><circle cx="8.5" cy="8.5" r="1.3" fill="currentColor" stroke="none"/><circle cx="15.5" cy="15.5" r="1.3" fill="currentColor" stroke="none"/><circle cx="15.5" cy="8.5" r="1.3" fill="currentColor" stroke="none"/><circle cx="8.5" cy="15.5" r="1.3" fill="currentColor" stroke="none"/></svg>
+                Tạo bảng màu ngẫu nhiên
+              </button>
+              <p class="cp-pal-note">Chạm vào ô màu ở mục “Màu đang dùng” để tự chỉnh từng màu. Chạm nút chép để lấy mã HEX mang sang phần mềm thiết kế của bạn. Bảng có từ 3–8 màu: khi ít hơn 5 màu, màu phụ và màu tối được tự suy ra; màu thêm (thứ 6 trở đi) hiện ở biểu đồ Thống kê và ảnh bìa Bài viết.</p>
+
+              <div class="cp-pal-section-title">Font chữ — xem trước</div>
+              <label class="cp-fld-label" for="cpFontHead">Font tiêu đề</label>
+              <select class="cp-font-select" id="cpFontHead"></select>
+              <label class="cp-fld-label" for="cpFontBody">Font nội dung</label>
+              <select class="cp-font-select" id="cpFontBody"></select>
+              <div class="cp-specimen">
+                <div class="cp-spec-head">Tiếng Việt có dấu — Ăă Ââ Êê Ôô Ơơ Ưư Đđ</div>
+                <div class="cp-spec-body">Dòng chữ mẫu để xem font hiển thị tiếng Việt: “Đặt vé nhanh, giá tốt, hỗ trợ tận tâm suốt chuyến đi.”</div>
+              </div>
+              <button class="cp-btn-upload" id="cpBtnUploadFont" type="button">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="m17 8-5-5-5 5"/><path d="M12 3v12"/></svg>
+                Tải font của bạn lên để xem thử
+              </button>
+              <input type="file" id="cpFontFile" accept=".ttf,.otf,.woff,.woff2" hidden />
+              <p class="cp-pal-note">27 font có sẵn đều hỗ trợ đầy đủ dấu tiếng Việt. Font tải lên (.ttf, .otf, .woff, .woff2) chỉ dùng trong lần mở này, không lưu lại.</p>
+            </div>
+          </aside>
+        </div>
+        <div class="cp-toast" id="cpToast" role="status"></div>
+      </section>
+
       <footer class="note">Mẹo: <b>bấm thử trực tiếp</b> vào các demo — công tắc, hộp tick, sao đánh giá, tab, accordion… đều thao tác được như trên web thật.</footer>
     </div>
 
@@ -3466,29 +4106,40 @@
           if (nrEl) nrEl.classList.toggle("show", visible === 0);
         }
         function applyFilter() {
+          if (activeTab === "color") return;
           if (activeTab === "fx") filterSet(fxRows, fxGroups, "fxgroup", "fxcomp", noresultFx, "hiệu ứng");
           else filterSet(rows, groups, "group", "comp", noresult, "thành phần");
         }
         search.addEventListener("input", applyFilter);
 
-        /* ---------- Chuyển tab Thành phần / Hiệu ứng ---------- */
+        /* ---------- Chuyển tab Thành phần / Hiệu ứng / Đổi Màu ---------- */
         var tabComp = document.getElementById("tabComp");
         var tabFx = document.getElementById("tabFx");
+        var tabColor = document.getElementById("tabColor");
         var panelComp = document.getElementById("panel-components");
         var panelFx = document.getElementById("panel-effects");
+        var panelColor = document.getElementById("panel-color");
+        var searchbarEl = document.querySelector(".toprow .searchbar");
         function setMainTab(which) {
           activeTab = which;
           var fx = which === "fx";
-          tabComp.setAttribute("aria-selected", fx ? "false" : "true");
+          var color = which === "color";
+          tabComp.setAttribute("aria-selected", which === "comp" ? "true" : "false");
           tabFx.setAttribute("aria-selected", fx ? "true" : "false");
-          panelComp.hidden = fx;
+          tabColor.setAttribute("aria-selected", color ? "true" : "false");
+          panelComp.hidden = which !== "comp";
           panelFx.hidden = !fx;
-          search.placeholder = fx ? "Tìm hiệu ứng…" : "Tìm thành phần…";
-          search.setAttribute("aria-label", fx ? "Tìm hiệu ứng chuyển động" : "Tìm thành phần");
-          applyFilter();
+          panelColor.hidden = !color;
+          if (searchbarEl) searchbarEl.style.display = color ? "none" : "";
+          if (!color) {
+            search.placeholder = fx ? "Tìm hiệu ứng…" : "Tìm thành phần…";
+            search.setAttribute("aria-label", fx ? "Tìm hiệu ứng chuyển động" : "Tìm thành phần");
+            applyFilter();
+          }
         }
         tabComp.addEventListener("click", function () { setMainTab("comp"); });
         tabFx.addEventListener("click", function () { setMainTab("fx"); });
+        tabColor.addEventListener("click", function () { setMainTab("color"); });
         applyFilter();
 
         /* ---------- Toggle tự lật + bấm được ---------- */
@@ -4931,6 +5582,307 @@
         mapBox.classList.add("drop");
       });
     })();
+    </script>
+    <script>
+      /* ---------- Tab Đổi Màu cho Web (gộp từ "Trình Xem Bảng Màu 3 Khung") ---------- */
+      (function () {
+        var cpRoot = document.getElementById("cpApp");
+        if (!cpRoot) return;
+        var colorCount = 5;
+
+        function hexToRgb(hex) {
+          var h = hex.replace("#", "");
+          return [parseInt(h.substr(0, 2), 16), parseInt(h.substr(2, 2), 16), parseInt(h.substr(4, 2), 16)];
+        }
+        function roleLabel(i, n) {
+          if (i === 0) return "Nền trang";
+          if (i === 1) return "Màu chính";
+          if (i === 2) return n === 3 ? "Màu nhấn" : "Màu phụ";
+          if (i === 3) return "Màu nhấn";
+          if (i === 4) return "Màu tối / chữ";
+          return "Màu thêm " + (i - 4);
+        }
+        function mixHex(a, b, t) {
+          var ca = hexToRgb(a), cb = hexToRgb(b);
+          var to = function (x) { return Math.round(x).toString(16).padStart(2, "0"); };
+          return ("#" + to(ca[0] + (cb[0] - ca[0]) * t) + to(ca[1] + (cb[1] - ca[1]) * t) + to(ca[2] + (cb[2] - ca[2]) * t)).toUpperCase();
+        }
+        function hexToHsl(hex) {
+          var c = hexToRgb(hex);
+          var r = c[0] / 255, g = c[1] / 255, b = c[2] / 255;
+          var max = Math.max(r, g, b), min = Math.min(r, g, b);
+          var h = 0, s = 0, l = (max + min) / 2;
+          if (max !== min) {
+            var d = max - min;
+            s = l > 0.5 ? d / (2 - max - min) : d / (max + min);
+            if (max === r) h = (g - b) / d + (g < b ? 6 : 0);
+            else if (max === g) h = (b - r) / d + 2;
+            else h = (r - g) / d + 4;
+            h *= 60;
+          }
+          return [h, s * 100, l * 100];
+        }
+        function hslToHex(h, s, l) {
+          s /= 100; l /= 100;
+          var k = function (n) { return (n + h / 30) % 12; };
+          var a = s * Math.min(l, 1 - l);
+          var f = function (n) { return l - a * Math.max(-1, Math.min(k(n) - 3, Math.min(9 - k(n), 1))); };
+          var to = function (x) { return Math.round(x * 255).toString(16).padStart(2, "0"); };
+          return ("#" + to(f(0)) + to(f(8)) + to(f(4))).toUpperCase();
+        }
+        function hueShift(hex, deg) {
+          var hsl = hexToHsl(hex);
+          return hslToHex((hsl[0] + deg) % 360, Math.max(30, Math.min(85, hsl[1])), Math.max(32, Math.min(68, hsl[2])));
+        }
+        function genExtra(colors, idx) {
+          var srcs = [colors[1], colors[3] || colors[1], colors[2] || colors[1]];
+          return hueShift(srcs[(idx - 5) % 3], 55 + ((idx - 5) % 3) * 45);
+        }
+        function fitCount(colors, n) {
+          var out = colors.slice(0, n);
+          while (out.length < n) out.push(genExtra(out, out.length));
+          return out;
+        }
+        function effectiveRoles(colors) {
+          var secondary, accent, dark;
+          if (colors.length === 3) {
+            accent = colors[2];
+            secondary = mixHex(colors[1], accent, 0.45);
+            dark = mixHex(colors[1], "#0B1220", 0.78);
+          } else if (colors.length === 4) {
+            secondary = colors[2]; accent = colors[3];
+            dark = mixHex(colors[1], "#0B1220", 0.78);
+          } else {
+            secondary = colors[2]; accent = colors[3]; dark = colors[4];
+          }
+          return { bg: colors[0], primary: colors[1], secondary: secondary, accent: accent, dark: dark };
+        }
+        function readableOn(hex) {
+          var c = hexToRgb(hex);
+          var lum = (0.299 * c[0] + 0.587 * c[1] + 0.114 * c[2]) / 255;
+          return lum > 0.62 ? "#22303F" : "#FFFFFF";
+        }
+
+        var PALETTES = [
+          { name: "Đại Dương",    colors: ["#E9F3FB", "#5B9BD5", "#63B3A6", "#F08A3C", "#173A5E"] },
+          { name: "Kẹo Ngọt",     colors: ["#FDF6EC", "#7FB3E8", "#7ED491", "#EE6C4A", "#4A3226"] },
+          { name: "Hoàng Hôn",    colors: ["#FDF0E2", "#E4572E", "#F2A03D", "#C73E6D", "#3A2230"] },
+          { name: "Rừng Xanh",    colors: ["#EFF6EA", "#4E9B47", "#93C572", "#E9B44C", "#22331C"] },
+          { name: "Đêm Sao",      colors: ["#EDF0F7", "#3D405B", "#81B29A", "#F2CC8F", "#232333"] },
+          { name: "Dâu Tây",      colors: ["#FBF1EC", "#C97B84", "#E3A857", "#B03060", "#33272A"] },
+          { name: "Oải Hương",    colors: ["#F4F1FA", "#8B7FD4", "#A9CCE8", "#F09BB5", "#2E2A5C"] },
+          { name: "Cà Phê Sữa",   colors: ["#F7F1E5", "#B08968", "#DDB892", "#7F5539", "#2B1D16"] },
+          { name: "San Hô",       colors: ["#EAF7F4", "#2BB3A3", "#7FD1C0", "#FF7B6B", "#123B3C"] },
+          { name: "Hồng Đào",     colors: ["#FDF2F4", "#E5638C", "#F2A0B5", "#F6C453", "#3D2430"] },
+          { name: "Navy Cam",     colors: ["#EEF3F9", "#052E57", "#2E6DA8", "#FC7A01", "#0B1F33"] },
+          { name: "Chanh Bạc Hà", colors: ["#F4F9EC", "#8CC084", "#B7D957", "#F5C044", "#2C4423"] }
+        ];
+
+        var current = PALETTES[0].colors.slice();
+        var activeIndex = 0;
+
+        function applyColors(colors) {
+          current = colors.slice();
+          var r = effectiveRoles(colors);
+          var st = cpRoot.style;
+          st.setProperty("--p-bg", r.bg);
+          st.setProperty("--p-primary", r.primary);
+          st.setProperty("--p-secondary", r.secondary);
+          st.setProperty("--p-accent", r.accent);
+          st.setProperty("--p-dark", r.dark);
+          st.setProperty("--on-primary", readableOn(r.primary));
+          st.setProperty("--on-accent", readableOn(r.accent));
+          for (var k = 1; k <= 3; k++) {
+            if (colors[4 + k]) st.setProperty("--p-x" + k, colors[4 + k]);
+            else st.removeProperty("--p-x" + k);
+          }
+          renderRoles();
+        }
+
+        function renderPalettes() {
+          var wrap = document.getElementById("cpPalList");
+          wrap.innerHTML = "";
+          PALETTES.forEach(function (pal, i) {
+            var btn = document.createElement("button");
+            btn.type = "button";
+            btn.className = "cp-pal-btn" + (i === activeIndex ? " cp-active" : "");
+            btn.setAttribute("aria-pressed", i === activeIndex ? "true" : "false");
+            var dots = fitCount(pal.colors, colorCount).map(function (c) { return '<i style="background:' + c + '"></i>'; }).join("");
+            btn.innerHTML = '<span class="cp-pal-name">' + pal.name +
+              '<svg class="cp-check" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span>' +
+              '<span class="cp-dots">' + dots + "</span>";
+            btn.addEventListener("click", function () {
+              activeIndex = i;
+              applyColors(fitCount(pal.colors, colorCount));
+              renderPalettes();
+            });
+            wrap.appendChild(btn);
+          });
+        }
+
+        function renderRoles() {
+          var wrap = document.getElementById("cpRoleList");
+          wrap.innerHTML = "";
+          current.forEach(function (color, i) {
+            var label = roleLabel(i, current.length);
+            var row = document.createElement("div");
+            row.className = "cp-role-row";
+            row.innerHTML =
+              '<input type="color" class="cp-color-input" value="' + color + '" aria-label="Chỉnh màu ' + label + '" title="Chỉnh màu ' + label + '">' +
+              '<div><div class="cp-role-name">' + label + '</div><div class="cp-hex">' + color.toUpperCase() + "</div></div>" +
+              '<button class="cp-copy-btn" type="button" aria-label="Chép mã màu ' + color.toUpperCase() + '">' +
+              '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="12" height="12" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg></button>';
+            var input = row.querySelector('input[type="color"]');
+            input.addEventListener("input", function () {
+              activeIndex = -1;
+              var next = current.slice();
+              next[i] = input.value;
+              applyColors(next);
+              renderPalettes();
+            });
+            row.querySelector(".cp-copy-btn").addEventListener("click", function () {
+              copyHex(current[i]);
+            });
+            wrap.appendChild(row);
+          });
+        }
+
+        var toastTimer = null;
+        function showToast(msg) {
+          var t = document.getElementById("cpToast");
+          t.textContent = msg;
+          t.classList.add("cp-show");
+          clearTimeout(toastTimer);
+          toastTimer = setTimeout(function () { t.classList.remove("cp-show"); }, 1800);
+        }
+        function copyHex(hex) {
+          var done = function () { showToast("Đã chép mã màu " + hex.toUpperCase()); };
+          if (navigator.clipboard && navigator.clipboard.writeText) {
+            navigator.clipboard.writeText(hex.toUpperCase()).then(done, function () { fallbackCopy(hex); done(); });
+          } else { fallbackCopy(hex); done(); }
+        }
+        function fallbackCopy(text) {
+          var ta = document.createElement("textarea");
+          ta.value = text.toUpperCase();
+          ta.style.position = "fixed"; ta.style.opacity = "0";
+          document.body.appendChild(ta); ta.select();
+          try { document.execCommand("copy"); } catch (e) {}
+          document.body.removeChild(ta);
+        }
+
+        document.getElementById("cpBtnRandom").addEventListener("click", function () {
+          var h = Math.floor(Math.random() * 360);
+          var scheme = [
+            hslToHex(h, 55, 96),
+            hslToHex(h, 62, 52),
+            hslToHex((h + 40) % 360, 45, 58),
+            hslToHex((h + 180) % 360, 78, 55),
+            hslToHex(h, 45, 16)
+          ];
+          var seed = colorCount === 3 ? [scheme[0], scheme[1], scheme[3]] : scheme.slice(0, Math.min(colorCount, 5));
+          activeIndex = -1;
+          applyColors(fitCount(seed, colorCount));
+          renderPalettes();
+          showToast("Đã tạo bảng màu ngẫu nhiên");
+        });
+
+        /* ---------- Số lượng màu 3–8 ---------- */
+        var cntVal = document.getElementById("cpCntVal");
+        var cntMinus = document.getElementById("cpCntMinus");
+        var cntPlus = document.getElementById("cpCntPlus");
+        function refreshStepper() {
+          cntVal.textContent = colorCount;
+          cntMinus.disabled = colorCount <= 3;
+          cntPlus.disabled = colorCount >= 8;
+        }
+        function setCount(n) {
+          colorCount = Math.max(3, Math.min(8, n));
+          refreshStepper();
+          applyColors(fitCount(current, colorCount));
+          renderPalettes();
+        }
+        cntMinus.addEventListener("click", function () { setCount(colorCount - 1); });
+        cntPlus.addEventListener("click", function () { setCount(colorCount + 1); });
+
+        /* ---------- Font chữ (27 font hỗ trợ tiếng Việt + tải lên) ---------- */
+        var FONT_GROUPS = [
+          { label: "Sans — hiện đại, dễ đọc", fonts: ["Be Vietnam Pro", "Inter", "Roboto", "Open Sans", "Montserrat", "Nunito", "Quicksand", "Lexend", "Manrope", "Mulish", "Work Sans", "Archivo", "Kanit", "Josefin Sans", "Comfortaa", "Space Grotesk"] },
+          { label: "Đậm — hợp làm tiêu đề", fonts: ["Oswald", "Roboto Condensed", "Anton", "Baloo 2"] },
+          { label: "Serif — sang trọng", fonts: ["Playfair Display"] },
+          { label: "Viết tay — trang trí", fonts: ["Dancing Script", "Caveat", "Pacifico", "Lobster", "Great Vibes", "Itim"] }
+        ];
+        var uploadedFonts = [];
+        var fontHeadSel = document.getElementById("cpFontHead");
+        var fontBodySel = document.getElementById("cpFontBody");
+
+        function fillFontSelect(sel, selected) {
+          sel.innerHTML = "";
+          FONT_GROUPS.forEach(function (g) {
+            var og = document.createElement("optgroup");
+            og.label = g.label;
+            g.fonts.forEach(function (f) {
+              var o = document.createElement("option");
+              o.value = f;
+              o.textContent = f;
+              og.appendChild(o);
+            });
+            sel.appendChild(og);
+          });
+          if (uploadedFonts.length) {
+            var og2 = document.createElement("optgroup");
+            og2.label = "Font bạn tải lên";
+            uploadedFonts.forEach(function (f) {
+              var o = document.createElement("option");
+              o.value = f.family;
+              o.textContent = f.name;
+              og2.appendChild(o);
+            });
+            sel.appendChild(og2);
+          }
+          sel.value = selected;
+        }
+        function applyFonts() {
+          var hf = fontHeadSel.value, bf = fontBodySel.value;
+          cpRoot.style.setProperty("--f-head", '"' + hf + '", system-ui, sans-serif');
+          cpRoot.style.setProperty("--f-body", '"' + bf + '", system-ui, sans-serif');
+          fontHeadSel.style.fontFamily = '"' + hf + '", sans-serif';
+          fontBodySel.style.fontFamily = '"' + bf + '", sans-serif';
+        }
+        fontHeadSel.addEventListener("change", applyFonts);
+        fontBodySel.addEventListener("change", applyFonts);
+
+        document.getElementById("cpBtnUploadFont").addEventListener("click", function () {
+          document.getElementById("cpFontFile").click();
+        });
+        document.getElementById("cpFontFile").addEventListener("change", function () {
+          var file = this.files && this.files[0];
+          var prevBody = fontBodySel.value;
+          this.value = "";
+          if (!file) return;
+          var nice = file.name.replace(/\.[^.]+$/, "").replace(/[-_]+/g, " ").trim() || "Font của bạn";
+          var fam = "FontTaiLen" + (uploadedFonts.length + 1);
+          file.arrayBuffer().then(function (buf) {
+            var face = new FontFace(fam, buf);
+            return face.load();
+          }).then(function (loaded) {
+            document.fonts.add(loaded);
+            uploadedFonts.push({ name: nice, family: fam });
+            fillFontSelect(fontHeadSel, fam);
+            fillFontSelect(fontBodySel, prevBody);
+            applyFonts();
+            showToast("Đã thêm font “" + nice + "” làm font tiêu đề");
+          }).catch(function () {
+            showToast("Không đọc được file font này — thử .ttf, .otf hoặc .woff2");
+          });
+        });
+
+        fillFontSelect(fontHeadSel, "Be Vietnam Pro");
+        fillFontSelect(fontBodySel, "Be Vietnam Pro");
+        applyFonts();
+        refreshStepper();
+        applyColors(current);
+        renderPalettes();
+      })();
     </script>
   </body>
 </html>
