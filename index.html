@@ -2590,6 +2590,209 @@
       .cp-btn-upload:hover { border-color: var(--ui-muted); }
       .cp-btn-upload svg { width: 16px; height: 16px; }
 
+      /* ----- Tab Đổi Màu: 10 tính năng mới (sinh bảng / lưu / xuất / tương phản / tối / so sánh) ----- */
+      .cp-dots-sm { gap: 4px; }
+      .cp-dots-sm i { width: 15px; height: 15px; }
+      .cp-seed-row { display: flex; gap: 8px; align-items: center; }
+      .cp-seed-color {
+        width: 46px; height: 42px; min-height: 42px; flex: 0 0 auto;
+        border: none; padding: 0; background: none; cursor: pointer; border-radius: 10px;
+        appearance: none; -webkit-appearance: none;
+      }
+      .cp-seed-color::-webkit-color-swatch-wrapper { padding: 0; }
+      .cp-seed-color::-webkit-color-swatch { border: 1px solid rgba(0,0,0,.12); border-radius: 10px; }
+      .cp-seed-color::-moz-color-swatch { border: 1px solid rgba(0,0,0,.12); border-radius: 10px; }
+      .cp-hex-input {
+        flex: 1; min-width: 0; font: inherit; font-size: 13px; font-weight: 700;
+        padding: 9px 10px; min-height: 42px; border-radius: 10px;
+        border: 1px solid var(--ui-line); background: var(--ui-chip); color: var(--ui-ink);
+        text-transform: uppercase;
+      }
+      .cp-btn-sub {
+        width: 100%; margin-top: 9px; cursor: pointer; font: inherit;
+        background: var(--ui-chip); color: var(--ui-ink);
+        border: 1px solid var(--ui-line); border-radius: 12px; padding: 10px;
+        font-size: 12.5px; font-weight: 700; min-height: 42px;
+        display: flex; align-items: center; justify-content: center; gap: 7px;
+      }
+      .cp-btn-sub:hover { border-color: var(--ui-muted); }
+      .cp-btn-sub svg { width: 15px; height: 15px; }
+      .cp-ind-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 7px; }
+      .cp-ind-btn {
+        text-align: left; background: var(--ui-chip); border: 1px solid var(--ui-line);
+        border-radius: 12px; padding: 8px 9px; cursor: pointer; font: inherit; color: var(--ui-ink);
+      }
+      .cp-ind-btn:hover { border-color: var(--ui-muted); }
+      .cp-ind-btn .nm { font-size: 12px; font-weight: 700; display: block; margin-bottom: 6px; }
+      .cp-saved-row {
+        display: flex; align-items: center; gap: 8px;
+        background: var(--ui-chip); border: 1px solid var(--ui-line);
+        border-radius: 12px; padding: 7px 9px; margin-bottom: 7px; cursor: pointer;
+      }
+      .cp-saved-row:hover { border-color: var(--ui-muted); }
+      .cp-saved-row .nm { font-size: 12px; font-weight: 600; flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+      .cp-del-btn {
+        flex: 0 0 auto; width: 28px; height: 28px; min-height: 28px; border-radius: 8px;
+        border: 1px solid var(--ui-line); background: transparent; color: var(--ui-muted);
+        font-size: 15px; line-height: 1; cursor: pointer;
+        display: flex; align-items: center; justify-content: center;
+      }
+      .cp-del-btn:hover { color: #C0392B; border-color: #C0392B; }
+      .cp-empty { font-size: 12px; color: var(--ui-muted); line-height: 1.55; margin: 2px; }
+      .cp-export-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 7px; }
+      .cp-btn-mini {
+        cursor: pointer; font: inherit; background: var(--ui-chip); color: var(--ui-ink);
+        border: 1px solid var(--ui-line); border-radius: 11px; padding: 9px 6px;
+        font-size: 12px; font-weight: 700; min-height: 40px;
+        display: flex; align-items: center; justify-content: center; gap: 6px;
+      }
+      .cp-btn-mini:hover { border-color: var(--ui-muted); }
+      .cp-contrast-row { display: flex; align-items: center; justify-content: space-between; gap: 8px; padding: 7px 2px; border-bottom: 1px dashed var(--ui-line); font-size: 12px; }
+      .cp-contrast-row:last-child { border-bottom: none; }
+      .cp-cr-name { display: flex; align-items: center; gap: 7px; min-width: 0; }
+      .cp-cr-name i { width: 16px; height: 16px; border-radius: 5px; box-shadow: inset 0 0 0 1px rgba(0,0,0,.15); flex: 0 0 auto; display: block; }
+      .cp-cr-right { display: flex; align-items: center; gap: 8px; flex: 0 0 auto; }
+      .cp-cr-ratio { font-weight: 800; font-variant-numeric: tabular-nums; }
+      .cp-badge { font-size: 10.5px; font-weight: 800; padding: 3px 8px; border-radius: 999px; white-space: nowrap; }
+      .cp-b-aaa { background: #D9F2E3; color: #14663C; }
+      .cp-b-aa { background: #E4F0DC; color: #3E6B1E; }
+      .cp-b-lg { background: #FDEBC8; color: #8A5A00; }
+      .cp-b-bad { background: #FADBD8; color: #A93226; }
+      @media (prefers-color-scheme: dark) {
+        .cp-b-aaa { background: #123B26; color: #7BD8A4; }
+        .cp-b-aa { background: #22351A; color: #A9D97C; }
+        .cp-b-lg { background: #3D2E10; color: #F2C14E; }
+        .cp-b-bad { background: #3D1A16; color: #F1948A; }
+      }
+      .cp-toggle-row { display: flex; align-items: center; justify-content: space-between; gap: 10px; font-size: 12.5px; font-weight: 600; }
+      .cp-switch {
+        width: 48px; height: 27px; min-height: 27px; flex: 0 0 auto; border-radius: 999px;
+        border: 1px solid var(--ui-line); background: var(--ui-chip); cursor: pointer;
+        position: relative; padding: 0;
+      }
+      .cp-switch i { position: absolute; top: 2px; left: 2px; width: 21px; height: 21px; border-radius: 50%; background: #fff; box-shadow: 0 1px 4px rgba(0,0,0,.25); transition: left .2s ease; display: block; }
+      .cp-switch.cp-on { background: var(--navy); border-color: var(--navy); }
+      .cp-switch.cp-on i { left: 23px; }
+      @media (prefers-reduced-motion: reduce) { .cp-switch i { transition: none; } }
+
+      /* ----- So sánh 2 bảng màu (khung rộng dưới 3 cột) ----- */
+      .cp-compare {
+        background: var(--surface); border: 1px solid var(--border);
+        border-radius: 16px; box-shadow: var(--shadow);
+        margin-top: 14px; overflow: hidden;
+      }
+      .cp-compare .cp-fld-label { color: var(--muted); }
+      .cp-compare .cp-font-select { border-color: var(--border); background: var(--surface-2); color: var(--ink); }
+      .cp-cmp-wrap { padding: 6px 16px 16px; }
+      .cp-cmp-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+      @media (max-width: 700px) { .cp-cmp-grid { grid-template-columns: 1fr; } }
+      .cp-cmp-pane {
+        --p-bg: #E9F3FB; --p-primary: #5B9BD5; --p-secondary: #63B3A6; --p-accent: #F08A3C; --p-dark: #173A5E;
+        --on-primary: #FFFFFF; --on-accent: #FFFFFF;
+        --p-soft: color-mix(in srgb, var(--p-primary) 16%, var(--p-bg));
+        --p-line: color-mix(in srgb, var(--p-dark) 14%, var(--p-bg));
+        --p-muted: color-mix(in srgb, var(--p-dark) 58%, var(--p-bg));
+        --p-card: color-mix(in srgb, #FFFFFF 88%, var(--p-bg));
+        border: 1px solid var(--border); border-radius: 14px; overflow: hidden; margin-top: 8px;
+        font-family: "Be Vietnam Pro", system-ui, sans-serif;
+      }
+      .cp-mock { background: var(--p-bg); color: var(--p-dark); padding: 16px; font-size: 12.5px; }
+      .cp-mock-nav { display: flex; align-items: center; gap: 10px; margin-bottom: 12px; }
+      .cp-mock-logo { font-weight: 900; letter-spacing: .08em; font-size: 12px; }
+      .cp-mock-logo b { color: var(--p-accent); }
+      .cp-mock-links { margin-left: auto; color: var(--p-muted); font-size: 11px; white-space: nowrap; }
+      .cp-mock-buy { background: var(--p-primary); color: var(--on-primary); border: none; font: inherit; font-size: 11px; font-weight: 700; padding: 6px 12px; border-radius: 8px; cursor: pointer; min-height: 30px; }
+      .cp-mock h4 { margin: 0 0 6px; font-size: 16px; }
+      .cp-mock p { margin: 0 0 12px; color: var(--p-muted); line-height: 1.55; }
+      .cp-mock-btns { display: flex; gap: 8px; margin-bottom: 12px; flex-wrap: wrap; }
+      .cp-mock-b1, .cp-mock-b2 { border: none; font: inherit; font-size: 11.5px; font-weight: 700; padding: 8px 14px; border-radius: 9px; cursor: pointer; min-height: 34px; }
+      .cp-mock-b1 { background: var(--p-primary); color: var(--on-primary); }
+      .cp-mock-b2 { background: var(--p-accent); color: var(--on-accent); }
+      .cp-mock-cards { display: flex; gap: 8px; }
+      .cp-mock-cards i { flex: 1; height: 34px; border-radius: 9px; display: block; }
+
+
+      /* ----- Tab Đổi Màu: chủ đề/phong cách + hình mẫu website ----- */
+      .cp-samples { grid-column: 1 / -1; }
+      .cp-samples-body { padding: 14px 16px 16px; overflow-y: auto; max-height: 76vh; scrollbar-width: thin; }
+      .cp-chip-row { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 8px; }
+      .cp-chip {
+        cursor: pointer; font: inherit; font-size: 11.5px; font-weight: 700;
+        background: var(--ui-chip); color: var(--ui-ink);
+        border: 1px solid var(--ui-line); border-radius: 999px; padding: 6px 11px; min-height: 32px;
+      }
+      .cp-chip:hover { border-color: var(--ui-muted); }
+      .cp-chip.cp-on { background: var(--navy); border-color: var(--navy); color: #fff; }
+      @media (prefers-color-scheme: dark) { .cp-chip.cp-on { background: #2E6DA8; border-color: #2E6DA8; } }
+      .cp-sug-row {
+        display: flex; align-items: center; gap: 8px; width: 100%; text-align: left;
+        background: var(--ui-chip); border: 1px solid var(--ui-line);
+        border-radius: 12px; padding: 7px 9px; margin-bottom: 7px; cursor: pointer; font: inherit; color: var(--ui-ink);
+      }
+      .cp-sug-row:hover { border-color: var(--ui-muted); }
+      .cp-sug-row .nm { font-size: 12px; font-weight: 700; display: block; }
+      .cp-sug-row .meta { font-size: 11px; color: var(--ui-muted); display: block; margin-top: 1px; }
+      .cp-sug-row .tx { flex: 1; min-width: 0; }
+      .cp-sample-tabs { display: flex; flex-wrap: wrap; gap: 7px; margin-bottom: 12px; }
+      .cp-sample-tab {
+        cursor: pointer; font: inherit; font-size: 12.5px; font-weight: 700;
+        background: var(--surface-2); color: var(--ink);
+        border: 1px solid var(--border); border-radius: 999px; padding: 8px 14px; min-height: 38px;
+      }
+      .cp-sample-tab:hover { border-color: var(--muted); }
+      .cp-sample-tab.cp-on { background: var(--navy); border-color: var(--navy); color: #fff; }
+      @media (prefers-color-scheme: dark) { .cp-sample-tab.cp-on { background: #2E6DA8; border-color: #2E6DA8; } }
+      .cp-themed h5 { font-family: var(--f-head); }
+      .sm-site { padding: 2px 22px 18px; }
+      .sm-nav { display: flex; align-items: center; gap: 14px; padding: 14px 0 4px; flex-wrap: wrap; }
+      .sm-logo { font-family: var(--f-head); font-weight: 900; letter-spacing: .08em; font-size: 13px; color: var(--p-dark); }
+      .sm-logo b { color: var(--p-accent); }
+      .sm-nav nav { margin-left: auto; display: flex; gap: 13px; font-size: 11.5px; font-weight: 500; flex-wrap: wrap; }
+      .sm-nav nav span { color: var(--p-muted); }
+      .sm-nav nav span:first-child { color: var(--p-dark); font-weight: 700; }
+      .sm-btn { cursor: pointer; font: inherit; font-size: 11.5px; font-weight: 800; border-radius: 999px; padding: 8px 15px; min-height: 34px; border: 1px solid transparent; }
+      .sm-btn-pri { background: var(--p-primary); color: var(--on-primary); }
+      .sm-btn-acc { background: var(--p-accent); color: var(--on-accent); }
+      .sm-btn-ghost { background: var(--p-card); color: var(--p-dark); border-color: var(--p-line); }
+      .sm-hero { display: grid; grid-template-columns: 1.15fr .85fr; gap: 14px; align-items: center; padding: 16px 0 6px; }
+      .sm-eyebrow { display: inline-block; font-size: 10.5px; font-weight: 800; letter-spacing: .04em; text-transform: uppercase; color: var(--p-primary); background: var(--p-soft); padding: 4px 10px; border-radius: 999px; margin-bottom: 10px; }
+      .sm-hero h3 { margin: 0 0 9px; font-size: clamp(19px, 2vw, 26px); line-height: 1.22; font-weight: 800; color: var(--p-dark); }
+      .sm-hero p { margin: 0 0 13px; font-size: 12px; line-height: 1.6; color: var(--p-muted); max-width: 46ch; }
+      .sm-hero-btns { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 11px; }
+      .sm-stars { font-size: 11.5px; font-weight: 700; color: var(--p-dark); }
+      .sm-stars span { color: var(--p-muted); font-weight: 500; }
+      .sm-art { border-radius: 14px; background: var(--p-soft2); min-height: 128px; display: grid; place-items: center; color: var(--p-primary); }
+      .sm-art svg { width: 62px; height: 62px; }
+      .sm-promo { margin: 12px 0 4px; background: var(--p-primary); color: var(--on-primary); font-size: 12px; font-weight: 700; border-radius: 11px; padding: 9px 13px; }
+      .sm-promo b { color: var(--p-accent); }
+      .sm-h { margin: 16px 0 9px; font-size: 14.5px; font-weight: 800; color: var(--p-dark); }
+      .sm-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 9px; }
+      .sm-item { background: var(--p-card); border: 1px solid var(--p-line); border-radius: 12px; padding: 10px 12px; }
+      .sm-item-top { display: flex; align-items: baseline; justify-content: space-between; gap: 8px; }
+      .sm-item-top b { font-size: 12.5px; color: var(--p-dark); }
+      .sm-price { font-family: var(--f-head); font-weight: 800; font-size: 12.5px; color: var(--p-accent); white-space: nowrap; }
+      .sm-price s { color: var(--p-muted); font-weight: 500; font-size: 11px; margin-right: 4px; }
+      .sm-item p { margin: 4px 0 0; font-size: 11px; line-height: 1.5; color: var(--p-muted); }
+      .sm-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 9px; margin-top: 9px; }
+      .sm-box { background: var(--p-soft); border-radius: 12px; padding: 11px 13px; }
+      .sm-box h5 { margin: 0 0 5px; font-size: 12px; font-weight: 800; color: var(--p-dark); }
+      .sm-box p { margin: 0; font-size: 11.5px; line-height: 1.6; color: var(--p-muted); }
+      .sm-box p b { color: var(--p-dark); }
+      .sm-foot { display: flex; justify-content: space-between; gap: 10px; flex-wrap: wrap; margin-top: 14px; padding-top: 11px; border-top: 1px solid var(--p-line); font-size: 11.5px; color: var(--p-muted); }
+      .sm-foot b { color: var(--p-dark); }
+      @media (max-width: 900px) {
+        .cp-samples { order: 4; }
+        .cp-samples-body { overflow: visible; max-height: none; }
+        .sm-nav nav { display: none; }
+      }
+      @media (max-width: 620px) {
+        .sm-hero { grid-template-columns: 1fr; }
+        .sm-grid { grid-template-columns: 1fr 1fr; }
+        .sm-cols { grid-template-columns: 1fr; }
+        .sm-site { padding: 2px 14px 14px; }
+      }
+      @media (max-width: 420px) { .sm-grid { grid-template-columns: 1fr; } }
+
       /* ----- Tab Đổi Màu: responsive ----- */
       @media (max-width: 1180px) {
         .cp-app { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) 224px; }
@@ -4234,8 +4437,336 @@
               </button>
               <input type="file" id="cpFontFile" accept=".ttf,.otf,.woff,.woff2" hidden />
               <p class="cp-pal-note">27 font có sẵn đều hỗ trợ đầy đủ dấu tiếng Việt. Font tải lên (.ttf, .otf, .woff, .woff2) chỉ dùng trong lần mở này, không lưu lại.</p>
+
+              <div class="cp-pal-section-title">Sinh bảng từ 1 màu chính</div>
+              <div class="cp-seed-row">
+                <input type="color" class="cp-seed-color" id="cpSeedColor" value="#FC7A01" aria-label="Chọn màu chính">
+                <input type="text" class="cp-hex-input" id="cpSeedHex" value="#FC7A01" maxlength="7" spellcheck="false" aria-label="Mã HEX của màu chính">
+              </div>
+              <label class="cp-fld-label" for="cpSchemeSel">Quy tắc phối màu</label>
+              <select class="cp-font-select" id="cpSchemeSel">
+                <option value="analog">Tương đồng — các màu kề nhau trên vòng màu</option>
+                <option value="comp">Bổ sung — màu đối diện 180°</option>
+                <option value="triad">Bộ ba — cách nhau 120°</option>
+                <option value="split">Bổ sung tách đôi — 150° và 210°</option>
+                <option value="mono">Đơn sắc — cùng một màu, khác độ sáng</option>
+              </select>
+              <button class="cp-btn-sub" id="cpBtnSeed" type="button">Sinh bảng màu từ màu này</button>
+              <p class="cp-pal-note">Cách các bảng trong trang này được tạo: 12 bảng mặc định ở trên là bộ phối sẵn theo quy tắc hài hòa màu (không phải ngẫu nhiên). Nút “Tạo bảng màu ngẫu nhiên” thì chọn ngẫu nhiên 1 màu gốc, rồi suy ra các màu còn lại theo quy tắc tương đồng + bổ sung trên vòng tròn màu HSL.</p>
+
+              <div class="cp-pal-section-title">Sinh bảng từ ảnh</div>
+              <button class="cp-btn-upload" id="cpBtnImg" type="button">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="9" cy="9" r="2"/><path d="m21 15-4.5-4.5L6 21"/></svg>
+                Tải ảnh lên để trích màu chủ đạo
+              </button>
+              <input type="file" id="cpImgFile" accept="image/*" hidden>
+              <p class="cp-pal-note">Ảnh được xử lý ngay trên máy của bạn để lấy các màu xuất hiện nhiều nhất, không gửi đi đâu.</p>
+
+              <div class="cp-pal-section-title">Gợi ý theo chủ đề &amp; phong cách</div>
+              <label class="cp-fld-label">Chủ đề (ngành / lĩnh vực)</label>
+              <div class="cp-chip-row" id="cpTopicChips"></div>
+              <label class="cp-fld-label">Phong cách</label>
+              <div class="cp-chip-row" id="cpStyleChips"></div>
+              <p class="cp-pal-note" id="cpSugCount" style="margin:2px 0 8px"></p>
+              <div id="cpSuggestList"></div>
+
+              <div class="cp-pal-section-title">Bảng đã lưu ★</div>
+              <button class="cp-btn-sub" id="cpBtnSaveFav" type="button">
+                <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.5 14.9 8.6 21.5 9.5 16.7 14.1 17.9 20.7 12 17.5 6.1 20.7 7.3 14.1 2.5 9.5 9.1 8.6Z"/></svg>
+                Lưu bảng đang dùng
+              </button>
+              <div id="cpFavList" style="margin-top:9px"></div>
+
+              <div class="cp-pal-section-title">Lịch sử đã dùng</div>
+              <div id="cpHistList"></div>
+
+              <div class="cp-pal-section-title">Xuất &amp; chia sẻ</div>
+              <div class="cp-export-grid">
+                <button class="cp-btn-mini" id="cpExpCss" type="button">CSS variables</button>
+                <button class="cp-btn-mini" id="cpExpTw" type="button">Tailwind config</button>
+                <button class="cp-btn-mini" id="cpExpJson" type="button">JSON</button>
+                <button class="cp-btn-mini" id="cpExpPng" type="button">Ảnh PNG</button>
+              </div>
+              <button class="cp-btn-sub" id="cpBtnShare" type="button">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg>
+                Chép nguyên đường link chia sẻ bảng màu
+              </button>
+              <p class="cp-pal-note">Nút này chép nguyên đường link đầy đủ chứa mã màu của bảng (dạng …#mau=HEX-HEX-…). Gửi link đó đi là xong — người mở link sẽ thấy đúng bảng màu này ngay, không cần dán tay gì thêm, vì trang tự đọc mã màu trong link và áp dụng.</p>
+
+              <div class="cp-pal-section-title">Kiểm tra tương phản (WCAG)</div>
+              <div id="cpContrastList"></div>
+              <p class="cp-pal-note">Tỉ lệ tương phản giữa chữ và nền: đạt AA (≥ 4.5:1) là mức tối thiểu nên có cho chữ thường, AAA (≥ 7:1) là mức cao, dễ đọc nhất.</p>
+
+              <div class="cp-pal-section-title">Xem trước</div>
+              <div class="cp-toggle-row">
+                <span>Chế độ tối cho khung mẫu</span>
+                <button type="button" class="cp-switch" id="cpDarkToggle" aria-pressed="false" aria-label="Bật xem trước chế độ tối cho khung mẫu"><i></i></button>
+              </div>
+              <p class="cp-pal-note">Bật để xem cùng bảng màu này khi giao diện mẫu chuyển sang nền tối — màu chính và màu nhấn được tự nâng sáng cho dễ nhìn.</p>
             </div>
           </aside>
+          <section class="cp-col cp-samples" aria-label="Hình mẫu website theo ngành">
+            <div class="cp-col-head">
+              <div>
+                <h2>Hình mẫu website</h2>
+                <div class="cp-sub">Mỗi hình mẫu là một website thu nhỏ có nội dung thật — bảng màu đang chọn áp lên toàn bộ</div>
+              </div>
+              <span class="cp-live-badge"><span class="cp-live-dot"></span>Áp màu trực tiếp</span>
+            </div>
+            <div class="cp-samples-body">
+              <div class="cp-sample-tabs" role="tablist" aria-label="Chọn hình mẫu website">
+                <button type="button" class="cp-sample-tab cp-on" data-sample="cafe" role="tab" aria-selected="true">Quán cà phê</button>
+                <button type="button" class="cp-sample-tab" data-sample="restaurant" role="tab" aria-selected="false">Nhà hàng</button>
+                <button type="button" class="cp-sample-tab" data-sample="fashion" role="tab" aria-selected="false">Shop thời trang</button>
+                <button type="button" class="cp-sample-tab" data-sample="spa" role="tab" aria-selected="false">Spa &amp; Nail</button>
+                <button type="button" class="cp-sample-tab" data-sample="school" role="tab" aria-selected="false">Trường mầm non</button>
+                <button type="button" class="cp-sample-tab" data-sample="hotel" role="tab" aria-selected="false">Khách sạn / Homestay</button>
+              </div>
+<div class="cp-sample-pane" data-pane="cafe">
+              <div class="cp-browser cp-themed">
+                <div class="cp-browser-bar">
+                  <div class="cp-win-dots"><i></i><i></i><i></i></div>
+                  <div class="cp-url-pill">ngonho.cafe</div>
+                  <div style="width:42px"></div>
+                </div>
+                <div class="sm-site">
+                  <div class="sm-nav">
+                    <span class="sm-logo">NGÕ NHỎ <b>CAFÉ</b></span>
+                    <nav><span>Menu</span><span>Không gian</span><span>Khuyến mãi</span><span>Liên hệ</span></nav>
+                    <button class="sm-btn sm-btn-acc" type="button">Đặt bàn</button>
+                  </div>
+                  <div class="sm-hero">
+                    <div>
+                      <span class="sm-eyebrow">Rang xay tại chỗ · Mở 7:00 – 22:30</span>
+                      <h3>Cà phê ngon trong một ngõ nhỏ yên tĩnh</h3>
+                      <p>Quán nhỏ xinh giữa phố Hoàng Cầu — cà phê rang xay tại chỗ, bàn gỗ dài cho người làm việc, và góc sân rợp bóng cây cho buổi chiều thong thả.</p>
+                      <div class="sm-hero-btns"><button class="sm-btn sm-btn-pri" type="button">Xem menu</button><button class="sm-btn sm-btn-ghost" type="button">Đặt bàn trước</button></div>
+                      <div class="sm-stars">★ 4.8 <span>· 326 đánh giá trên Google</span></div>
+                    </div>
+                    <div class="sm-art" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17 8h1a3.5 3.5 0 1 1 0 7h-1"/><path d="M4 8h13v6a5 5 0 0 1-5 5H9a5 5 0 0 1-5-5V8Z"/><path d="M7 2.5v1.6M11 2.5v1.6"/></svg></div>
+                  </div>
+                  <div class="sm-promo">Khuyến mãi: <b>giảm 20%</b> toàn bộ đồ uống khung giờ 14:00 – 17:00, thứ 2 đến thứ 6</div>
+                  <h4 class="sm-h">Menu nổi bật</h4>
+                  <div class="sm-grid"><div class="sm-item"><div class="sm-item-top"><b>Cà phê đen đá</b><span class="sm-price">29.000đ</span></div><p>Đậm vị, pha phin truyền thống, ít chua</p></div><div class="sm-item"><div class="sm-item-top"><b>Bạc xỉu</b><span class="sm-price">35.000đ</span></div><p>Nhiều sữa, nhẹ cà phê — hợp người mới uống</p></div><div class="sm-item"><div class="sm-item-top"><b>Latte nóng</b><span class="sm-price">45.000đ</span></div><p>Sữa tươi đánh mịn, lớp foam hình lá</p></div><div class="sm-item"><div class="sm-item-top"><b>Cold brew cam sả</b><span class="sm-price">49.000đ</span></div><p>Ủ lạnh 12 giờ, thơm cam và sả tươi</p></div><div class="sm-item"><div class="sm-item-top"><b>Trà đào cam sả</b><span class="sm-price">39.000đ</span></div><p>Trà đen ủ lạnh, đào miếng giòn ngọt</p></div><div class="sm-item"><div class="sm-item-top"><b>Croissant bơ</b><span class="sm-price">32.000đ</span></div><p>Nướng mới mỗi sáng, vỏ giòn ruột mềm</p></div></div>
+                  <div class="sm-cols">
+                    <div class="sm-box"><h5>Giờ mở cửa</h5><p>Thứ 2 – Chủ nhật: <b>7:00 – 22:30</b><br>Nhận đặt bàn nhóm từ 6 người, có phòng nhỏ 12 chỗ cho họp và học nhóm.</p></div>
+                    <div class="sm-box"><h5>Khách nói gì</h5><p>“Cold brew cam sả rất đáng thử, quán yên tĩnh, wifi mạnh — mình ngồi làm việc cả buổi.” <b>— Minh Anh, khách quen</b></p></div>
+                  </div>
+                  <div class="sm-foot"><span><b>12 Ngõ 34 Hoàng Cầu</b>, Đống Đa, Hà Nội</span><span>Đặt bàn: <b>0904 215 678</b></span></div>
+                </div>
+              </div>
+            </div>
+<div class="cp-sample-pane" data-pane="restaurant" hidden>
+              <div class="cp-browser cp-themed">
+                <div class="cp-browser-bar">
+                  <div class="cp-win-dots"><i></i><i></i><i></i></div>
+                  <div class="cp-url-pill">senvang.vn</div>
+                  <div style="width:42px"></div>
+                </div>
+                <div class="sm-site">
+                  <div class="sm-nav">
+                    <span class="sm-logo">SEN <b>VÀNG</b></span>
+                    <nav><span>Thực đơn</span><span>Đặt bàn</span><span>Ưu đãi</span><span>Liên hệ</span></nav>
+                    <button class="sm-btn sm-btn-acc" type="button">Đặt bàn</button>
+                  </div>
+                  <div class="sm-hero">
+                    <div>
+                      <span class="sm-eyebrow">Ẩm thực Việt · Mở 10:00 – 22:00</span>
+                      <h3>Bữa cơm Việt ấm cúng giữa lòng Hoàn Kiếm</h3>
+                      <p>Sen Vàng phục vụ món Việt truyền thống nấu theo công thức gia đình — nguyên liệu chợ sớm mỗi ngày, phòng riêng cho tiệc gia đình và tiếp khách.</p>
+                      <div class="sm-hero-btns"><button class="sm-btn sm-btn-pri" type="button">Xem thực đơn</button><button class="sm-btn sm-btn-ghost" type="button">Đặt bàn ngay</button></div>
+                      <div class="sm-stars">★ 4.7 <span>· 512 đánh giá trên Google</span></div>
+                    </div>
+                    <div class="sm-art" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11h18a9 9 0 0 1-18 0Z"/><path d="M8 7c1.2-1.4 2.8-1.4 4 0M13 5.5c1.2-1.4 2.8-1.4 4 0"/><path d="M9 21h6"/></svg></div>
+                  </div>
+                  <div class="sm-promo">Ưu đãi: <b>giảm 10%</b> hóa đơn khi đặt bàn trước qua web · Tặng chè tráng miệng cho bàn từ 4 người</div>
+                  <h4 class="sm-h">Thực đơn được yêu thích</h4>
+                  <div class="sm-grid"><div class="sm-item"><div class="sm-item-top"><b>Phở bò tái nạm</b><span class="sm-price">65.000đ</span></div><p>Nước dùng trong, ninh xương 8 giờ</p></div><div class="sm-item"><div class="sm-item-top"><b>Bún chả Hà Nội</b><span class="sm-price">58.000đ</span></div><p>Chả nướng than hoa, nước chấm đu đủ</p></div><div class="sm-item"><div class="sm-item-top"><b>Gỏi cuốn tôm thịt</b><span class="sm-price">45.000đ</span></div><p>4 cuốn — chấm tương đậu phộng nhà làm</p></div><div class="sm-item"><div class="sm-item-top"><b>Cá kho tộ</b><span class="sm-price">89.000đ</span></div><p>Kho 2 lửa với nước dừa, ăn kèm cơm trắng</p></div><div class="sm-item"><div class="sm-item-top"><b>Lẩu gà lá é</b><span class="sm-price">289.000đ</span></div><p>Cho 2–3 người, gà ta thả vườn chắc thịt</p></div><div class="sm-item"><div class="sm-item-top"><b>Chè khúc bạch</b><span class="sm-price">25.000đ</span></div><p>Vải tươi, hạnh nhân rang, nước đường phèn</p></div></div>
+                  <div class="sm-cols">
+                    <div class="sm-box"><h5>Giờ mở cửa &amp; đặt bàn</h5><p>Thứ 2 – Chủ nhật: <b>10:00 – 22:00</b> (nhận khách cuối 21:15)<br>Phòng riêng 8–20 khách, đặt trước tối thiểu 2 giờ.</p></div>
+                    <div class="sm-box"><h5>Khách nói gì</h5><p>“Cá kho tộ đúng vị nhà nấu, nhân viên chu đáo. Nhà mình đặt tiệc sinh nhật ở đây 2 lần rồi.” <b>— Chị Thu Hằng</b></p></div>
+                  </div>
+                  <div class="sm-foot"><span><b>45 Lý Thường Kiệt</b>, Hoàn Kiếm, Hà Nội</span><span>Đặt bàn: <b>0912 345 090</b> · 024 3826 4455</span></div>
+                </div>
+              </div>
+            </div>
+<div class="cp-sample-pane" data-pane="fashion" hidden>
+              <div class="cp-browser cp-themed">
+                <div class="cp-browser-bar">
+                  <div class="cp-win-dots"><i></i><i></i><i></i></div>
+                  <div class="cp-url-pill">tiemvaimoc.vn</div>
+                  <div style="width:42px"></div>
+                </div>
+                <div class="sm-site">
+                  <div class="sm-nav">
+                    <span class="sm-logo">TIỆM VẢI <b>MỘC</b></span>
+                    <nav><span>Sản phẩm</span><span>Sale</span><span>Bảng size</span><span>Liên hệ</span></nav>
+                    <button class="sm-btn sm-btn-acc" type="button">Giỏ hàng (2)</button>
+                  </div>
+                  <div class="sm-hero">
+                    <div>
+                      <span class="sm-eyebrow">Linen &amp; cotton tự nhiên · Freeship đơn từ 499k</span>
+                      <h3>Đồ vải mộc, mặc mát cho ngày thường</h3>
+                      <p>Tiệm Vải Mộc may đo và bán sẵn trang phục linen, cotton thô — phom dáng rộng rãi, đường may kỹ, đổi size miễn phí trong 7 ngày.</p>
+                      <div class="sm-hero-btns"><button class="sm-btn sm-btn-pri" type="button">Mua sắm ngay</button><button class="sm-btn sm-btn-ghost" type="button">Xem hàng sale</button></div>
+                      <div class="sm-stars">★ 4.9 <span>· 1.240 đánh giá từ khách đã mua</span></div>
+                    </div>
+                    <div class="sm-art" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M8 4 3 7l2 4 2-1v10h10V10l2 1 2-4-5-3a4 4 0 0 1-8 0Z"/></svg></div>
+                  </div>
+                  <div class="sm-promo">Khách mới: <b>giảm 15%</b> với mã XINCHAO · Freeship toàn quốc cho đơn từ 499.000đ</div>
+                  <h4 class="sm-h">Sản phẩm bán chạy</h4>
+                  <div class="sm-grid"><div class="sm-item"><div class="sm-item-top"><b>Áo sơ mi linen trắng</b><span class="sm-price"><s>429.000đ</s>349.000đ</span></div><p>Linen 100%, 3 size S–L</p></div><div class="sm-item"><div class="sm-item-top"><b>Váy hoa nhí vintage</b><span class="sm-price">459.000đ</span></div><p>Voan 2 lớp, eo chun co giãn</p></div><div class="sm-item"><div class="sm-item-top"><b>Quần ống rộng kaki</b><span class="sm-price">389.000đ</span></div><p>Kaki mềm, cạp cao tôn dáng</p></div><div class="sm-item"><div class="sm-item-top"><b>Túi tote canvas</b><span class="sm-price">189.000đ</span></div><p>Đựng vừa laptop 14 inch, có ngăn trong</p></div><div class="sm-item"><div class="sm-item-top"><b>Đầm maxi đi biển</b><span class="sm-price">529.000đ</span></div><p>Vải xô thoáng mát, 4 màu</p></div><div class="sm-item"><div class="sm-item-top"><b>Áo khoác denim</b><span class="sm-price">649.000đ</span></div><p>Denim dày vừa, form unisex</p></div></div>
+                  <div class="sm-cols">
+                    <div class="sm-box"><h5>Chính sách mua hàng</h5><p>Đổi size trong <b>7 ngày</b> còn nguyên tem mác · Thanh toán COD, chuyển khoản hoặc thẻ · Bảo hành đường may trọn đời sản phẩm.</p></div>
+                    <div class="sm-box"><h5>Khách nói gì</h5><p>“Vải linen mát thật, giặt 5 lần vẫn giữ form. Shop tư vấn size rất có tâm.” <b>— Ngọc Trâm, TP.HCM</b></p></div>
+                  </div>
+                  <div class="sm-foot"><span><b>78 Nguyễn Trãi</b>, Quận 1, TP.HCM · Mở cửa 9:00 – 21:30</span><span>Hotline: <b>0938 456 210</b></span></div>
+                </div>
+              </div>
+            </div>
+<div class="cp-sample-pane" data-pane="spa" hidden>
+              <div class="cp-browser cp-themed">
+                <div class="cp-browser-bar">
+                  <div class="cp-win-dots"><i></i><i></i><i></i></div>
+                  <div class="cp-url-pill">mayspa.vn</div>
+                  <div style="width:42px"></div>
+                </div>
+                <div class="sm-site">
+                  <div class="sm-nav">
+                    <span class="sm-logo">MÂY <b>SPA &amp; NAIL</b></span>
+                    <nav><span>Dịch vụ</span><span>Bảng giá</span><span>Đánh giá</span><span>Liên hệ</span></nav>
+                    <button class="sm-btn sm-btn-acc" type="button">Đặt lịch</button>
+                  </div>
+                  <div class="sm-hero">
+                    <div>
+                      <span class="sm-eyebrow">Nail · Gội dưỡng sinh · Massage · Mở 9:00 – 20:00</span>
+                      <h3>Một buổi chiều thư giãn cho đôi tay và mái tóc</h3>
+                      <p>Mây Spa &amp; Nail dùng sơn gel chính hãng, dụng cụ khử trùng từng khách, thợ tay nghề 5 năm trở lên. Đặt lịch trước để không phải chờ.</p>
+                      <div class="sm-hero-btns"><button class="sm-btn sm-btn-pri" type="button">Xem bảng giá</button><button class="sm-btn sm-btn-ghost" type="button">Đặt lịch ngay</button></div>
+                      <div class="sm-stars">★ 4.9 <span>· 208 đánh giá trên Google</span></div>
+                    </div>
+                    <div class="sm-art" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8L12 3Z"/><path d="M19 15.5l.8 2.2 2.2.8-2.2.8-.8 2.2-.8-2.2-2.2-.8 2.2-.8.8-2.2Z"/></svg></div>
+                  </div>
+                  <div class="sm-promo">Ưu đãi tháng này: <b>giảm 20%</b> sơn gel khi đi 2 người · Tặng ngâm chân thảo mộc cho mọi dịch vụ nail</div>
+                  <h4 class="sm-h">Bảng giá dịch vụ</h4>
+                  <div class="sm-grid"><div class="sm-item"><div class="sm-item-top"><b>Sơn gel tay</b><span class="sm-price">149.000đ</span></div><p>Cắt da, dưỡng móng, hơn 200 màu gel</p></div><div class="sm-item"><div class="sm-item-top"><b>Sơn gel chân</b><span class="sm-price">129.000đ</span></div><p>Kèm chà gót và massage nhẹ</p></div><div class="sm-item"><div class="sm-item-top"><b>Đắp bột + design</b><span class="sm-price">349.000đ</span></div><p>Vẽ tay hoặc đính đá theo mẫu bạn chọn</p></div><div class="sm-item"><div class="sm-item-top"><b>Gội đầu dưỡng sinh</b><span class="sm-price">199.000đ</span></div><p>45 phút — gội thảo mộc, massage đầu vai gáy</p></div><div class="sm-item"><div class="sm-item-top"><b>Massage body</b><span class="sm-price">299.000đ</span></div><p>60 phút tinh dầu, phòng riêng yên tĩnh</p></div><div class="sm-item"><div class="sm-item-top"><b>Chăm sóc da mặt</b><span class="sm-price">249.000đ</span></div><p>Làm sạch sâu, đắp mặt nạ cấp ẩm</p></div></div>
+                  <div class="sm-cols">
+                    <div class="sm-box"><h5>Đặt lịch &amp; giờ mở cửa</h5><p>Thứ 2 – Chủ nhật: <b>9:00 – 20:00</b> (nhận khách cuối 19:00)<br>Đặt lịch qua hotline hoặc nút Đặt lịch — giữ chỗ trong 15 phút.</p></div>
+                    <div class="sm-box"><h5>Khách nói gì</h5><p>“Thợ làm kỹ, không đau, màu lên đúng mẫu. Gội dưỡng sinh xong nhẹ cả đầu.” <b>— Khánh Linh</b></p></div>
+                  </div>
+                  <div class="sm-foot"><span><b>210 Pasteur</b>, Quận 3, TP.HCM</span><span>Đặt lịch: <b>0909 678 123</b></span></div>
+                </div>
+              </div>
+            </div>
+<div class="cp-sample-pane" data-pane="school" hidden>
+              <div class="cp-browser cp-themed">
+                <div class="cp-browser-bar">
+                  <div class="cp-win-dots"><i></i><i></i><i></i></div>
+                  <div class="cp-url-pill">ongvang.edu.vn</div>
+                  <div style="width:42px"></div>
+                </div>
+                <div class="sm-site">
+                  <div class="sm-nav">
+                    <span class="sm-logo">MẦM NON <b>ONG VÀNG</b></span>
+                    <nav><span>Lớp học</span><span>Học phí</span><span>Thực đơn</span><span>Liên hệ</span></nav>
+                    <button class="sm-btn sm-btn-acc" type="button">Đăng ký tham quan</button>
+                  </div>
+                  <div class="sm-hero">
+                    <div>
+                      <span class="sm-eyebrow">Tuyển sinh quanh năm · Trẻ 12 tháng – 5 tuổi</span>
+                      <h3>Nơi tuổi thơ lớn lên vui và an toàn</h3>
+                      <p>Trường Mầm Non Ong Vàng có sân chơi 400m², camera xem trực tuyến cho phụ huynh, thực đơn công khai mỗi tuần và đội ngũ giáo viên đạt chuẩn.</p>
+                      <div class="sm-hero-btns"><button class="sm-btn sm-btn-pri" type="button">Xem các lớp học</button><button class="sm-btn sm-btn-ghost" type="button">Hẹn tham quan trường</button></div>
+                      <div class="sm-stars">★ 4.8 <span>· 96 đánh giá từ phụ huynh</span></div>
+                    </div>
+                    <div class="sm-art" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="12" width="8" height="8" rx="1.5"/><rect x="13" y="12" width="8" height="8" rx="1.5"/><rect x="8" y="3" width="8" height="8" rx="1.5"/></svg></div>
+                  </div>
+                  <div class="sm-promo">Ưu đãi tuyển sinh: <b>miễn phí ghi danh</b> và tặng bộ đồng phục cho bé nhập học trong tháng này</div>
+                  <h4 class="sm-h">Các lớp &amp; học phí</h4>
+                  <div class="sm-grid"><div class="sm-item"><div class="sm-item-top"><b>Lớp Nhà trẻ</b><span class="sm-price">3.200.000đ/tháng</span></div><p>12–24 tháng · Sĩ số tối đa 15 bé, 3 cô</p></div><div class="sm-item"><div class="sm-item-top"><b>Lớp Mầm</b><span class="sm-price">3.200.000đ/tháng</span></div><p>3 tuổi · Làm quen chữ cái qua trò chơi</p></div><div class="sm-item"><div class="sm-item-top"><b>Lớp Chồi</b><span class="sm-price">3.400.000đ/tháng</span></div><p>4 tuổi · Thêm lớp tiếng Anh 3 buổi/tuần</p></div><div class="sm-item"><div class="sm-item-top"><b>Lớp Lá</b><span class="sm-price">3.400.000đ/tháng</span></div><p>5 tuổi · Sẵn sàng vào lớp 1, rèn nề nếp</p></div><div class="sm-item"><div class="sm-item-top"><b>Ăn uống &amp; sữa</b><span class="sm-price">Đã gồm trong học phí</span></div><p>3 bữa chính + 2 bữa phụ, sữa tươi mỗi ngày</p></div><div class="sm-item"><div class="sm-item-top"><b>Xe đưa đón</b><span class="sm-price">600.000đ/tháng</span></div><p>Tuyến trong bán kính 5km, có cô đi cùng xe</p></div></div>
+                  <div class="sm-cols">
+                    <div class="sm-box"><h5>Thông tin phụ huynh cần biết</h5><p>Phí cơ sở vật chất: <b>1.500.000đ/năm</b> · Giờ học 7:00 – 17:30, trông muộn đến 18:30 · Báo cáo ngày của bé gửi qua app mỗi chiều.</p></div>
+                    <div class="sm-box"><h5>Phụ huynh nói gì</h5><p>“Cô giáo tận tâm, bé đi học về vui vẻ hát suốt. Camera xem được nên vợ chồng mình rất yên tâm.” <b>— Anh Tuấn, phụ huynh bé Bông</b></p></div>
+                  </div>
+                  <div class="sm-foot"><span><b>15 Đường số 7</b>, KĐT An Phú, TP. Thủ Đức</span><span>Liên hệ: <b>028 3740 8899</b></span></div>
+                </div>
+              </div>
+            </div>
+<div class="cp-sample-pane" data-pane="hotel" hidden>
+              <div class="cp-browser cp-themed">
+                <div class="cp-browser-bar">
+                  <div class="cp-win-dots"><i></i><i></i><i></i></div>
+                  <div class="cp-url-pill">doithongdalat.vn</div>
+                  <div style="width:42px"></div>
+                </div>
+                <div class="sm-site">
+                  <div class="sm-nav">
+                    <span class="sm-logo">ĐỒI THÔNG <b>HOMESTAY</b></span>
+                    <nav><span>Phòng</span><span>Tiện ích</span><span>Đánh giá</span><span>Liên hệ</span></nav>
+                    <button class="sm-btn sm-btn-acc" type="button">Đặt phòng</button>
+                  </div>
+                  <div class="sm-hero">
+                    <div>
+                      <span class="sm-eyebrow">Đà Lạt · Cách chợ đêm 1,2 km</span>
+                      <h3>Ngủ giữa rừng thông, sáng dậy có cà phê nóng</h3>
+                      <p>Homestay nhỏ 9 phòng do gia đình vận hành — sân vườn đốt lửa trại buổi tối, bữa sáng bánh mì ốp la và cà phê nhà rang, chủ nhà hỗ trợ thuê xe và lên lịch trình.</p>
+                      <div class="sm-hero-btns"><button class="sm-btn sm-btn-pri" type="button">Xem phòng &amp; giá</button><button class="sm-btn sm-btn-ghost" type="button">Đặt phòng ngay</button></div>
+                      <div class="sm-stars">★ 4.8 <span>· 167 đánh giá từ khách lưu trú</span></div>
+                    </div>
+                    <div class="sm-art" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 18v-7a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v7"/><path d="M3 18h18"/><path d="M3 21v-3M21 21v-3"/><path d="M6 9V7a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v2"/></svg></div>
+                  </div>
+                  <div class="sm-promo">Đặt trực tiếp qua web: <b>giảm 10%</b> so với giá niêm yết · Nhận phòng 14:00 — trả phòng 12:00</div>
+                  <h4 class="sm-h">Phòng &amp; giá mỗi đêm</h4>
+                  <div class="sm-grid"><div class="sm-item"><div class="sm-item-top"><b>Phòng Tiêu Chuẩn</b><span class="sm-price">550.000đ/đêm</span></div><p>2 khách · Giường đôi, cửa sổ hướng vườn</p></div><div class="sm-item"><div class="sm-item-top"><b>Phòng Deluxe View Đồi</b><span class="sm-price">850.000đ/đêm</span></div><p>2 khách · Ban công nhìn rừng thông</p></div><div class="sm-item"><div class="sm-item-top"><b>Bungalow Gia Đình</b><span class="sm-price">1.450.000đ/đêm</span></div><p>4–5 khách · 2 giường lớn, bếp nhỏ riêng</p></div><div class="sm-item"><div class="sm-item-top"><b>Giường Dorm</b><span class="sm-price">180.000đ/đêm</span></div><p>Phòng 6 giường, tủ khóa cá nhân</p></div><div class="sm-item"><div class="sm-item-top"><b>Thuê xe máy</b><span class="sm-price">150.000đ/ngày</span></div><p>Xe số / tay ga, kèm 2 mũ bảo hiểm</p></div><div class="sm-item"><div class="sm-item-top"><b>Set BBQ sân vườn</b><span class="sm-price">249.000đ/người</span></div><p>Đặt trước 4 giờ, kèm đốt lửa trại</p></div></div>
+                  <div class="sm-cols">
+                    <div class="sm-box"><h5>Tiện ích miễn phí</h5><p>Bữa sáng và cà phê · Wifi toàn khu · Bếp chung và sân BBQ · Giặt ủi tính theo kg · Hỗ trợ đặt xe đi sân bay Liên Khương.</p></div>
+                    <div class="sm-box"><h5>Khách nói gì</h5><p>“Phòng sạch, thơm mùi gỗ thông, anh chị chủ cực kỳ dễ thương. Tối đốt lửa ngồi nói chuyện rất chill.” <b>— Phương Thảo, Hà Nội</b></p></div>
+                  </div>
+                  <div class="sm-foot"><span><b>27/3 Đặng Thái Thân</b>, Phường 3, Đà Lạt</span><span>Đặt phòng: <b>0918 222 345</b> · 0263 3822 456</span></div>
+                </div>
+              </div>
+            </div>
+            </div>
+          </section>
+        </div>
+
+        <div class="cp-compare">
+          <div class="cp-col-head">
+            <div>
+              <h2>So sánh 2 bảng màu</h2>
+              <div class="cp-sub">Xem song song 2 bảng trên cùng một giao diện mẫu nhỏ để chọn cho dễ</div>
+            </div>
+          </div>
+          <div class="cp-cmp-wrap">
+            <div class="cp-cmp-grid">
+              <div>
+                <label class="cp-fld-label" for="cpCmpSelA">Bảng A</label>
+                <select class="cp-font-select" id="cpCmpSelA"></select>
+                <div class="cp-cmp-pane cp-themed" id="cpCmpA">
+                  <div class="cp-mock">
+                    <div class="cp-mock-nav"><span class="cp-mock-logo">LOGO<b>.</b></span><span class="cp-mock-links">Trang chủ · Giá · Blog</span><button type="button" class="cp-mock-buy">Mua ngay</button></div>
+                    <h4>Tiêu đề mẫu nổi bật</h4>
+                    <p>Đoạn chữ mẫu để xem màu chữ trên nền có dễ đọc không, nút chính và nút nhấn nổi bật ra sao.</p>
+                    <div class="cp-mock-btns"><button type="button" class="cp-mock-b1">Nút chính</button><button type="button" class="cp-mock-b2">Nút nhấn</button></div>
+                    <div class="cp-mock-cards"><i style="background:var(--p-primary)"></i><i style="background:var(--p-secondary)"></i><i style="background:var(--p-accent)"></i></div>
+                  </div>
+                </div>
+              </div>
+              <div>
+                <label class="cp-fld-label" for="cpCmpSelB">Bảng B</label>
+                <select class="cp-font-select" id="cpCmpSelB"></select>
+                <div class="cp-cmp-pane cp-themed" id="cpCmpB">
+                  <div class="cp-mock">
+                    <div class="cp-mock-nav"><span class="cp-mock-logo">LOGO<b>.</b></span><span class="cp-mock-links">Trang chủ · Giá · Blog</span><button type="button" class="cp-mock-buy">Mua ngay</button></div>
+                    <h4>Tiêu đề mẫu nổi bật</h4>
+                    <p>Đoạn chữ mẫu để xem màu chữ trên nền có dễ đọc không, nút chính và nút nhấn nổi bật ra sao.</p>
+                    <div class="cp-mock-btns"><button type="button" class="cp-mock-b1">Nút chính</button><button type="button" class="cp-mock-b2">Nút nhấn</button></div>
+                    <div class="cp-mock-cards"><i style="background:var(--p-primary)"></i><i style="background:var(--p-secondary)"></i><i style="background:var(--p-accent)"></i></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
         <div class="cp-toast" id="cpToast" role="status"></div>
       </section>
@@ -5997,7 +6528,7 @@
 
         function applyColors(colors) {
           current = colors.slice();
-          var r = effectiveRoles(colors);
+          var r = displayRoles(colors);
           var st = cpRoot.style;
           st.setProperty("--p-bg", r.bg);
           st.setProperty("--p-primary", r.primary);
@@ -6010,7 +6541,11 @@
             if (colors[4 + k]) st.setProperty("--p-x" + k, colors[4 + k]);
             else st.removeProperty("--p-x" + k);
           }
+          if (darkPreview) st.setProperty("--p-card", mixHex(r.bg, "#FFFFFF", 0.09));
+          else st.removeProperty("--p-card");
           renderRoles();
+          renderContrast();
+          refreshCompare();
         }
 
         function renderPalettes() {
@@ -6029,6 +6564,7 @@
               activeIndex = i;
               applyColors(fitCount(pal.colors, colorCount));
               renderPalettes();
+              pushHistory(current, pal.name);
             });
             wrap.appendChild(btn);
           });
@@ -6097,6 +6633,7 @@
           activeIndex = -1;
           applyColors(fitCount(seed, colorCount));
           renderPalettes();
+          pushHistory(current, "Bảng ngẫu nhiên");
           showToast("Đã tạo bảng màu ngẫu nhiên");
         });
 
@@ -6190,12 +6727,535 @@
           });
         });
 
+        /* ================================================================
+           10 TÍNH NĂNG MỚI: sinh bảng (màu chính / ảnh / ngành), lưu yêu
+           thích, lịch sử, xuất file, chia sẻ bằng mã link, tương phản
+           WCAG, xem trước chế độ tối, so sánh 2 bảng.
+           ================================================================ */
+        var darkPreview = false;
+
+        var store = {
+          get: function (k) { try { var v = localStorage.getItem(k); return v ? JSON.parse(v) : null; } catch (e) { return null; } },
+          set: function (k, v) { try { localStorage.setItem(k, JSON.stringify(v)); } catch (e) {} }
+        };
+
+        /* ----- Chế độ tối cho khung mẫu ----- */
+        function darkRoles(r) {
+          function lift(hex, dl) {
+            var hsl = hexToHsl(hex);
+            return hslToHex(hsl[0], Math.max(25, Math.min(85, hsl[1])), Math.max(32, Math.min(74, hsl[2] + dl)));
+          }
+          return {
+            bg: mixHex(r.dark, "#05080D", 0.35),
+            primary: lift(r.primary, 14),
+            secondary: lift(r.secondary, 14),
+            accent: lift(r.accent, 10),
+            dark: mixHex(r.bg, "#FFFFFF", 0.55)
+          };
+        }
+        function displayRoles(colors) {
+          var r = effectiveRoles(colors);
+          return darkPreview ? darkRoles(r) : r;
+        }
+        var darkToggle = document.getElementById("cpDarkToggle");
+        darkToggle.addEventListener("click", function () {
+          darkPreview = !darkPreview;
+          darkToggle.classList.toggle("cp-on", darkPreview);
+          darkToggle.setAttribute("aria-pressed", darkPreview ? "true" : "false");
+          applyColors(current);
+          showToast(darkPreview ? "Đang xem khung mẫu ở chế độ tối" : "Đã tắt xem trước chế độ tối");
+        });
+
+        /* ----- Tương phản WCAG ----- */
+        function relLum(hex) {
+          var c = hexToRgb(hex).map(function (v) {
+            v = v / 255;
+            return v <= 0.03928 ? v / 12.92 : Math.pow((v + 0.055) / 1.055, 2.4);
+          });
+          return 0.2126 * c[0] + 0.7152 * c[1] + 0.0722 * c[2];
+        }
+        function contrastRatio(a, b) {
+          var l1 = relLum(a), l2 = relLum(b);
+          return (Math.max(l1, l2) + 0.05) / (Math.min(l1, l2) + 0.05);
+        }
+        function renderContrast() {
+          var wrap = document.getElementById("cpContrastList");
+          if (!wrap) return;
+          var r = displayRoles(current);
+          var pairs = [
+            ["Chữ chính trên nền trang", r.dark, r.bg],
+            ["Chữ trên nút màu chính", readableOn(r.primary), r.primary],
+            ["Chữ trên nút màu nhấn", readableOn(r.accent), r.accent],
+            ["Chữ trắng trên màu chính", "#FFFFFF", r.primary],
+            ["Chữ trắng trên màu tối", "#FFFFFF", r.dark]
+          ];
+          wrap.innerHTML = "";
+          pairs.forEach(function (p) {
+            var ratio = contrastRatio(p[1], p[2]);
+            var badge, cls;
+            if (ratio >= 7) { badge = "AAA"; cls = "cp-b-aaa"; }
+            else if (ratio >= 4.5) { badge = "AA"; cls = "cp-b-aa"; }
+            else if (ratio >= 3) { badge = "AA chữ lớn"; cls = "cp-b-lg"; }
+            else { badge = "Chưa đạt"; cls = "cp-b-bad"; }
+            var row = document.createElement("div");
+            row.className = "cp-contrast-row";
+            row.innerHTML = '<span class="cp-cr-name"><i style="background:' + p[2] + '"></i>' + p[0] + '</span>' +
+              '<span class="cp-cr-right"><span class="cp-cr-ratio">' + ratio.toFixed(2) + ':1</span><span class="cp-badge ' + cls + '">' + badge + "</span></span>";
+            wrap.appendChild(row);
+          });
+        }
+
+        /* ----- Dùng chung: áp dụng 1 bảng bất kỳ + lịch sử + yêu thích ----- */
+        function palDots(colors) {
+          return '<span class="cp-dots cp-dots-sm">' + colors.map(function (c) { return '<i style="background:' + c + '"></i>'; }).join("") + "</span>";
+        }
+        function usePalette(colors, name) {
+          activeIndex = -1;
+          colorCount = Math.max(3, Math.min(8, colors.length));
+          refreshStepper();
+          applyColors(fitCount(colors.slice(), colorCount));
+          renderPalettes();
+          if (name) pushHistory(current, name);
+        }
+        var favs = store.get("cpFavPalettes") || [];
+        var historyList = store.get("cpPalHistory") || [];
+        function pushHistory(colors, name) {
+          var key = colors.join(",");
+          historyList = historyList.filter(function (h) { return h.colors.join(",") !== key; });
+          historyList.unshift({ name: name || "Bảng tự chỉnh", colors: colors.slice() });
+          historyList = historyList.slice(0, 8);
+          store.set("cpPalHistory", historyList);
+          renderHistory();
+        }
+        function savedRow(item, onDelete) {
+          var row = document.createElement("div");
+          row.className = "cp-saved-row";
+          row.setAttribute("role", "button");
+          row.setAttribute("tabindex", "0");
+          row.innerHTML = palDots(item.colors) + '<span class="nm">' + item.name + "</span>" +
+            (onDelete ? '<button type="button" class="cp-del-btn" aria-label="Xóa bảng đã lưu ' + item.name + '">×</button>' : "");
+          row.addEventListener("click", function () { usePalette(item.colors, item.name); });
+          row.addEventListener("keydown", function (e) { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); usePalette(item.colors, item.name); } });
+          if (onDelete) {
+            row.querySelector(".cp-del-btn").addEventListener("click", function (e) { e.stopPropagation(); onDelete(); });
+          }
+          return row;
+        }
+        function renderFavs() {
+          var wrap = document.getElementById("cpFavList");
+          wrap.innerHTML = "";
+          if (!favs.length) {
+            wrap.innerHTML = '<p class="cp-empty">Chưa có bảng nào được lưu. Bấm “Lưu bảng đang dùng” để giữ lại bảng bạn thích — mở lại trang sau vẫn còn.</p>';
+            return;
+          }
+          favs.forEach(function (f, idx) {
+            wrap.appendChild(savedRow(f, function () {
+              favs.splice(idx, 1);
+              store.set("cpFavPalettes", favs);
+              renderFavs();
+              showToast("Đã xóa bảng đã lưu");
+            }));
+          });
+        }
+        function renderHistory() {
+          var wrap = document.getElementById("cpHistList");
+          if (!wrap) return;
+          wrap.innerHTML = "";
+          if (!historyList.length) {
+            wrap.innerHTML = '<p class="cp-empty">Chưa có bảng nào trong lịch sử. Các bảng bạn chọn, sinh mới hoặc trích từ ảnh sẽ hiện ở đây.</p>';
+            return;
+          }
+          historyList.forEach(function (h) { wrap.appendChild(savedRow(h, null)); });
+        }
+        document.getElementById("cpBtnSaveFav").addEventListener("click", function () {
+          var key = current.join(",");
+          if (favs.some(function (f) { return f.colors.join(",") === key; })) { showToast("Bảng này đã có trong mục đã lưu"); return; }
+          var base = activeIndex >= 0 ? PALETTES[activeIndex].name : "Bảng tự chỉnh";
+          favs.unshift({ name: base + " · " + current.length + " màu", colors: current.slice() });
+          favs = favs.slice(0, 20);
+          store.set("cpFavPalettes", favs);
+          renderFavs();
+          showToast("Đã lưu bảng màu vào mục yêu thích");
+        });
+
+        /* ----- 1. Sinh bảng từ 1 màu chính ----- */
+        var seedColorIn = document.getElementById("cpSeedColor");
+        var seedHexIn = document.getElementById("cpSeedHex");
+        seedColorIn.addEventListener("input", function () { seedHexIn.value = seedColorIn.value.toUpperCase(); });
+        seedHexIn.addEventListener("change", function () {
+          var v = seedHexIn.value.trim();
+          if (/^#?[0-9A-Fa-f]{6}$/.test(v)) {
+            if (v.charAt(0) !== "#") v = "#" + v;
+            seedColorIn.value = v;
+            seedHexIn.value = v.toUpperCase();
+          } else {
+            seedHexIn.value = seedColorIn.value.toUpperCase();
+          }
+        });
+        function paletteFromSeed(seedHex, scheme) {
+          var hsl = hexToHsl(seedHex);
+          var h = hsl[0];
+          var s = Math.max(40, Math.min(82, hsl[1] < 12 ? 55 : hsl[1]));
+          var baseL = (hsl[2] < 18 || hsl[2] > 82) ? 48 : hsl[2];
+          var prim = hslToHex(h, s, Math.max(36, Math.min(58, baseL)));
+          var sec, acc;
+          if (scheme === "comp") { sec = hslToHex((h + 180) % 360, Math.max(30, s - 18), 56); acc = hslToHex((h + 180) % 360, s, 46); }
+          else if (scheme === "triad") { sec = hslToHex((h + 120) % 360, Math.max(30, s - 8), 52); acc = hslToHex((h + 240) % 360, s, 50); }
+          else if (scheme === "split") { sec = hslToHex((h + 150) % 360, Math.max(30, s - 8), 52); acc = hslToHex((h + 210) % 360, s, 50); }
+          else if (scheme === "mono") { sec = hslToHex(h, Math.max(25, s - 22), 66); acc = hslToHex(h, Math.min(90, s + 12), 34); }
+          else { sec = hslToHex((h + 32) % 360, Math.max(30, s - 6), 54); acc = hslToHex((h + 330) % 360, s, 52); }
+          return [hslToHex(h, Math.min(38, s), 96), prim, sec, acc, hslToHex(h, Math.min(48, s + 4), 15)];
+        }
+        document.getElementById("cpBtnSeed").addEventListener("click", function () {
+          var pal = paletteFromSeed(seedColorIn.value, document.getElementById("cpSchemeSel").value);
+          usePalette(pal, "Từ màu " + seedColorIn.value.toUpperCase());
+          showToast("Đã sinh bảng màu từ " + seedColorIn.value.toUpperCase());
+        });
+
+        /* ----- 2. Sinh bảng từ ảnh ----- */
+        function rgbToHex(r, g, b) {
+          var t = function (x) { return x.toString(16).padStart(2, "0"); };
+          return ("#" + t(r) + t(g) + t(b)).toUpperCase();
+        }
+        function rgbDist(a, b) {
+          var ca = hexToRgb(a), cb = hexToRgb(b);
+          return Math.sqrt(Math.pow(ca[0] - cb[0], 2) + Math.pow(ca[1] - cb[1], 2) + Math.pow(ca[2] - cb[2], 2));
+        }
+        function paletteFromPicked(picked) {
+          var byLight = picked.slice().sort(function (a, b) { return relLum(b.hex) - relLum(a.hex); });
+          var lightest = byLight[0].hex, darkest = byLight[byLight.length - 1].hex;
+          var rest = picked.filter(function (c) { return c.hex !== lightest && c.hex !== darkest; });
+          var prim = rest.length ? rest[0].hex : picked[0].hex;
+          var primHsl = hexToHsl(prim);
+          var acc = null, best = -1;
+          rest.forEach(function (c) {
+            if (c.hex === prim) return;
+            var d = Math.abs(hexToHsl(c.hex)[0] - primHsl[0]);
+            d = Math.min(d, 360 - d);
+            if (d > best) { best = d; acc = c.hex; }
+          });
+          if (!acc) acc = hueShift(prim, 160);
+          var sec = null;
+          rest.forEach(function (c) { if (!sec && c.hex !== prim && c.hex !== acc) sec = c.hex; });
+          if (!sec) sec = hueShift(prim, 40);
+          var bg = relLum(lightest) > 0.55 ? lightest : hslToHex(primHsl[0], Math.min(40, primHsl[1]), 95);
+          var dark = relLum(darkest) < 0.12 ? darkest : hslToHex(primHsl[0], Math.min(48, primHsl[1] + 4), 15);
+          return [bg, prim, sec, acc, dark];
+        }
+        document.getElementById("cpBtnImg").addEventListener("click", function () { document.getElementById("cpImgFile").click(); });
+        document.getElementById("cpImgFile").addEventListener("change", function () {
+          var file = this.files && this.files[0];
+          this.value = "";
+          if (!file) return;
+          var url = URL.createObjectURL(file);
+          var img = new Image();
+          img.onload = function () {
+            try {
+              var S = 100;
+              var cv = document.createElement("canvas");
+              cv.width = S; cv.height = S;
+              var ctx = cv.getContext("2d");
+              var scale = Math.max(S / img.width, S / img.height);
+              var w = img.width * scale, hh = img.height * scale;
+              ctx.drawImage(img, (S - w) / 2, (S - hh) / 2, w, hh);
+              var data = ctx.getImageData(0, 0, S, S).data;
+              var buckets = {};
+              for (var p = 0; p < data.length; p += 16) {
+                if (data[p + 3] < 200) continue;
+                var key = (data[p] >> 5) + "," + (data[p + 1] >> 5) + "," + (data[p + 2] >> 5);
+                var b = buckets[key] || (buckets[key] = { n: 0, r: 0, g: 0, bl: 0 });
+                b.n++; b.r += data[p]; b.g += data[p + 1]; b.bl += data[p + 2];
+              }
+              var list = Object.keys(buckets).map(function (k) {
+                var b = buckets[k];
+                return { n: b.n, hex: rgbToHex(Math.round(b.r / b.n), Math.round(b.g / b.n), Math.round(b.bl / b.n)) };
+              }).sort(function (a, b2) { return b2.n - a.n; });
+              var picked = [];
+              list.forEach(function (c) {
+                if (picked.length >= 6) return;
+                var ok = picked.every(function (q) { return rgbDist(q.hex, c.hex) > 56; });
+                if (ok) picked.push(c);
+              });
+              if (!picked.length) { showToast("Không trích được màu từ ảnh này"); return; }
+              usePalette(paletteFromPicked(picked), "Từ ảnh");
+              showToast("Đã trích các màu chủ đạo từ ảnh");
+            } catch (e) {
+              showToast("Không đọc được ảnh này");
+            }
+            URL.revokeObjectURL(url);
+          };
+          img.onerror = function () { URL.revokeObjectURL(url); showToast("Không đọc được ảnh này"); };
+          img.src = url;
+        });
+
+        /* ----- 3 + 4. Gợi ý theo chủ đề & phong cách (lọc kết hợp) ----- */
+        var TOPICS = [
+          { id: "all", name: "Tất cả chủ đề" },
+          { id: "ban-hang", name: "Bán hàng" },
+          { id: "dich-vu", name: "Dịch vụ" },
+          { id: "ca-phe", name: "Quán cà phê" },
+          { id: "nha-hang", name: "Nhà hàng" },
+          { id: "thoi-trang", name: "Thời trang" },
+          { id: "giao-duc", name: "Giáo dục" },
+          { id: "bat-dong-san", name: "Bất động sản" },
+          { id: "du-lich", name: "Du lịch" },
+          { id: "spa", name: "Spa & làm đẹp" },
+          { id: "cong-nghe", name: "Công nghệ" }
+        ];
+        var STYLES = [
+          { id: "all", name: "Tất cả phong cách" },
+          { id: "sang-trong", name: "Sang trọng" },
+          { id: "co-dien", name: "Cổ điển" },
+          { id: "hien-dai", name: "Hiện đại" },
+          { id: "tre-con", name: "Trẻ con / vui nhộn" },
+          { id: "toi-gian", name: "Tối giản" },
+          { id: "vintage", name: "Vintage" },
+          { id: "thien-nhien", name: "Thiên nhiên" },
+          { id: "nu-tinh", name: "Nữ tính dịu dàng" },
+          { id: "the-thao", name: "Mạnh mẽ thể thao" }
+        ];
+        var SUGGESTIONS = [
+          { name: "Sale Rực Rỡ", topic: "ban-hang", style: "hien-dai", colors: ["#FFF4E8", "#E4572E", "#F2A03D", "#2A9D8F", "#33231A"] },
+          { name: "Shop Sang Trọng", topic: "ban-hang", style: "sang-trong", colors: ["#F7F3EC", "#8C6D3F", "#C6A15B", "#5C1F24", "#221A12"] },
+          { name: "Chợ Phiên Xưa", topic: "ban-hang", style: "vintage", colors: ["#F6EDDC", "#A26748", "#C98F4E", "#70815C", "#3A2C1E"] },
+          { name: "Dịch Vụ Tin Cậy", topic: "dich-vu", style: "hien-dai", colors: ["#EEF4FA", "#1D6FB8", "#39A0C9", "#F5B841", "#17324F"] },
+          { name: "Dịch Vụ Cổ Điển", topic: "dich-vu", style: "co-dien", colors: ["#F5EFE2", "#5B4636", "#8C6D4F", "#9C3D2E", "#2A211A"] },
+          { name: "Dịch Vụ Tối Giản", topic: "dich-vu", style: "toi-gian", colors: ["#F7F7F5", "#3A3A38", "#8A8A84", "#C96F4A", "#1E1E1C"] },
+          { name: "Cà Phê Sữa Đá", topic: "ca-phe", style: "vintage", colors: ["#F7F1E5", "#7F5539", "#B08968", "#DDA448", "#2B1D16"] },
+          { name: "Cà Phê Phố Mới", topic: "ca-phe", style: "hien-dai", colors: ["#F4EFE9", "#3E2F25", "#A9713F", "#E4572E", "#1D140E"] },
+          { name: "Cà Phê Vườn Xanh", topic: "ca-phe", style: "thien-nhien", colors: ["#EFF3E4", "#5F7161", "#93A267", "#D9A441", "#26301F"] },
+          { name: "Bếp Sang Trọng", topic: "nha-hang", style: "sang-trong", colors: ["#FAF5EA", "#7A1F1F", "#C19A3D", "#33523F", "#211712"] },
+          { name: "Quán Ăn Xưa", topic: "nha-hang", style: "co-dien", colors: ["#FBF3E4", "#B3402A", "#E08A3C", "#5F7161", "#2E2018"] },
+          { name: "Nhà Hàng Biển", topic: "nha-hang", style: "thien-nhien", colors: ["#EDF6F4", "#14666B", "#3FA7A0", "#F08A3C", "#123332"] },
+          { name: "Đen Trắng Tối Giản", topic: "thoi-trang", style: "toi-gian", colors: ["#F6F3EF", "#26221F", "#8C7B6C", "#B33951", "#14100E"] },
+          { name: "Thời Trang Dịu Dàng", topic: "thoi-trang", style: "nu-tinh", colors: ["#FDF2F4", "#C4587E", "#E8A2BC", "#C99A5B", "#33222A"] },
+          { name: "Street Năng Động", topic: "thoi-trang", style: "the-thao", colors: ["#F0F4F2", "#14342B", "#2FBF71", "#FFD02E", "#101613"] },
+          { name: "Lớp Học Vui Nhộn", topic: "giao-duc", style: "tre-con", colors: ["#FFF7E0", "#FF8A3D", "#3FA7D6", "#7BC950", "#3A332A"] },
+          { name: "Học Viện Hiện Đại", topic: "giao-duc", style: "hien-dai", colors: ["#EFF6FF", "#1D6FB8", "#39A0C9", "#F5B841", "#17324F"] },
+          { name: "Trường Học Xanh", topic: "giao-duc", style: "thien-nhien", colors: ["#F1F7EA", "#4E9B47", "#93C572", "#F2B134", "#22331C"] },
+          { name: "Địa Ốc Sang Trọng", topic: "bat-dong-san", style: "sang-trong", colors: ["#F4F4F0", "#33523F", "#7A8B6F", "#C6A15B", "#1C2420"] },
+          { name: "Địa Ốc Cổ Điển", topic: "bat-dong-san", style: "co-dien", colors: ["#F3EEE3", "#4A3B2A", "#8C6D4F", "#7A2E2E", "#241C14"] },
+          { name: "Địa Ốc Hiện Đại", topic: "bat-dong-san", style: "hien-dai", colors: ["#EDF1F5", "#274156", "#5B84AE", "#E4572E", "#12222E"] },
+          { name: "Du Lịch Biển Xanh", topic: "du-lich", style: "thien-nhien", colors: ["#EAF7F4", "#2BB3A3", "#7FD1C0", "#FF7B6B", "#123B3C"] },
+          { name: "Du Lịch Sang", topic: "du-lich", style: "sang-trong", colors: ["#F5F0E6", "#173A5E", "#2E6DA8", "#C6A15B", "#0B1F33"] },
+          { name: "Du Lịch Trẻ Trung", topic: "du-lich", style: "tre-con", colors: ["#FFF3E2", "#F08A3C", "#2BB3A3", "#E4572E", "#33241A"] },
+          { name: "Spa Dịu Dàng", topic: "spa", style: "nu-tinh", colors: ["#FDF3F0", "#E5638C", "#F2A0B5", "#C99A5B", "#3D2430"] },
+          { name: "Spa Thảo Mộc", topic: "spa", style: "thien-nhien", colors: ["#F2F6EC", "#6B8F5E", "#A9BC8E", "#D9A05B", "#2C3624"] },
+          { name: "Spa Sang Trọng", topic: "spa", style: "sang-trong", colors: ["#F7F1EA", "#6E4A2F", "#B08968", "#A67C37", "#241A12"] },
+          { name: "Tech Hiện Đại", topic: "cong-nghe", style: "hien-dai", colors: ["#EDF6FB", "#0E7CC4", "#22B8CF", "#FFB020", "#0C2436"] },
+          { name: "Tech Thể Thao", topic: "cong-nghe", style: "the-thao", colors: ["#EFF5F2", "#0F3D2E", "#2FBF71", "#FF6B35", "#0E1A14"] },
+          { name: "Tech Tối Giản", topic: "cong-nghe", style: "toi-gian", colors: ["#F4F5F7", "#23272F", "#6B7280", "#3B82C4", "#101216"] }
+        ];
+        var topicName = {}, styleName = {};
+        TOPICS.forEach(function (t) { topicName[t.id] = t.name; });
+        STYLES.forEach(function (t) { styleName[t.id] = t.name; });
+        var selTopic = "all", selStyle = "all";
+        function renderChips(wrapId, items, current, onPick) {
+          var wrap = document.getElementById(wrapId);
+          wrap.innerHTML = "";
+          items.forEach(function (it) {
+            var b = document.createElement("button");
+            b.type = "button";
+            b.className = "cp-chip" + (it.id === current ? " cp-on" : "");
+            b.textContent = it.name;
+            b.setAttribute("aria-pressed", it.id === current ? "true" : "false");
+            b.addEventListener("click", function () { onPick(it.id); });
+            wrap.appendChild(b);
+          });
+        }
+        function renderSuggestions() {
+          renderChips("cpTopicChips", TOPICS, selTopic, function (id) { selTopic = id; renderSuggestions(); });
+          renderChips("cpStyleChips", STYLES, selStyle, function (id) { selStyle = id; renderSuggestions(); });
+          var list = SUGGESTIONS.filter(function (g) {
+            return (selTopic === "all" || g.topic === selTopic) && (selStyle === "all" || g.style === selStyle);
+          });
+          var cnt = document.getElementById("cpSugCount");
+          cnt.textContent = list.length ? ("Có " + list.length + " bảng gợi ý — chạm để áp dụng ngay:") : "";
+          var wrap = document.getElementById("cpSuggestList");
+          wrap.innerHTML = "";
+          if (!list.length) {
+            wrap.innerHTML = '<p class="cp-empty">Chưa có bảng nào khớp cả 2 lựa chọn này. Thử bỏ bớt một bên (chọn “Tất cả”) để xem thêm gợi ý.</p>';
+            return;
+          }
+          list.forEach(function (g) {
+            var b = document.createElement("button");
+            b.type = "button";
+            b.className = "cp-sug-row";
+            b.innerHTML = '<span class="tx"><span class="nm">' + g.name + '</span><span class="meta">' +
+              topicName[g.topic] + " · " + styleName[g.style] + "</span></span>" + palDots(g.colors);
+            b.addEventListener("click", function () {
+              usePalette(g.colors, g.name);
+              showToast("Đã áp dụng bảng gợi ý: " + g.name);
+            });
+            wrap.appendChild(b);
+          });
+        }
+        renderSuggestions();
+
+        /* ----- Hình mẫu website: chuyển đổi giữa các mẫu ----- */
+        (function () {
+          var tabs = Array.prototype.slice.call(document.querySelectorAll(".cp-sample-tab"));
+          var panes = Array.prototype.slice.call(document.querySelectorAll(".cp-sample-pane"));
+          tabs.forEach(function (tab) {
+            tab.addEventListener("click", function () {
+              var key = tab.getAttribute("data-sample");
+              tabs.forEach(function (t) {
+                var on = t === tab;
+                t.classList.toggle("cp-on", on);
+                t.setAttribute("aria-selected", on ? "true" : "false");
+              });
+              panes.forEach(function (pn) { pn.hidden = pn.getAttribute("data-pane") !== key; });
+            });
+          });
+        })();
+
+        /* ----- 5. Xuất bảng màu + 6. Chia sẻ bằng mã link ----- */
+        function copyText(text, msg) {
+          var done = function () { showToast(msg); };
+          var fb = function () {
+            var ta = document.createElement("textarea");
+            ta.value = text;
+            ta.style.position = "fixed"; ta.style.opacity = "0";
+            document.body.appendChild(ta); ta.select();
+            try { document.execCommand("copy"); } catch (e) {}
+            document.body.removeChild(ta);
+          };
+          if (navigator.clipboard && navigator.clipboard.writeText) {
+            navigator.clipboard.writeText(text).then(done, function () { fb(); done(); });
+          } else { fb(); done(); }
+        }
+        function downloadFile(name, content, type) {
+          var blob = content instanceof Blob ? content : new Blob([content], { type: type || "text/plain;charset=utf-8" });
+          var a = document.createElement("a");
+          a.href = URL.createObjectURL(blob);
+          a.download = name;
+          document.body.appendChild(a);
+          a.click();
+          setTimeout(function () { URL.revokeObjectURL(a.href); a.remove(); }, 500);
+        }
+        function roleKey(i, n) {
+          if (i === 0) return "nen";
+          if (i === 1) return "chinh";
+          if (i === 2) return n === 3 ? "nhan" : "phu";
+          if (i === 3) return "nhan";
+          if (i === 4) return "toi";
+          return "them-" + (i - 4);
+        }
+        document.getElementById("cpExpCss").addEventListener("click", function () {
+          var css = ":root {\n" + current.map(function (c, i) {
+            return "  --mau-" + roleKey(i, current.length) + ": " + c.toUpperCase() + ";";
+          }).join("\n") + "\n}\n";
+          downloadFile("bang-mau.css", css, "text/css;charset=utf-8");
+          showToast("Đã tải file CSS variables");
+        });
+        document.getElementById("cpExpTw").addEventListener("click", function () {
+          var obj = {};
+          current.forEach(function (c, i) { obj[roleKey(i, current.length)] = c.toUpperCase(); });
+          var tw = "module.exports = {\n  theme: {\n    extend: {\n      colors: {\n        bangMau: " +
+            JSON.stringify(obj, null, 2).replace(/\n/g, "\n        ") +
+            "\n      }\n    }\n  }\n};\n";
+          downloadFile("tailwind.bang-mau.js", tw, "text/javascript;charset=utf-8");
+          showToast("Đã tải file Tailwind config");
+        });
+        document.getElementById("cpExpJson").addEventListener("click", function () {
+          var json = JSON.stringify({
+            colors: current.map(function (c, i) {
+              return { role: roleLabel(i, current.length), key: roleKey(i, current.length), hex: c.toUpperCase() };
+            })
+          }, null, 2);
+          downloadFile("bang-mau.json", json, "application/json;charset=utf-8");
+          showToast("Đã tải file JSON");
+        });
+        document.getElementById("cpExpPng").addEventListener("click", function () {
+          var cv = document.createElement("canvas");
+          cv.width = 1240; cv.height = 620;
+          var ctx = cv.getContext("2d");
+          var w = cv.width / current.length;
+          current.forEach(function (c, i) {
+            ctx.fillStyle = c;
+            ctx.fillRect(Math.floor(i * w), 0, Math.ceil(w) + 1, cv.height);
+            ctx.fillStyle = readableOn(c);
+            ctx.textAlign = "center";
+            ctx.font = "700 34px system-ui, sans-serif";
+            ctx.fillText(c.toUpperCase(), i * w + w / 2, cv.height - 52);
+            ctx.font = "600 23px system-ui, sans-serif";
+            ctx.fillText(roleLabel(i, current.length), i * w + w / 2, cv.height - 100);
+          });
+          if (cv.toBlob) {
+            cv.toBlob(function (blob) {
+              if (blob) { downloadFile("bang-mau.png", blob); showToast("Đã tải ảnh PNG bảng màu"); }
+            });
+          } else {
+            showToast("Trình duyệt này không xuất được PNG");
+          }
+        });
+        document.getElementById("cpBtnShare").addEventListener("click", function () {
+          var frag = "#mau=" + current.map(function (c) { return c.replace("#", ""); }).join("-");
+          var fullLink = (window.location.href || "").split("#")[0] + frag;
+          copyText(fullLink, "Đã chép nguyên đường link đầy đủ — gửi link này đi, người mở link sẽ thấy đúng bảng màu của bạn ngay");
+        });
+        function applyHashPalette() {
+          var m = /mau=([0-9A-Fa-f-]+)/.exec(window.location.hash || "");
+          if (!m) return;
+          var cols = m[1].split("-").filter(function (x) { return /^[0-9A-Fa-f]{6}$/.test(x); })
+            .map(function (x) { return ("#" + x).toUpperCase(); });
+          if (cols.length < 3) return;
+          usePalette(cols, "Từ link chia sẻ");
+          showToast("Đã áp dụng bảng màu từ link chia sẻ");
+        }
+
+        /* ----- 10. So sánh 2 bảng màu ----- */
+        var cmpSelA = document.getElementById("cpCmpSelA");
+        var cmpSelB = document.getElementById("cpCmpSelB");
+        function fillCmpSelect(sel, def) {
+          sel.innerHTML = "";
+          var o0 = document.createElement("option");
+          o0.value = "cur";
+          o0.textContent = "Bảng đang dùng";
+          sel.appendChild(o0);
+          PALETTES.forEach(function (p, i) {
+            var o = document.createElement("option");
+            o.value = String(i);
+            o.textContent = p.name;
+            sel.appendChild(o);
+          });
+          sel.value = def;
+        }
+        function setPaneVars(el, colors) {
+          var r = effectiveRoles(colors);
+          var st = el.style;
+          st.setProperty("--p-bg", r.bg);
+          st.setProperty("--p-primary", r.primary);
+          st.setProperty("--p-secondary", r.secondary);
+          st.setProperty("--p-accent", r.accent);
+          st.setProperty("--p-dark", r.dark);
+          st.setProperty("--on-primary", readableOn(r.primary));
+          st.setProperty("--on-accent", readableOn(r.accent));
+        }
+        function paneColors(sel) {
+          if (sel.value === "cur") return current.slice();
+          var p = PALETTES[parseInt(sel.value, 10)];
+          return p ? fitCount(p.colors, colorCount) : current.slice();
+        }
+        function refreshCompare() {
+          if (!cmpSelA || !cmpSelB) return;
+          setPaneVars(document.getElementById("cpCmpA"), paneColors(cmpSelA));
+          setPaneVars(document.getElementById("cpCmpB"), paneColors(cmpSelB));
+        }
+        fillCmpSelect(cmpSelA, "cur");
+        fillCmpSelect(cmpSelB, "10");
+        cmpSelA.addEventListener("change", refreshCompare);
+        cmpSelB.addEventListener("change", refreshCompare);
+        renderFavs();
+        renderHistory();
+
         fillFontSelect(fontHeadSel, "Be Vietnam Pro");
         fillFontSelect(fontBodySel, "Be Vietnam Pro");
         applyFonts();
         refreshStepper();
         applyColors(current);
         renderPalettes();
+        applyHashPalette();
       })();
     </script>
   </body>
