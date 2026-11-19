@@ -1548,6 +1548,146 @@
         html { scroll-behavior: auto; }
       }
 
+      /* ---------- Đợt Figma: demo mới (tiền tố fg-) ---------- */
+      .fg-mini-btn { background: var(--navy); color: #fff; border: 0; font: inherit; font-size: 11px; font-weight: 700; padding: 5px 10px; border-radius: 8px; cursor: pointer; min-height: 28px; }
+      .fg-mini-btn.alt { background: var(--surface-2); color: var(--ink); border: 1px solid var(--border); }
+      .fg-mini-btn.on { background: var(--accent); color: #fff; border-color: var(--accent); }
+      .fg-row { display: flex; gap: 5px; flex-wrap: wrap; justify-content: center; margin-top: 7px; }
+      .fg-note { font-size: 10.5px; color: var(--muted); margin-top: 6px; text-align: center; }
+      /* Text on a Path */
+      .fg-top { display: grid; place-items: center; }
+      .fg-top svg { width: 132px; height: 132px; }
+      .fg-top .fg-top-spin { transform-origin: 75px 75px; animation: fgSpin 24s linear infinite; }
+      .fg-top text { font-size: 12.5px; font-weight: 800; letter-spacing: 2.5px; fill: var(--navy); }
+      @media (prefers-color-scheme: dark) { .fg-top text { fill: #9cc4ee; } }
+      .fg-top .fg-top-c { fill: var(--accent); font-size: 21px; }
+      @keyframes fgSpin { to { transform: rotate(360deg); } }
+      /* Bento Grid */
+      .fg-bento { display: grid; grid-template-columns: repeat(4, 1fr); gap: 4px; width: 100%; max-width: 180px; }
+      .fg-bento i { border-radius: 7px; min-height: 22px; display: block; }
+      .fg-bento .b1 { grid-column: span 2; grid-row: span 2; background: var(--navy); min-height: 48px; }
+      .fg-bento .b2 { grid-column: span 2; background: var(--accent); }
+      .fg-bento .b3 { background: var(--surface-2); border: 1px solid var(--border); }
+      .fg-bento .b4 { background: #63B3A6; }
+      .fg-bento .b5 { grid-column: span 3; background: var(--accent-soft); border: 1px dashed var(--accent); }
+      .fg-bento .b6 { background: var(--navy); opacity: .55; }
+      /* Auto Layout hug/fill */
+      .fg-auto { width: 100%; max-width: 180px; }
+      .fg-auto-frame { border: 1.5px dashed var(--accent); border-radius: 9px; padding: 6px; }
+      .fg-auto-btn { background: var(--navy); color: #fff; font-size: 11px; font-weight: 700; text-align: center; padding: 6px 8px; border-radius: 7px; width: max-content; max-width: 100%; transition: width .45s cubic-bezier(.22,.8,.32,1); white-space: nowrap; overflow: hidden; }
+      .fg-auto.fill .fg-auto-btn { width: 100%; }
+      .fg-auto .fg-row { justify-content: flex-start; }
+      /* Variants + Slots */
+      .fg-var { width: 100%; max-width: 180px; }
+      .fg-var-card { border: 1px solid var(--border); border-radius: 10px; padding: 9px; background: var(--surface); transition: background .3s, color .3s, box-shadow .3s; text-align: left; }
+      .fg-var-card b { display: block; font-size: 12px; margin-bottom: 2px; }
+      .fg-var-card span { font-size: 11px; color: var(--muted); }
+      .fg-var-card.hot { background: var(--navy); box-shadow: 0 6px 14px rgba(5,46,87,.3); }
+      .fg-var-card.hot b { color: #fff; } .fg-var-card.hot span { color: #F5B26B; }
+      .fg-var-card.soft { background: var(--accent-soft); border-color: var(--accent); }
+      /* FigJam sticky board */
+      .fg-jam { width: 100%; max-width: 180px; }
+      .fg-jam-board { display: grid; grid-template-columns: 1fr 1fr; gap: 5px; }
+      .fg-note-card { border-radius: 3px 3px 10px 3px; padding: 6px 7px; font-size: 10.5px; line-height: 1.35; text-align: left; box-shadow: 0 3px 7px rgba(0,0,0,.13); color: #3d2e00; }
+      .fg-note-card.y { background: #FFE58A; } .fg-note-card.p { background: #FFC7D9; color: #4a1030; } .fg-note-card.g { background: #BDEBC0; color: #123d18; grid-column: span 2; }
+      .fg-vote { margin-top: 4px; background: rgba(255,255,255,.65); border: 0; font: inherit; font-size: 10px; font-weight: 800; border-radius: 99px; padding: 1px 7px; cursor: pointer; min-height: 20px; color: inherit; }
+      .fg-jam-timer { margin-top: 6px; display: flex; align-items: center; justify-content: space-between; background: var(--surface-2); border: 1px solid var(--border); border-radius: 8px; padding: 4px 8px; font-size: 11px; }
+      .fg-jam-timer b { font-variant-numeric: tabular-nums; color: var(--navy); }
+      @media (prefers-color-scheme: dark) { .fg-jam-timer b { color: #9cc4ee; } }
+      /* Bulk create */
+      .fg-bulk { width: 100%; max-width: 180px; }
+      .fg-bulk-data { font-size: 10.5px; text-align: left; background: var(--surface-2); border: 1px solid var(--border); border-radius: 8px; padding: 5px 8px; line-height: 1.5; font-variant-numeric: tabular-nums; }
+      .fg-bulk-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 4px; margin-top: 6px; }
+      .fg-bulk-card { border: 1px solid var(--border); border-radius: 8px; padding: 5px 4px; font-size: 10px; text-align: center; background: var(--surface); animation: fgPop .3s ease both; }
+      .fg-bulk-card b { display: block; color: var(--accent); font-size: 10.5px; }
+      @keyframes fgPop { from { opacity: 0; transform: scale(.8); } }
+      /* Breakpoint preview */
+      .fg-bp { width: 100%; max-width: 180px; }
+      .fg-bp-frame { margin: 0 auto; border: 1.5px solid var(--border); border-radius: 9px; padding: 6px; transition: width .5s cubic-bezier(.22,.8,.32,1); width: 100%; background: var(--surface); }
+      .fg-bp-frame.tablet { width: 68%; } .fg-bp-frame.phone { width: 42%; }
+      .fg-bp-blocks { display: flex; gap: 4px; flex-wrap: wrap; }
+      .fg-bp-blocks i { height: 15px; border-radius: 4px; flex: 1 1 30%; background: var(--surface-2); border: 1px solid var(--border); }
+      .fg-bp-blocks i:first-child { flex-basis: 100%; background: var(--navy); border-color: var(--navy); height: 18px; }
+      .fg-bp-blocks i:nth-child(3) { background: var(--accent); border-color: var(--accent); }
+      /* Mouse parallax */
+      .fg-mpar { position: relative; width: 100%; max-width: 180px; height: 104px; border-radius: 11px; overflow: hidden; background: linear-gradient(135deg, var(--navy), #2E6DA8); touch-action: pan-y; }
+      .fg-mpar .l1 { position: absolute; width: 54px; height: 54px; border-radius: 50%; background: rgba(252,122,1,.85); left: 18px; top: 14px; }
+      .fg-mpar .l2 { position: absolute; width: 30px; height: 30px; border-radius: 8px; background: rgba(255,255,255,.5); right: 22px; top: 20px; }
+      .fg-mpar .l3 { position: absolute; left: 0; right: 0; bottom: 12px; text-align: center; color: #fff; font-weight: 800; font-size: 12.5px; text-shadow: 0 1px 4px rgba(0,0,0,.35); }
+      /* 3D transform */
+      .fg-3d { width: 100%; max-width: 180px; perspective: 420px; }
+      .fg-3d-card { width: 104px; height: 66px; margin: 2px auto 4px; border-radius: 11px; background: linear-gradient(135deg, var(--accent), #F5B26B); color: #fff; font-weight: 800; font-size: 12px; display: grid; place-items: center; box-shadow: 0 10px 18px rgba(0,0,0,.22); transform-style: preserve-3d; }
+      .fg-3d label { display: flex; align-items: center; gap: 6px; font-size: 10.5px; color: var(--muted); margin-top: 3px; }
+      .fg-3d input[type="range"] { flex: 1; accent-color: var(--accent); min-height: 24px; }
+      /* Draggable */
+      .fg-drag { position: relative; width: 100%; max-width: 180px; height: 96px; border: 1.5px dashed var(--border); border-radius: 11px; background: var(--surface-2); touch-action: none; overflow: hidden; }
+      .fg-drag-chip { position: absolute; left: 56px; top: 30px; background: var(--accent); color: #fff; font-size: 11px; font-weight: 800; padding: 7px 12px; border-radius: 99px; cursor: grab; box-shadow: 0 5px 12px rgba(0,0,0,.2); user-select: none; -webkit-user-select: none; }
+      .fg-drag-chip:active { cursor: grabbing; }
+      /* Smart animate */
+      .fg-smart { width: 100%; max-width: 180px; }
+      .fg-smart-box { border: 1px solid var(--border); border-radius: 11px; padding: 8px; background: var(--surface); transition: all .55s cubic-bezier(.22,.8,.32,1); text-align: left; }
+      .fg-smart-box .hd { display: flex; align-items: center; gap: 7px; }
+      .fg-smart-box .av { width: 26px; height: 26px; border-radius: 50%; background: var(--navy); flex: none; transition: all .55s; }
+      .fg-smart-box b { font-size: 12px; } .fg-smart-box .sub { font-size: 10.5px; color: var(--muted); }
+      .fg-smart-box .more { max-height: 0; opacity: 0; overflow: hidden; transition: all .55s; font-size: 11px; color: var(--muted); }
+      .fg-smart.open .fg-smart-box { background: var(--accent-soft); border-color: var(--accent); }
+      .fg-smart.open .av { width: 40px; height: 40px; border-radius: 12px; background: var(--accent); }
+      .fg-smart.open .more { max-height: 44px; opacity: 1; margin-top: 6px; }
+      /* Motion timeline */
+      .fg-tl { width: 100%; max-width: 180px; }
+      .fg-tl-stage { position: relative; height: 62px; border: 1px solid var(--border); border-radius: 10px; background: var(--surface-2); overflow: hidden; }
+      .fg-tl-ball { position: absolute; left: 8px; top: 50%; width: 24px; height: 24px; margin-top: -12px; border-radius: 7px; background: var(--accent); }
+      .fg-tl-track { position: relative; height: 16px; margin-top: 7px; background: var(--surface-2); border-radius: 5px; }
+      .fg-tl-track::before { content: ""; position: absolute; left: 0; right: 0; top: 7px; height: 2px; background: var(--border); }
+      .fg-tl-track i { position: absolute; top: 3px; width: 10px; height: 10px; border-radius: 3px; background: var(--navy); transform: rotate(45deg); }
+      .fg-tl input[type="range"] { width: 100%; accent-color: var(--navy); min-height: 24px; }
+      /* Scramble text */
+      .fg-scr { width: 100%; max-width: 180px; text-align: center; }
+      .fg-scr-txt { font-size: 17px; font-weight: 800; color: var(--navy); letter-spacing: 1px; min-height: 24px; font-variant-numeric: tabular-nums; }
+      @media (prefers-color-scheme: dark) { .fg-scr-txt { color: #9cc4ee; } }
+      /* Dynamic strokes */
+      .fg-stroke { width: 100%; max-width: 180px; text-align: center; }
+      .fg-stroke svg { width: 168px; height: 64px; }
+      .fg-stroke .draw { stroke-dasharray: 320; stroke-dashoffset: 320; }
+      .fg-stroke.play .draw { animation: fgDraw 1.6s ease forwards; }
+      @keyframes fgDraw { to { stroke-dashoffset: 0; } }
+      /* Progressive blur */
+      .fg-pblur { width: 100%; max-width: 180px; }
+      .fg-pblur-scene { position: relative; height: 84px; border-radius: 11px; overflow: hidden; background: linear-gradient(120deg, #63B3A6, var(--navy) 55%, var(--accent)); }
+      .fg-pblur-scene::before { content: ""; position: absolute; inset: 0; background: radial-gradient(circle at 25% 35%, rgba(255,255,255,.75) 0 12px, transparent 13px), radial-gradient(circle at 72% 62%, rgba(255,255,255,.55) 0 9px, transparent 10px); }
+      .fg-pblur-blur { position: absolute; inset: 0; backdrop-filter: blur(var(--fg-blur, 6px)); -webkit-backdrop-filter: blur(var(--fg-blur, 6px)); mask-image: linear-gradient(to top, black 15%, transparent 88%); -webkit-mask-image: linear-gradient(to top, black 15%, transparent 88%); }
+      .fg-pblur label { display: flex; align-items: center; gap: 6px; font-size: 10.5px; color: var(--muted); margin-top: 4px; }
+      .fg-pblur input[type="range"] { flex: 1; accent-color: var(--accent); min-height: 24px; }
+      /* Noise */
+      .fg-noise { position: relative; width: 100%; max-width: 180px; border-radius: 11px; overflow: hidden; background: linear-gradient(135deg, var(--navy), #2E6DA8); color: #fff; padding: 13px 10px; text-align: center; }
+      .fg-noise b { font-size: 12.5px; position: relative; z-index: 1; }
+      .fg-noise .nz { position: absolute; inset: 0; width: 100%; height: 100%; opacity: .5; pointer-events: none; }
+      .fg-noise-wrap label { display: flex; align-items: center; gap: 6px; font-size: 10.5px; color: var(--muted); margin-top: 4px; max-width: 180px; }
+      .fg-noise-wrap input[type="range"] { flex: 1; accent-color: var(--accent); min-height: 24px; }
+      /* Shader gradient map (mô phỏng CSS) */
+      .fg-shader { position: relative; width: 100%; max-width: 180px; height: 88px; border-radius: 11px; overflow: hidden; background: repeating-radial-gradient(circle at 30% 40%, #111 0 10px, #555 10px 20px, #bbb 20px 30px, #eee 30px 42px); }
+      .fg-shader .map { position: absolute; inset: 0; background: linear-gradient(120deg, var(--navy), var(--accent), #63B3A6, var(--navy)); background-size: 260% 100%; mix-blend-mode: overlay; animation: fgShader 5s ease-in-out infinite alternate; }
+      .fg-shader span { position: absolute; left: 0; right: 0; bottom: 7px; text-align: center; color: #fff; font-size: 11px; font-weight: 800; text-shadow: 0 1px 5px rgba(0,0,0,.5); }
+      @keyframes fgShader { from { background-position: 0% 0; } to { background-position: 100% 0; } }
+      @media (prefers-reduced-motion: reduce) {
+        .fg-top .fg-top-spin, .fg-shader .map { animation: none; }
+        .fg-bulk-card { animation: none; }
+        .fg-auto-btn, .fg-bp-frame, .fg-smart-box, .fg-smart-box .av, .fg-smart-box .more, .fg-var-card { transition: none; }
+      }
+      /* Tab Đổi Màu: gradient + pattern từ bảng màu */
+      .cp-grad-preview { height: 64px; border-radius: 12px; border: 1px solid var(--border); margin-bottom: 8px; }
+      .cp-grad-row { display: flex; align-items: center; gap: 8px; font-size: 11.5px; color: var(--muted); }
+      .cp-grad-row input[type="range"] { flex: 1; accent-color: var(--accent); min-height: 26px; }
+      .cp-pat-preview { height: 74px; border-radius: 12px; border: 1px solid var(--border); margin-bottom: 8px; background-color: var(--p-bg); }
+      .cp-pat-preview.pat-dots { background-image: radial-gradient(circle, var(--p-primary) 2.6px, transparent 3.2px); background-size: 17px 17px; }
+      .cp-pat-preview.pat-stripes { background-image: repeating-linear-gradient(45deg, var(--p-secondary) 0 7px, transparent 7px 15px); }
+      .cp-pat-preview.pat-check { background-image: conic-gradient(var(--p-soft) 25%, transparent 0 50%, var(--p-soft) 0 75%, transparent 0); background-size: 22px 22px; }
+      .cp-pat-preview.pat-cross { background-image: linear-gradient(var(--p-line) 1.5px, transparent 1.5px), linear-gradient(90deg, var(--p-line) 1.5px, transparent 1.5px); background-size: 15px 15px; }
+      .cp-pat-chips { display: flex; flex-wrap: wrap; gap: 6px; }
+      .cp-pat-chips button { font: inherit; font-size: 11.5px; font-weight: 700; padding: 6px 11px; min-height: 32px; border-radius: 99px; border: 1px solid var(--border); background: var(--surface); color: var(--ink); cursor: pointer; }
+      .cp-pat-chips button.cp-on { background: var(--navy); border-color: var(--navy); color: #fff; }
+      @media (prefers-color-scheme: dark) { .cp-pat-chips button.cp-on { background: #2E6DA8; border-color: #2E6DA8; } }
+
       /* ---------- Hàng trên: tab lớn nổi bật + ô tìm kiếm ngắn cùng hàng ---------- */
       .toprow { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; }
       .toprow .searchbar { flex: 0 1 320px; min-width: 210px; margin-left: auto; }
@@ -3011,7 +3151,7 @@
         <div class="toprow">
           <div class="ptabs" role="tablist" aria-label="Chọn mục tra cứu">
             <button type="button" role="tab" id="tabComp" aria-selected="true" aria-controls="panel-components"><span class="tab-ic" aria-hidden="true"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="8" height="8" rx="2"/><rect x="13" y="3" width="8" height="5" rx="2"/><rect x="13" y="10" width="8" height="11" rx="2"/><rect x="3" y="13" width="8" height="8" rx="2"/></svg></span><span class="tab-label">Thành phần web</span> <span class="pcount" id="tabCompCount"></span></button>
-            <button type="button" role="tab" id="tabFx" aria-selected="false" aria-controls="panel-effects"><span class="tab-ic" aria-hidden="true"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l1.7 4.6L18 9.2l-4.3 1.6L12 15.4l-1.7-4.6L6 9.2l4.3-1.6z"/><path d="M19 15l.8 2.2L22 18l-2.2.8L19 21l-.8-2.2L16 18l2.2-.8z"/><path d="M5 16l.6 1.7L7.3 18.3l-1.7.6L5 20.6l-.6-1.7L2.7 18.3l1.7-.6z"/></svg></span><span class="tab-label">Hiệu ứng chuyển động</span> <span class="pcount">54</span></button>
+            <button type="button" role="tab" id="tabFx" aria-selected="false" aria-controls="panel-effects"><span class="tab-ic" aria-hidden="true"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l1.7 4.6L18 9.2l-4.3 1.6L12 15.4l-1.7-4.6L6 9.2l4.3-1.6z"/><path d="M19 15l.8 2.2L22 18l-2.2.8L19 21l-.8-2.2L16 18l2.2-.8z"/><path d="M5 16l.6 1.7L7.3 18.3l-1.7.6L5 20.6l-.6-1.7L2.7 18.3l1.7-.6z"/></svg></span><span class="tab-label">Hiệu ứng chuyển động</span> <span class="pcount">64</span></button>
             <button type="button" role="tab" id="tabColor" aria-selected="false" aria-controls="panel-color"><span class="tab-ic" aria-hidden="true"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22a10 10 0 1 1 10-10c0 2.2-1.8 4-4 4h-2.2a2.3 2.3 0 0 0-1.8 3.6c.4.5.6 1 .6 1.4 0 .6-.4 1-2.6 1Z"/><circle cx="7.5" cy="10.5" r="1.15" fill="currentColor" stroke="none"/><circle cx="12" cy="7.5" r="1.15" fill="currentColor" stroke="none"/><circle cx="16.5" cy="10.5" r="1.15" fill="currentColor" stroke="none"/></svg></span><span class="tab-label">Đổi Màu cho Web</span></button>
           </div>
           <div class="searchbar">
@@ -3528,7 +3668,19 @@
             </tr>
           </thead>
           <tbody>
-<tr class="group"><td colspan="3">Hiển thị &amp; thông báo <span class="gcnt">43 thành phần</span></td></tr>
+<tr class="group"><td colspan="3">Hiển thị &amp; thông báo <span class="gcnt">45 thành phần</span></td></tr>
+
+            <tr class="comp" data-search="text on a path chữ uốn theo đường cong chữ vòng tròn huy hiệu tròn logo cong figma draw svg textpath badge">
+              <td class="demo"><div class="stage"><div class="fg-top"><svg viewBox="0 0 150 150" role="img" aria-label="Chữ uốn quanh vòng tròn"><defs><path id="fgTopPath" d="M75,75 m-56,0 a56,56 0 1,1 112,0 a56,56 0 1,1 -112,0"/></defs><g class="fg-top-spin"><text><textPath href="#fgTopPath">CHỮ UỐN THEO ĐƯỜNG CONG • FIGMA DRAW • </textPath></text></g><text x="75" y="84" text-anchor="middle" class="fg-top-c">Aa</text></svg></div></div></td>
+              <td class="name-cell"><span class="name">Text on a Path</span><span class="vi-name">Chữ uốn theo đường cong</span></td>
+              <td class="desc"><b>Chữ chạy dọc theo một đường cong</b> (vòng tròn, sóng, cung) thay vì nằm thẳng — dùng làm huy hiệu tròn, logo cong, tem nhãn và tiêu đề trang trí. Trên web làm bằng SVG <i>textPath</i>. <i>(Nguồn: Figma Draw — figma.com/draw)</i></td>
+            </tr>
+
+            <tr class="comp" data-search="components variants slots component đa trạng thái biến thể khe cắm nội dung figma design variant properties">
+              <td class="demo"><div class="stage"><div class="fg-var"><div class="fg-var-card" id="fgVarCard"><b id="fgVarTitle">Thẻ khóa học</b><span id="fgVarSlot">Nội dung khe cắm: mô tả ngắn…</span></div><div class="fg-row"><button type="button" class="fg-mini-btn alt fg-var-btn on" data-v="base">Thường</button><button type="button" class="fg-mini-btn alt fg-var-btn" data-v="hot">Nổi bật</button><button type="button" class="fg-mini-btn alt fg-var-btn" data-v="soft">Dịu</button><button type="button" class="fg-mini-btn" id="fgVarSwap">Đổi nội dung</button></div></div></div></td>
+              <td class="name-cell"><span class="name">Components, Variants &amp; Slots</span><span class="vi-name">Component đa trạng thái &amp; khe cắm</span></td>
+              <td class="desc"><b>Một component gốc, nhiều biến thể</b> (màu, kích thước, trạng thái) và <b>khe cắm (slot)</b> để thay nội dung bên trong mà không phá cấu trúc — cách Figma và các design system giữ hàng trăm thẻ, nút, modal luôn nhất quán. Bấm thử các nút dưới demo để đổi biến thể và nội dung khe. <i>(Nguồn: Figma Design — figma.com/design)</i></td>
+            </tr>
 
             <tr class="comp" data-search="card thẻ nội dung hộp sản phẩm">
               <td class="demo"><div class="stage"><div class="mini-card"><div class="thumb"></div><div class="pad"><b>Thẻ sản phẩm</b><small>Giá: 199.000đ</small></div></div></div></td>
@@ -3908,7 +4060,25 @@
               <td class="desc">Bảng <b>nổi trên nội dung trang</b>, <b>kéo để di chuyển và kéo giãn kích thước</b> được, có nút thu nhỏ / phóng to / khôi phục — hay dùng cho ghi chú, trình phát nhạc, công cụ phụ. Kéo thử thanh tiêu đề màu navy nhé.</td>
             </tr>
 
-            <tr class="group"><td colspan="3">Dữ liệu &amp; hiển thị nâng cao <span class="gcnt">14 thành phần</span></td></tr>
+            <tr class="group"><td colspan="3">Dữ liệu &amp; hiển thị nâng cao <span class="gcnt">17 thành phần</span></td></tr>
+
+            <tr class="comp" data-search="sticky notes figjam bảng ghi chú dán bỏ phiếu hẹn giờ brainstorm cộng tác voting timer whiteboard">
+              <td class="demo"><div class="stage"><div class="fg-jam"><div class="fg-jam-board"><div class="fg-note-card y">Ý tưởng: thêm trang giá combo<button type="button" class="fg-vote" data-vote aria-label="Bỏ phiếu cho ý tưởng combo">♥ <span>3</span></button></div><div class="fg-note-card p">Khách hay hỏi giờ mở cửa<button type="button" class="fg-vote" data-vote aria-label="Bỏ phiếu cho ý tưởng giờ mở cửa">♥ <span>1</span></button></div><div class="fg-note-card g">Thống nhất: ra mắt bản mới vào thứ Sáu<button type="button" class="fg-vote" data-vote aria-label="Bỏ phiếu cho ý tưởng ra mắt thứ Sáu">♥ <span>5</span></button></div></div><div class="fg-jam-timer"><span>Hẹn giờ thảo luận</span><b id="fgJamTime">05:00</b><button type="button" class="fg-mini-btn" id="fgJamBtn">Bắt đầu</button></div></div></div></td>
+              <td class="name-cell"><span class="name">Sticky Notes Board</span><span class="vi-name">Bảng ghi chú dán, bỏ phiếu &amp; hẹn giờ</span></td>
+              <td class="desc"><b>Bảng trắng thu nhỏ kiểu FigJam</b>: ghi chú dán nhiều màu để brainstorm, nút tim để cả nhóm <b>bỏ phiếu</b> chọn ý hay nhất, và <b>hẹn giờ</b> đếm ngược giữ buổi thảo luận đúng nhịp. Bấm tim và nút Bắt đầu để thử. <i>(Nguồn: FigJam — figma.com/figjam/online-whiteboard)</i></td>
+            </tr>
+
+            <tr class="comp" data-search="bulk create tạo hàng loạt từ dữ liệu csv grid view figma buzz sinh nhiều thẻ asset hàng loạt">
+              <td class="demo"><div class="stage"><div class="fg-bulk"><div class="fg-bulk-data">Tên — Giá<br>Áo thun — 199k<br>Quần jean — 349k<br>Mũ lưỡi trai — 99k</div><div class="fg-bulk-grid" id="fgBulkGrid"><div class="fg-bulk-card">Áo thun<b>199k</b></div><div class="fg-bulk-card">Quần jean<b>349k</b></div></div><div class="fg-row"><button type="button" class="fg-mini-btn" id="fgBulkBtn">Tạo thẻ từ dữ liệu</button></div></div></div></td>
+              <td class="name-cell"><span class="name">Bulk Create / Grid View</span><span class="vi-name">Tạo hàng loạt từ dữ liệu &amp; xem dạng lưới</span></td>
+              <td class="desc"><b>Một mẫu thẻ + một bảng dữ liệu = cả bộ thẻ hoàn chỉnh</b>: nạp danh sách (kiểu CSV) rồi hệ thống tự sinh từng thẻ và xếp tất cả vào một lưới để xem tổng thể — cách Figma Buzz tạo hàng nghìn ấn phẩm từ một template. <i>(Nguồn: Figma Buzz — figma.com/buzz)</i></td>
+            </tr>
+
+            <tr class="comp" data-search="breakpoint preview xem trước theo breakpoint responsive desktop tablet mobile figma sites co giãn màn hình">
+              <td class="demo"><div class="stage"><div class="fg-bp"><div class="fg-bp-frame" id="fgBpFrame"><div class="fg-bp-blocks"><i></i><i></i><i></i><i></i></div></div><div class="fg-row"><button type="button" class="fg-mini-btn alt fg-bp-btn on" data-bp="">Máy tính</button><button type="button" class="fg-mini-btn alt fg-bp-btn" data-bp="tablet">Máy tính bảng</button><button type="button" class="fg-mini-btn alt fg-bp-btn" data-bp="phone">Điện thoại</button></div></div></div></td>
+              <td class="name-cell"><span class="name">Breakpoint Preview</span><span class="vi-name">Xem trước theo kích thước màn hình</span></td>
+              <td class="desc"><b>Cùng một giao diện, xem thử ở 3 cỡ màn hình</b> máy tính / máy tính bảng / điện thoại để kiểm tra bố cục co giãn có vỡ không trước khi chốt — tính năng xem trước breakpoint của Figma Sites. Bấm 3 nút dưới demo để đổi cỡ khung. <i>(Nguồn: Figma Sites — figma.com/sites)</i></td>
+            </tr>
 
             <tr class="comp" data-search="data grid lưới dữ liệu nâng cao bảng dữ liệu sắp xếp lọc data table">
               <td class="demo"><div class="stage"><div class="dgrid"><table><thead><tr><th>Tên</th><th>Giá <span class="sort">↕</span></th><th>Trạng thái</th></tr></thead><tbody><tr><td>Áo thun</td><td>199k</td><td>Còn hàng</td></tr><tr><td>Quần jean</td><td>349k</td><td>Còn hàng</td></tr><tr><td>Mũ lưỡi trai</td><td>99k</td><td>Hết hàng</td></tr></tbody></table></div></div></td>
@@ -3994,7 +4164,19 @@
               <td class="desc"><b>Giữ nội dung (thường là ảnh hoặc video) luôn đúng tỉ lệ chiều rộng/chiều cao</b> như 16:9 hay 1:1 dù khung chứa thay đổi kích thước. <i>(Nguồn: shadcn/ui)</i></td>
             </tr>
 
-            <tr class="group"><td colspan="3">Khu vực trang (khối nội dung lớn) <span class="gcnt">12 thành phần</span></td></tr>
+            <tr class="group"><td colspan="3">Khu vực trang (khối nội dung lớn) <span class="gcnt">14 thành phần</span></td></tr>
+
+            <tr class="comp" data-search="bento grid lưới bento hai chiều gallery dashboard ô trải nhiều cột hàng figma grid layout">
+              <td class="demo"><div class="stage"><div class="fg-bento" aria-hidden="true"><i class="b1"></i><i class="b2"></i><i class="b3"></i><i class="b4"></i><i class="b5"></i><i class="b6"></i></div></div></td>
+              <td class="name-cell"><span class="name">Bento Grid</span><span class="vi-name">Lưới bento hai chiều</span></td>
+              <td class="desc"><b>Lưới mà mỗi ô có thể trải dài qua nhiều cột và nhiều hàng</b> như hộp cơm bento — ô lớn cho nội dung chính, ô nhỏ cho chi tiết phụ; rất hợp cho trang tính năng, gallery và dashboard vẫn gọn trên điện thoại. Đây là kiểu Grid hai chiều của Figma. <i>(Nguồn: Figma Design — figma.com/design)</i></td>
+            </tr>
+
+            <tr class="comp" data-search="auto layout bố cục tự co giãn hug fill ôm nội dung lấp đầy flexbox figma nút ôm chữ thẻ lấp đầy">
+              <td class="demo"><div class="stage"><div class="fg-auto" id="fgAuto"><div class="fg-auto-frame"><div class="fg-auto-btn" id="fgAutoBtn">Nút bấm</div></div><div class="fg-row"><button type="button" class="fg-mini-btn alt fg-auto-btn2 on" data-m="hug">Ôm nội dung</button><button type="button" class="fg-mini-btn alt fg-auto-btn2" data-m="fill">Lấp đầy khung</button><button type="button" class="fg-mini-btn" id="fgAutoText">Đổi chữ dài hơn</button></div></div></div></td>
+              <td class="name-cell"><span class="name">Auto Layout (Hug / Fill)</span><span class="vi-name">Bố cục tự co giãn</span></td>
+              <td class="desc"><b>Khung tự thay đổi kích thước theo nội dung</b>: chế độ <b>Ôm (hug)</b> cho nút vừa khít chữ, chế độ <b>Lấp đầy (fill)</b> cho thẻ giãn hết chiều ngang khung cha — nguyên lý Auto Layout của Figma, trên web chính là Flexbox/Grid. Bấm thử 3 nút dưới demo. <i>(Nguồn: Figma Design — figma.com/design)</i></td>
+            </tr>
 
             <tr class="comp" data-search="hero section khu vực mở đầu đầu trang chủ banner lớn tiêu đề chính hero">
               <td class="demo"><div class="stage"><div class="hero-mini"><div class="h-title">Làm visa nhanh, tỉ lệ đậu cao</div><div class="h-sub">Tư vấn miễn phí — chuẩn bị hồ sơ trọn gói từ A đến Z</div><span class="h-btn">Đăng ký tư vấn</span></div></div></td>
@@ -4145,7 +4327,25 @@
                 <td class="desc">Thanh mỏng <b>dài ra theo tỉ lệ nội dung đã cuộn</b> để người đọc biết còn bao nhiêu — dùng cho bài viết dài, tài liệu và trang hướng dẫn. Cuộn thử trong khung demo nhé.<div class="fx-meta"><span class="fx-badge tech">CSS + JS nhẹ · Motion useScroll / scaleX</span><span class="fx-badge mob-ok">Mobile: An toàn</span></div></td>
               </tr>
 
-              <tr class="fxgroup"><td colspan="3">Hover &amp; tương tác nhỏ <span class="gcnt">12 hiệu ứng</span></td></tr>
+              <tr class="fxgroup"><td colspan="3">Hover &amp; tương tác nhỏ <span class="gcnt">15 hiệu ứng</span></td></tr>
+
+              <tr class="fxcomp" data-search="mouse parallax parallax theo chuột di chuột lớp nổi figma sites hero tương tác">
+                <td class="demo"><div class="stage"><div class="fg-mpar" id="fgMpar"><div class="l1"></div><div class="l2"></div><div class="l3">Di chuột / chạm vào khung</div></div></div></td>
+                <td class="name-cell"><span class="name">Mouse Parallax</span><span class="vi-name">Parallax theo chuột</span></td>
+                <td class="desc">Các lớp <b>dịch chuyển theo vị trí con trỏ</b>, lớp càng “gần” càng di chuyển nhiều, tạo cảm giác nổi 3D cho hero — một trong các tương tác có sẵn của Figma Sites. <i>(Nguồn: Figma Sites — figma.com/blog/introducing-figma-sites)</i><div class="fx-meta"><span class="fx-badge tech">JS · pointermove + transform</span><span class="fx-badge mob-warn">Mobile: Cẩn trọng · cảm ứng chỉ chạm kéo mới chạy</span></div></td>
+              </tr>
+
+              <tr class="fxcomp" data-search="3d transform biến đổi 3d xoay trục phối cảnh perspective figma motion css">
+                <td class="demo"><div class="stage"><div class="fg-3d"><div class="fg-3d-card" id="fg3dCard">THẺ 3D</div><label>Xoay ngang <input type="range" id="fg3dY" min="-40" max="40" value="18" aria-label="Góc xoay ngang"></label><label>Xoay dọc <input type="range" id="fg3dX" min="-40" max="40" value="-12" aria-label="Góc xoay dọc"></label></div></div></td>
+                <td class="name-cell"><span class="name">3D Transform</span><span class="vi-name">Biến đổi 3D có phối cảnh</span></td>
+                <td class="desc"><b>Xoay vật theo trục X/Y trong không gian 3D</b> với phối cảnh để thẻ và ảnh có chiều sâu thật — Figma (bản Beta) và Figma Motion đều hỗ trợ biến đổi 3D tương thích CSS. Kéo 2 thanh trượt dưới demo để xoay thẻ. <i>(Nguồn: Figma Design &amp; Motion — figma.com/motion)</i><div class="fx-meta"><span class="fx-badge tech">CSS · transform 3D + perspective</span><span class="fx-badge mob-ok">Mobile: An toàn</span></div></td>
+              </tr>
+
+              <tr class="fxcomp" data-search="draggable kéo thả tự do kéo vật figma sites drag pointer">
+                <td class="demo"><div class="stage"><div class="fg-drag" id="fgDrag"><div class="fg-drag-chip" id="fgDragChip">Kéo tôi đi</div></div></div></td>
+                <td class="name-cell"><span class="name">Draggable</span><span class="vi-name">Kéo thả tự do</span></td>
+                <td class="desc">Vật thể <b>bám theo ngón tay/con trỏ và thả ở bất cứ đâu</b> trong khung — tương tác kéo thả tự do có sẵn trong Figma Sites, hợp cho sticker, ghi chú và trò chơi nhỏ trên trang. Thử kéo viên nhãn trong demo. <i>(Nguồn: Figma Sites — figma.com/blog/introducing-figma-sites)</i><div class="fx-meta"><span class="fx-badge tech">JS · Pointer Events</span><span class="fx-badge mob-ok">Mobile: An toàn · hỗ trợ cảm ứng</span></div></td>
+              </tr>
 
               <tr class="fxcomp" data-search="magnetic button nút nam châm hút con trỏ cta lò xo spring">
                 <td class="demo"><div class="stage"><div class="fx-mag-zone" id="fxMagZone"><button class="fx-mag" id="fxMagBtn" type="button">Đăng ký ngay</button></div></div></td>
@@ -4219,7 +4419,19 @@
                 <td class="desc">Núm của thanh trượt (âm lượng, giá, độ sáng) <b>phóng to khoảng 1,3 lần và đậm bóng khi đang kéo</b> — để ngón tay/chuột bám chắc hơn và người dùng cảm nhận rõ mình đang chỉnh giá trị nào; giữ núm đủ to (≥ 22px) cho ngón tay. Kéo thử nhé.<div class="fx-meta"><span class="fx-badge tech">CSS-only · :active ::-webkit-slider-thumb scale(1.3)</span><span class="fx-badge mob-ok">Mobile: An toàn</span></div></td>
               </tr>
 
-              <tr class="fxgroup"><td colspan="3">Chuyển trang &amp; hiện nội dung <span class="gcnt">13 hiệu ứng</span></td></tr>
+              <tr class="fxgroup"><td colspan="3">Chuyển trang &amp; hiện nội dung <span class="gcnt">15 hiệu ứng</span></td></tr>
+
+              <tr class="fxcomp" data-search="smart animate hoạt ảnh thông minh nội suy morph chuyển trạng thái figma prototyping">
+                <td class="demo"><div class="stage"><div class="fg-smart" id="fgSmart"><div class="fg-smart-box"><div class="hd"><span class="av"></span><div><b>Thẻ hồ sơ</b><div class="sub">Bấm nút để mở rộng</div></div></div><div class="more">Phần nội dung thêm tự hiện ra trong lúc thẻ biến hình — không nhảy cắt cảnh.</div></div><div class="fg-row"><button type="button" class="fg-mini-btn" id="fgSmartBtn">Mở rộng / Thu gọn</button></div></div></div></td>
+                <td class="name-cell"><span class="name">Smart Animate</span><span class="vi-name">Hoạt ảnh thông minh giữa hai trạng thái</span></td>
+                <td class="desc">Hệ thống <b>tự nội suy chuyển động giữa hai trạng thái</b> của cùng một vật (vị trí, kích thước, màu) nên chuyển cảnh mượt như biến hình thay vì cắt bụp — cơ chế Smart Animate nổi tiếng của Figma Prototyping. <i>(Nguồn: Figma Prototyping — figma.com/prototyping)</i><div class="fx-meta"><span class="fx-badge tech">CSS · transition đa thuộc tính</span><span class="fx-badge mob-ok">Mobile: An toàn</span></div></td>
+              </tr>
+
+              <tr class="fxcomp" data-search="motion timeline keyframes dòng thời gian khung hình chính figma motion animation 2026">
+                <td class="demo"><div class="stage"><div class="fg-tl"><div class="fg-tl-stage"><div class="fg-tl-ball" id="fgTlBall"></div></div><div class="fg-tl-track" aria-hidden="true"><i style="left:2px"></i><i style="left:calc(50% - 5px)"></i><i style="right:2px"></i></div><input type="range" id="fgTlRange" min="0" max="100" value="0" aria-label="Kéo để tua dòng thời gian chuyển động"><div class="fg-row"><button type="button" class="fg-mini-btn" id="fgTlPlay">Phát</button></div></div></div></td>
+                <td class="name-cell"><span class="name">Motion Timeline &amp; Keyframes</span><span class="vi-name">Chuyển động theo dòng thời gian</span></td>
+                <td class="desc"><b>Đặt các khung hình chính (keyframe) trên một dòng thời gian</b> rồi hệ thống tự lấp đầy chuyển động ở giữa — cách Figma Motion (mới ra mắt tại Config 2026) cho làm animation chính xác ngay trên canvas và xuất ra CSS/video. Kéo thanh tua hoặc bấm Phát trong demo. <i>(Nguồn: Figma Motion — figma.com/motion)</i><div class="fx-meta"><span class="fx-badge tech">JS · nội suy theo tiến trình</span><span class="fx-badge mob-ok">Mobile: An toàn</span></div></td>
+              </tr>
 
               <tr class="fxcomp" data-search="hero entrance animation hiệu ứng mở đầu hero staggered fade up landing">
                 <td class="demo"><div class="stage"><div class="fx-col"><div class="fx-hero" id="fxHero"><div class="fx-hero-el fx-hero-t">Tiêu đề thật ấn tượng</div><div class="fx-hero-el d2 fx-hero-s">Phụ đề xuất hiện ngay sau đó</div><div class="fx-hero-el d3"><span class="fx-hero-cta">Bắt đầu ngay</span></div></div><button class="fx-btn" id="fxHeroReplay" type="button">↻ Phát lại</button></div></div></td>
@@ -4311,7 +4523,13 @@
               </tr>
             </thead>
             <tbody>
-<tr class="fxgroup"><td colspan="3">Hiệu ứng chữ <span class="gcnt">4 hiệu ứng</span></td></tr>
+<tr class="fxgroup"><td colspan="3">Hiệu ứng chữ <span class="gcnt">5 hiệu ứng</span></td></tr>
+
+              <tr class="fxcomp" data-search="scramble text chữ xáo trộn hiện dần giải mã decode figma sites tiêu đề">
+                <td class="demo"><div class="stage"><div class="fg-scr"><div class="fg-scr-txt" id="fgScrTxt">THIẾT KẾ</div><div class="fg-row"><button type="button" class="fg-mini-btn" id="fgScrBtn">Chạy lại</button></div></div></div></td>
+                <td class="name-cell"><span class="name">Scramble Text</span><span class="vi-name">Chữ xáo trộn rồi hiện dần</span></td>
+                <td class="desc">Ký tự <b>nhảy loạn ngẫu nhiên rồi lần lượt “khóa” lại thành chữ thật</b>, tạo cảm giác giải mã — hiệu ứng chữ có sẵn trong Figma Sites, rất hợp cho tiêu đề công nghệ. <i>(Nguồn: Figma Sites — figma.com/blog/introducing-figma-sites)</i><div class="fx-meta"><span class="fx-badge tech">JS · thay ký tự theo nhịp</span><span class="fx-badge mob-warn">Mobile: Cẩn trọng · giữ câu ngắn</span></div></td>
+              </tr>
 
               <tr class="fxcomp" data-search="text reveal split letters typewriter chữ hiện từng ký tự tách chữ gõ máy headline splittext">
                 <td class="demo"><div class="stage"><div class="fx-col"><div class="fx-split" id="fxSplit">Chữ hiện từng ký tự</div><div class="fx-type"><span id="fxTypeTxt"></span><span class="caret"></span></div><button class="fx-btn" id="fxSplitReplay" type="button">↻ Phát lại</button></div></div></td>
@@ -4337,7 +4555,31 @@
                 <td class="desc">Dải màu gradient <b>nhiều sắc chạy xuyên qua từng chữ cái của tiêu đề</b> (chữ đứng yên, chỉ màu chảy) — dùng cho một tiêu đề hero hoặc cụm từ nhấn mạnh; khác Chữ lấp lánh ở chỗ đây là nhiều màu chảy liên tục, còn lấp lánh là một vệt sáng quét qua chữ một màu. Chỉ dùng cho 1 tiêu đề lớn vì trình duyệt phải vẽ lại chữ mỗi khung hình.<div class="fx-meta"><span class="fx-badge tech">CSS-only · background-clip: text + background-position</span><span class="fx-badge mob-warn">Mobile: Cẩn trọng</span></div></td>
               </tr>
 
-              <tr class="fxgroup"><td colspan="3">Nền &amp; trang trí <span class="gcnt">5 hiệu ứng</span></td></tr>
+              <tr class="fxgroup"><td colspan="3">Nền &amp; trang trí <span class="gcnt">9 hiệu ứng</span></td></tr>
+
+              <tr class="fxcomp" data-search="progressive blur mờ dần theo chiều sâu độ sâu trường ảnh figma draw backdrop">
+                <td class="demo"><div class="stage"><div class="fg-pblur"><div class="fg-pblur-scene"><div class="fg-pblur-blur" id="fgPblur"></div></div><label>Độ mờ <input type="range" id="fgPblurRange" min="0" max="14" value="6" aria-label="Chỉnh độ mờ dần"></label></div></div></td>
+                <td class="name-cell"><span class="name">Progressive Blur</span><span class="vi-name">Mờ dần theo chiều sâu</span></td>
+                <td class="desc">Độ mờ <b>tăng dần theo một chiều</b> (ví dụ càng xuống dưới càng mờ) thay vì mờ đều — tách nền khỏi nội dung và tạo chiều sâu như ảnh chụp xóa phông; Figma Draw có sẵn kiểu mờ tăng dần này. Kéo thanh Độ mờ trong demo. <i>(Nguồn: Figma Draw — figma.com/draw)</i><div class="fx-meta"><span class="fx-badge tech">CSS · backdrop-filter + mask</span><span class="fx-badge mob-warn">Mobile: Cẩn trọng · mờ diện rộng tốn pin</span></div></td>
+              </tr>
+
+              <tr class="fxcomp" data-search="texture noise vân nhiễu hạt grain analog figma draw svg turbulence">
+                <td class="demo"><div class="stage"><div class="fg-noise-wrap"><div class="fg-noise"><svg class="nz" id="fgNoiseSvg" aria-hidden="true"><filter id="fgNoiseF"><feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2"/></filter><rect width="100%" height="100%" filter="url(#fgNoiseF)"/></svg><b>Bề mặt có vân hạt</b></div><label>Mật độ hạt <input type="range" id="fgNoiseRange" min="0" max="90" value="50" aria-label="Chỉnh mật độ hạt nhiễu"></label></div></div></td>
+                <td class="name-cell"><span class="name">Texture &amp; Noise</span><span class="vi-name">Vân và nhiễu hạt</span></td>
+                <td class="desc">Phủ một lớp <b>vân sần / hạt nhiễu kiểu analog</b> lên nền, thẻ hoặc ảnh để giao diện bớt “phẳng nhựa” và có cảm giác chất liệu — nhóm Texture &amp; effects của Figma Draw. Kéo thanh Mật độ hạt trong demo. <i>(Nguồn: Figma Draw — figma.com/draw)</i><div class="fx-meta"><span class="fx-badge tech">SVG · feTurbulence</span><span class="fx-badge mob-ok">Mobile: An toàn · hạt tĩnh</span></div></td>
+              </tr>
+
+              <tr class="fxcomp" data-search="shader gradient map hiệu ứng shader tùy chỉnh riso print figma config 2026 webgl">
+                <td class="demo"><div class="stage"><div class="fg-shader"><div class="map"></div><span>Gradient map</span></div></div></td>
+                <td class="name-cell"><span class="name">Shader Effects (Gradient Map)</span><span class="vi-name">Hiệu ứng shader tùy chỉnh</span></td>
+                <td class="desc">Shader <b>tái tạo lại màu và vân của ảnh/nền theo quy tắc riêng</b> — ví dụ Gradient map (ánh xạ độ sáng sang bảng màu), Riso print, hạt phát sáng — điểm mới lớn của Figma tại Config 2026. <b>Lưu ý:</b> demo ở đây mô phỏng bằng CSS; shader đầy đủ cần WebGL/WebGPU và mã GLSL/WGSL, không làm bằng CSS thuần được. <i>(Nguồn: Figma Config 2026 — figma.com/blog/config-2026-recap)</i><div class="fx-meta"><span class="fx-badge tech">Demo mô phỏng CSS · bản thật: WebGL</span><span class="fx-badge mob-warn">Mobile: Cẩn trọng · shader thật tốn GPU</span></div></td>
+              </tr>
+
+              <tr class="fxcomp" data-search="dynamic strokes nét vẽ động variable width độ rộng nét thay đổi figma draw svg cọ vẽ tay">
+                <td class="demo"><div class="stage"><div class="fg-stroke" id="fgStroke"><svg viewBox="0 0 168 64" aria-hidden="true"><path class="draw" d="M8 44 C 34 12, 52 58, 78 30 S 128 14, 158 34" fill="none" stroke="#FC7A01" stroke-width="5" stroke-linecap="round"/><path d="M8 44 C 34 12, 52 58, 78 30 S 128 14, 158 34" fill="none" stroke="#052E57" stroke-width="1.4" stroke-dasharray="3 7" opacity=".45"/></svg><div class="fg-row"><button type="button" class="fg-mini-btn" id="fgStrokeBtn">Vẽ lại</button></div></div></div></td>
+                <td class="name-cell"><span class="name">Dynamic Strokes</span><span class="vi-name">Nét vẽ động, độ rộng thay đổi</span></td>
+                <td class="desc">Nét vẽ <b>to–nhỏ và ngoằn ngoèo thay đổi dọc theo đường đi</b> như nét cọ thật, thay vì đều tăm tắp — Figma Draw cho chỉnh tần suất uốn và độ rộng tại từng điểm của nét. Bấm Vẽ lại để xem nét tự vẽ. <i>(Nguồn: Figma Draw — figma.com/draw)</i><div class="fx-meta"><span class="fx-badge tech">SVG · stroke-dashoffset</span><span class="fx-badge mob-ok">Mobile: An toàn</span></div></td>
+              </tr>
 
               <tr class="fxcomp" data-search="gradient animation gradient chuyển động nền hero stripe minigl webgl">
                 <td class="demo"><div class="stage"><div class="fx-grad"></div></div></td>
@@ -4806,6 +5048,22 @@
                 <button type="button" class="cp-switch" id="cpDarkToggle" aria-pressed="false" aria-label="Bật xem trước chế độ tối cho khung mẫu"><i></i></button>
               </div>
               <p class="cp-pal-note">Bật để xem cùng bảng màu này khi giao diện mẫu chuyển sang nền tối — màu chính và màu nhấn được tự nâng sáng cho dễ nhìn.</p>
+
+              <div class="cp-pal-section-title">Tạo gradient từ bảng màu</div>
+              <div class="cp-grad-preview" id="cpGradPreview"></div>
+              <div class="cp-grad-row"><span>Góc</span><input type="range" id="cpGradAngle" min="0" max="360" value="135" aria-label="Chỉnh góc gradient"><b id="cpGradAngleVal">135°</b></div>
+              <button class="cp-btn-sub" id="cpGradCopy" type="button" style="margin-top:8px">Chép mã CSS gradient</button>
+              <p class="cp-pal-note">Trộn các màu trong bảng đang chọn thành một dải gradient — giống công cụ Gradient Generator / Gradient Library trong bộ công cụ màu miễn phí của Figma (figma.com/gradients). Đổi bảng màu là dải gradient đổi theo.</p>
+
+              <div class="cp-pal-section-title">Tô mẫu lặp (pattern)</div>
+              <div class="cp-pat-preview pat-dots" id="cpPatPreview"></div>
+              <div class="cp-pat-chips" id="cpPatChips">
+                <button type="button" class="cp-on" data-pat="pat-dots">Chấm bi</button>
+                <button type="button" data-pat="pat-stripes">Sọc chéo</button>
+                <button type="button" data-pat="pat-check">Caro</button>
+                <button type="button" data-pat="pat-cross">Lưới</button>
+              </div>
+              <p class="cp-pal-note">Dùng họa tiết lặp thay cho màu trơn để làm nền — kiểu Pattern fill của Figma Draw (figma.com/draw). Họa tiết tự lấy màu từ bảng đang chọn, đổi bảng là họa tiết đổi màu theo.</p>
             </div>
           </aside>
           <section class="cp-col cp-samples" aria-label="Hình mẫu website theo ngành">
@@ -7935,6 +8193,260 @@
         var chatSendBtn = $("n7ChatSend");
         if (chatSendBtn) chatSendBtn.addEventListener("click", chatSend);
         if (chatInput) chatInput.addEventListener("keydown", function (e) { if (e.key === "Enter") chatSend(); });
+      })();
+    </script>
+    <script>
+      /* ===== Đợt Figma: wiring cho các demo mới (tiền tố fg- / cpGrad / cpPat) ===== */
+      (function () {
+        "use strict";
+        function $(id) { return document.getElementById(id); }
+        var reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+        /* Variants & Slots */
+        var varCard = $("fgVarCard");
+        if (varCard) {
+          var varBtns = document.querySelectorAll(".fg-var-btn");
+          varBtns.forEach(function (b) {
+            b.addEventListener("click", function () {
+              varBtns.forEach(function (x) { x.classList.remove("on"); });
+              b.classList.add("on");
+              varCard.classList.remove("hot", "soft");
+              if (b.getAttribute("data-v") === "hot") varCard.classList.add("hot");
+              if (b.getAttribute("data-v") === "soft") varCard.classList.add("soft");
+            });
+          });
+          var slotTexts = ["Nội dung khe cắm: mô tả ngắn…", "Nội dung khe cắm: giá 499k · còn 3 suất", "Nội dung khe cắm: nút “Đăng ký” + đánh giá 4.8★"];
+          var slotIdx = 0;
+          $("fgVarSwap").addEventListener("click", function () {
+            slotIdx = (slotIdx + 1) % slotTexts.length;
+            $("fgVarSlot").textContent = slotTexts[slotIdx];
+          });
+        }
+
+        /* FigJam board: vote + timer */
+        document.querySelectorAll("[data-vote]").forEach(function (btn) {
+          btn.addEventListener("click", function () {
+            var n = btn.querySelector("span");
+            n.textContent = String(parseInt(n.textContent, 10) + 1);
+          });
+        });
+        var jamBtn = $("fgJamBtn"), jamTime = $("fgJamTime"), jamTimer = null, jamLeft = 300;
+        function jamRender() {
+          var m = Math.floor(jamLeft / 60), sec = jamLeft % 60;
+          jamTime.textContent = (m < 10 ? "0" : "") + m + ":" + (sec < 10 ? "0" : "") + sec;
+        }
+        if (jamBtn) jamBtn.addEventListener("click", function () {
+          if (jamTimer) { clearInterval(jamTimer); jamTimer = null; jamBtn.textContent = "Bắt đầu"; return; }
+          if (jamLeft <= 0) jamLeft = 300;
+          jamBtn.textContent = "Dừng";
+          jamTimer = setInterval(function () {
+            jamLeft--; jamRender();
+            if (jamLeft <= 0) { clearInterval(jamTimer); jamTimer = null; jamBtn.textContent = "Chạy lại"; }
+          }, 1000);
+        });
+
+        /* Bulk create */
+        var bulkBtn = $("fgBulkBtn"), bulkGrid = $("fgBulkGrid");
+        if (bulkBtn) bulkBtn.addEventListener("click", function () {
+          if (bulkGrid.querySelector("[data-extra]")) { bulkBtn.textContent = "Đã tạo đủ 3 thẻ"; return; }
+          var d = document.createElement("div");
+          d.className = "fg-bulk-card"; d.setAttribute("data-extra", "1");
+          d.innerHTML = "Mũ lưỡi trai<b>99k</b>";
+          bulkGrid.appendChild(d);
+          bulkBtn.textContent = "Đã tạo đủ 3 thẻ";
+        });
+
+        /* Breakpoint preview */
+        var bpFrame = $("fgBpFrame");
+        if (bpFrame) {
+          var bpBtns = document.querySelectorAll(".fg-bp-btn");
+          bpBtns.forEach(function (b) {
+            b.addEventListener("click", function () {
+              bpBtns.forEach(function (x) { x.classList.remove("on"); });
+              b.classList.add("on");
+              bpFrame.classList.remove("tablet", "phone");
+              var v = b.getAttribute("data-bp");
+              if (v) bpFrame.classList.add(v);
+            });
+          });
+        }
+
+        /* Auto Layout hug/fill */
+        var fgAuto = $("fgAuto");
+        if (fgAuto) {
+          var aBtns = document.querySelectorAll(".fg-auto-btn2");
+          aBtns.forEach(function (b) {
+            b.addEventListener("click", function () {
+              aBtns.forEach(function (x) { x.classList.remove("on"); });
+              b.classList.add("on");
+              fgAuto.classList.toggle("fill", b.getAttribute("data-m") === "fill");
+            });
+          });
+          var long = false;
+          $("fgAutoText").addEventListener("click", function () {
+            long = !long;
+            $("fgAutoBtn").textContent = long ? "Nút bấm có chữ dài hơn hẳn" : "Nút bấm";
+            this.textContent = long ? "Đổi chữ ngắn lại" : "Đổi chữ dài hơn";
+          });
+        }
+
+        /* Mouse parallax */
+        var mpar = $("fgMpar");
+        if (mpar && !reduceMotion) {
+          var l1 = mpar.querySelector(".l1"), l2 = mpar.querySelector(".l2"), l3 = mpar.querySelector(".l3");
+          mpar.addEventListener("pointermove", function (e) {
+            var r = mpar.getBoundingClientRect();
+            var dx = (e.clientX - r.left) / r.width - 0.5, dy = (e.clientY - r.top) / r.height - 0.5;
+            l1.style.transform = "translate(" + (dx * 16) + "px," + (dy * 12) + "px)";
+            l2.style.transform = "translate(" + (dx * -22) + "px," + (dy * -14) + "px)";
+            l3.style.transform = "translate(" + (dx * 7) + "px,0)";
+          });
+          mpar.addEventListener("pointerleave", function () { l1.style.transform = l2.style.transform = l3.style.transform = ""; });
+        }
+
+        /* 3D transform */
+        var c3d = $("fg3dCard");
+        if (c3d) {
+          var upd3d = function () {
+            c3d.style.transform = "rotateY(" + $("fg3dY").value + "deg) rotateX(" + (-$("fg3dX").value) + "deg)";
+          };
+          $("fg3dY").addEventListener("input", upd3d);
+          $("fg3dX").addEventListener("input", upd3d);
+          upd3d();
+        }
+
+        /* Draggable */
+        var dragFrame = $("fgDrag"), chip = $("fgDragChip");
+        if (dragFrame && chip) {
+          var dragging = false, offX = 0, offY = 0;
+          chip.addEventListener("pointerdown", function (e) {
+            dragging = true;
+            var r = chip.getBoundingClientRect(), fr = dragFrame.getBoundingClientRect();
+            offX = e.clientX - r.left; offY = e.clientY - r.top;
+            chip.setPointerCapture(e.pointerId);
+            e.preventDefault();
+          });
+          chip.addEventListener("pointermove", function (e) {
+            if (!dragging) return;
+            var fr = dragFrame.getBoundingClientRect();
+            var x = e.clientX - fr.left - offX, y = e.clientY - fr.top - offY;
+            x = Math.max(0, Math.min(x, fr.width - chip.offsetWidth));
+            y = Math.max(0, Math.min(y, fr.height - chip.offsetHeight));
+            chip.style.left = x + "px"; chip.style.top = y + "px";
+          });
+          ["pointerup", "pointercancel"].forEach(function (ev) { chip.addEventListener(ev, function () { dragging = false; }); });
+        }
+
+        /* Smart animate */
+        var smart = $("fgSmart");
+        if (smart) $("fgSmartBtn").addEventListener("click", function () { smart.classList.toggle("open"); });
+
+        /* Motion timeline */
+        var tlBall = $("fgTlBall"), tlRange = $("fgTlRange"), tlAnim = null;
+        function tlRender(v) {
+          var p = v / 100;
+          var x = 8 + p * 128;
+          var scale = p < 0.5 ? 1 + p * 0.9 : 1.45 - (p - 0.5) * 0.5;
+          var rot = p * 180;
+          tlBall.style.left = x + "px";
+          tlBall.style.transform = "rotate(" + rot + "deg) scale(" + scale.toFixed(2) + ")";
+          tlBall.style.background = p < 0.5 ? "#FC7A01" : "#052E57";
+        }
+        if (tlBall) {
+          tlRange.addEventListener("input", function () { tlRender(parseInt(tlRange.value, 10)); });
+          tlRender(0);
+          $("fgTlPlay").addEventListener("click", function () {
+            if (tlAnim) { cancelAnimationFrame(tlAnim); tlAnim = null; this.textContent = "Phát"; return; }
+            if (reduceMotion) { tlRange.value = 100; tlRender(100); return; }
+            var btn = this, start = null;
+            btn.textContent = "Dừng";
+            var step = function (ts) {
+              if (!start) start = ts;
+              var p = Math.min((ts - start) / 1600, 1);
+              tlRange.value = Math.round(p * 100); tlRender(p * 100);
+              if (p < 1) tlAnim = requestAnimationFrame(step);
+              else { tlAnim = null; btn.textContent = "Phát lại"; }
+            };
+            tlAnim = requestAnimationFrame(step);
+          });
+        }
+
+        /* Scramble text */
+        var scrTxt = $("fgScrTxt"), scrTimer = null;
+        function scramble() {
+          if (!scrTxt) return;
+          var target = "THIẾT KẾ", chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789#%&", frame = 0;
+          if (reduceMotion) { scrTxt.textContent = target; return; }
+          clearInterval(scrTimer);
+          scrTimer = setInterval(function () {
+            frame++;
+            var done = Math.floor(frame / 2);
+            var out = target.slice(0, done);
+            for (var i = done; i < target.length; i++) out += target[i] === " " ? " " : chars[Math.floor(Math.random() * chars.length)];
+            scrTxt.textContent = out;
+            if (done >= target.length) { clearInterval(scrTimer); scrTxt.textContent = target; }
+          }, 45);
+        }
+        if (scrTxt) { $("fgScrBtn").addEventListener("click", scramble); scramble(); }
+
+        /* Dynamic strokes replay */
+        var strokeBox = $("fgStroke");
+        if (strokeBox) {
+          var replay = function () {
+            strokeBox.classList.remove("play");
+            void strokeBox.offsetWidth;
+            strokeBox.classList.add("play");
+          };
+          $("fgStrokeBtn").addEventListener("click", replay);
+          replay();
+        }
+
+        /* Progressive blur */
+        var pbRange = $("fgPblurRange");
+        if (pbRange) pbRange.addEventListener("input", function () {
+          $("fgPblur").style.setProperty("--fg-blur", this.value + "px");
+        });
+
+        /* Noise density */
+        var nzRange = $("fgNoiseRange");
+        if (nzRange) nzRange.addEventListener("input", function () {
+          $("fgNoiseSvg").style.opacity = (this.value / 100).toFixed(2);
+        });
+
+        /* Color tab: gradient from current palette */
+        var cpApp = $("cpApp"), gradPrev = $("cpGradPreview"), gradAngle = $("cpGradAngle");
+        function cpPalColors() {
+          if (!cpApp) return ["#5B9BD5", "#63B3A6", "#F08A3C"];
+          var cs = getComputedStyle(cpApp);
+          function g(n, fb) { var v = cs.getPropertyValue(n).trim(); return v || fb; }
+          return [g("--p-primary", "#5B9BD5"), g("--p-secondary", "#63B3A6"), g("--p-accent", "#F08A3C"), g("--p-dark", "#173A5E")];
+        }
+        function gradCss() {
+          var c = cpPalColors(), a = gradAngle ? gradAngle.value : 135;
+          return "linear-gradient(" + a + "deg, " + c[0] + ", " + c[1] + ", " + c[2] + ")";
+        }
+        function gradRender() { if (gradPrev) { gradPrev.style.background = gradCss(); var lbl = $("cpGradAngleVal"); if (lbl) lbl.textContent = gradAngle.value + "°"; } }
+        if (gradPrev) {
+          gradRender();
+          gradAngle.addEventListener("input", gradRender);
+          if (cpApp && window.MutationObserver) new MutationObserver(gradRender).observe(cpApp, { attributes: true, attributeFilter: ["style"] });
+          $("cpGradCopy").addEventListener("click", function () {
+            var btn = this, css = "background: " + gradCss() + ";";
+            function done() { btn.textContent = "Đã chép mã CSS ✓"; setTimeout(function () { btn.textContent = "Chép mã CSS gradient"; }, 1800); }
+            if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(css).then(done, done);
+            else done();
+          });
+        }
+
+        /* Color tab: pattern fills */
+        var patPrev = $("cpPatPreview"), patChips = $("cpPatChips");
+        if (patPrev && patChips) patChips.querySelectorAll("button").forEach(function (b) {
+          b.addEventListener("click", function () {
+            patChips.querySelectorAll("button").forEach(function (x) { x.classList.remove("cp-on"); });
+            b.classList.add("cp-on");
+            patPrev.className = "cp-pat-preview " + b.getAttribute("data-pat");
+          });
+        });
       })();
     </script>
   </body>
