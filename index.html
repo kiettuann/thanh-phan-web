@@ -1433,6 +1433,72 @@
       @keyframes n5Aspect { 0%, 100% { width: 62%; } 50% { width: 96%; } }
       .n5-aspect-lbl { font-size: 11px; color: var(--muted); font-weight: 700; margin-top: 6px; }
 
+      /* ---------- Đợt 6 ---------- */
+      /* Copy Button */
+      .n6-copy { width: 100%; max-width: 182px; display: flex; align-items: center; gap: 6px; background: var(--surface); border: 1.5px solid var(--border); border-radius: 9px; padding: 5px 5px 5px 10px; }
+      .n6-copy .link { flex: 1; min-width: 0; font-size: 11px; font-weight: 600; color: var(--navy); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; text-align: left; }
+      @media (prefers-color-scheme: dark) { .n6-copy .link { color: var(--accent); } }
+      .n6-copy-btn { flex: none; background: var(--accent); color: #fff; border: 0; border-radius: 7px; font: inherit; font-size: 11px; font-weight: 700; padding: 6px 9px; cursor: pointer; min-height: 30px; }
+      .n6-copy-btn.done { background: var(--ok); }
+
+      /* Questionnaire */
+      .n6-quiz { width: 100%; max-width: 182px; text-align: left; }
+      .n6-quiz-bar { height: 6px; border-radius: 99px; background: var(--surface-2); overflow: hidden; margin-bottom: 6px; }
+      .n6-quiz-bar i { display: block; height: 100%; background: var(--accent); border-radius: 99px; transition: width .35s ease; }
+      .n6-quiz-step { font-size: 10px; font-weight: 700; color: var(--muted); }
+      .n6-quiz-q { font-size: 12.5px; font-weight: 700; margin: 2px 0 6px; line-height: 1.35; }
+      .n6-quiz-opts { display: grid; gap: 5px; }
+      .n6-quiz-opt { background: var(--surface); border: 1.5px solid var(--border); border-radius: 8px; font: inherit; font-size: 11.5px; font-weight: 600; padding: 5px 9px; cursor: pointer; text-align: left; color: var(--ink); min-height: 30px; }
+      .n6-quiz-opt.sel { border-color: var(--accent); background: var(--accent-soft); color: var(--navy); }
+      @media (prefers-color-scheme: dark) { .n6-quiz-opt.sel { color: var(--accent); } }
+      .n6-quiz-nav { display: flex; gap: 5px; margin-top: 7px; }
+      .n6-quiz-nav button { flex: 1; border-radius: 7px; font: inherit; font-size: 11px; font-weight: 700; padding: 5px 4px; cursor: pointer; min-height: 30px; }
+      .n6-quiz-back { background: var(--surface); border: 1.5px solid var(--border); color: var(--muted); }
+      .n6-quiz-skip { background: none; border: 0; color: var(--muted); }
+      .n6-quiz-next { background: var(--navy); border: 0; color: #fff; }
+      .n6-quiz-done { text-align: center; padding: 8px 0 2px; }
+      .n6-quiz-done .tick-c { width: 38px; height: 38px; margin: 0 auto 5px; border-radius: 50%; background: var(--ok); color: #fff; font-size: 19px; font-weight: 800; display: grid; place-items: center; }
+      .n6-quiz-done p { margin: 0 0 7px; font-size: 12.5px; font-weight: 700; }
+      .n6-quiz-again { background: var(--surface); border: 1.5px solid var(--border); border-radius: 7px; font: inherit; font-size: 11px; font-weight: 700; padding: 5px 11px; cursor: pointer; min-height: 28px; color: var(--ink); }
+
+      /* Floating Label */
+      .n6-fl { width: 100%; max-width: 178px; display: grid; gap: 10px; text-align: left; }
+      .n6-fl-field { position: relative; }
+      .n6-fl-field input { width: 100%; box-sizing: border-box; border: 1.5px solid var(--border); border-radius: 9px; background: var(--surface); font: inherit; font-size: 12.5px; padding: 13px 10px 5px; min-height: 42px; color: var(--ink); outline: none; }
+      .n6-fl-field input:focus { border-color: var(--accent); }
+      .n6-fl-field label { position: absolute; left: 8px; top: 12px; font-size: 12.5px; font-weight: 600; color: var(--muted); pointer-events: none; transition: all .18s ease; padding: 0 3px; }
+      .n6-fl-field input:focus + label, .n6-fl-field input:not(:placeholder-shown) + label { top: -7px; font-size: 10px; font-weight: 700; color: #d96200; background: var(--surface); border-radius: 3px; }
+      @media (prefers-color-scheme: dark) { .n6-fl-field input:focus + label, .n6-fl-field input:not(:placeholder-shown) + label { color: var(--accent); } }
+
+      /* Status */
+      .n6-status { width: 100%; max-width: 178px; display: grid; gap: 7px; text-align: left; }
+      .n6-status .srow { display: flex; align-items: center; gap: 8px; font-size: 12px; font-weight: 600; }
+      .n6-dot { width: 10px; height: 10px; border-radius: 50%; flex: none; position: relative; margin: 0 4px; }
+      .n6-dot.on { background: var(--ok); }
+      .n6-dot.on::after { content: ""; position: absolute; inset: -4px; border-radius: 50%; border: 2px solid var(--ok); opacity: 0; animation: n6Pulse 1.8s ease-out infinite; }
+      @keyframes n6Pulse { 0% { transform: scale(.55); opacity: .8; } 100% { transform: scale(1.15); opacity: 0; } }
+      .n6-dot.busy { background: #e6a700; }
+      .n6-dot.off { background: #e03131; }
+      .n6-dot.away { background: #adb5bd; }
+
+      /* Blockquote */
+      .n6-quote { width: 100%; max-width: 182px; margin: 0; text-align: left; border-left: 4px solid var(--accent); background: var(--surface); border-radius: 0 9px 9px 0; padding: 8px 10px; box-sizing: border-box; }
+      .n6-quote p { margin: 0; font-size: 12.5px; font-style: italic; line-height: 1.5; }
+      .n6-quote cite { display: block; margin-top: 5px; font-size: 11px; font-style: normal; font-weight: 700; color: var(--muted); }
+
+      /* Action Bar */
+      .n6-abar-wrap { position: relative; width: 100%; max-width: 182px; text-align: left; }
+      .n6-abar-list { display: grid; gap: 5px; padding-bottom: 38px; }
+      .n6-abar-list label { display: flex; align-items: center; gap: 7px; background: var(--surface); border: 1.5px solid var(--border); border-radius: 8px; padding: 5px 9px; font-size: 11.5px; font-weight: 600; cursor: pointer; }
+      .n6-abar-list label.sel { border-color: var(--accent); background: var(--accent-soft); }
+      .n6-abar-list input { accent-color: var(--accent); width: 15px; height: 15px; margin: 0; flex: none; cursor: pointer; }
+      .n6-abar { position: absolute; left: 50%; bottom: 0; transform: translate(-50%, 14px); opacity: 0; pointer-events: none; transition: transform .25s ease, opacity .25s ease; background: var(--navy); color: #fff; border-radius: 10px; padding: 6px 8px; display: flex; align-items: center; gap: 5px; box-shadow: var(--shadow); white-space: nowrap; z-index: 3; }
+      .n6-abar.show { transform: translate(-50%, 0); opacity: 1; pointer-events: auto; }
+      .n6-abar .cnt { font-size: 10.5px; font-weight: 700; }
+      .n6-abar button { background: rgba(255,255,255,.16); color: #fff; border: 0; border-radius: 6px; font: inherit; font-size: 10.5px; font-weight: 700; padding: 4px 7px; cursor: pointer; min-height: 26px; }
+      .n6-abar-msg { position: absolute; left: 50%; bottom: 42px; transform: translateX(-50%); background: var(--ink); color: var(--surface); font-size: 10.5px; font-weight: 700; border-radius: 7px; padding: 4px 9px; opacity: 0; pointer-events: none; transition: opacity .2s; white-space: nowrap; z-index: 4; }
+      .n6-abar-msg.show { opacity: 1; }
+
       /* Nguồn tham khảo */
       .refs { margin-top: 22px; background: var(--surface); border: 1px solid var(--border); border-radius: 16px; box-shadow: var(--shadow); padding: 18px; }
       .refs h2 { margin: 0 0 4px; font-size: 18px; font-weight: 800; color: var(--navy); }
@@ -2595,7 +2661,7 @@
           </thead>
           <tbody id="tbody">
 
-            <tr class="group"><td colspan="3">Nút &amp; điều khiển <span class="gcnt">16 thành phần</span></td></tr>
+            <tr class="group"><td colspan="3">Nút &amp; điều khiển <span class="gcnt">17 thành phần</span></td></tr>
 
             <tr class="comp" data-search="button nút bấm cta call to action">
               <td class="demo"><div class="stage"><button class="demo-btn" type="button">Bấm vào đây</button></div></td>
@@ -2703,7 +2769,13 @@
               <td class="desc">Nút hình <b>dấu ×</b> dùng để đóng hoặc loại bỏ một thành phần như hộp thoại, cảnh báo hay thông báo. Bấm thử dấu × trong demo nhé. <i>(Nguồn: Bootstrap 5.3)</i></td>
             </tr>
 
-            <tr class="group"><td colspan="3">Nhập liệu &amp; form <span class="gcnt">27 thành phần</span></td></tr>
+            <tr class="comp" data-search="copy button clipboard nút sao chép copy chép link mã code sao chép vào bộ nhớ tạm dán paste">
+              <td class="demo"><div class="stage"><div class="n6-copy"><span class="link">https://vi-du.vn/moi-ban</span><button type="button" class="n6-copy-btn" id="n6CopyBtn">Sao chép</button></div></div></td>
+              <td class="name-cell"><span class="name">Copy Button / Clipboard</span><span class="vi-name">Nút sao chép</span></td>
+              <td class="desc">Nút bấm để <b>sao chép nhanh một đoạn chữ, đường link hoặc mã</b> vào bộ nhớ tạm, bấm xong hiện dấu tick 'Đã sao chép' để người dùng biết đã copy thành công. Bấm thử nút Sao chép trong demo nhé.</td>
+            </tr>
+
+            <tr class="group"><td colspan="3">Nhập liệu &amp; form <span class="gcnt">29 thành phần</span></td></tr>
 
             <tr class="comp" data-search="text input ô nhập chữ text field nhập liệu họ tên email">
               <td class="demo"><div class="stage"><div class="fake-input"><span class="type-target" data-text="Xin chào bạn…"></span><span class="caret"></span></div></div></td>
@@ -2872,6 +2944,38 @@
               <td class="desc"><b>Ghép ô nhập với nhãn, ký hiệu tiền tệ, đơn vị hoặc nút bấm</b> ở hai đầu thành một khối liền mạch. <i>(Nguồn: Bootstrap 5.3)</i></td>
             </tr>
 
+            <tr class="comp" data-search="questionnaire bộ câu hỏi khảo sát survey quiz trắc nghiệm câu hỏi từng câu form nhiều bước multi step">
+              <td class="demo"><div class="stage"><div class="n6-quiz" id="n6Quiz">
+                <div class="n6-quiz-bar"><i id="n6QuizBar" style="width:33%"></i></div>
+                <div class="n6-quiz-step" id="n6QuizStep">Câu 1 / 3</div>
+                <div id="n6QuizMain">
+                  <p class="n6-quiz-q" id="n6QuizQ"></p>
+                  <div class="n6-quiz-opts" id="n6QuizOpts"></div>
+                  <div class="n6-quiz-nav">
+                    <button type="button" class="n6-quiz-back" id="n6QuizBack">Quay lại</button>
+                    <button type="button" class="n6-quiz-skip" id="n6QuizSkip">Bỏ qua</button>
+                    <button type="button" class="n6-quiz-next" id="n6QuizNext">Tiếp theo</button>
+                  </div>
+                </div>
+                <div class="n6-quiz-done" id="n6QuizDone" style="display:none">
+                  <div class="tick-c">✓</div>
+                  <p>Cảm ơn bạn đã trả lời!</p>
+                  <button type="button" class="n6-quiz-again" id="n6QuizAgain">Làm lại</button>
+                </div>
+              </div></div></td>
+              <td class="name-cell"><span class="name">Questionnaire</span><span class="vi-name">Bộ câu hỏi khảo sát</span></td>
+              <td class="desc">Chuỗi câu hỏi <b>hiện từng câu một, có thanh tiến trình</b>, chọn đáp án rồi bấm Tiếp theo / Quay lại / Bỏ qua, cuối cùng bấm Gửi — dùng cho khảo sát, bài kiểm tra ngắn, form đăng ký nhiều bước. Bấm thử trong demo nhé.</td>
+            </tr>
+
+            <tr class="comp" data-search="floating label ô nhập nhãn nổi nhãn trôi float label form đăng nhập đăng ký nhãn trong ô">
+              <td class="demo"><div class="stage"><div class="n6-fl">
+                <div class="n6-fl-field"><input type="text" id="n6FlName" placeholder=" " autocomplete="off" /><label for="n6FlName">Họ tên</label></div>
+                <div class="n6-fl-field"><input type="email" id="n6FlMail" placeholder=" " autocomplete="off" /><label for="n6FlMail">Email</label></div>
+              </div></div></td>
+              <td class="name-cell"><span class="name">Floating Label</span><span class="vi-name">Ô nhập nhãn nổi</span></td>
+              <td class="desc">Ô nhập mà <b>nhãn nằm sẵn bên trong ô</b>, khi người dùng bấm vào gõ chữ thì nhãn thu nhỏ và 'nổi' lên trên mép ô — tiết kiệm chỗ mà vẫn giữ được nhãn, rất hay gặp trong form đăng nhập và đăng ký. Bấm vào ô trong demo rồi gõ thử nhé.</td>
+            </tr>
+
             <tr class="group"><td colspan="3">Điều hướng <span class="gcnt">16 thành phần</span></td></tr>
 
             <tr class="comp" data-search="navbar navigation bar thanh điều hướng menu trên header">
@@ -2988,7 +3092,7 @@
             </tr>
           </thead>
           <tbody>
-<tr class="group"><td colspan="3">Hiển thị &amp; thông báo <span class="gcnt">35 thành phần</span></td></tr>
+<tr class="group"><td colspan="3">Hiển thị &amp; thông báo <span class="gcnt">37 thành phần</span></td></tr>
 
             <tr class="comp" data-search="card thẻ nội dung hộp sản phẩm">
               <td class="demo"><div class="stage"><div class="mini-card"><div class="thumb"></div><div class="pad"><b>Thẻ sản phẩm</b><small>Giá: 199.000đ</small></div></div></div></td>
@@ -3199,7 +3303,24 @@
               <td class="desc"><b>Phủ chữ hoặc logo mờ lặp lại trên toàn bộ nội dung trang</b> để chống sao chép và khẳng định bản quyền. <i>(Nguồn: Ant Design)</i></td>
             </tr>
 
-            <tr class="group"><td colspan="3">Lớp phủ &amp; bảng trượt <span class="gcnt">11 thành phần</span></td></tr>
+            <tr class="comp" data-search="status trạng thái chấm màu online offline presence đang hoạt động chấm trạng thái người dùng đơn hàng">
+              <td class="demo"><div class="stage"><div class="n6-status">
+                <div class="srow"><span class="n6-dot on"></span>Đang hoạt động</div>
+                <div class="srow"><span class="n6-dot busy"></span>Đang bận</div>
+                <div class="srow"><span class="n6-dot off"></span>Ngoại tuyến</div>
+                <div class="srow"><span class="n6-dot away"></span>Ẩn</div>
+              </div></div></td>
+              <td class="name-cell"><span class="name">Status</span><span class="vi-name">Trạng thái (chấm màu)</span></td>
+              <td class="desc"><b>Chấm tròn màu kèm nhãn ngắn</b> để báo trạng thái của người dùng, đơn hàng hay hệ thống: đang hoạt động, đang bận, ngoại tuyến, thành công, lỗi…</td>
+            </tr>
+
+            <tr class="comp" data-search="blockquote khối trích dẫn trích dẫn quote châm ngôn dẫn lời câu nói trích nguồn">
+              <td class="demo"><div class="stage"><blockquote class="n6-quote"><p>“Có công mài sắt, có ngày nên kim.”</p><cite>— Tục ngữ Việt Nam</cite></blockquote></div></td>
+              <td class="name-cell"><span class="name">Blockquote</span><span class="vi-name">Khối trích dẫn</span></td>
+              <td class="desc"><b>Đoạn trích dẫn nổi bật trong bài viết</b>, có vạch màu cam bên trái và ghi rõ nguồn trích — dùng khi dẫn lời người khác, châm ngôn hay đoạn văn quan trọng.</td>
+            </tr>
+
+            <tr class="group"><td colspan="3">Lớp phủ &amp; bảng trượt <span class="gcnt">12 thành phần</span></td></tr>
 
             <tr class="comp" data-search="drawer sheet ngăn trượt bên ngăn kéo panel trượt offcanvas">
               <td class="demo"><div class="stage"><div class="frame"><i class="bg-line" style="top:10px;width:52%"></i><i class="bg-line" style="top:24px;width:70%"></i><i class="bg-line" style="top:38px;width:40%"></i><div class="frame-dim"></div><div class="drawer-panel"><b>Bộ lọc</b><i style="width:80%"></i><i style="width:60%"></i><i style="width:70%"></i><span class="go"></span></div></div></div></td>
@@ -3265,6 +3386,21 @@
               <td class="demo"><div class="stage"><div class="n5-backdrop"><i class="bg-line" style="top:10px;width:52%"></i><i class="bg-line" style="top:24px;width:70%"></i><i class="bg-line" style="top:38px;width:40%"></i><div class="n5-bd-layer"><div class="n5-bd-box"><div class="spinner"></div>Đang tải…</div></div></div></div></td>
               <td class="name-cell"><span class="name">Backdrop</span><span class="vi-name">Lớp nền mờ</span></td>
               <td class="desc"><b>Lớp phủ mờ toàn màn hình phía sau hộp thoại hoặc trình tải</b>, giúp người dùng tập trung vào nội dung nổi phía trên. <i>(Nguồn: MUI)</i></td>
+            </tr>
+
+            <tr class="comp" data-search="action bar thanh hành động nổi bulk action thao tác hàng loạt chọn nhiều mục xóa chia sẻ tải xuống thanh công cụ nổi">
+              <td class="demo"><div class="stage"><div class="n6-abar-wrap">
+                <div class="n6-abar-list" id="n6AbarList">
+                  <label><input type="checkbox" /> ho-so-visa.pdf</label>
+                  <label><input type="checkbox" /> anh-chan-dung.jpg</label>
+                  <label><input type="checkbox" /> bang-gia.xlsx</label>
+                  <label><input type="checkbox" /> hop-dong.docx</label>
+                </div>
+                <div class="n6-abar-msg" id="n6AbarMsg"></div>
+                <div class="n6-abar" id="n6Abar"><span class="cnt" id="n6AbarCnt">Đã chọn 0 mục</span><button type="button" data-act="Đã xoá các mục đã chọn ✓">Xoá</button><button type="button" data-act="Đã chia sẻ ✓">Chia sẻ</button><button type="button" data-act="Đã tải xuống ✓">Tải xuống</button></div>
+              </div></div></td>
+              <td class="name-cell"><span class="name">Action Bar</span><span class="vi-name">Thanh hành động nổi</span></td>
+              <td class="desc"><b>Thanh công cụ nổi lên phía dưới</b> khi người dùng chọn một hoặc nhiều mục trong danh sách, gom các thao tác hàng loạt (xóa, chia sẻ, tải xuống…) vào một chỗ để xử lý nhanh. Tick chọn thử vài tập tin trong demo nhé.</td>
             </tr>
 
             <tr class="group"><td colspan="3">Dữ liệu &amp; hiển thị nâng cao <span class="gcnt">14 thành phần</span></td></tr>
@@ -4943,6 +5079,120 @@
         if (!reduceMotion) n5PopTimer = setInterval(function () {
           n5PopBubble.classList.contains("show") ? n5PopHide() : n5PopShow();
         }, 3000);
+
+        /* ---------- Đợt 6: Copy Button — sao chép thật vào clipboard ---------- */
+        var n6CopyBtn = document.getElementById("n6CopyBtn");
+        var n6CopyTimer = null;
+        function n6FallbackCopy(text) {
+          var ta = document.createElement("textarea");
+          ta.value = text;
+          ta.style.position = "fixed";
+          ta.style.opacity = "0";
+          document.body.appendChild(ta);
+          ta.select();
+          try { document.execCommand("copy"); } catch (e) {}
+          document.body.removeChild(ta);
+        }
+        n6CopyBtn.addEventListener("click", function () {
+          var text = "https://vi-du.vn/moi-ban";
+          function n6Copied() {
+            n6CopyBtn.textContent = "Đã sao chép ✓";
+            n6CopyBtn.classList.add("done");
+            if (n6CopyTimer) clearTimeout(n6CopyTimer);
+            n6CopyTimer = setTimeout(function () {
+              n6CopyBtn.textContent = "Sao chép";
+              n6CopyBtn.classList.remove("done");
+            }, 2000);
+          }
+          if (navigator.clipboard && navigator.clipboard.writeText) {
+            navigator.clipboard.writeText(text).then(n6Copied, function () { n6FallbackCopy(text); n6Copied(); });
+          } else { n6FallbackCopy(text); n6Copied(); }
+        });
+
+        /* ---------- Đợt 6: Questionnaire — bộ câu hỏi hiện từng câu ---------- */
+        var n6QuizData = [
+          { q: "Bạn thường dùng web để làm gì?", opts: ["Mua sắm", "Đọc tin tức", "Học tập"] },
+          { q: "Bạn lên mạng bằng thiết bị nào nhiều nhất?", opts: ["Điện thoại", "Máy tính", "Máy tính bảng"] },
+          { q: "Bạn có muốn nhận tin mới qua email không?", opts: ["Có, gửi cho tôi", "Không, cảm ơn"] }
+        ];
+        var n6QuizIdx = 0;
+        var n6QuizAns = [null, null, null];
+        var n6QuizBar = document.getElementById("n6QuizBar");
+        var n6QuizStep = document.getElementById("n6QuizStep");
+        var n6QuizQ = document.getElementById("n6QuizQ");
+        var n6QuizOpts = document.getElementById("n6QuizOpts");
+        var n6QuizMain = document.getElementById("n6QuizMain");
+        var n6QuizDone = document.getElementById("n6QuizDone");
+        var n6QuizBack = document.getElementById("n6QuizBack");
+        var n6QuizNext = document.getElementById("n6QuizNext");
+        function n6QuizPaint() {
+          var d = n6QuizData[n6QuizIdx];
+          n6QuizBar.style.width = Math.round(((n6QuizIdx + 1) / n6QuizData.length) * 100) + "%";
+          n6QuizStep.textContent = "Câu " + (n6QuizIdx + 1) + " / " + n6QuizData.length;
+          n6QuizQ.textContent = d.q;
+          n6QuizOpts.innerHTML = "";
+          d.opts.forEach(function (opt, oi) {
+            var b = document.createElement("button");
+            b.type = "button";
+            b.className = "n6-quiz-opt" + (n6QuizAns[n6QuizIdx] === oi ? " sel" : "");
+            b.textContent = opt;
+            b.addEventListener("click", function () {
+              n6QuizAns[n6QuizIdx] = oi;
+              Array.prototype.forEach.call(n6QuizOpts.children, function (c, ci) { c.classList.toggle("sel", ci === oi); });
+            });
+            n6QuizOpts.appendChild(b);
+          });
+          n6QuizBack.style.visibility = n6QuizIdx === 0 ? "hidden" : "";
+          n6QuizNext.textContent = n6QuizIdx === n6QuizData.length - 1 ? "Gửi" : "Tiếp theo";
+        }
+        function n6QuizGo(dir) {
+          if (dir > 0 && n6QuizIdx === n6QuizData.length - 1) {
+            n6QuizMain.style.display = "none";
+            n6QuizDone.style.display = "";
+            n6QuizBar.style.width = "100%";
+            n6QuizStep.textContent = "Hoàn thành ✓";
+            return;
+          }
+          n6QuizIdx = Math.max(0, Math.min(n6QuizData.length - 1, n6QuizIdx + dir));
+          n6QuizPaint();
+        }
+        n6QuizNext.addEventListener("click", function () { n6QuizGo(1); });
+        document.getElementById("n6QuizSkip").addEventListener("click", function () { n6QuizGo(1); });
+        n6QuizBack.addEventListener("click", function () { n6QuizGo(-1); });
+        document.getElementById("n6QuizAgain").addEventListener("click", function () {
+          n6QuizIdx = 0;
+          n6QuizAns = [null, null, null];
+          n6QuizDone.style.display = "none";
+          n6QuizMain.style.display = "";
+          n6QuizPaint();
+        });
+        n6QuizPaint();
+
+        /* ---------- Đợt 6: Action Bar — thanh hành động khi tick chọn mục ---------- */
+        var n6Abar = document.getElementById("n6Abar");
+        var n6AbarCnt = document.getElementById("n6AbarCnt");
+        var n6AbarMsg = document.getElementById("n6AbarMsg");
+        var n6AbarBoxes = Array.prototype.slice.call(document.querySelectorAll("#n6AbarList input[type='checkbox']"));
+        var n6AbarMsgTimer = null;
+        function n6AbarPaint() {
+          var n = 0;
+          n6AbarBoxes.forEach(function (b) {
+            if (b.checked) n++;
+            b.parentElement.classList.toggle("sel", b.checked);
+          });
+          n6AbarCnt.textContent = "Đã chọn " + n + " mục";
+          n6Abar.classList.toggle("show", n > 0);
+        }
+        n6AbarBoxes.forEach(function (b) { b.addEventListener("change", n6AbarPaint); });
+        Array.prototype.forEach.call(n6Abar.querySelectorAll("button"), function (btn) {
+          btn.addEventListener("click", function () {
+            n6AbarMsg.textContent = btn.getAttribute("data-act");
+            n6AbarMsg.classList.add("show");
+            if (n6AbarMsgTimer) clearTimeout(n6AbarMsgTimer);
+            n6AbarMsgTimer = setTimeout(function () { n6AbarMsg.classList.remove("show"); }, 1600);
+          });
+        });
+        n6AbarPaint();
       })();
     </script>
     <script>
