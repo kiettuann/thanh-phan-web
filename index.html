@@ -2352,7 +2352,10 @@
       /* ---------- Lớp phủ mở rộng toàn màn hình cho demo hiệu ứng ---------- */
       .fx-overlay { position: fixed; inset: 0; z-index: 60; display: grid; place-items: center; padding: 18px; }
       .fx-overlay[hidden] { display: none; }
-      .fx-overlay-backdrop { position: absolute; inset: 0; background: rgba(5,30,55,.62); backdrop-filter: blur(3px); -webkit-backdrop-filter: blur(3px); }
+      /* Bỏ backdrop-filter blur: mờ nền toàn màn hình ép GPU/CPU lọc lại mỗi
+         khung hình khi có demo chạy sau lưng (đo được 15fps trên desktop) —
+         lớp phủ tối 62% nhìn gần như y hệt mà nhẹ hẳn. */
+      .fx-overlay-backdrop { position: absolute; inset: 0; background: rgba(5,30,55,.62); }
       .fx-overlay-box {
         position: relative; width: min(980px, 100%); max-height: calc(100dvh - 36px);
         background: var(--bg); border: 1px solid var(--border); border-radius: 18px;
@@ -3559,7 +3562,10 @@
       }
 
       /* ---------- Lazy-render demo: tạm dừng hoạt ảnh ngoài khung hình ---------- */
-      tr.comp:not(.demo-live) .stage *, tr.fxcomp:not(.demo-live) .stage * { animation-play-state: paused !important; }
+      .card.citem:not(.demo-live) .stage, .card.citem:not(.demo-live) .stage * { animation-play-state: paused !important; }
+      /* Popup đang mở: dừng hoạt ảnh của mọi thẻ phía sau (stage trong popup
+         không còn nằm trong .card nên không bị dừng). */
+      body.fx-locked .card.citem .stage, body.fx-locked .card.citem .stage * { animation-play-state: paused !important; }
     
       /* ---------- Đợt mới: Phân biệt nhanh + badge nguồn + Ghim mẫu + 4 demo mới ---------- */
       .diff-line { display: block; margin-top: 9px; padding: 7px 10px; background: var(--accent-soft); border-radius: 8px; font-size: 13.5px; line-height: 1.5; color: var(--ink); }
@@ -3686,6 +3692,11 @@
       .card:focus-visible { outline: 3px solid rgba(252,122,1,.55); outline-offset: 2px; }
       .card > .stage { height: 120px; min-height: 0; width: 100%; padding: 10px; border-radius: 12px; pointer-events: none; flex: none; }
       .fxgrid .card > .stage { height: 160px; }
+      /* Bỏ qua vẽ/layout phần demo khi thẻ nằm ngoài màn hình cho nhẹ máy;
+         khung demo cao cố định nên không đổi bố cục, popup (stage đã dời ra
+         overlay, không còn là con của .card) không bị ảnh hưởng. */
+      .card.citem > .stage { content-visibility: auto; contain-intrinsic-size: auto 120px; }
+      .fxgrid .card > .stage { contain-intrinsic-size: auto 160px; }
       .card .pin-badge { position: absolute; top: -10px; right: 14px; z-index: 3; display: inline-flex; align-items: center; gap: 4px; background: var(--accent); color: #fff; border-radius: 999px; font-size: 11px; font-weight: 800; padding: 3px 9px 3px 7px; line-height: 1.4; box-shadow: 0 3px 8px rgba(252,122,1,.35); }
       .card .pin-badge[hidden] { display: none; }
       .card .pin-badge svg { width: 11px; height: 11px; }
@@ -8273,8 +8284,7 @@
         if (glowZone && glow && !rm) {
           glowZone.addEventListener("mousemove", function (e) {
             var r = glowZone.getBoundingClientRect();
-            glow.style.left = (e.clientX - r.left) + "px";
-            glow.style.top = (e.clientY - r.top) + "px";
+            glow.style.transform = "translate(" + (e.clientX - r.left - r.width / 2).toFixed(1) + "px," + (e.clientY - r.top - r.height / 2).toFixed(1) + "px) translate(-50%,-50%)";
           });
           if (glowLink) {
             glowLink.addEventListener("mouseenter", function () { glow.classList.add("big"); });
@@ -8361,6 +8371,10 @@
           else {
             var ti = 0, tDel = false;
             (function typeLoop() {
+              /* Chỉ gõ khi thẻ đang gần khung hình (lớp .demo-live); trong popup
+                 thẻ không còn là tổ tiên nên closest(".card") rỗng -> vẫn gõ. */
+              var twCard = typeTxt.closest ? typeTxt.closest(".card") : null;
+              if (twCard && !twCard.classList.contains("demo-live")) { setTimeout(typeLoop, 480); return; }
               ti += tDel ? -1 : 1;
               typeTxt.textContent = phrase.slice(0, ti);
               var wait = tDel ? 28 : 62;
@@ -8742,7 +8756,7 @@
           car2Track.style.transform = "translateX(-" + car2Idx * 100 + "%)";
           car2Dots.forEach(function (d, j) { d.classList.toggle("act", j === car2Idx); });
         }
-        function car2Start() { if (!car2Timer && car2Playing) car2Timer = setInterval(function () { car2Go(car2Idx + 1); }, 3000); }
+        function car2Start() { if (!car2Timer && car2Playing) car2Timer = setInterval(function () { var cc = car2.closest(".card"); if (cc && !cc.classList.contains("demo-live")) return; car2Go(car2Idx + 1); }, 3000); }
         function car2Stop() { if (car2Timer) { clearInterval(car2Timer); car2Timer = null; } }
         car2Dots.forEach(function (d, i) { d.addEventListener("click", function () { car2Go(i); car2Stop(); car2Start(); }); });
         car2.addEventListener("pointerenter", car2Stop);
@@ -11346,13 +11360,36 @@
           document.addEventListener(ev, function () { lastInteract = Date.now(); }, { passive: true, capture: true });
         });
         function idle(ms) { return Date.now() - lastInteract > ms; }
+        /* Kiểm tra "đang nhìn thấy" bằng lớp .demo-live do IntersectionObserver
+           chung gắn cho từng thẻ (không đo getBoundingClientRect ở mỗi nhịp nữa
+           — đo liên tục ép trình duyệt tính lại layout là nguồn khựng chính).
+           Demo đã dời vào popup thì không còn thẻ tổ tiên -> luôn coi là đang xem. */
         function inView(el) {
-          if (!el || !el.getClientRects || el.getClientRects().length === 0) return false;
-          var r = el.getBoundingClientRect();
-          return r.bottom > -160 && r.top < window.innerHeight + 160 && r.right > 0 && r.left < window.innerWidth;
+          if (!el || document.hidden) return false;
+          var ov = document.getElementById("fxOverlay");
+          var popOpen = !!(ov && !ov.hidden);
+          if (el.closest && el.closest("#fxOverlay")) return popOpen;
+          if (popOpen) return false; /* popup đang mở: dừng mọi demo phía sau */
+          var card = el.closest ? el.closest(".card") : null;
+          if (card) return card.classList.contains("demo-live");
+          return false;
         }
         function every(ms, fn) { setInterval(function () { fn(); }, ms); }
-        function rafLoop(fn) { (function tick() { if (!document.hidden) fn(); requestAnimationFrame(tick); })(); }
+        /* Một vòng requestAnimationFrame DUY NHẤT cho mọi hiệu ứng trôi theo
+           thời gian; mỗi nhịp chỉ gọi callback của demo đang nhìn thấy. */
+        var rafSubs = [], rafRunning = false;
+        function rafLoop(fn, el) {
+          rafSubs.push({ fn: fn, el: el });
+          if (!rafRunning) { rafRunning = true; requestAnimationFrame(rafTick); }
+        }
+        function rafTick() {
+          if (!document.hidden) {
+            for (var i = 0; i < rafSubs.length; i++) {
+              if (inView(rafSubs[i].el)) rafSubs[i].fn();
+            }
+          }
+          requestAnimationFrame(rafTick);
+        }
         function clickCycle(id, ms, idleMs) {
           var btn = $(id);
           if (!btn) return;
@@ -11384,14 +11421,23 @@
         var rvF = $("fxRevealFrame");
         if (rvF) {
           var rvCards = rvF.querySelectorAll(".fx-rv-card");
+          /* Vị trí các thẻ con đo 1 lần (offsetTop/offsetHeight), chỉ đo lại khi
+             khung đổi kích thước (vd mở popup) — không đo rect ở mỗi nhịp cuộn. */
+          var rvCache = null, rvCacheH = -1, rvCacheW = -1;
+          function rvMeasure() {
+            rvCache = [];
+            rvCards.forEach(function (c) { rvCache.push({ c: c, top: c.offsetTop, h: c.offsetHeight }); });
+            rvCacheH = rvF.clientHeight; rvCacheW = rvF.clientWidth;
+          }
           autoScroll(rvF, {
             holdMs: 1500,
             onTop: function () { rvCards.forEach(function (c) { c.classList.remove("in"); }); },
             onTick: function () {
-              var fr = rvF.getBoundingClientRect();
-              rvCards.forEach(function (c) {
-                var cr = c.getBoundingClientRect();
-                if (cr.top - fr.top < rvF.clientHeight - 6 && cr.bottom - fr.top > 0) c.classList.add("in");
+              if (!rvCache || rvF.clientHeight !== rvCacheH || rvF.clientWidth !== rvCacheW) rvMeasure();
+              var st = rvF.scrollTop, vh = rvF.clientHeight;
+              rvCache.forEach(function (it) {
+                var rel = it.top - st;
+                if (rel < vh - 6 && rel + it.h > 0) it.c.classList.add("in");
               });
             }
           });
@@ -11545,12 +11591,12 @@
           mp.addEventListener("pointermove", function () { mpLast = Date.now(); });
           mp.addEventListener("pointerleave", function () { mpLast = 0; });
           rafLoop(function () {
-            if (!inView(mp) || Date.now() - mpLast < 1400) return;
+            if (Date.now() - mpLast < 1400) return;
             var t = Date.now() / 1000, dx = Math.sin(t * 0.6) * 0.32, dy = Math.cos(t * 0.8) * 0.26;
             if (mpL1) mpL1.style.transform = "translate(" + (dx * 16).toFixed(1) + "px," + (dy * 12).toFixed(1) + "px)";
             if (mpL2) mpL2.style.transform = "translate(" + (dx * -22).toFixed(1) + "px," + (dy * -14).toFixed(1) + "px)";
             if (mpL3) mpL3.style.transform = "translate(" + (dx * 7).toFixed(1) + "px,0)";
-          });
+          }, mp);
         }
         var pxh = $("fxPxh");
         if (pxh) {
@@ -11558,13 +11604,13 @@
           pxh.addEventListener("mousemove", function () { pxhLast = Date.now(); });
           pxh.addEventListener("mouseleave", function () { pxhLast = 0; });
           rafLoop(function () {
-            if (!inView(pxh) || Date.now() - pxhLast < 1400) return;
+            if (Date.now() - pxhLast < 1400) return;
             var t = Date.now() / 1000, dx = Math.sin(t * 0.55) * 0.5, dy = Math.cos(t * 0.75) * 0.4;
             pxhLayers.forEach(function (l) {
               var d = parseFloat(l.getAttribute("data-depth")) || 8;
               l.style.transform = "translate(" + (dx * d).toFixed(1) + "px," + (dy * d).toFixed(1) + "px)";
             });
-          });
+          }, pxh);
         }
         var magZone = $("fxMagZone"), magBtn = $("fxMagBtn");
         if (magZone && magBtn) {
@@ -11573,10 +11619,10 @@
           magZone.addEventListener("mousemove", function () { magLast = Date.now(); });
           magZone.addEventListener("mouseleave", function () { magIn = false; magLast = 0; });
           rafLoop(function () {
-            if (!inView(magBtn) || magIn || Date.now() - magLast < 1400) return;
+            if (magIn || Date.now() - magLast < 1400) return;
             var t = Date.now() / 1000;
             magBtn.style.transform = "translate(" + (Math.sin(t * 0.9) * 6).toFixed(1) + "px," + (Math.cos(t * 1.1) * 5).toFixed(1) + "px)";
-          });
+          }, magBtn);
         }
         var tilt = $("fxTiltCard");
         if (tilt) {
@@ -11585,10 +11631,10 @@
           tilt.addEventListener("mousemove", function () { tiltLast = Date.now(); });
           tilt.addEventListener("mouseleave", function () { tiltIn = false; tiltLast = 0; });
           rafLoop(function () {
-            if (!inView(tilt) || tiltIn || Date.now() - tiltLast < 1200) return;
+            if (tiltIn || Date.now() - tiltLast < 1200) return;
             var t = Date.now() / 1000;
             tilt.style.transform = "translateY(-3px) rotateX(" + (Math.sin(t * 0.7) * 4).toFixed(1) + "deg) rotateY(" + (Math.cos(t * 0.9) * 5).toFixed(1) + "deg)";
-          });
+          }, tilt);
         }
         var glowZone = $("fxGlowZone"), glowEl = $("fxGlow");
         if (glowZone && glowEl) {
@@ -11596,11 +11642,12 @@
           glowZone.addEventListener("mousemove", function () { glowLast = Date.now(); });
           glowZone.addEventListener("mouseleave", function () { glowLast = 0; });
           rafLoop(function () {
-            if (!inView(glowZone) || Date.now() - glowLast < 1300) return;
-            var r = glowZone.getBoundingClientRect(), t = Date.now() / 1000;
-            glowEl.style.left = ((0.5 + Math.sin(t * 0.5) * 0.32) * r.width).toFixed(1) + "px";
-            glowEl.style.top = ((0.5 + Math.cos(t * 0.7) * 0.3) * r.height).toFixed(1) + "px";
-          });
+            if (Date.now() - glowLast < 1300) return;
+            var t = Date.now() / 1000;
+            var dx = Math.sin(t * 0.5) * 0.32 * glowZone.clientWidth;
+            var dy = Math.cos(t * 0.7) * 0.3 * glowZone.clientHeight;
+            glowEl.style.transform = "translate(" + dx.toFixed(1) + "px," + dy.toFixed(1) + "px) translate(-50%,-50%)";
+          }, glowZone);
         }
         var zoomBox = document.querySelector(".fx-zoom");
         if (zoomBox) {
