@@ -3690,8 +3690,8 @@
       .card .pin-badge[hidden] { display: none; }
       .card .pin-badge svg { width: 11px; height: 11px; }
       .card-body { display: flex; flex-direction: column; }
-      .card .name-row { display: flex; align-items: center; gap: 5px; }
-      .card .name { flex: 1 1 auto; min-width: 0; display: block; font-weight: 800; font-size: 16px; color: var(--navy); line-height: 1.25; white-space: nowrap; overflow: hidden; }
+      .card .name-row { display: flex; align-items: center; gap: 3px; }
+      .card .name { flex: 0 1 auto; min-width: 0; display: block; font-weight: 800; font-size: 16px; color: var(--navy); line-height: 1.25; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
       @media (prefers-color-scheme: dark) { .card .name { color: #9cc4ee; } }
       @media (min-width: 1500px) {
         #panel-components .card .name { font-size: 14px; letter-spacing: -.01em; }
@@ -3701,9 +3701,9 @@
       }
       .card .vi-name { margin: 2px 0 0; color: #6B7A8F; font-size: 13px; font-weight: 600; line-height: 1.3; }
       @media (prefers-color-scheme: dark) { .card .vi-name { color: #9db0c3; } }
-      .copy-name-icon { position: relative; flex: 0 0 auto; width: 24px; height: 24px; min-height: 24px; padding: 0; border: 0; border-radius: 8px; background: transparent; color: var(--muted); display: inline-flex; align-items: center; justify-content: center; cursor: pointer; transition: background .15s ease, color .15s ease; }
+      .copy-name-icon { position: relative; flex: 0 0 auto; width: 20px; height: 24px; min-height: 24px; padding: 0; border: 0; border-radius: 8px; background: transparent; color: var(--muted); display: inline-flex; align-items: center; justify-content: center; cursor: pointer; transition: background .15s ease, color .15s ease; }
       .copy-name-icon:hover { background: var(--surface-2); color: var(--navy); }
-      .copy-name-icon svg { width: 14px; height: 14px; }
+      .copy-name-icon svg { width: 13px; height: 13px; }
       .copy-name-icon .copy-tip { position: absolute; left: 50%; bottom: calc(100% + 3px); transform: translateX(-50%); white-space: nowrap; font-size: 11.5px; font-weight: 800; color: #1E9E5A; opacity: 0; pointer-events: none; transition: opacity .15s ease; }
       .copy-name-icon.copied { color: #1E9E5A; }
       .copy-name-icon.copied .copy-tip { opacity: 1; }
@@ -3737,6 +3737,33 @@
       .pop-act.copied { background: #1E9E5A; color: #fff; }
       .pop-act.pinned { background: var(--accent); color: #fff; }
       @media (max-width: 640px) { .pop-actions .pop-act { flex: 1 1 30%; } }
+
+      /* ---------- Đợt áp demo 21:30: icon phóng to thẻ hiệu ứng + popup hiệu ứng lớn + vòng lặp ---------- */
+      /* Thẻ hiệu ứng: không bấm cả thẻ để mở popup nữa — vùng demo tương tác trực tiếp,
+         chỉ nút phóng to ở góc dưới phải mới mở popup. Chừa 36px bên phải khối tên cho nút. */
+      .card.fxcomp { cursor: default; }
+      .card.fxcomp > .stage { pointer-events: auto; }
+      .fxgrid .card .card-body { padding-right: 36px; }
+      .fx-card-expand { position: absolute; right: 10px; bottom: 10px; z-index: 2; width: 30px; height: 30px; min-height: 30px; padding: 0; border: 0; border-radius: 9px; background: transparent; color: var(--muted); opacity: .45; display: inline-flex; align-items: center; justify-content: center; cursor: pointer; transition: opacity .15s ease, background .15s ease, color .15s ease; -webkit-tap-highlight-color: transparent; }
+      .fx-card-expand svg { width: 17px; height: 17px; }
+      .fx-card-expand:hover, .fx-card-expand:focus-visible { opacity: 1; background: var(--surface-2); color: var(--navy); outline: none; }
+      @media (prefers-color-scheme: dark) { .fx-card-expand:hover, .fx-card-expand:focus-visible { color: #9cc4ee; } }
+      /* Icon copy trong tiêu đề popup: nằm liền ngay sau tên tiếng Anh */
+      .pop-title-row { display: flex; align-items: center; gap: 3px; }
+      .pop-copy-icon { width: 26px; height: 26px; min-height: 26px; }
+      .pop-copy-icon svg { width: 15px; height: 15px; }
+      /* Popup hiệu ứng: khung demo lớn — cao tối thiểu 280px, rộng hết popup */
+      .fx-overlay-box.pop-fx .fx-overlay-stage { min-height: 324px; }
+      .fx-overlay-box.pop-fx .fx-overlay-stage .stage { width: 100%; min-height: 280px; }
+      /* Trạng thái tự chạy vòng cho vài hiệu ứng vốn chỉ chạy khi rê chuột */
+      .fx-avstack.auto-spread .ava4 { margin-left: 3px; }
+      .fx-avstack.auto-spread .ava4:first-child { margin-left: 0; }
+      .fx-avstack .ava4 { transition: margin-left .35s ease, transform .2s ease; }
+      .fx-tip-btn.tip-show::after { opacity: 1; transform: translate(-50%, 0); }
+      .fg-3d-card.auto-sway { animation: fg3dSway 5s ease-in-out infinite; }
+      @keyframes fg3dSway { 0%, 100% { transform: rotateY(-16deg) rotateX(8deg); } 50% { transform: rotateY(18deg) rotateX(-10deg); } }
+      .fg-drag-chip.nudging { transition: left .9s ease, top .9s ease; }
+      @media (prefers-reduced-motion: reduce) { .fg-3d-card.auto-sway { animation: none; } }
     </style>
   </head>
   <body>
@@ -5569,7 +5596,7 @@
                 <p class="vi-name">Hiện dần khi cuộn</p>
               </div>
               <span class="row-actions" hidden><button type="button" class="copy-btn" data-copy="Scroll Reveal / Fade-up on Scroll">Copy tên</button><button type="button" class="copy-btn" data-copy="Animate sections with a Scroll Reveal: fade in and rise 30px when they enter the viewport, once only">Copy prompt</button></span>
-            </article>
+            <button type="button" class="fx-card-expand" aria-label="Phóng to xem chi tiết: Scroll Reveal / Fade-up on Scroll" title="Phóng to xem chi tiết"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 3h6v6"/><path d="M9 21H3v-6"/><path d="M21 3l-7 7"/><path d="M3 21l7-7"/></svg></button></article>
             <article class="card citem fxcomp" id="parallax" data-search="parallax cuộn thị sai chiều sâu hero gsap scrolltrigger nền trôi chậm hiệu ứng chiều sâu khi cuộn parallax scrolling nền di chuyển khác tốc độ" tabindex="0" role="button" aria-haspopup="dialog" aria-label="Xem chi tiết Parallax">
               <span class="pin-badge" hidden><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a7 7 0 0 0-7 7c0 5.2 7 13 7 13s7-7.8 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></svg>Đã ghim</span>
               <div class="stage"><div class="fx-frame fx-scroll" id="fxPxFrame"><div class="fx-px-inner"><div class="fx-px-bg" id="fxPxBg"></div><div class="fx-px-txt">Nền trôi chậm hơn chữ</div><div class="fx-px-lines"><i style="width:82%"></i><i style="width:60%"></i><i style="width:74%"></i><i style="width:48%"></i><i style="width:66%"></i></div></div></div></div>
@@ -5578,7 +5605,7 @@
                 <p class="vi-name">Cuộn thị sai (parallax)</p>
               </div>
               <span class="row-actions" hidden><button type="button" class="copy-btn" data-copy="Parallax">Copy tên</button><button type="button" class="copy-btn" data-copy="Add a Parallax effect to the hero where the background photo moves slower than the headline while scrolling">Copy prompt</button></span>
-            </article>
+            <button type="button" class="fx-card-expand" aria-label="Phóng to xem chi tiết: Parallax" title="Phóng to xem chi tiết"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 3h6v6"/><path d="M9 21H3v-6"/><path d="M21 3l-7 7"/><path d="M3 21l7-7"/></svg></button></article>
             <article class="card citem fxcomp" id="image-reveal-clip-path-reveal" data-search="image reveal clip-path reveal ảnh hiện dần mặt nạ cắt mở màn wipe circle scrub gsap scrolltrigger portfolio hero ảnh mở ra khi cuộn mặt nạ mở ảnh wipe reveal ảnh hiện kiểu mở màn clip reveal" tabindex="0" role="button" aria-haspopup="dialog" aria-label="Xem chi tiết Image Reveal / Clip-path Reveal">
               <span class="pin-badge" hidden><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a7 7 0 0 0-7 7c0 5.2 7 13 7 13s7-7.8 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></svg>Đã ghim</span>
               <div class="stage"><div class="fx-frame fx-scroll" id="fxClipFrame"><div class="fx-clip-inner"><div class="fx-clip-img" id="fxClipImg">Ảnh vịnh Hạ Long</div><div class="fx-lines" style="padding:0"><i style="width:84%"></i><i style="width:62%"></i><i style="width:76%"></i><i style="width:50%"></i><i style="width:70%"></i><i style="width:44%"></i></div><div class="fx-clip-cap">— Cuộn khung này: mặt nạ mở theo tiến độ cuộn —</div></div></div></div>
@@ -5587,7 +5614,7 @@
                 <p class="vi-name">Ảnh hiện dần bằng mặt nạ cắt</p>
               </div>
               <span class="row-actions" hidden><button type="button" class="copy-btn" data-copy="Image Reveal / Clip-path Reveal">Copy tên</button><button type="button" class="copy-btn" data-copy="Reveal the hero image with a Clip-path wipe that opens from bottom to top as the user scrolls">Copy prompt</button></span>
-            </article>
+            <button type="button" class="fx-card-expand" aria-label="Phóng to xem chi tiết: Image Reveal / Clip-path Reveal" title="Phóng to xem chi tiết"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 3h6v6"/><path d="M9 21H3v-6"/><path d="M21 3l-7 7"/><path d="M3 21l7-7"/></svg></button></article>
             <article class="card citem fxcomp" id="smooth-scroll-lenis" data-search="smooth scroll lenis cuộn mượt quán tính darkroom cuộn trang mượt như lướt cuộn có quán tính smooth scrolling cuộn êm toàn trang" tabindex="0" role="button" aria-haspopup="dialog" aria-label="Xem chi tiết Smooth Scroll (Lenis)">
               <span class="pin-badge" hidden><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a7 7 0 0 0-7 7c0 5.2 7 13 7 13s7-7.8 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></svg>Đã ghim</span>
               <div class="stage"><div class="fx-col"><div class="fx-frame fx-scroll" id="fxSmoothFrame"><div class="fx-tall"><i style="width:80%"></i><i style="width:58%"></i><i style="width:72%"></i><i style="width:45%"></i><i style="width:66%"></i><i style="width:52%"></i><i style="width:78%"></i><div class="end">— Cuối khung —</div></div></div><div class="fx-btnrow"><button class="fx-btn" id="fxSmoothToggle" type="button">Cuộn mượt: Bật</button><button class="fx-btn acc" id="fxSmoothGo" type="button">Xuống cuối ↓</button></div></div></div>
@@ -5596,7 +5623,7 @@
                 <p class="vi-name">Cuộn mượt (Lenis)</p>
               </div>
               <span class="row-actions" hidden><button type="button" class="copy-btn" data-copy="Smooth Scroll (Lenis)">Copy tên</button><button type="button" class="copy-btn" data-copy="Add Smooth Scrolling with Lenis so the whole page glides with soft inertia instead of jumping">Copy prompt</button></span>
-            </article>
+            <button type="button" class="fx-card-expand" aria-label="Phóng to xem chi tiết: Smooth Scroll (Lenis)" title="Phóng to xem chi tiết"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 3h6v6"/><path d="M9 21H3v-6"/><path d="M21 3l-7 7"/><path d="M3 21l7-7"/></svg></button></article>
             <article class="card citem fxcomp" id="sticky-header-shrink" data-search="sticky header shrink header thu nhỏ khi cuộn thanh điều hướng dính header nhỏ lại khi cuộn thanh menu co lại shrinking header đầu trang thu gọn khi kéo xuống" tabindex="0" role="button" aria-haspopup="dialog" aria-label="Xem chi tiết Sticky Header Shrink">
               <span class="pin-badge" hidden><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a7 7 0 0 0-7 7c0 5.2 7 13 7 13s7-7.8 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></svg>Đã ghim</span>
               <div class="stage"><div class="fx-frame fx-scroll" id="fxShFrame"><div class="fx-sh-head" id="fxShHead">Tiêu đề trang</div><div class="fx-lines"><i style="width:84%"></i><i style="width:62%"></i><i style="width:76%"></i><i style="width:50%"></i><i style="width:70%"></i><i style="width:44%"></i><i style="width:80%"></i><i style="width:58%"></i></div></div></div>
@@ -5605,7 +5632,7 @@
                 <p class="vi-name">Header thu nhỏ khi cuộn</p>
               </div>
               <span class="row-actions" hidden><button type="button" class="copy-btn" data-copy="Sticky Header Shrink">Copy tên</button><button type="button" class="copy-btn" data-copy="Shrink the Sticky Header on scroll: reduce its height and add a shadow once the user scrolls down">Copy prompt</button></span>
-            </article>
+            <button type="button" class="fx-card-expand" aria-label="Phóng to xem chi tiết: Sticky Header Shrink" title="Phóng to xem chi tiết"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 3h6v6"/><path d="M9 21H3v-6"/><path d="M21 3l-7 7"/><path d="M3 21l7-7"/></svg></button></article>
             <article class="card citem fxcomp" id="sticky-section-horizontal-scroll" data-search="sticky section horizontal scroll section ghim cuộn ngang pin scrub gallery cuộn dọc mà ảnh trượt ngang section ghim trượt ngang horizontal scroll section ghim một chỗ trượt ngang" tabindex="0" role="button" aria-haspopup="dialog" aria-label="Xem chi tiết Sticky Section / Horizontal Scroll">
               <span class="pin-badge" hidden><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a7 7 0 0 0-7 7c0 5.2 7 13 7 13s7-7.8 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></svg>Đã ghim</span>
               <div class="stage"><div class="fx-frame fx-scroll" id="fxHFrame"><div class="fx-hinner"><div class="fx-hstick"><div class="fx-htrack" id="fxHTrack"><div class="fx-hcard" style="background:#0a4177">Ảnh 1</div><div class="fx-hcard" style="background:#fc7a01">Ảnh 2</div><div class="fx-hcard" style="background:#1d9e6c">Ảnh 3</div><div class="fx-hcard" style="background:#d6336c">Ảnh 4</div></div><div class="fx-hhint">Cuộn dọc trong khung — dải ảnh trượt ngang</div></div></div></div></div>
@@ -5614,7 +5641,7 @@
                 <p class="vi-name">Section ghim &amp; cuộn ngang</p>
               </div>
               <span class="row-actions" hidden><button type="button" class="copy-btn" data-copy="Sticky Section / Horizontal Scroll">Copy tên</button><button type="button" class="copy-btn" data-copy="Pin a section and translate vertical scrolling into a horizontal gallery of collection photos">Copy prompt</button></span>
-            </article>
+            <button type="button" class="fx-card-expand" aria-label="Phóng to xem chi tiết: Sticky Section / Horizontal Scroll" title="Phóng to xem chi tiết"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 3h6v6"/><path d="M9 21H3v-6"/><path d="M21 3l-7 7"/><path d="M3 21l7-7"/></svg></button></article>
             <article class="card citem fxcomp" id="scroll-progress-indicator" data-search="scroll progress indicator thanh tiến trình cuộn reading progress đã đọc bao nhiêu phần trăm bài viết dài useScroll scaleX thanh báo đã đọc bao nhiêu reading progress bar thanh tiến độ đọc bài thanh % cuộn trang" tabindex="0" role="button" aria-haspopup="dialog" aria-label="Xem chi tiết Scroll Progress Indicator">
               <span class="pin-badge" hidden><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a7 7 0 0 0-7 7c0 5.2 7 13 7 13s7-7.8 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></svg>Đã ghim</span>
               <div class="stage"><div class="fx-frame fx-scroll" id="fxProgFrame"><div class="fx-prog-head"><div class="fx-prog-track"><div class="fx-prog-fill" id="fxProgBar"></div></div><div class="fx-prog-meta"><span>Bài viết mẫu — cuộn trong khung</span><b id="fxProgPct">0%</b></div></div><div class="fx-lines"><i style="width:84%"></i><i style="width:62%"></i><i style="width:76%"></i><i style="width:50%"></i><i style="width:70%"></i><i style="width:44%"></i><i style="width:80%"></i><i style="width:58%"></i><i style="width:72%"></i><i style="width:48%"></i></div></div></div>
@@ -5623,7 +5650,7 @@
                 <p class="vi-name">Thanh tiến trình cuộn</p>
               </div>
               <span class="row-actions" hidden><button type="button" class="copy-btn" data-copy="Scroll Progress Indicator">Copy tên</button><button type="button" class="copy-btn" data-copy="Add a Scroll Progress bar at the very top that fills as the reader scrolls through the article">Copy prompt</button></span>
-            </article>
+            <button type="button" class="fx-card-expand" aria-label="Phóng to xem chi tiết: Scroll Progress Indicator" title="Phóng to xem chi tiết"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 3h6v6"/><path d="M9 21H3v-6"/><path d="M21 3l-7 7"/><path d="M3 21l7-7"/></svg></button></article>
         </div>
       </section>
 
@@ -5638,7 +5665,7 @@
                 <p class="vi-name">Parallax theo chuột</p>
               </div>
               <span class="row-actions" hidden><button type="button" class="copy-btn" data-copy="Mouse Parallax">Copy tên</button><button type="button" class="copy-btn" data-copy="Add Mouse Parallax to the hero: layers shift at different depths following the cursor">Copy prompt</button></span>
-            </article>
+            <button type="button" class="fx-card-expand" aria-label="Phóng to xem chi tiết: Mouse Parallax" title="Phóng to xem chi tiết"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 3h6v6"/><path d="M9 21H3v-6"/><path d="M21 3l-7 7"/><path d="M3 21l7-7"/></svg></button></article>
             <article class="card citem fxcomp" id="3d-transform" data-search="3d transform biến đổi 3d xoay trục phối cảnh perspective figma motion css xoay thẻ 3d nghiêng 3 chiều perspective transform thẻ xoay theo trục hiệu ứng 3d css" tabindex="0" role="button" aria-haspopup="dialog" aria-label="Xem chi tiết 3D Transform">
               <span class="pin-badge" hidden><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a7 7 0 0 0-7 7c0 5.2 7 13 7 13s7-7.8 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></svg>Đã ghim</span>
               <div class="stage"><div class="fg-3d"><div class="fg-3d-card" id="fg3dCard">THẺ 3D</div><label>Xoay ngang <input type="range" id="fg3dY" min="-40" max="40" value="18" aria-label="Góc xoay ngang"></label><label>Xoay dọc <input type="range" id="fg3dX" min="-40" max="40" value="-12" aria-label="Góc xoay dọc"></label></div></div>
@@ -5647,7 +5674,7 @@
                 <p class="vi-name">Biến đổi 3D có phối cảnh</p>
               </div>
               <span class="row-actions" hidden><button type="button" class="copy-btn" data-copy="3D Transform">Copy tên</button><button type="button" class="copy-btn" data-copy="Add a 3D Transform demo: rotate the card on X and Y axes with perspective for a real depth feel">Copy prompt</button></span>
-            </article>
+            <button type="button" class="fx-card-expand" aria-label="Phóng to xem chi tiết: 3D Transform" title="Phóng to xem chi tiết"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 3h6v6"/><path d="M9 21H3v-6"/><path d="M21 3l-7 7"/><path d="M3 21l7-7"/></svg></button></article>
             <article class="card citem fxcomp" id="draggable" data-search="draggable kéo thả tự do kéo vật figma sites drag pointer kéo vật đi khắp nơi kéo thả tự do drag element kéo di chuyển phần tử bằng chuột" tabindex="0" role="button" aria-haspopup="dialog" aria-label="Xem chi tiết Draggable">
               <span class="pin-badge" hidden><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a7 7 0 0 0-7 7c0 5.2 7 13 7 13s7-7.8 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></svg>Đã ghim</span>
               <div class="stage"><div class="fg-drag" id="fgDrag"><div class="fg-drag-chip" id="fgDragChip">Kéo tôi đi</div></div></div>
@@ -5656,7 +5683,7 @@
                 <p class="vi-name">Kéo thả tự do</p>
               </div>
               <span class="row-actions" hidden><button type="button" class="copy-btn" data-copy="Draggable">Copy tên</button><button type="button" class="copy-btn" data-copy="Make the sticker Draggable so users can drag it anywhere inside the frame with the pointer">Copy prompt</button></span>
-            </article>
+            <button type="button" class="fx-card-expand" aria-label="Phóng to xem chi tiết: Draggable" title="Phóng to xem chi tiết"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 3h6v6"/><path d="M9 21H3v-6"/><path d="M21 3l-7 7"/><path d="M3 21l7-7"/></svg></button></article>
             <article class="card citem fxcomp" id="magnetic-button" data-search="magnetic button nút nam châm hút con trỏ cta lò xo spring nút hút theo chuột nút nam châm cta hút con trỏ magnetic hover nút dính chuột" tabindex="0" role="button" aria-haspopup="dialog" aria-label="Xem chi tiết Magnetic Button">
               <span class="pin-badge" hidden><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a7 7 0 0 0-7 7c0 5.2 7 13 7 13s7-7.8 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></svg>Đã ghim</span>
               <div class="stage"><div class="fx-mag-zone" id="fxMagZone"><button class="fx-mag" id="fxMagBtn" type="button">Đăng ký ngay</button></div></div>
@@ -5665,7 +5692,7 @@
                 <p class="vi-name">Nút nam châm</p>
               </div>
               <span class="row-actions" hidden><button type="button" class="copy-btn" data-copy="Magnetic Button">Copy tên</button><button type="button" class="copy-btn" data-copy="Add a Magnetic Button effect: the main CTA gently pulls toward the cursor when it comes near">Copy prompt</button></span>
-            </article>
+            <button type="button" class="fx-card-expand" aria-label="Phóng to xem chi tiết: Magnetic Button" title="Phóng to xem chi tiết"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 3h6v6"/><path d="M9 21H3v-6"/><path d="M21 3l-7 7"/><path d="M3 21l7-7"/></svg></button></article>
             <article class="card citem fxcomp" id="hover-lift-tilt-card" data-search="hover lift tilt card nâng nghiêng 3d card sản phẩm perspective thẻ nổi lên nghiêng khi rê chuột card hover 3d thẻ sản phẩm nghiêng theo chuột tilt effect" tabindex="0" role="button" aria-haspopup="dialog" aria-label="Xem chi tiết Hover Lift / Tilt Card">
               <span class="pin-badge" hidden><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a7 7 0 0 0-7 7c0 5.2 7 13 7 13s7-7.8 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></svg>Đã ghim</span>
               <div class="stage"><div class="fx-tilt-wrap"><div class="fx-tilt" id="fxTiltCard"><b>Thẻ dự án</b><small>Rê chuột: card nhấc lên và nghiêng 3D theo vị trí chuột</small></div></div></div>
@@ -5674,7 +5701,7 @@
                 <p class="vi-name">Card nâng &amp; nghiêng 3D</p>
               </div>
               <span class="row-actions" hidden><button type="button" class="copy-btn" data-copy="Hover Lift / Tilt Card">Copy tên</button><button type="button" class="copy-btn" data-copy="Add a Hover Lift and Tilt effect to product cards: they rise and tilt in 3D following the mouse">Copy prompt</button></span>
-            </article>
+            <button type="button" class="fx-card-expand" aria-label="Phóng to xem chi tiết: Hover Lift / Tilt Card" title="Phóng to xem chi tiết"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 3h6v6"/><path d="M9 21H3v-6"/><path d="M21 3l-7 7"/><path d="M3 21l7-7"/></svg></button></article>
             <article class="card citem fxcomp" id="image-zoom-on-hover" data-search="image zoom hover ảnh phóng to khi hover scale sản phẩm phóng to ảnh khi rê chuột ảnh zoom hover zoom sản phẩm hover là ảnh to ra" tabindex="0" role="button" aria-haspopup="dialog" aria-label="Xem chi tiết Image Zoom on Hover">
               <span class="pin-badge" hidden><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a7 7 0 0 0-7 7c0 5.2 7 13 7 13s7-7.8 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></svg>Đã ghim</span>
               <div class="stage"><div class="fx-zoom"><div class="fx-zoom-img"></div><div class="fx-zoom-cap">Ảnh sản phẩm — bấm để xem chi tiết</div></div></div>
@@ -5683,7 +5710,7 @@
                 <p class="vi-name">Ảnh phóng to khi hover</p>
               </div>
               <span class="row-actions" hidden><button type="button" class="copy-btn" data-copy="Image Zoom on Hover">Copy tên</button><button type="button" class="copy-btn" data-copy="Zoom the product image smoothly to 1.2x on hover so shoppers can see the fabric detail">Copy prompt</button></span>
-            </article>
+            <button type="button" class="fx-card-expand" aria-label="Phóng to xem chi tiết: Image Zoom on Hover" title="Phóng to xem chi tiết"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 3h6v6"/><path d="M9 21H3v-6"/><path d="M21 3l-7 7"/><path d="M3 21l7-7"/></svg></button></article>
             <article class="card citem fxcomp" id="button-ripple" data-search="button ripple gợn sóng khi bấm nút material phản hồi chạm gợn sóng lan ra khi bấm sóng nước khi chạm ripple effect bấm nút lan sóng material ripple" tabindex="0" role="button" aria-haspopup="dialog" aria-label="Xem chi tiết Button Ripple">
               <span class="pin-badge" hidden><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a7 7 0 0 0-7 7c0 5.2 7 13 7 13s7-7.8 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></svg>Đã ghim</span>
               <div class="stage"><button class="fx-ripple-btn" id="fxRippleBtn" type="button">Bấm vào đây</button></div>
@@ -5692,7 +5719,7 @@
                 <p class="vi-name">Gợn sóng khi bấm nút</p>
               </div>
               <span class="row-actions" hidden><button type="button" class="copy-btn" data-copy="Button Ripple">Copy tên</button><button type="button" class="copy-btn" data-copy="Add a Ripple effect to buttons: a wave spreads from the exact tap point when clicked">Copy prompt</button></span>
-            </article>
+            <button type="button" class="fx-card-expand" aria-label="Phóng to xem chi tiết: Button Ripple" title="Phóng to xem chi tiết"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 3h6v6"/><path d="M9 21H3v-6"/><path d="M21 3l-7 7"/><path d="M3 21l7-7"/></svg></button></article>
             <article class="card citem fxcomp" id="cursor-glow-custom-cursor" data-search="cursor glow custom cursor con trỏ phát sáng tùy chỉnh portfolio sáng tạo con trỏ chuột đẹp con trỏ phát sáng vòng sáng theo chuột custom cursor design đổi hình con trỏ" tabindex="0" role="button" aria-haspopup="dialog" aria-label="Xem chi tiết Cursor Glow / Custom Cursor">
               <span class="pin-badge" hidden><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a7 7 0 0 0-7 7c0 5.2 7 13 7 13s7-7.8 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></svg>Đã ghim</span>
               <div class="stage"><div class="fx-glow-zone" id="fxGlowZone"><span class="fx-glow" id="fxGlow"></span><span class="fx-glow-link" id="fxGlowLink">Liên kết mẫu</span></div></div>
@@ -5701,7 +5728,7 @@
                 <p class="vi-name">Con trỏ phát sáng / con trỏ tùy chỉnh</p>
               </div>
               <span class="row-actions" hidden><button type="button" class="copy-btn" data-copy="Cursor Glow / Custom Cursor">Copy tên</button><button type="button" class="copy-btn" data-copy="Add a Custom Cursor with a soft glowing ring that follows the pointer on the portfolio page">Copy prompt</button></span>
-            </article>
+            <button type="button" class="fx-card-expand" aria-label="Phóng to xem chi tiết: Cursor Glow / Custom Cursor" title="Phóng to xem chi tiết"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 3h6v6"/><path d="M9 21H3v-6"/><path d="M21 3l-7 7"/><path d="M3 21l7-7"/></svg></button></article>
             <article class="card citem fxcomp" id="image-parallax-on-hover" data-search="image parallax on hover parallax ảnh theo chuột lớp ảnh trôi lệch chiều sâu mousemove hero card gallery ảnh trôi lệch khi rê chuột lớp ảnh động theo chuột hover parallax image chiều sâu ảnh khi hover" tabindex="0" role="button" aria-haspopup="dialog" aria-label="Xem chi tiết Image Parallax on Hover">
               <span class="pin-badge" hidden><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a7 7 0 0 0-7 7c0 5.2 7 13 7 13s7-7.8 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></svg>Đã ghim</span>
               <div class="stage"><div class="fx-pxh" id="fxPxh"><span class="fx-pxh-layer fx-pxh-shape" data-depth="14"></span><span class="fx-pxh-layer fx-pxh-shape2" data-depth="8"></span><span class="fx-pxh-layer fx-pxh-txt" data-depth="20">Tour Hạ Long<small>Rê chuột — các lớp trôi lệch nhau</small></span></div></div>
@@ -5710,7 +5737,7 @@
                 <p class="vi-name">Parallax ảnh theo chuột</p>
               </div>
               <span class="row-actions" hidden><button type="button" class="copy-btn" data-copy="Image Parallax on Hover">Copy tên</button><button type="button" class="copy-btn" data-copy="Add Image Parallax on Hover: the photo layers drift at different speeds as the mouse moves">Copy prompt</button></span>
-            </article>
+            <button type="button" class="fx-card-expand" aria-label="Phóng to xem chi tiết: Image Parallax on Hover" title="Phóng to xem chi tiết"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 3h6v6"/><path d="M9 21H3v-6"/><path d="M21 3l-7 7"/><path d="M3 21l7-7"/></svg></button></article>
             <article class="card citem fxcomp" id="search-expand" data-search="search expand ô tìm kiếm mở rộng kính lúp nở rộng header tìm kiếm thu gọn expandable search kính lúp bấm là ô tìm nở ra ô tìm kiếm giãn nở expanding search icon thành ô tìm kiếm" tabindex="0" role="button" aria-haspopup="dialog" aria-label="Xem chi tiết Search Expand">
               <span class="pin-badge" hidden><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a7 7 0 0 0-7 7c0 5.2 7 13 7 13s7-7.8 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></svg>Đã ghim</span>
               <div class="stage"><div class="fx-searchx" id="fxSearchx"><div class="fx-searchx-box"><button class="fx-searchx-btn" id="fxSearchxBtn" type="button" aria-label="Mở ô tìm kiếm"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.8-3.8"/></svg></button><input id="fxSearchxInput" type="text" placeholder="Tìm điểm đến…" aria-label="Ô tìm kiếm mẫu" /></div></div></div>
@@ -5719,7 +5746,7 @@
                 <p class="vi-name">Ô tìm kiếm mở rộng</p>
               </div>
               <span class="row-actions" hidden><button type="button" class="copy-btn" data-copy="Search Expand">Copy tên</button><button type="button" class="copy-btn" data-copy="Make the header search icon Expand into a full search input with a smooth width animation">Copy prompt</button></span>
-            </article>
+            <button type="button" class="fx-card-expand" aria-label="Phóng to xem chi tiết: Search Expand" title="Phóng to xem chi tiết"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 3h6v6"/><path d="M9 21H3v-6"/><path d="M21 3l-7 7"/><path d="M3 21l7-7"/></svg></button></article>
             <article class="card citem fxcomp" id="avatar-stack-hover" data-search="avatar stack hover nhóm avatar xếp chồng xòe ra thành viên nhóm bằng chứng xã hội avatar group spread nhóm mặt xòe ra khi hover avatar chồng xòe hover nhóm người dùng xòe ra" tabindex="0" role="button" aria-haspopup="dialog" aria-label="Xem chi tiết Avatar Stack Hover">
               <span class="pin-badge" hidden><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a7 7 0 0 0-7 7c0 5.2 7 13 7 13s7-7.8 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></svg>Đã ghim</span>
               <div class="stage"><div class="fx-avstack" tabindex="0" aria-label="Nhóm 5 thành viên và 12 người khác"><span class="ava4" style="background:#2563eb">AN</span><span class="ava4" style="background:#1d9e6c">BT</span><span class="ava4" style="background:#d6336c">CM</span><span class="ava4" style="background:#8a6d1f">DT</span><span class="ava4" style="background:#0a4177">EH</span><span class="ava4 more">+12</span></div></div>
@@ -5728,7 +5755,7 @@
                 <p class="vi-name">Nhóm avatar xếp chồng</p>
               </div>
               <span class="row-actions" hidden><button type="button" class="copy-btn" data-copy="Avatar Stack Hover">Copy tên</button><button type="button" class="copy-btn" data-copy="Spread the Avatar Stack out on hover to reveal each team member&#x27;s face and name">Copy prompt</button></span>
-            </article>
+            <button type="button" class="fx-card-expand" aria-label="Phóng to xem chi tiết: Avatar Stack Hover" title="Phóng to xem chi tiết"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 3h6v6"/><path d="M9 21H3v-6"/><path d="M21 3l-7 7"/><path d="M3 21l7-7"/></svg></button></article>
             <article class="card citem fxcomp" id="toggle-switch-morph" data-search="toggle switch morph công tắc biến hình bật tắt đổi hình dạng dấu tick cài đặt thông báo morphing toggle công tắc đổi hình khi gạt switch biến hình animated toggle gạt là đổi icon mặt trời trăng" tabindex="0" role="button" aria-haspopup="dialog" aria-label="Xem chi tiết Toggle Switch Morph">
               <span class="pin-badge" hidden><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a7 7 0 0 0-7 7c0 5.2 7 13 7 13s7-7.8 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></svg>Đã ghim</span>
               <div class="stage"><label class="fx-tm"><input type="checkbox" id="fxTmInput" /><span class="fx-tm-track"><span class="fx-tm-thumb"></span></span><span class="fx-tm-lbl">Thông báo<small>Bấm công tắc: rãnh và núm cùng biến hình, hiện dấu tick</small></span></label></div>
@@ -5737,7 +5764,7 @@
                 <p class="vi-name">Công tắc biến hình</p>
               </div>
               <span class="row-actions" hidden><button type="button" class="copy-btn" data-copy="Toggle Switch Morph">Copy tên</button><button type="button" class="copy-btn" data-copy="Morph the Toggle Switch icon from a moon to a sun as it slides between off and on">Copy prompt</button></span>
-            </article>
+            <button type="button" class="fx-card-expand" aria-label="Phóng to xem chi tiết: Toggle Switch Morph" title="Phóng to xem chi tiết"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 3h6v6"/><path d="M9 21H3v-6"/><path d="M21 3l-7 7"/><path d="M3 21l7-7"/></svg></button></article>
             <article class="card citem fxcomp" id="tooltip-fade" data-search="tooltip fade chú thích mờ hiện hover focus nút icon radix tippy floating ui giải thích thuật ngữ chú thích mờ dần hiện tooltip animation rê chuột hiện chữ mờ dần tooltip mượt" tabindex="0" role="button" aria-haspopup="dialog" aria-label="Xem chi tiết Tooltip Fade">
               <span class="pin-badge" hidden><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a7 7 0 0 0-7 7c0 5.2 7 13 7 13s7-7.8 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></svg>Đã ghim</span>
               <div class="stage"><div class="fx-tip-row"><button type="button" class="fx-tip-btn" data-tip="Lưu lại" aria-label="Lưu lại"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><path d="M17 21v-8H7v8"/><path d="M7 3v5h8"/></svg></button><button type="button" class="fx-tip-btn" data-tip="Chia sẻ" aria-label="Chia sẻ"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="m8.6 13.5 6.8 4"/><path d="m15.4 6.5-6.8 4"/></svg></button><button type="button" class="fx-tip-btn" data-tip="Thông báo" aria-label="Thông báo"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8a6 6 0 1 0-12 0c0 7-3 8-3 8h18s-3-1-3-8"/><path d="M10.3 21a2 2 0 0 0 3.4 0"/></svg></button><button type="button" class="fx-tip-btn" data-tip="Trợ giúp" aria-label="Trợ giúp"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.1 9a3 3 0 0 1 5.8 1c0 2-3 2.6-3 4"/><path d="M12 17h.01"/></svg></button></div></div>
@@ -5746,7 +5773,7 @@
                 <p class="vi-name">Tooltip mờ hiện</p>
               </div>
               <span class="row-actions" hidden><button type="button" class="copy-btn" data-copy="Tooltip Fade">Copy tên</button><button type="button" class="copy-btn" data-copy="Fade Tooltips in and out softly with a slight rise when hovering over icon buttons">Copy prompt</button></span>
-            </article>
+            <button type="button" class="fx-card-expand" aria-label="Phóng to xem chi tiết: Tooltip Fade" title="Phóng to xem chi tiết"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 3h6v6"/><path d="M9 21H3v-6"/><path d="M21 3l-7 7"/><path d="M3 21l7-7"/></svg></button></article>
             <article class="card citem fxcomp" id="rating-stars-fill" data-search="rating stars fill sao đánh giá tô đầy hover chọn sao review sản phẩm nhà hàng năm sao sao tô màu khi chọn sao sáng dần khi hover star fill animation chọn sao là tô đầy" tabindex="0" role="button" aria-haspopup="dialog" aria-label="Xem chi tiết Rating Stars Fill">
               <span class="pin-badge" hidden><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a7 7 0 0 0-7 7c0 5.2 7 13 7 13s7-7.8 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></svg>Đã ghim</span>
               <div class="stage"><div class="fx-stars" id="fxStars"><div class="fx-stars-row" role="radiogroup" aria-label="Đánh giá mẫu 5 sao"><button type="button" class="fx-star" data-v="1" aria-label="1 sao">★</button><button type="button" class="fx-star" data-v="2" aria-label="2 sao">★</button><button type="button" class="fx-star" data-v="3" aria-label="3 sao">★</button><button type="button" class="fx-star" data-v="4" aria-label="4 sao">★</button><button type="button" class="fx-star" data-v="5" aria-label="5 sao">★</button></div><div class="fx-stars-lbl"><span id="fxStarsLbl">Rê chuột / chạm để chọn</span><button type="button" class="fx-mini-btn" id="fxStarsClear">Xoá</button></div></div></div>
@@ -5755,7 +5782,7 @@
                 <p class="vi-name">Sao đánh giá tô đầy</p>
               </div>
               <span class="row-actions" hidden><button type="button" class="copy-btn" data-copy="Rating Stars Fill">Copy tên</button><button type="button" class="copy-btn" data-copy="Fill the Rating Stars one by one on hover so users preview their score before clicking">Copy prompt</button></span>
-            </article>
+            <button type="button" class="fx-card-expand" aria-label="Phóng to xem chi tiết: Rating Stars Fill" title="Phóng to xem chi tiết"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 3h6v6"/><path d="M9 21H3v-6"/><path d="M21 3l-7 7"/><path d="M3 21l7-7"/></svg></button></article>
             <article class="card citem fxcomp" id="slider-thumb-grow" data-search="slider thumb grow núm trượt phóng to khi kéo âm lượng range input chỉnh giá trị active scale núm kéo to ra khi kéo handle phóng to khi trượt range thumb animation kéo là núm to" tabindex="0" role="button" aria-haspopup="dialog" aria-label="Xem chi tiết Slider Thumb Grow">
               <span class="pin-badge" hidden><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a7 7 0 0 0-7 7c0 5.2 7 13 7 13s7-7.8 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></svg>Đã ghim</span>
               <div class="stage"><div class="fx-sld-wrap"><div class="fx-sld-top"><span>Âm lượng</span><b id="fxSldVal">60</b></div><input type="range" class="fx-sld" id="fxSld" min="0" max="100" value="60" aria-label="Âm lượng mẫu" /><div style="font-size:10.5px;color:var(--muted);font-weight:600">Giữ và kéo: núm phóng to 1,3 lần</div></div></div>
@@ -5764,7 +5791,7 @@
                 <p class="vi-name">Núm trượt phóng to</p>
               </div>
               <span class="row-actions" hidden><button type="button" class="copy-btn" data-copy="Slider Thumb Grow">Copy tên</button><button type="button" class="copy-btn" data-copy="Grow the Slider Thumb while dragging so the current value is easy to grab and read">Copy prompt</button></span>
-            </article>
+            <button type="button" class="fx-card-expand" aria-label="Phóng to xem chi tiết: Slider Thumb Grow" title="Phóng to xem chi tiết"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 3h6v6"/><path d="M9 21H3v-6"/><path d="M21 3l-7 7"/><path d="M3 21l7-7"/></svg></button></article>
             <article class="card citem fxcomp" id="motion-tempo-character" data-search="motion tempo character nhịp độ tính cách chuyển động tempo 0.75 1.5 crisp standard expressive astryx meta easing thời lượng chỉnh tốc độ chuyển động nhịp chuyển động easing character tempo motion chỉnh nhanh chậm hiệu ứng" tabindex="0" role="button" aria-haspopup="dialog" aria-label="Xem chi tiết Motion Tempo &amp; Character">
               <span class="pin-badge" hidden><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a7 7 0 0 0-7 7c0 5.2 7 13 7 13s7-7.8 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></svg>Đã ghim</span>
               <div class="stage"><div class="ax-wrap"><div class="ax-mt-track"><div class="ax-mt-box" id="axMtBox"></div></div><div class="ax-mt-ctl"><label>Tempo <input type="range" id="axMtTempo" min="0.75" max="1.5" step="0.05" value="1" aria-label="Chỉnh nhịp độ chuyển động tempo" /><b id="axMtTempoVal">1,00×</b></label><label>Tính cách <select id="axMtChar" aria-label="Chọn tính cách chuyển động"><option value="crisp">Crisp — gọn, không nảy</option><option value="standard" selected>Standard — chuẩn Astryx</option><option value="expressive">Expressive — nảy nhẹ</option></select></label></div><div class="ax-row"><button type="button" class="ax-mini-btn acc" id="axMtRun">Chạy thử</button><span class="ax-note" id="axMtDur">Thời lượng: 900ms</span></div></div></div>
@@ -5773,7 +5800,7 @@
                 <p class="vi-name">Nhịp độ &amp; tính cách chuyển động</p>
               </div>
               <span class="row-actions" hidden><button type="button" class="copy-btn" data-copy="Motion Tempo &amp; Character">Copy tên</button><button type="button" class="copy-btn" data-copy="Let users tune the Motion Tempo and Character: tempo from 0.75x to 1.5x, character crisp, standard or expressive">Copy prompt</button></span>
-            </article>
+            <button type="button" class="fx-card-expand" aria-label="Phóng to xem chi tiết: Motion Tempo &amp; Character" title="Phóng to xem chi tiết"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 3h6v6"/><path d="M9 21H3v-6"/><path d="M21 3l-7 7"/><path d="M3 21l7-7"/></svg></button></article>
             <article class="card citem fxcomp" id="popover-grows-from-trigger" data-search="popover grows from trigger popover nở ra từ nút bấm chạm điện thoại touch motion scale origin astryx meta hộp nổi nở từ nút popover zoom từ điểm bấm origin animation hộp mở từ nút bấm" tabindex="0" role="button" aria-haspopup="dialog" aria-label="Xem chi tiết Popover Grows from Trigger">
               <span class="pin-badge" hidden><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a7 7 0 0 0-7 7c0 5.2 7 13 7 13s7-7.8 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></svg>Đã ghim</span>
               <div class="stage"><div class="ax-gp-wrap" id="axGpWrap"><button type="button" class="ax-gp-btn" id="axGpBtn">Mở popover</button><div class="ax-gp-pop"><b>Nở ra từ chính nút bấm</b><span>Trên điện thoại, popover phình rộng trước rồi mới cao, mép trên giữ nguyên tại nút.</span></div></div></div>
@@ -5782,7 +5809,7 @@
                 <p class="vi-name">Popover nở ra từ nút bấm</p>
               </div>
               <span class="row-actions" hidden><button type="button" class="copy-btn" data-copy="Popover Grows from Trigger">Copy tên</button><button type="button" class="copy-btn" data-copy="Animate the Popover growing out of its trigger button with a transform-origin at the button">Copy prompt</button></span>
-            </article>
+            <button type="button" class="fx-card-expand" aria-label="Phóng to xem chi tiết: Popover Grows from Trigger" title="Phóng to xem chi tiết"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 3h6v6"/><path d="M9 21H3v-6"/><path d="M21 3l-7 7"/><path d="M3 21l7-7"/></svg></button></article>
             <article class="card citem fxcomp" id="reduced-motion-cross-fade" data-search="reduced motion cross fade giảm chuyển động mờ dần thay trượt 200ms prefers-reduced-motion astryx meta truy cập accessibility tắt trượt khi người dùng giảm chuyển động mờ dần thay vì trượt prefers reduced motion an toàn chuyển động" tabindex="0" role="button" aria-haspopup="dialog" aria-label="Xem chi tiết Reduced-motion Cross-fade">
               <span class="pin-badge" hidden><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a7 7 0 0 0-7 7c0 5.2 7 13 7 13s7-7.8 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></svg>Đã ghim</span>
               <div class="stage"><div class="ax-wrap"><div class="ax-rm-stage"><div class="ax-rm-panel" id="axRmPanel">Bảng nội dung xuất hiện</div></div><div class="ax-row"><button type="button" class="ax-mini-btn acc" id="axRmRun">Chạy thử</button><button type="button" class="ax-mini-btn" id="axRmToggle" aria-pressed="false">Giảm chuyển động: Tắt</button></div><div class="ax-note" id="axRmNote">Đang tắt: bảng trượt vào trong 450ms</div></div></div>
@@ -5791,7 +5818,7 @@
                 <p class="vi-name">Mờ dần thay trượt khi giảm chuyển động</p>
               </div>
               <span class="row-actions" hidden><button type="button" class="copy-btn" data-copy="Reduced-motion Cross-fade">Copy tên</button><button type="button" class="copy-btn" data-copy="When the user prefers reduced motion, replace sliding animations with a gentle cross-fade under 200ms">Copy prompt</button></span>
-            </article>
+            <button type="button" class="fx-card-expand" aria-label="Phóng to xem chi tiết: Reduced-motion Cross-fade" title="Phóng to xem chi tiết"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 3h6v6"/><path d="M9 21H3v-6"/><path d="M21 3l-7 7"/><path d="M3 21l7-7"/></svg></button></article>
         </div>
       </section>
 
@@ -5806,7 +5833,7 @@
                 <p class="vi-name">Hoạt ảnh thông minh giữa hai trạng thái</p>
               </div>
               <span class="row-actions" hidden><button type="button" class="copy-btn" data-copy="Smart Animate">Copy tên</button><button type="button" class="copy-btn" data-copy="Use Smart Animate to morph smoothly between the two product states when toggling the view">Copy prompt</button></span>
-            </article>
+            <button type="button" class="fx-card-expand" aria-label="Phóng to xem chi tiết: Smart Animate" title="Phóng to xem chi tiết"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 3h6v6"/><path d="M9 21H3v-6"/><path d="M21 3l-7 7"/><path d="M3 21l7-7"/></svg></button></article>
             <article class="card citem fxcomp" id="motion-timeline-keyframes" data-search="motion timeline keyframes dòng thời gian khung hình chính figma motion animation 2026 dòng thời gian chuyển động keyframe animation chỉnh từng mốc thời gian timeline editor" tabindex="0" role="button" aria-haspopup="dialog" aria-label="Xem chi tiết Motion Timeline &amp; Keyframes">
               <span class="pin-badge" hidden><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a7 7 0 0 0-7 7c0 5.2 7 13 7 13s7-7.8 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></svg>Đã ghim</span>
               <div class="stage"><div class="fg-tl"><div class="fg-tl-stage"><div class="fg-tl-ball" id="fgTlBall"></div></div><div class="fg-tl-track" aria-hidden="true"><i style="left:2px"></i><i style="left:calc(50% - 5px)"></i><i style="right:2px"></i></div><input type="range" id="fgTlRange" min="0" max="100" value="0" aria-label="Kéo để tua dòng thời gian chuyển động"><div class="fg-row"><button type="button" class="fg-mini-btn" id="fgTlPlay">Phát</button></div></div></div>
@@ -5815,7 +5842,7 @@
                 <p class="vi-name">Chuyển động theo dòng thời gian</p>
               </div>
               <span class="row-actions" hidden><button type="button" class="copy-btn" data-copy="Motion Timeline &amp; Keyframes">Copy tên</button><button type="button" class="copy-btn" data-copy="Build the intro on a Motion Timeline with keyframes for fade, scale and slide at set times">Copy prompt</button></span>
-            </article>
+            <button type="button" class="fx-card-expand" aria-label="Phóng to xem chi tiết: Motion Timeline &amp; Keyframes" title="Phóng to xem chi tiết"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 3h6v6"/><path d="M9 21H3v-6"/><path d="M21 3l-7 7"/><path d="M3 21l7-7"/></svg></button></article>
             <article class="card citem fxcomp" id="hero-entrance-animation" data-search="hero entrance animation hiệu ứng mở đầu hero staggered fade up landing hiệu ứng chữ hiện khi vào trang mở đầu động staggered hero chữ hiện lần lượt khi tải trang" tabindex="0" role="button" aria-haspopup="dialog" aria-label="Xem chi tiết Hero Entrance Animation">
               <span class="pin-badge" hidden><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a7 7 0 0 0-7 7c0 5.2 7 13 7 13s7-7.8 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></svg>Đã ghim</span>
               <div class="stage"><div class="fx-col"><div class="fx-hero" id="fxHero"><div class="fx-hero-el fx-hero-t">Tiêu đề thật ấn tượng</div><div class="fx-hero-el d2 fx-hero-s">Phụ đề xuất hiện ngay sau đó</div><div class="fx-hero-el d3"><span class="fx-hero-cta">Bắt đầu ngay</span></div></div><button class="fx-btn" id="fxHeroReplay" type="button">↻ Phát lại</button></div></div>
@@ -5824,7 +5851,7 @@
                 <p class="vi-name">Hiệu ứng mở đầu Hero</p>
               </div>
               <span class="row-actions" hidden><button type="button" class="copy-btn" data-copy="Hero Entrance Animation">Copy tên</button><button type="button" class="copy-btn" data-copy="Add a Hero Entrance Animation: headline, subtext and button fade up one after another on page load">Copy prompt</button></span>
-            </article>
+            <button type="button" class="fx-card-expand" aria-label="Phóng to xem chi tiết: Hero Entrance Animation" title="Phóng to xem chi tiết"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 3h6v6"/><path d="M9 21H3v-6"/><path d="M21 3l-7 7"/><path d="M3 21l7-7"/></svg></button></article>
             <article class="card citem fxcomp" id="page-transition" data-search="page transition chuyển trang mượt view transitions cross fade spa mpa chuyển trang không giật hiệu ứng đổi trang view transition qua trang mới mượt" tabindex="0" role="button" aria-haspopup="dialog" aria-label="Xem chi tiết Page Transition">
               <span class="pin-badge" hidden><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a7 7 0 0 0-7 7c0 5.2 7 13 7 13s7-7.8 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></svg>Đã ghim</span>
               <div class="stage"><div class="fx-col"><div class="fx-pages"><div class="fx-page on" id="fxPageA" style="background:var(--navy-soft)">Trang A — Trang chủ<small>Nội dung trang hiện tại</small></div><div class="fx-page" id="fxPageB" style="background:var(--accent)">Trang B — Dịch vụ<small>Trang mới trượt vào, cross-fade</small></div></div><button class="fx-btn" id="fxPageBtn" type="button">Chuyển trang →</button></div></div>
@@ -5833,7 +5860,7 @@
                 <p class="vi-name">Chuyển trang mượt</p>
               </div>
               <span class="row-actions" hidden><button type="button" class="copy-btn" data-copy="Page Transition">Copy tên</button><button type="button" class="copy-btn" data-copy="Add a Page Transition: cross-fade and slight slide when navigating between shop pages">Copy prompt</button></span>
-            </article>
+            <button type="button" class="fx-card-expand" aria-label="Phóng to xem chi tiết: Page Transition" title="Phóng to xem chi tiết"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 3h6v6"/><path d="M9 21H3v-6"/><path d="M21 3l-7 7"/><path d="M3 21l7-7"/></svg></button></article>
             <article class="card citem fxcomp" id="modal-open-animation" data-search="modal open animation hiệu ứng mở hộp thoại scale dialog starting style hộp thoại hiện mượt modal scale in hiệu ứng mở popup mở hộp thoại phóng nhẹ" tabindex="0" role="button" aria-haspopup="dialog" aria-label="Xem chi tiết Modal Open Animation">
               <span class="pin-badge" hidden><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a7 7 0 0 0-7 7c0 5.2 7 13 7 13s7-7.8 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></svg>Đã ghim</span>
               <div class="stage"><div class="fx-mwrap" id="fxMWrap"><div class="fx-mback"></div><div class="fx-mbox"><b>Hộp thoại chi tiết</b><small>Phóng to nhẹ từ nút vừa bấm, nền mờ dần.</small><button class="fx-btn acc" id="fxMClose" type="button">Đóng</button></div><button class="fx-btn fx-mopen" id="fxMOpen" type="button">Mở hộp thoại</button></div></div>
@@ -5842,7 +5869,7 @@
                 <p class="vi-name">Hiệu ứng mở hộp thoại</p>
               </div>
               <span class="row-actions" hidden><button type="button" class="copy-btn" data-copy="Modal Open Animation">Copy tên</button><button type="button" class="copy-btn" data-copy="Animate the Modal opening with a soft scale from 0.95 and a fading backdrop">Copy prompt</button></span>
-            </article>
+            <button type="button" class="fx-card-expand" aria-label="Phóng to xem chi tiết: Modal Open Animation" title="Phóng to xem chi tiết"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 3h6v6"/><path d="M9 21H3v-6"/><path d="M21 3l-7 7"/><path d="M3 21l7-7"/></svg></button></article>
             <article class="card citem fxcomp" id="drawer-slide-in" data-search="drawer slide in ngăn kéo trượt vào sheet panel menu giỏ hàng bộ lọc ngăn kéo trượt vào từ phải drawer animation menu trượt vào mượt panel trượt vào" tabindex="0" role="button" aria-haspopup="dialog" aria-label="Xem chi tiết Drawer Slide-in">
               <span class="pin-badge" hidden><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a7 7 0 0 0-7 7c0 5.2 7 13 7 13s7-7.8 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></svg>Đã ghim</span>
               <div class="stage"><div class="fx-frame" id="fxDFrame"><div class="fx-lines"><i style="width:70%"></i><i style="width:52%"></i><i style="width:64%"></i></div><button class="fx-btn fx-dopen" id="fxDOpen" type="button">Mở ngăn kéo</button><div class="fx-dback" id="fxDBack"></div><div class="fx-drawer"><b>Menu phụ</b><i></i><i></i><i style="width:70%"></i><span class="go"></span></div></div></div>
@@ -5851,7 +5878,7 @@
                 <p class="vi-name">Ngăn kéo trượt vào</p>
               </div>
               <span class="row-actions" hidden><button type="button" class="copy-btn" data-copy="Drawer Slide-in">Copy tên</button><button type="button" class="copy-btn" data-copy="Slide the cart Drawer in from the right with an ease-out motion and a dimming backdrop">Copy prompt</button></span>
-            </article>
+            <button type="button" class="fx-card-expand" aria-label="Phóng to xem chi tiết: Drawer Slide-in" title="Phóng to xem chi tiết"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 3h6v6"/><path d="M9 21H3v-6"/><path d="M21 3l-7 7"/><path d="M3 21l7-7"/></svg></button></article>
             <article class="card citem fxcomp" id="toast-slide-in" data-search="toast slide in thông báo trượt vào snackbar đã lưu đã gửi thông báo trượt từ dưới lên toast animation báo thành công trượt vào snackbar trượt" tabindex="0" role="button" aria-haspopup="dialog" aria-label="Xem chi tiết Toast Slide-in">
               <span class="pin-badge" hidden><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a7 7 0 0 0-7 7c0 5.2 7 13 7 13s7-7.8 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></svg>Đã ghim</span>
               <div class="stage"><div class="fx-mwrap"><button class="fx-btn acc fx-toast-btn-pos" id="fxToastBtn" type="button">Lưu thay đổi</button><div class="fx-toast" id="fxToast"><span class="tick">✓</span> Đã lưu thành công</div></div></div>
@@ -5860,7 +5887,7 @@
                 <p class="vi-name">Thông báo trượt vào</p>
               </div>
               <span class="row-actions" hidden><button type="button" class="copy-btn" data-copy="Toast Slide-in">Copy tên</button><button type="button" class="copy-btn" data-copy="Slide Toast notifications in from the bottom and stack them when several appear at once">Copy prompt</button></span>
-            </article>
+            <button type="button" class="fx-card-expand" aria-label="Phóng to xem chi tiết: Toast Slide-in" title="Phóng to xem chi tiết"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 3h6v6"/><path d="M9 21H3v-6"/><path d="M21 3l-7 7"/><path d="M3 21l7-7"/></svg></button></article>
             <article class="card citem fxcomp" id="accordion-expand-tab-switch-animation" data-search="accordion expand tab switch mở rộng chuyển tab faq grid template rows layout mở accordion mượt chuyển tab mượt accordion animation xổ xuống mượt không giật" tabindex="0" role="button" aria-haspopup="dialog" aria-label="Xem chi tiết Accordion Expand / Tab Switch Animation">
               <span class="pin-badge" hidden><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a7 7 0 0 0-7 7c0 5.2 7 13 7 13s7-7.8 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></svg>Đã ghim</span>
               <div class="stage"><div class="fx-acc" id="fxAcc"><div class="fx-acc-item open"><button class="fx-acc-head" type="button">Câu hỏi 1 <span class="chev">▾</span></button><div class="fx-acc-body"><div><p>Nội dung mở rộng dần theo chiều cao, không giật.</p></div></div></div><div class="fx-acc-item"><button class="fx-acc-head" type="button">Câu hỏi 2 <span class="chev">▾</span></button><div class="fx-acc-body"><div><p>Bấm để mở mục này, mục kia tự đóng lại.</p></div></div></div></div></div>
@@ -5869,7 +5896,7 @@
                 <p class="vi-name">Mở rộng accordion &amp; chuyển tab</p>
               </div>
               <span class="row-actions" hidden><button type="button" class="copy-btn" data-copy="Accordion Expand / Tab Switch Animation">Copy tên</button><button type="button" class="copy-btn" data-copy="Animate Accordion panels expanding smoothly in height and cross-fade content when switching tabs">Copy prompt</button></span>
-            </article>
+            <button type="button" class="fx-card-expand" aria-label="Phóng to xem chi tiết: Accordion Expand / Tab Switch Animation" title="Phóng to xem chi tiết"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 3h6v6"/><path d="M9 21H3v-6"/><path d="M21 3l-7 7"/><path d="M3 21l7-7"/></svg></button></article>
             <article class="card citem fxcomp" id="flip-card-3d" data-search="flip card 3d thẻ lật 3d lật 180 độ hai mặt flashcard bảng giá thẻ sản phẩm nhân sự preserve-3d thẻ lật mặt sau lật thẻ xem mặt sau card flip thẻ 2 mặt lật 180" tabindex="0" role="button" aria-haspopup="dialog" aria-label="Xem chi tiết Flip Card 3D">
               <span class="pin-badge" hidden><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a7 7 0 0 0-7 7c0 5.2 7 13 7 13s7-7.8 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></svg>Đã ghim</span>
               <div class="stage"><div class="fx-flip" id="fxFlip" role="button" tabindex="0" aria-label="Thẻ lật 3D, bấm hoặc rê chuột để lật"><div class="fx-flip-inner"><div class="fx-flip-face fx-flip-front"><span>An Nhiên<small>Design Lead — mặt trước</small></span></div><div class="fx-flip-face fx-flip-back"><span>8 năm kinh nghiệm<small>UI/UX · Branding — mặt sau</small></span></div></div></div></div>
@@ -5878,7 +5905,7 @@
                 <p class="vi-name">Thẻ lật 3D</p>
               </div>
               <span class="row-actions" hidden><button type="button" class="copy-btn" data-copy="Flip Card 3D">Copy tên</button><button type="button" class="copy-btn" data-copy="Add a 3D Flip Card: hover or tap flips the product card to reveal size and material details on the back">Copy prompt</button></span>
-            </article>
+            <button type="button" class="fx-card-expand" aria-label="Phóng to xem chi tiết: Flip Card 3D" title="Phóng to xem chi tiết"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 3h6v6"/><path d="M9 21H3v-6"/><path d="M21 3l-7 7"/><path d="M3 21l7-7"/></svg></button></article>
             <article class="card citem fxcomp" id="carousel-autoplay" data-search="carousel autoplay carousel tự chạy slide tự chuyển banner testimonial swiper autoplay tạm dừng hover ảnh tự chuyển tự chạy slideshow banner tự trượt autoplay slider ảnh tự đổi sau 3 giây" tabindex="0" role="button" aria-haspopup="dialog" aria-label="Xem chi tiết Carousel Autoplay">
               <span class="pin-badge" hidden><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a7 7 0 0 0-7 7c0 5.2 7 13 7 13s7-7.8 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></svg>Đã ghim</span>
               <div class="stage"><div class="fx-car2" id="fxCar2"><div class="fx-car2-view"><div class="fx-car2-track" id="fxCar2Track"><div style="background:#0a4177">Sale áo khoác −20%</div><div style="background:#fc7a01">BST Thu Đông mới về</div><div style="background:#1d9e6c">Freeship đơn từ 500k</div></div></div><div class="fx-car2-dots" id="fxCar2Dots"><button type="button" class="dot act" aria-label="Slide 1"></button><button type="button" class="dot" aria-label="Slide 2"></button><button type="button" class="dot" aria-label="Slide 3"></button><button type="button" class="fx-car2-play" id="fxCar2Play">Tạm dừng</button></div></div></div>
@@ -5887,7 +5914,7 @@
                 <p class="vi-name">Carousel tự chạy</p>
               </div>
               <span class="row-actions" hidden><button type="button" class="copy-btn" data-copy="Carousel Autoplay">Copy tên</button><button type="button" class="copy-btn" data-copy="Autoplay the hero Carousel, advancing every 4 seconds and pausing when the user hovers">Copy prompt</button></span>
-            </article>
+            <button type="button" class="fx-card-expand" aria-label="Phóng to xem chi tiết: Carousel Autoplay" title="Phóng to xem chi tiết"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 3h6v6"/><path d="M9 21H3v-6"/><path d="M21 3l-7 7"/><path d="M3 21l7-7"/></svg></button></article>
             <article class="card citem fxcomp" id="dropdown-slide-down" data-search="dropdown slide down menu thả xuống trượt xuống mờ dần menu tài khoản chọn ngôn ngữ bộ lọc flyonui menu xổ xuống mượt dropdown animation menu thả xuống mờ dần trượt xuống" tabindex="0" role="button" aria-haspopup="dialog" aria-label="Xem chi tiết Dropdown Slide-down">
               <span class="pin-badge" hidden><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a7 7 0 0 0-7 7c0 5.2 7 13 7 13s7-7.8 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></svg>Đã ghim</span>
               <div class="stage"><div class="fx-dd2" id="fxDd2"><button class="fx-dd2-btn" id="fxDd2Btn" type="button" aria-haspopup="true"><span class="ava3">KN</span> Tài khoản ▾</button><div class="fx-dd2-menu"><div>Đơn hàng của tôi</div><div>Đơn hàng</div><div>Cài đặt</div><div class="danger">Đăng xuất</div></div></div></div>
@@ -5896,7 +5923,7 @@
                 <p class="vi-name">Menu thả xuống</p>
               </div>
               <span class="row-actions" hidden><button type="button" class="copy-btn" data-copy="Dropdown Slide-down">Copy tên</button><button type="button" class="copy-btn" data-copy="Animate dropdown menus sliding down with a fade as they open under the button">Copy prompt</button></span>
-            </article>
+            <button type="button" class="fx-card-expand" aria-label="Phóng to xem chi tiết: Dropdown Slide-down" title="Phóng to xem chi tiết"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 3h6v6"/><path d="M9 21H3v-6"/><path d="M21 3l-7 7"/><path d="M3 21l7-7"/></svg></button></article>
             <article class="card citem fxcomp" id="tabs-indicator-slide" data-search="tabs indicator slide thanh chỉ báo tab trượt gạch chân tab layoutId FLIP motion tổng quan hoạt động cài đặt gạch chân tab trượt theo tab underline trượt thanh chỉ tab chạy theo animated tab indicator" tabindex="0" role="button" aria-haspopup="dialog" aria-label="Xem chi tiết Tabs Indicator Slide">
               <span class="pin-badge" hidden><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a7 7 0 0 0-7 7c0 5.2 7 13 7 13s7-7.8 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></svg>Đã ghim</span>
               <div class="stage"><div class="fx-tabs2" id="fxTabs2"><div class="fx-tabs2-head"><button type="button" class="act">Tổng quan</button><button type="button">Hoạt động</button><button type="button">Cài đặt</button><span class="fx-tabs2-ind" id="fxTabs2Ind"></span></div><div class="fx-tabs2-body" id="fxTabs2Body">Số liệu chính của trang…</div></div></div>
@@ -5905,7 +5932,7 @@
                 <p class="vi-name">Thanh chỉ báo tab trượt</p>
               </div>
               <span class="row-actions" hidden><button type="button" class="copy-btn" data-copy="Tabs Indicator Slide">Copy tên</button><button type="button" class="copy-btn" data-copy="Slide the Tabs Indicator underline smoothly to the active tab when switching">Copy prompt</button></span>
-            </article>
+            <button type="button" class="fx-card-expand" aria-label="Phóng to xem chi tiết: Tabs Indicator Slide" title="Phóng to xem chi tiết"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 3h6v6"/><path d="M9 21H3v-6"/><path d="M21 3l-7 7"/><path d="M3 21l7-7"/></svg></button></article>
             <article class="card citem fxcomp" id="staggered-list-entrance" data-search="staggered list entrance danh sách hiện lần lượt so le stagger motion delaychildren cascade lưới sản phẩm menu kết quả tìm kiếm danh sách hiện từng cái một stagger animation mục hiện lần lượt so le list fade in lần lượt" tabindex="0" role="button" aria-haspopup="dialog" aria-label="Xem chi tiết Staggered List Entrance">
               <span class="pin-badge" hidden><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a7 7 0 0 0-7 7c0 5.2 7 13 7 13s7-7.8 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></svg>Đã ghim</span>
               <div class="stage"><div class="fx-col"><div class="fx-stag" id="fxStag"><div class="fx-stag-item" style="transition-delay:0ms"><span class="dotn">1</span>Tư vấn chọn size miễn phí</div><div class="fx-stag-item" style="transition-delay:60ms"><span class="dotn">2</span>Đơn xử lý trong ngày</div><div class="fx-stag-item" style="transition-delay:120ms"><span class="dotn">3</span>Báo tiến độ đơn mỗi bước</div><div class="fx-stag-item" style="transition-delay:180ms"><span class="dotn">4</span>Đổi size miễn phí 30 ngày</div></div><button class="fx-btn" id="fxStagBtn" type="button">↻ Hiện lại</button></div></div>
@@ -5914,7 +5941,7 @@
                 <p class="vi-name">Danh sách hiện lần lượt</p>
               </div>
               <span class="row-actions" hidden><button type="button" class="copy-btn" data-copy="Staggered List Entrance">Copy tên</button><button type="button" class="copy-btn" data-copy="Stagger the product list entrance: each card fades up 60ms after the previous one">Copy prompt</button></span>
-            </article>
+            <button type="button" class="fx-card-expand" aria-label="Phóng to xem chi tiết: Staggered List Entrance" title="Phóng to xem chi tiết"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 3h6v6"/><path d="M9 21H3v-6"/><path d="M21 3l-7 7"/><path d="M3 21l7-7"/></svg></button></article>
             <article class="card citem fxcomp" id="popover-scale-in" data-search="popover scale-in popover phóng to hiện ra bảng nhỏ neo nút bấm radix origin bộ lọc cài đặt nhanh xem trước hộp nhỏ phóng nhẹ khi hiện popover zoom in hộp nổi scale hiệu ứng mở popover" tabindex="0" role="button" aria-haspopup="dialog" aria-label="Xem chi tiết Popover Scale-in">
               <span class="pin-badge" hidden><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a7 7 0 0 0-7 7c0 5.2 7 13 7 13s7-7.8 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></svg>Đã ghim</span>
               <div class="stage"><div class="fx-pop-wrap" id="fxPopWrap"><button class="fx-btn fx-pop-btn-pos" id="fxPopBtn" type="button" aria-haspopup="true">Cài đặt hiển thị</button><div class="fx-pop"><b>Hiển thị</b><div class="prow"><span>Mật độ dòng</span><b>Thoải mái</b></div><div class="prow"><span>Cỡ chữ</span><b>Vừa</b></div><div class="prow"><span>Ảnh bìa</span><b>Có</b></div></div></div></div>
@@ -5923,7 +5950,7 @@
                 <p class="vi-name">Popover phóng to hiện ra</p>
               </div>
               <span class="row-actions" hidden><button type="button" class="copy-btn" data-copy="Popover Scale-in">Copy tên</button><button type="button" class="copy-btn" data-copy="Scale the Popover in from 0.9 with a fade when it opens next to its trigger">Copy prompt</button></span>
-            </article>
+            <button type="button" class="fx-card-expand" aria-label="Phóng to xem chi tiết: Popover Scale-in" title="Phóng to xem chi tiết"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 3h6v6"/><path d="M9 21H3v-6"/><path d="M21 3l-7 7"/><path d="M3 21l7-7"/></svg></button></article>
             <article class="card citem fxcomp" id="toast-stack" data-search="toast stack toast xếp chồng sonner thông báo chồng lớp xòe ra vuốt bỏ dismiss nhiều thông báo cùng lúc nhiều thông báo xếp chồng toast chồng lớp sonner stack thông báo xếp lớp xòe ra" tabindex="0" role="button" aria-haspopup="dialog" aria-label="Xem chi tiết Toast Stack">
               <span class="pin-badge" hidden><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a7 7 0 0 0-7 7c0 5.2 7 13 7 13s7-7.8 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></svg>Đã ghim</span>
               <div class="stage"><div class="fx-tstack-wrap"><button class="fx-btn acc fx-toast-btn-pos" id="fxTstackBtn" type="button">Gửi 3 thông báo</button><div class="fx-tstack" id="fxTstack"><div class="tst"><span class="tick">✓</span>Đã lưu đơn hàng</div><div class="tst"><span class="tick">✓</span>Đã gửi email xác nhận</div><div class="tst"><span class="tick">✓</span>Đã đồng bộ dữ liệu</div></div></div></div>
@@ -5932,7 +5959,7 @@
                 <p class="vi-name">Toast xếp chồng</p>
               </div>
               <span class="row-actions" hidden><button type="button" class="copy-btn" data-copy="Toast Stack">Copy tên</button><button type="button" class="copy-btn" data-copy="Stack multiple Toasts with an overlapping stack effect that expands on hover, Sonner style">Copy prompt</button></span>
-            </article>
+            <button type="button" class="fx-card-expand" aria-label="Phóng to xem chi tiết: Toast Stack" title="Phóng to xem chi tiết"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 3h6v6"/><path d="M9 21H3v-6"/><path d="M21 3l-7 7"/><path d="M3 21l7-7"/></svg></button></article>
         </div>
       </section>
 
@@ -5947,7 +5974,7 @@
                 <p class="vi-name">Chữ xáo trộn rồi hiện dần</p>
               </div>
               <span class="row-actions" hidden><button type="button" class="copy-btn" data-copy="Scramble Text">Copy tên</button><button type="button" class="copy-btn" data-copy="Add a Scramble Text effect to the headline: letters shuffle randomly then settle into the final word">Copy prompt</button></span>
-            </article>
+            <button type="button" class="fx-card-expand" aria-label="Phóng to xem chi tiết: Scramble Text" title="Phóng to xem chi tiết"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 3h6v6"/><path d="M9 21H3v-6"/><path d="M21 3l-7 7"/><path d="M3 21l7-7"/></svg></button></article>
             <article class="card citem fxcomp" id="text-reveal-split-letters-typewriter" data-search="text reveal split letters typewriter chữ hiện từng ký tự tách chữ gõ máy headline splittext chữ hiện từng chữ cái gõ chữ từng ký tự typewriter effect chữ gõ máy tiêu đề hiện từng chữ" tabindex="0" role="button" aria-haspopup="dialog" aria-label="Xem chi tiết Text Reveal — Split Letters / Typewriter">
               <span class="pin-badge" hidden><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a7 7 0 0 0-7 7c0 5.2 7 13 7 13s7-7.8 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></svg>Đã ghim</span>
               <div class="stage"><div class="fx-col"><div class="fx-split" id="fxSplit">Chữ hiện từng ký tự</div><div class="fx-type"><span id="fxTypeTxt"></span><span class="caret"></span></div><button class="fx-btn" id="fxSplitReplay" type="button">↻ Phát lại</button></div></div>
@@ -5956,7 +5983,7 @@
                 <p class="vi-name">Chữ hiện từng ký tự (tách chữ / gõ máy)</p>
               </div>
               <span class="row-actions" hidden><button type="button" class="copy-btn" data-copy="Text Reveal — Split Letters / Typewriter">Copy tên</button><button type="button" class="copy-btn" data-copy="Reveal the headline letter by letter, or with a Typewriter effect that types and deletes words in a loop">Copy prompt</button></span>
-            </article>
+            <button type="button" class="fx-card-expand" aria-label="Phóng to xem chi tiết: Text Reveal — Split Letters / Typewriter" title="Phóng to xem chi tiết"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 3h6v6"/><path d="M9 21H3v-6"/><path d="M21 3l-7 7"/><path d="M3 21l7-7"/></svg></button></article>
             <article class="card citem fxcomp" id="marquee-infinite-scrolling-text" data-search="marquee infinite scrolling text chữ chạy vô hạn dải logo ticker khẩu hiệu dải chữ chạy mãi chữ chạy vòng tròn infinite marquee chữ chạy không ngừng dải logo chạy" tabindex="0" role="button" aria-haspopup="dialog" aria-label="Xem chi tiết Marquee / Infinite Scrolling Text">
               <span class="pin-badge" hidden><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a7 7 0 0 0-7 7c0 5.2 7 13 7 13s7-7.8 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></svg>Đã ghim</span>
               <div class="stage"><div class="marq"><div class="marq-track"><span>THỜI TRANG MỚI</span><span class="dotsep">•</span><span>GIẢM ĐẾN 40%</span><span class="dotsep">•</span><span>FREESHIP TOÀN QUỐC</span><span class="dotsep">•</span><span>THỜI TRANG MỚI</span><span class="dotsep">•</span><span>GIẢM ĐẾN 40%</span><span class="dotsep">•</span><span>FREESHIP TOÀN QUỐC</span><span class="dotsep">•</span></div></div></div>
@@ -5965,7 +5992,7 @@
                 <p class="vi-name">Chữ chạy vô hạn (marquee)</p>
               </div>
               <span class="row-actions" hidden><button type="button" class="copy-btn" data-copy="Marquee / Infinite Scrolling Text">Copy tên</button><button type="button" class="copy-btn" data-copy="Add an infinite Marquee of brand logos scrolling in a seamless loop across the page">Copy prompt</button></span>
-            </article>
+            <button type="button" class="fx-card-expand" aria-label="Phóng to xem chi tiết: Marquee / Infinite Scrolling Text" title="Phóng to xem chi tiết"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 3h6v6"/><path d="M9 21H3v-6"/><path d="M21 3l-7 7"/><path d="M3 21l7-7"/></svg></button></article>
             <article class="card citem fxcomp" id="shimmer-text" data-search="shimmer text shiny text chữ lấp lánh tia sáng quét chữ premium mới background-clip text motionkit chữ lấp lánh ánh sáng quét qua chữ shiny text chữ bóng loáng tia sáng chạy trên chữ" tabindex="0" role="button" aria-haspopup="dialog" aria-label="Xem chi tiết Shimmer Text">
               <span class="pin-badge" hidden><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a7 7 0 0 0-7 7c0 5.2 7 13 7 13s7-7.8 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></svg>Đã ghim</span>
               <div class="stage"><div class="fx-shimmer">✦ Gói Premium</div></div>
@@ -5974,7 +6001,7 @@
                 <p class="vi-name">Chữ lấp lánh</p>
               </div>
               <span class="row-actions" hidden><button type="button" class="copy-btn" data-copy="Shimmer Text">Copy tên</button><button type="button" class="copy-btn" data-copy="Add a Shimmer effect to the premium headline: a light sweep passes across the text repeatedly">Copy prompt</button></span>
-            </article>
+            <button type="button" class="fx-card-expand" aria-label="Phóng to xem chi tiết: Shimmer Text" title="Phóng to xem chi tiết"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 3h6v6"/><path d="M9 21H3v-6"/><path d="M21 3l-7 7"/><path d="M3 21l7-7"/></svg></button></article>
             <article class="card citem fxcomp" id="text-gradient-flow" data-search="text gradient flow chữ gradient chảy nhiều màu chạy qua chữ background-clip text animated gradient text hero headline chữ nhiều màu chảy chữ đổi màu gradient animated gradient text chữ màu chạy" tabindex="0" role="button" aria-haspopup="dialog" aria-label="Xem chi tiết Text Gradient Flow">
               <span class="pin-badge" hidden><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a7 7 0 0 0-7 7c0 5.2 7 13 7 13s7-7.8 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></svg>Đã ghim</span>
               <div class="stage"><div class="fx-gflow">Khám phá ngay hôm nay</div></div>
@@ -5983,7 +6010,7 @@
                 <p class="vi-name">Chữ gradient chảy</p>
               </div>
               <span class="row-actions" hidden><button type="button" class="copy-btn" data-copy="Text Gradient Flow">Copy tên</button><button type="button" class="copy-btn" data-copy="Animate a flowing Gradient across the headline text, cycling through navy, orange and pink">Copy prompt</button></span>
-            </article>
+            <button type="button" class="fx-card-expand" aria-label="Phóng to xem chi tiết: Text Gradient Flow" title="Phóng to xem chi tiết"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 3h6v6"/><path d="M9 21H3v-6"/><path d="M21 3l-7 7"/><path d="M3 21l7-7"/></svg></button></article>
         </div>
       </section>
 
@@ -5998,7 +6025,7 @@
                 <p class="vi-name">Mờ dần theo chiều sâu</p>
               </div>
               <span class="row-actions" hidden><button type="button" class="copy-btn" data-copy="Progressive Blur">Copy tên</button><button type="button" class="copy-btn" data-copy="Apply Progressive Blur at the photo&#x27;s bottom edge so it melts smoothly into the page background">Copy prompt</button></span>
-            </article>
+            <button type="button" class="fx-card-expand" aria-label="Phóng to xem chi tiết: Progressive Blur" title="Phóng to xem chi tiết"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 3h6v6"/><path d="M9 21H3v-6"/><path d="M21 3l-7 7"/><path d="M3 21l7-7"/></svg></button></article>
             <article class="card citem fxcomp" id="texture-noise" data-search="texture noise vân nhiễu hạt grain analog figma draw svg turbulence nền hạt nhiễu vân giấy grain texture nền nhám hạt film grain overlay" tabindex="0" role="button" aria-haspopup="dialog" aria-label="Xem chi tiết Texture &amp; Noise">
               <span class="pin-badge" hidden><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a7 7 0 0 0-7 7c0 5.2 7 13 7 13s7-7.8 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></svg>Đã ghim</span>
               <div class="stage"><div class="fg-noise-wrap"><div class="fg-noise"><svg class="nz" id="fgNoiseSvg" aria-hidden="true"><filter id="fgNoiseF"><feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2"/></filter><rect width="100%" height="100%" filter="url(#fgNoiseF)"/></svg><b>Bề mặt có vân hạt</b></div><label>Mật độ hạt <input type="range" id="fgNoiseRange" min="0" max="90" value="50" aria-label="Chỉnh mật độ hạt nhiễu"></label></div></div>
@@ -6007,7 +6034,7 @@
                 <p class="vi-name">Vân và nhiễu hạt</p>
               </div>
               <span class="row-actions" hidden><button type="button" class="copy-btn" data-copy="Texture &amp; Noise">Copy tên</button><button type="button" class="copy-btn" data-copy="Overlay a subtle Noise texture on the hero background for a warm film-grain feel">Copy prompt</button></span>
-            </article>
+            <button type="button" class="fx-card-expand" aria-label="Phóng to xem chi tiết: Texture &amp; Noise" title="Phóng to xem chi tiết"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 3h6v6"/><path d="M9 21H3v-6"/><path d="M21 3l-7 7"/><path d="M3 21l7-7"/></svg></button></article>
             <article class="card citem fxcomp" id="shader-effects-gradient-map" data-search="shader gradient map hiệu ứng shader tùy chỉnh riso print figma config 2026 webgl hiệu ứng màu kiểu riso gradient map shader đổi tông ảnh duotone shader effect" tabindex="0" role="button" aria-haspopup="dialog" aria-label="Xem chi tiết Shader Effects (Gradient Map)">
               <span class="pin-badge" hidden><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a7 7 0 0 0-7 7c0 5.2 7 13 7 13s7-7.8 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></svg>Đã ghim</span>
               <div class="stage"><div class="fg-shader"><div class="map"></div><span>Gradient map</span></div></div>
@@ -6016,7 +6043,7 @@
                 <p class="vi-name">Hiệu ứng shader tùy chỉnh</p>
               </div>
               <span class="row-actions" hidden><button type="button" class="copy-btn" data-copy="Shader Effects (Gradient Map)">Copy tên</button><button type="button" class="copy-btn" data-copy="Apply a Gradient Map shader to the campaign photo, remapping it to a navy-and-orange duotone">Copy prompt</button></span>
-            </article>
+            <button type="button" class="fx-card-expand" aria-label="Phóng to xem chi tiết: Shader Effects (Gradient Map)" title="Phóng to xem chi tiết"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 3h6v6"/><path d="M9 21H3v-6"/><path d="M21 3l-7 7"/><path d="M3 21l7-7"/></svg></button></article>
             <article class="card citem fxcomp" id="dynamic-strokes" data-search="dynamic strokes nét vẽ động variable width độ rộng nét thay đổi figma draw svg cọ vẽ tay nét vẽ dày mỏng nét cọ thay đổi variable stroke đường vẽ đậm nhạt nét vẽ tay động" tabindex="0" role="button" aria-haspopup="dialog" aria-label="Xem chi tiết Dynamic Strokes">
               <span class="pin-badge" hidden><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a7 7 0 0 0-7 7c0 5.2 7 13 7 13s7-7.8 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></svg>Đã ghim</span>
               <div class="stage"><div class="fg-stroke" id="fgStroke"><svg viewBox="0 0 168 64" aria-hidden="true"><path class="draw" d="M8 44 C 34 12, 52 58, 78 30 S 128 14, 158 34" fill="none" stroke="#FC7A01" stroke-width="5" stroke-linecap="round"/><path d="M8 44 C 34 12, 52 58, 78 30 S 128 14, 158 34" fill="none" stroke="#052E57" stroke-width="1.4" stroke-dasharray="3 7" opacity=".45"/></svg><div class="fg-row"><button type="button" class="fg-mini-btn" id="fgStrokeBtn">Vẽ lại</button></div></div></div>
@@ -6025,7 +6052,7 @@
                 <p class="vi-name">Nét vẽ động, độ rộng thay đổi</p>
               </div>
               <span class="row-actions" hidden><button type="button" class="copy-btn" data-copy="Dynamic Strokes">Copy tên</button><button type="button" class="copy-btn" data-copy="Draw the underline with Dynamic Strokes that vary in width like a real brush stroke">Copy prompt</button></span>
-            </article>
+            <button type="button" class="fx-card-expand" aria-label="Phóng to xem chi tiết: Dynamic Strokes" title="Phóng to xem chi tiết"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 3h6v6"/><path d="M9 21H3v-6"/><path d="M21 3l-7 7"/><path d="M3 21l7-7"/></svg></button></article>
             <article class="card citem fxcomp" id="gradient-animation" data-search="gradient animation gradient chuyển động nền hero stripe minigl webgl nền gradient chuyển động màu nền đổi dần animated background gradient nền hero động màu" tabindex="0" role="button" aria-haspopup="dialog" aria-label="Xem chi tiết Gradient Animation">
               <span class="pin-badge" hidden><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a7 7 0 0 0-7 7c0 5.2 7 13 7 13s7-7.8 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></svg>Đã ghim</span>
               <div class="stage"><div class="fx-grad"></div></div>
@@ -6034,7 +6061,7 @@
                 <p class="vi-name">Gradient chuyển động</p>
               </div>
               <span class="row-actions" hidden><button type="button" class="copy-btn" data-copy="Gradient Animation">Copy tên</button><button type="button" class="copy-btn" data-copy="Animate the hero Gradient background, slowly shifting between navy and deep blue hues">Copy prompt</button></span>
-            </article>
+            <button type="button" class="fx-card-expand" aria-label="Phóng to xem chi tiết: Gradient Animation" title="Phóng to xem chi tiết"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 3h6v6"/><path d="M9 21H3v-6"/><path d="M21 3l-7 7"/><path d="M3 21l7-7"/></svg></button></article>
             <article class="card citem fxcomp" id="glassmorphism-float" data-search="glassmorphism float kính mờ trôi nổi backdrop filter blur card nổi thẻ kính mờ nổi glass card kính mờ trôi glassmorphism card thẻ trong suốt mờ nền" tabindex="0" role="button" aria-haspopup="dialog" aria-label="Xem chi tiết Glassmorphism Float">
               <span class="pin-badge" hidden><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a7 7 0 0 0-7 7c0 5.2 7 13 7 13s7-7.8 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></svg>Đã ghim</span>
               <div class="stage"><div class="fx-glass-zone"><div class="fx-glass">Thẻ kính mờ<br /><small>Trôi nhẹ trên nền gradient</small></div></div></div>
@@ -6043,7 +6070,7 @@
                 <p class="vi-name">Kính mờ trôi nổi</p>
               </div>
               <span class="row-actions" hidden><button type="button" class="copy-btn" data-copy="Glassmorphism Float">Copy tên</button><button type="button" class="copy-btn" data-copy="Float a Glassmorphism card with blurred transparency over the hero photo">Copy prompt</button></span>
-            </article>
+            <button type="button" class="fx-card-expand" aria-label="Phóng to xem chi tiết: Glassmorphism Float" title="Phóng to xem chi tiết"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 3h6v6"/><path d="M9 21H3v-6"/><path d="M21 3l-7 7"/><path d="M3 21l7-7"/></svg></button></article>
             <article class="card citem fxcomp" id="confetti-celebration" data-search="confetti celebration pháo giấy ăn mừng canvas confetti hoàn thành thanh toán xong pháo giấy bay khi thành công confetti bắn ăn mừng đặt hàng thành công pháo giấy" tabindex="0" role="button" aria-haspopup="dialog" aria-label="Xem chi tiết Confetti / Celebration">
               <span class="pin-badge" hidden><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a7 7 0 0 0-7 7c0 5.2 7 13 7 13s7-7.8 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></svg>Đã ghim</span>
               <div class="stage"><div class="fx-conf-zone" id="fxConfZone"><button class="fx-btn acc" id="fxConfBtn" type="button">Hoàn thành ✓</button></div></div>
@@ -6052,7 +6079,7 @@
                 <p class="vi-name">Pháo giấy ăn mừng</p>
               </div>
               <span class="row-actions" hidden><button type="button" class="copy-btn" data-copy="Confetti / Celebration">Copy tên</button><button type="button" class="copy-btn" data-copy="Fire a Confetti burst when the order is placed successfully to celebrate the moment">Copy prompt</button></span>
-            </article>
+            <button type="button" class="fx-card-expand" aria-label="Phóng to xem chi tiết: Confetti / Celebration" title="Phóng to xem chi tiết"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 3h6v6"/><path d="M9 21H3v-6"/><path d="M21 3l-7 7"/><path d="M3 21l7-7"/></svg></button></article>
             <article class="card citem fxcomp" id="gradient-border" data-search="gradient border viền gradient chuyển động conic gradient property thẻ đề xuất khung ai animated border viền nhiều màu chạy viền gradient quay conic border viền phát sáng chuyển màu thẻ nổi bật viền" tabindex="0" role="button" aria-haspopup="dialog" aria-label="Xem chi tiết Gradient Border">
               <span class="pin-badge" hidden><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a7 7 0 0 0-7 7c0 5.2 7 13 7 13s7-7.8 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></svg>Đã ghim</span>
               <div class="stage"><div class="fx-gborder"><div class="fx-gborder-in"><span class="tag">ĐƯỢC ĐỀ XUẤT</span><b>Gói Pro — 199.000đ</b><small>Viền gradient xoay liên tục quanh thẻ giá nổi bật.</small></div></div></div>
@@ -6061,7 +6088,7 @@
                 <p class="vi-name">Viền gradient chuyển động</p>
               </div>
               <span class="row-actions" hidden><button type="button" class="copy-btn" data-copy="Gradient Border">Copy tên</button><button type="button" class="copy-btn" data-copy="Add an animated Gradient Border around the recommended pricing plan to make it stand out">Copy prompt</button></span>
-            </article>
+            <button type="button" class="fx-card-expand" aria-label="Phóng to xem chi tiết: Gradient Border" title="Phóng to xem chi tiết"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 3h6v6"/><path d="M9 21H3v-6"/><path d="M21 3l-7 7"/><path d="M3 21l7-7"/></svg></button></article>
             <article class="card citem fxcomp" id="rotating-badge" data-search="rotating badge huy hiệu xoay tròn chữ vòng tròn circular text con dấu cuộn xuống khám phá svg textpath chứng nhận giảm giá huy hiệu chữ xoay vòng tròn con dấu xoay circular badge chữ vòng quay scroll badge" tabindex="0" role="button" aria-haspopup="dialog" aria-label="Xem chi tiết Rotating Badge">
               <span class="pin-badge" hidden><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a7 7 0 0 0-7 7c0 5.2 7 13 7 13s7-7.8 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></svg>Đã ghim</span>
               <div class="stage"><div class="fx-rot" role="img" aria-label="Huy hiệu xoay tròn: Khám phá ngay, cuộn xuống"><svg class="ring" viewBox="0 0 100 100" aria-hidden="true"><defs><path id="fxRotPath" d="M50,50 m-38,0 a38,38 0 1,1 76,0 a38,38 0 1,1 -76,0" /></defs><text><textPath href="#fxRotPath">KHÁM PHÁ NGAY • CUỘN XUỐNG •</textPath></text></svg><span class="fx-rot-c"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v14m0 0 6-6m-6 6-6-6"/></svg></span></div></div>
@@ -6070,7 +6097,7 @@
                 <p class="vi-name">Huy hiệu xoay tròn</p>
               </div>
               <span class="row-actions" hidden><button type="button" class="copy-btn" data-copy="Rotating Badge">Copy tên</button><button type="button" class="copy-btn" data-copy="Add a Rotating Badge with circular text spinning slowly in the hero corner">Copy prompt</button></span>
-            </article>
+            <button type="button" class="fx-card-expand" aria-label="Phóng to xem chi tiết: Rotating Badge" title="Phóng to xem chi tiết"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 3h6v6"/><path d="M9 21H3v-6"/><path d="M21 3l-7 7"/><path d="M3 21l7-7"/></svg></button></article>
         </div>
       </section>
 
@@ -6085,7 +6112,7 @@
                 <p class="vi-name">Khung chờ lấp lánh (skeleton)</p>
               </div>
               <span class="row-actions" hidden><button type="button" class="copy-btn" data-copy="Skeleton Shimmer">Copy tên</button><button type="button" class="copy-btn" data-copy="Show Skeleton Shimmer placeholders with a sweeping light while the product grid loads">Copy prompt</button></span>
-            </article>
+            <button type="button" class="fx-card-expand" aria-label="Phóng to xem chi tiết: Skeleton Shimmer" title="Phóng to xem chi tiết"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 3h6v6"/><path d="M9 21H3v-6"/><path d="M21 3l-7 7"/><path d="M3 21l7-7"/></svg></button></article>
             <article class="card citem fxcomp" id="skeleton-to-content-morph" data-search="skeleton to content morph skeleton biến thành nội dung khung chờ thành nội dung thật swap tải xong không giật layout danh sách thẻ sản phẩm khung chờ biến thành nội dung thật skeleton thành thẻ thật morph loading chuyển skeleton sang nội dung" tabindex="0" role="button" aria-haspopup="dialog" aria-label="Xem chi tiết Skeleton to Content Morph">
               <span class="pin-badge" hidden><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a7 7 0 0 0-7 7c0 5.2 7 13 7 13s7-7.8 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></svg>Đã ghim</span>
               <div class="stage"><div class="fx-col"><div class="fx-morph-list" id="fxSwapList"><div class="fx-mcard"><span class="msk"><span class="av"></span><span class="ln"><i style="width:78%"></i><i style="width:52%"></i></span></span><span class="mct"><span class="av2" style="background:#0a4177">AK</span><span><b>Áo khoác dạ</b><small>Tải xong · 3 ảnh</small></span></span></div><div class="fx-mcard"><span class="msk"><span class="av"></span><span class="ln"><i style="width:70%"></i><i style="width:58%"></i></span></span><span class="mct"><span class="av2" style="background:#fc7a01">VH</span><span><b>Váy hoa nhí</b><small>Tải xong · 5 ảnh</small></span></span></div><div class="fx-mcard"><span class="msk"><span class="av"></span><span class="ln"><i style="width:82%"></i><i style="width:48%"></i></span></span><span class="mct"><span class="av2" style="background:#1d9e6c">AL</span><span><b>Áo len cổ lọ</b><small>Tải xong · 4 ảnh</small></span></span></div></div><button class="fx-btn" id="fxSwapBtn" type="button">↻ Tải lại</button></div></div>
@@ -6094,7 +6121,7 @@
                 <p class="vi-name">Skeleton biến thành nội dung</p>
               </div>
               <span class="row-actions" hidden><button type="button" class="copy-btn" data-copy="Skeleton to Content Morph">Copy tên</button><button type="button" class="copy-btn" data-copy="Morph the Skeleton placeholders smoothly into the real product cards once data arrives">Copy prompt</button></span>
-            </article>
+            <button type="button" class="fx-card-expand" aria-label="Phóng to xem chi tiết: Skeleton to Content Morph" title="Phóng to xem chi tiết"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 3h6v6"/><path d="M9 21H3v-6"/><path d="M21 3l-7 7"/><path d="M3 21l7-7"/></svg></button></article>
             <article class="card citem fxcomp" id="loading-spinner-variations" data-search="loading spinner variations vòng xoay tải nhiều kiểu chấm nhảy tiến trình đang xử lý nhiều kiểu vòng xoay tải các kiểu loading spinner dots vòng chờ nhiều mẫu đang tải nhiều kiểu" tabindex="0" role="button" aria-haspopup="dialog" aria-label="Xem chi tiết Loading Spinner Variations">
               <span class="pin-badge" hidden><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a7 7 0 0 0-7 7c0 5.2 7 13 7 13s7-7.8 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></svg>Đã ghim</span>
               <div class="stage"><div class="fx-spins"><span class="spinner sm" role="img" aria-label="Đang tải"></span><span class="fx-dots"><i></i><i></i><i></i></span><svg class="fx-ring" width="30" height="30" viewBox="0 0 36 36" aria-hidden="true"><circle cx="18" cy="18" r="15.5" fill="none" stroke="var(--border)" stroke-width="4"></circle><circle class="fx-ring-fg" cx="18" cy="18" r="15.5" fill="none" stroke="var(--accent)" stroke-width="4" stroke-linecap="round" stroke-dasharray="97.4" stroke-dashoffset="30"></circle></svg></div></div>
@@ -6103,7 +6130,7 @@
                 <p class="vi-name">Vòng xoay tải (nhiều kiểu)</p>
               </div>
               <span class="row-actions" hidden><button type="button" class="copy-btn" data-copy="Loading Spinner Variations">Copy tên</button><button type="button" class="copy-btn" data-copy="Show Loading Spinner Variations: a ring, bouncing dots and a progress bar for different loading states">Copy prompt</button></span>
-            </article>
+            <button type="button" class="fx-card-expand" aria-label="Phóng to xem chi tiết: Loading Spinner Variations" title="Phóng to xem chi tiết"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 3h6v6"/><path d="M9 21H3v-6"/><path d="M21 3l-7 7"/><path d="M3 21l7-7"/></svg></button></article>
             <article class="card citem fxcomp" id="number-count-up" data-search="number count up số đếm tăng dần thống kê counter requestanimationframe số chạy tăng dần số đếm lên counter animation số liệu chạy từ 0 số nhảy khi cuộn tới" tabindex="0" role="button" aria-haspopup="dialog" aria-label="Xem chi tiết Number Count-up">
               <span class="pin-badge" hidden><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a7 7 0 0 0-7 7c0 5.2 7 13 7 13s7-7.8 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></svg>Đã ghim</span>
               <div class="stage"><div class="fx-col"><div class="fx-count"><span class="num" id="fxCountNum">0</span><div class="fx-count-lbl">Khách hàng đã tin tưởng</div></div><button class="fx-btn" id="fxCountReplay" type="button">↻ Đếm lại</button></div></div>
@@ -6112,7 +6139,7 @@
                 <p class="vi-name">Số đếm tăng dần</p>
               </div>
               <span class="row-actions" hidden><button type="button" class="copy-btn" data-copy="Number Count-up">Copy tên</button><button type="button" class="copy-btn" data-copy="Count the statistics up from zero when they scroll into view, like 12,500 happy customers">Copy prompt</button></span>
-            </article>
+            <button type="button" class="fx-card-expand" aria-label="Phóng to xem chi tiết: Number Count-up" title="Phóng to xem chi tiết"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 3h6v6"/><path d="M9 21H3v-6"/><path d="M21 3l-7 7"/><path d="M3 21l7-7"/></svg></button></article>
             <article class="card citem fxcomp" id="pulse-breathing" data-search="pulse breathing nhịp đập thở phồng xẹp animate-ping animate-pulse đang trực tuyến online cta cảnh báo mới chấm xanh nhấp nháy vòng lan tỏa pulse dot đang live nhấp nháy thở nhẹ breathing animation" tabindex="0" role="button" aria-haspopup="dialog" aria-label="Xem chi tiết Pulse / Breathing">
               <span class="pin-badge" hidden><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a7 7 0 0 0-7 7c0 5.2 7 13 7 13s7-7.8 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></svg>Đã ghim</span>
               <div class="stage"><div class="fx-pulse-row"><span class="fx-pulse-dot-wrap"><span class="fx-pulse-dot"></span> Đang trực tuyến</span><button class="fx-pulse-cta" type="button">Đặt lịch ngay</button></div></div>
@@ -6121,7 +6148,7 @@
                 <p class="vi-name">Nhịp đập / Thở</p>
               </div>
               <span class="row-actions" hidden><button type="button" class="copy-btn" data-copy="Pulse / Breathing">Copy tên</button><button type="button" class="copy-btn" data-copy="Add a Pulse effect to the live-status dot: a soft ring expands and fades in a loop">Copy prompt</button></span>
-            </article>
+            <button type="button" class="fx-card-expand" aria-label="Phóng to xem chi tiết: Pulse / Breathing" title="Phóng to xem chi tiết"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 3h6v6"/><path d="M9 21H3v-6"/><path d="M21 3l-7 7"/><path d="M3 21l7-7"/></svg></button></article>
             <article class="card citem fxcomp" id="shake-wiggle" data-search="shake wiggle rung lắc lắc ngang báo lỗi ô nhập sai keyframes shake form đăng nhập lắc khi nhập sai rung ô nhập lỗi shake animation nhập sai là lắc form lỗi rung" tabindex="0" role="button" aria-haspopup="dialog" aria-label="Xem chi tiết Shake / Wiggle">
               <span class="pin-badge" hidden><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a7 7 0 0 0-7 7c0 5.2 7 13 7 13s7-7.8 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></svg>Đã ghim</span>
               <div class="stage"><div class="fx-shake-wrap" id="fxShakeWrap"><div class="fx-shake-row"><input class="fx-shake-input" id="fxShakeInput" type="text" placeholder="Nhập email rồi bấm Gửi…" aria-label="Ô email mẫu" /><button class="fx-btn acc" id="fxShakeBtn" type="button">Gửi</button></div><div class="fx-shake-msg">Chưa nhập email — ô nhập rung lắc để báo lỗi.</div></div></div>
@@ -6130,7 +6157,7 @@
                 <p class="vi-name">Rung lắc</p>
               </div>
               <span class="row-actions" hidden><button type="button" class="copy-btn" data-copy="Shake / Wiggle">Copy tên</button><button type="button" class="copy-btn" data-copy="Shake the input with a red border when the form is submitted with an invalid value">Copy prompt</button></span>
-            </article>
+            <button type="button" class="fx-card-expand" aria-label="Phóng to xem chi tiết: Shake / Wiggle" title="Phóng to xem chi tiết"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 3h6v6"/><path d="M9 21H3v-6"/><path d="M21 3l-7 7"/><path d="M3 21l7-7"/></svg></button></article>
             <article class="card citem fxcomp" id="bounce" data-search="bounce nảy nảy lên xuống animate-bounce cuộn xuống scroll down mũi tên gợi ý vui tươi mũi tên nảy lên xuống bounce animation nảy nhẹ gợi ý cuộn xuống icon nảy" tabindex="0" role="button" aria-haspopup="dialog" aria-label="Xem chi tiết Bounce">
               <span class="pin-badge" hidden><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a7 7 0 0 0-7 7c0 5.2 7 13 7 13s7-7.8 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></svg>Đã ghim</span>
               <div class="stage"><div class="fx-bounce-wrap"><span class="fx-bounce-arrow"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="m5 9 7 7 7-7"/></svg></span><span class="fx-bounce-lbl">Cuộn xuống để xem thêm</span></div></div>
@@ -6139,7 +6166,7 @@
                 <p class="vi-name">Nảy</p>
               </div>
               <span class="row-actions" hidden><button type="button" class="copy-btn" data-copy="Bounce">Copy tên</button><button type="button" class="copy-btn" data-copy="Add a gentle Bounce to the scroll-down arrow at the bottom of the hero">Copy prompt</button></span>
-            </article>
+            <button type="button" class="fx-card-expand" aria-label="Phóng to xem chi tiết: Bounce" title="Phóng to xem chi tiết"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 3h6v6"/><path d="M9 21H3v-6"/><path d="M21 3l-7 7"/><path d="M3 21l7-7"/></svg></button></article>
             <article class="card citem fxcomp" id="button-loading-to-success-morph" data-search="button loading to success morph nút biến hình loading thành công spinner tick gửi thanh toán lưu morph trạng thái nút xoay rồi thành dấu tick nút gửi xong biến hình button success animation bấm gửi xoay xong tick xanh" tabindex="0" role="button" aria-haspopup="dialog" aria-label="Xem chi tiết Button Loading to Success Morph">
               <span class="pin-badge" hidden><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a7 7 0 0 0-7 7c0 5.2 7 13 7 13s7-7.8 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></svg>Đã ghim</span>
               <div class="stage"><button class="fx-morph" id="fxMorph" type="button"><span class="mspin" aria-hidden="true"></span><span class="mtick" aria-hidden="true">✓</span><span class="mlbl" id="fxMorphLbl">Gửi tin nhắn</span></button></div>
@@ -6148,7 +6175,7 @@
                 <p class="vi-name">Nút biến hình Loading → Thành công</p>
               </div>
               <span class="row-actions" hidden><button type="button" class="copy-btn" data-copy="Button Loading to Success Morph">Copy tên</button><button type="button" class="copy-btn" data-copy="Morph the submit Button from a loading spinner into a green check once the order is confirmed">Copy prompt</button></span>
-            </article>
+            <button type="button" class="fx-card-expand" aria-label="Phóng to xem chi tiết: Button Loading to Success Morph" title="Phóng to xem chi tiết"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 3h6v6"/><path d="M9 21H3v-6"/><path d="M21 3l-7 7"/><path d="M3 21l7-7"/></svg></button></article>
             <article class="card citem fxcomp" id="notification-badge-pop" data-search="notification badge pop badge thông báo nảy lò xo spring chuông giỏ hàng số đếm animate-ping pop số thông báo nảy lên badge pop animation số đếm nhảy khi có tin mới chuông nảy số" tabindex="0" role="button" aria-haspopup="dialog" aria-label="Xem chi tiết Notification Badge Pop">
               <span class="pin-badge" hidden><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a7 7 0 0 0-7 7c0 5.2 7 13 7 13s7-7.8 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></svg>Đã ghim</span>
               <div class="stage"><div class="fx-bell-wrap"><span class="fx-bell"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8a6 6 0 1 0-12 0c0 7-3 8-3 8h18s-3-1-3-8"/><path d="M10.3 21a2 2 0 0 0 3.4 0"/></svg><span class="fx-bell-badge" id="fxBellBadge">3</span></span><button class="fx-btn" id="fxBellBtn" type="button">Tạo thông báo mới</button></div></div>
@@ -6157,7 +6184,7 @@
                 <p class="vi-name">Badge thông báo nảy</p>
               </div>
               <span class="row-actions" hidden><button type="button" class="copy-btn" data-copy="Notification Badge Pop">Copy tên</button><button type="button" class="copy-btn" data-copy="Pop the notification Badge with a spring bounce whenever a new message arrives">Copy prompt</button></span>
-            </article>
+            <button type="button" class="fx-card-expand" aria-label="Phóng to xem chi tiết: Notification Badge Pop" title="Phóng to xem chi tiết"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 3h6v6"/><path d="M9 21H3v-6"/><path d="M21 3l-7 7"/><path d="M3 21l7-7"/></svg></button></article>
             <article class="card citem fxcomp" id="chart-animate-on-load" data-search="chart animate on load biểu đồ động khi tải cột mọc lên dashboard báo cáo thống kê chart.js d3 animation biểu đồ cột mọc lên chart animation cột lớn dần khi mở dashboard biểu đồ động" tabindex="0" role="button" aria-haspopup="dialog" aria-label="Xem chi tiết Chart Animate on Load">
               <span class="pin-badge" hidden><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a7 7 0 0 0-7 7c0 5.2 7 13 7 13s7-7.8 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></svg>Đã ghim</span>
               <div class="stage"><div class="fx-col"><div class="fx-chart" id="fxChart"><div class="fx-chart-bars"><div class="fx-chart-bar" style="--h:38%"></div><div class="fx-chart-bar" style="--h:55%;transition-delay:.07s"></div><div class="fx-chart-bar" style="--h:44%;transition-delay:.14s"></div><div class="fx-chart-bar" style="--h:70%;transition-delay:.21s"></div><div class="fx-chart-bar" style="--h:62%;transition-delay:.28s"></div><div class="fx-chart-bar" style="--h:92%;transition-delay:.35s"></div></div><div class="fx-chart-lbls"><span>T1</span><span>T2</span><span>T3</span><span>T4</span><span>T5</span><span>T6</span></div></div><button class="fx-btn" id="fxChartBtn" type="button">↻ Tải lại dữ liệu</button></div></div>
@@ -6166,7 +6193,7 @@
                 <p class="vi-name">Biểu đồ động khi tải</p>
               </div>
               <span class="row-actions" hidden><button type="button" class="copy-btn" data-copy="Chart Animate on Load">Copy tên</button><button type="button" class="copy-btn" data-copy="Animate the dashboard bars growing from zero when the Chart first loads">Copy prompt</button></span>
-            </article>
+            <button type="button" class="fx-card-expand" aria-label="Phóng to xem chi tiết: Chart Animate on Load" title="Phóng to xem chi tiết"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 3h6v6"/><path d="M9 21H3v-6"/><path d="M21 3l-7 7"/><path d="M3 21l7-7"/></svg></button></article>
             <article class="card citem fxcomp" id="progress-ring-animate" data-search="progress ring animate vòng tròn tiến độ động phần trăm hoàn thành svg stroke dashoffset tải file đơn hàng mục tiêu circular progress vòng phần trăm chạy vòng tròn % động animated progress ring vòng tiến độ quay số chạy theo" tabindex="0" role="button" aria-haspopup="dialog" aria-label="Xem chi tiết Progress Ring Animate">
               <span class="pin-badge" hidden><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a7 7 0 0 0-7 7c0 5.2 7 13 7 13s7-7.8 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></svg>Đã ghim</span>
               <div class="stage"><div class="fx-ring-wrap"><div class="fx-ring-box"><svg class="fx-ring-svg" width="76" height="76" viewBox="0 0 76 76" aria-hidden="true"><circle class="fx-ring-bg" cx="38" cy="38" r="30" fill="none" stroke-width="7"></circle><circle class="fx-ring-val" id="fxRingVal" cx="38" cy="38" r="30" fill="none" stroke-width="7" stroke-linecap="round" stroke-dasharray="188.5" stroke-dashoffset="47.1"></circle></svg><span class="fx-ring-ctr" id="fxRingPct">75%</span></div><div class="fx-ring-side"><label for="fxRingRange">Hoàn thành đơn hàng</label><input type="range" id="fxRingRange" min="0" max="100" value="75" /><small>Kéo để vòng chạy theo %</small></div></div></div>
@@ -6175,7 +6202,7 @@
                 <p class="vi-name">Vòng tròn tiến độ động</p>
               </div>
               <span class="row-actions" hidden><button type="button" class="copy-btn" data-copy="Progress Ring Animate">Copy tên</button><button type="button" class="copy-btn" data-copy="Animate the Progress Ring filling to 75 percent with the number counting up alongside">Copy prompt</button></span>
-            </article>
+            <button type="button" class="fx-card-expand" aria-label="Phóng to xem chi tiết: Progress Ring Animate" title="Phóng to xem chi tiết"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 3h6v6"/><path d="M9 21H3v-6"/><path d="M21 3l-7 7"/><path d="M3 21l7-7"/></svg></button></article>
             <article class="card citem fxcomp" id="stepper-progress-animate" data-search="stepper progress animate tiến trình nhiều bước đường nối tô dần dấu tick đăng ký thanh toán onboarding các bước thanh bước tô dần dấu tick hiện lần lượt progress steps animation bước hoàn thành động" tabindex="0" role="button" aria-haspopup="dialog" aria-label="Xem chi tiết Stepper Progress Animate">
               <span class="pin-badge" hidden><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a7 7 0 0 0-7 7c0 5.2 7 13 7 13s7-7.8 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></svg>Đã ghim</span>
               <div class="stage"><div class="fx-col"><div class="fx-stepper" id="fxStepper"><div class="fx-steps"><span class="fx-steps-fill" id="fxStepsFill"></span><div class="fx-step act"><span class="cir">1</span><span class="slbl">Tài khoản</span></div><div class="fx-step"><span class="cir">2</span><span class="slbl">Sản phẩm</span></div><div class="fx-step"><span class="cir">3</span><span class="slbl">Size</span></div><div class="fx-step"><span class="cir">4</span><span class="slbl">Xem lại</span></div></div><div class="fx-step-body" id="fxStepBody">Bước 1/4 — Tạo tài khoản</div><div class="fx-step-nav"><button class="fx-btn" id="fxStepPrev" type="button">← Trước</button><button class="fx-btn acc" id="fxStepNext" type="button">Tiếp →</button></div></div></div></div>
@@ -6184,7 +6211,7 @@
                 <p class="vi-name">Tiến trình nhiều bước</p>
               </div>
               <span class="row-actions" hidden><button type="button" class="copy-btn" data-copy="Stepper Progress Animate">Copy tên</button><button type="button" class="copy-btn" data-copy="Animate the Stepper progress line filling step by step, with a check appearing on completed steps">Copy prompt</button></span>
-            </article>
+            <button type="button" class="fx-card-expand" aria-label="Phóng to xem chi tiết: Stepper Progress Animate" title="Phóng to xem chi tiết"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 3h6v6"/><path d="M9 21H3v-6"/><path d="M21 3l-7 7"/><path d="M3 21l7-7"/></svg></button></article>
             <article class="card citem fxcomp" id="map-pin-drop" data-search="map pin drop ghim bản đồ rơi xuống nảy bounce drop google maps marker địa điểm cửa hàng giao hàng vị trí ghim rơi xuống bản đồ pin drop animation marker nảy khi hiện ghim địa điểm rơi" tabindex="0" role="button" aria-haspopup="dialog" aria-label="Xem chi tiết Map Pin Drop">
               <span class="pin-badge" hidden><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a7 7 0 0 0-7 7c0 5.2 7 13 7 13s7-7.8 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></svg>Đã ghim</span>
               <div class="stage"><div class="fx-col"><div class="fx-map drop" id="fxMap"><svg class="fx-pin p2" style="left:26%;top:42%" viewBox="0 0 24 30" aria-hidden="true"><path d="M12 0C5.9 0 1 4.9 1 11c0 8.2 11 19 11 19s11-10.8 11-19C23 4.9 18.1 0 12 0z" fill="#0a4177"/><circle cx="12" cy="11" r="4.2" fill="#fff"/></svg><svg class="fx-pin p3" style="left:74%;top:36%" viewBox="0 0 24 30" aria-hidden="true"><path d="M12 0C5.9 0 1 4.9 1 11c0 8.2 11 19 11 19s11-10.8 11-19C23 4.9 18.1 0 12 0z" fill="#1d9e6c"/><circle cx="12" cy="11" r="4.2" fill="#fff"/></svg><svg class="fx-pin p1 sel" style="left:50%;top:60%" viewBox="0 0 24 30" aria-hidden="true"><path d="M12 0C5.9 0 1 4.9 1 11c0 8.2 11 19 11 19s11-10.8 11-19C23 4.9 18.1 0 12 0z" fill="#fc7a01"/><circle cx="12" cy="11" r="4.2" fill="#fff"/></svg></div><button class="fx-btn" id="fxMapBtn" type="button">↻ Thả ghim lại</button></div></div>
@@ -6193,7 +6220,7 @@
                 <p class="vi-name">Ghim bản đồ rơi xuống</p>
               </div>
               <span class="row-actions" hidden><button type="button" class="copy-btn" data-copy="Map Pin Drop">Copy tên</button><button type="button" class="copy-btn" data-copy="Drop the Map Pin onto the shop location with a small bounce when the map loads">Copy prompt</button></span>
-            </article>
+            <button type="button" class="fx-card-expand" aria-label="Phóng to xem chi tiết: Map Pin Drop" title="Phóng to xem chi tiết"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 3h6v6"/><path d="M9 21H3v-6"/><path d="M21 3l-7 7"/><path d="M3 21l7-7"/></svg></button></article>
         </div>
       </section>
 
@@ -6859,7 +6886,7 @@
       <div class="fx-overlay-box">
         <div class="fx-overlay-head">
           <div>
-            <div class="fx-overlay-title" id="fxOverlayTitle"></div>
+            <div class="pop-title-row"><div class="fx-overlay-title" id="fxOverlayTitle"></div><button type="button" class="copy-name-icon pop-copy-icon" id="popCopyIcon" aria-label="Copy tên tiếng Anh" title="Copy tên tiếng Anh"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="12" height="12" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg><span class="copy-tip">Đã copy</span></button></div>
             <div class="fx-overlay-sub" id="fxOverlaySub"></div>
           </div>
           <button type="button" class="fx-overlay-close" id="fxOverlayClose" aria-label="Đóng chế độ mở rộng"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="M5 5l14 14M19 5L5 19"/></svg> Đóng</button>
@@ -8447,6 +8474,8 @@
       var popCopyName = document.getElementById("popCopyName");
       var popCopyPrompt = document.getElementById("popCopyPrompt");
       var popPin = document.getElementById("popPin");
+      var popCopyIcon = document.getElementById("popCopyIcon");
+      var overlayBox = overlay ? overlay.querySelector(".fx-overlay-box") : null;
       var movedStage = null, movedHome = null, movedNext = null, lastFocus = null, currentCard = null;
 
       function cardData(card) {
@@ -8473,6 +8502,8 @@
         if (!stage || !overlay) return;
         var d = cardData(card);
         currentCard = card;
+        if (overlayBox) overlayBox.classList.toggle("pop-fx", card.classList.contains("fxcomp"));
+        if (popCopyIcon) popCopyIcon.setAttribute("aria-label", "Copy tên tiếng Anh: " + (d.en || ""));
         overlayTitle.textContent = d.en || "Chi tiết";
         overlaySub.textContent = d.vi || "";
         if (popDesc) {
@@ -8543,6 +8574,19 @@
         if (pb) { pb.click(); syncPopPin(); }
       });
       document.querySelectorAll(".card.citem").forEach(function (card) {
+        if (card.classList.contains("fxcomp")) {
+          /* Thẻ hiệu ứng: CHỈ nút phóng to (góc dưới phải) mới mở popup — bấm vào
+             vùng demo là tương tác trực tiếp với hiệu ứng, không mở popup. */
+          card.removeAttribute("role");
+          card.removeAttribute("aria-haspopup");
+          card.setAttribute("tabindex", "-1");
+          var exBtn = card.querySelector(".fx-card-expand");
+          if (exBtn) exBtn.addEventListener("click", function (e) {
+            e.stopPropagation();
+            openCard(card, exBtn);
+          });
+          return;
+        }
         card.addEventListener("click", function (e) {
           if (e.target.closest("button, a, input, select, textarea, label")) return;
           openCard(card, card);
@@ -8550,6 +8594,30 @@
         card.addEventListener("keydown", function (e) {
           if ((e.key === "Enter" || e.key === " ") && e.target === card) { e.preventDefault(); openCard(card, card); }
         });
+      });
+      if (popCopyIcon) popCopyIcon.addEventListener("click", function (e) {
+        e.stopPropagation();
+        if (!currentCard) return;
+        var text = cardData(currentCard).nameText || cardData(currentCard).en || "";
+        if (!text) return;
+        function showTip() {
+          popCopyIcon.classList.add("copied");
+          setTimeout(function () { popCopyIcon.classList.remove("copied"); }, 1400);
+        }
+        function fallback() {
+          var ta = document.createElement("textarea");
+          ta.value = text;
+          ta.setAttribute("readonly", "");
+          ta.style.position = "fixed";
+          ta.style.opacity = "0";
+          document.body.appendChild(ta);
+          ta.select();
+          try { document.execCommand("copy"); } catch (err) {}
+          document.body.removeChild(ta);
+          showTip();
+        }
+        if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(text).then(showTip, fallback);
+        else fallback();
       });
       document.querySelectorAll(".copy-name-icon").forEach(function (btn) {
         btn.addEventListener("click", function (e) {
@@ -11259,6 +11327,335 @@
           if (t) t.addEventListener("click", function () { setTimeout(fitNames, 40); });
         });
         fitNames();
+      })();
+    </script>
+    <script>
+      /* ---------- Đợt áp demo 21:30: mọi hiệu ứng TỰ CHẠY LIÊN TỤC theo vòng lặp ----------
+         Nguyên tắc: hiệu ứng chạy 1 lần rồi dừng được phát lại theo chu kỳ; hiệu ứng vốn
+         theo chuột/cuộn thì tự trôi nhẹ khi không ai tương tác; hiệu ứng bấm mới chạy thì
+         tự bấm theo chu kỳ. Mọi vòng tự chạy chỉ chạy khi demo đang trong khung hình
+         (kể cả khi demo đã dời vào popup — khung popup nằm trong khung hình nên vẫn chạy
+         trong lúc người dùng đọc mô tả bên dưới), tạm nhường khi người dùng vừa thao tác
+         (bấm / cuộn / chạm / phím) và tôn trọng prefers-reduced-motion. */
+      (function () {
+        "use strict";
+        if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+        function $(id) { return document.getElementById(id); }
+        var lastInteract = 0;
+        ["pointerdown", "wheel", "touchstart", "keydown"].forEach(function (ev) {
+          document.addEventListener(ev, function () { lastInteract = Date.now(); }, { passive: true, capture: true });
+        });
+        function idle(ms) { return Date.now() - lastInteract > ms; }
+        function inView(el) {
+          if (!el || !el.getClientRects || el.getClientRects().length === 0) return false;
+          var r = el.getBoundingClientRect();
+          return r.bottom > -160 && r.top < window.innerHeight + 160 && r.right > 0 && r.left < window.innerWidth;
+        }
+        function every(ms, fn) { setInterval(function () { fn(); }, ms); }
+        function rafLoop(fn) { (function tick() { if (!document.hidden) fn(); requestAnimationFrame(tick); })(); }
+        function clickCycle(id, ms, idleMs) {
+          var btn = $(id);
+          if (!btn) return;
+          every(ms, function () { if (inView(btn) && idle(idleMs || 4500)) btn.click(); });
+        }
+
+        /* --- Nhóm cuộn: khung tự cuộn lên/xuống vòng tròn, nhường khi người dùng cuộn --- */
+        function autoScroll(frame, opts) {
+          if (!frame) return;
+          opts = opts || {};
+          var dir = 1, holdUntil = 0;
+          every(opts.stepMs || 110, function () {
+            if (!inView(frame) || !idle(2500) || Date.now() < holdUntil) return;
+            var max = frame.scrollHeight - frame.clientHeight;
+            if (max <= 0) return;
+            var nt = frame.scrollTop + dir * (opts.step || 5);
+            if (nt >= max) { nt = max; dir = -1; holdUntil = Date.now() + (opts.holdMs || 1500); }
+            if (nt <= 0) { nt = 0; dir = 1; holdUntil = Date.now() + (opts.holdMs || 1500); if (opts.onTop) opts.onTop(); }
+            frame.scrollTop = nt;
+            if (opts.onTick) opts.onTick();
+          });
+        }
+        autoScroll($("fxPxFrame"));
+        autoScroll($("fxClipFrame"));
+        autoScroll($("fxShFrame"));
+        autoScroll($("fxHFrame"));
+        autoScroll($("fxProgFrame"));
+        autoScroll($("fxSmoothFrame"), { stepMs: 280, step: 34, holdMs: 1200 });
+        var rvF = $("fxRevealFrame");
+        if (rvF) {
+          var rvCards = rvF.querySelectorAll(".fx-rv-card");
+          autoScroll(rvF, {
+            holdMs: 1500,
+            onTop: function () { rvCards.forEach(function (c) { c.classList.remove("in"); }); },
+            onTick: function () {
+              var fr = rvF.getBoundingClientRect();
+              rvCards.forEach(function (c) {
+                var cr = c.getBoundingClientRect();
+                if (cr.top - fr.top < rvF.clientHeight - 6 && cr.bottom - fr.top > 0) c.classList.add("in");
+              });
+            }
+          });
+        }
+
+        /* --- Phát lại theo chu kỳ các hiệu ứng vốn chạy 1 lần --- */
+        clickCycle("fxHeroReplay", 4200);
+        clickCycle("fxSplitReplay", 4600);
+        clickCycle("fxCountReplay", 4000);
+        clickCycle("fgScrBtn", 3600);
+        clickCycle("fgStrokeBtn", 3400);
+        clickCycle("fxConfBtn", 4200);
+        clickCycle("fxSwapBtn", 5200);
+        clickCycle("fxChartBtn", 4600);
+        clickCycle("fxStagBtn", 5200);
+        clickCycle("fxSkelBtn", 4600);
+        clickCycle("fxMapBtn", 3800);
+        clickCycle("fxMorph", 4800);
+
+        /* --- Tự bấm theo chu kỳ các hiệu ứng vốn chờ bấm --- */
+        clickCycle("fxToastBtn", 4600);
+        clickCycle("fxTstackBtn", 6800);
+        clickCycle("fxPageBtn", 3200);
+        clickCycle("fgSmartBtn", 3000);
+        clickCycle("axMtRun", 2800);
+        clickCycle("axRmRun", 3200);
+        clickCycle("fxDd2Btn", 3200);
+        clickCycle("fxPopBtn", 3400);
+        clickCycle("axGpBtn", 3600);
+
+        var mWrap = $("fxMWrap");
+        if (mWrap) every(3400, function () {
+          if (!inView(mWrap) || !idle(4500)) return;
+          var b = $(mWrap.classList.contains("open") ? "fxMClose" : "fxMOpen");
+          if (b) b.click();
+        });
+        var dFrame = $("fxDFrame");
+        if (dFrame) every(3600, function () {
+          if (!inView(dFrame) || !idle(4500)) return;
+          if (dFrame.classList.contains("open")) dFrame.classList.remove("open");
+          else { var b = $("fxDOpen"); if (b) b.click(); }
+        });
+        var searchx = $("fxSearchx"), searchxInput = $("fxSearchxInput");
+        if (searchx) every(3400, function () {
+          if (!inView(searchx) || !idle(4500)) return;
+          if (searchxInput && searchxInput.value.trim() !== "") return;
+          searchx.classList.toggle("open");
+        });
+        var tmInput = $("fxTmInput");
+        if (tmInput) every(2400, function () {
+          if (inView(tmInput) && idle(2500)) tmInput.checked = !tmInput.checked;
+        });
+        var fxAcc = $("fxAcc");
+        if (fxAcc) {
+          var accHeads = fxAcc.querySelectorAll(".fx-acc-head"), accIdx = 0;
+          every(3000, function () {
+            if (!inView(fxAcc) || !idle(4500) || !accHeads.length) return;
+            accHeads[accIdx % accHeads.length].click();
+            accIdx++;
+          });
+        }
+        var tabs2 = $("fxTabs2");
+        if (tabs2) {
+          var tabBtns = tabs2.querySelectorAll(".fx-tabs2-head button"), tabIdx = 0;
+          every(3000, function () {
+            if (!inView(tabs2) || !idle(4500) || !tabBtns.length) return;
+            tabIdx = (tabIdx + 1) % tabBtns.length;
+            tabBtns[tabIdx].click();
+          });
+        }
+        var stNext = $("fxStepNext"), stPrev = $("fxStepPrev");
+        if (stNext && stPrev) {
+          var stCount = 0;
+          every(2600, function () {
+            if (!inView(stNext) || !idle(4500)) return;
+            ((stCount % 6) < 3 ? stNext : stPrev).click();
+            stCount++;
+          });
+        }
+        var flip = $("fxFlip"), flipHover = false;
+        if (flip) {
+          flip.addEventListener("mouseenter", function () { flipHover = true; });
+          flip.addEventListener("mouseleave", function () { flipHover = false; });
+          every(3400, function () {
+            if (inView(flip) && idle(4500) && !flipHover) flip.classList.toggle("flipped");
+          });
+        }
+        var starsBox = $("fxStars");
+        if (starsBox) {
+          var starBtns = starsBox.querySelectorAll(".fx-star"), starIdx = 0, starClear = $("fxStarsClear");
+          every(1700, function () {
+            if (!inView(starsBox) || !idle(6000) || !starBtns.length) return;
+            if (starIdx < starBtns.length) { starBtns[starIdx].click(); starIdx++; }
+            else { if (starClear) starClear.click(); starIdx = 0; }
+          });
+        }
+        var shakeBtn = $("fxShakeBtn"), shakeInput = $("fxShakeInput");
+        if (shakeBtn) every(4400, function () {
+          if (inView(shakeBtn) && idle(4500) && shakeInput && shakeInput.value.trim() === "") shakeBtn.click();
+        });
+        var bellBadge = $("fxBellBadge");
+        if (bellBadge) every(3800, function () {
+          if (!inView(bellBadge) || !idle(3000)) return;
+          bellBadge.classList.remove("pop");
+          void bellBadge.offsetWidth;
+          bellBadge.classList.add("pop");
+        });
+        var tlPlay = $("fgTlPlay");
+        if (tlPlay) every(3400, function () {
+          if (!inView(tlPlay) || !idle(4500)) return;
+          var tx = tlPlay.textContent.trim();
+          if (tx === "Phát" || tx === "Phát lại") tlPlay.click();
+        });
+        var avstack = document.querySelector(".fx-avstack");
+        if (avstack) every(3000, function () {
+          if (inView(avstack) && idle(3000)) avstack.classList.toggle("auto-spread");
+        });
+        var tipBtns = document.querySelectorAll(".fx-tip-btn");
+        if (tipBtns.length) {
+          var tipIdx = 0;
+          every(2600, function () {
+            if (!inView(tipBtns[0]) || !idle(3000)) return;
+            tipBtns.forEach(function (b) { b.classList.remove("tip-show"); });
+            tipBtns[tipIdx % tipBtns.length].classList.add("tip-show");
+            tipIdx++;
+          });
+        }
+
+        /* --- Thanh trượt tự dao động nhẹ khi không ai kéo --- */
+        function oscillate(input, lo, hi) {
+          if (!input) return;
+          var dir = 1;
+          every(2600, function () {
+            if (!inView(input) || !idle(6000) || document.activeElement === input) return;
+            var v = parseFloat(input.value) + dir * (hi - lo) * 0.45;
+            if (v >= hi) { v = hi; dir = -1; }
+            if (v <= lo) { v = lo; dir = 1; }
+            input.value = v;
+            input.dispatchEvent(new Event("input", { bubbles: true }));
+          });
+        }
+        oscillate($("fxSld"), 10, 95);
+        oscillate($("fxRingRange"), 10, 95);
+        oscillate($("fgPblurRange"), 1, 13);
+        oscillate($("fgNoiseRange"), 25, 75);
+
+        /* --- Tự trôi nhẹ cho hiệu ứng theo chuột khi không có chuột --- */
+        var mp = $("fgMpar");
+        if (mp) {
+          var mpL1 = mp.querySelector(".l1"), mpL2 = mp.querySelector(".l2"), mpL3 = mp.querySelector(".l3"), mpLast = 0;
+          mp.addEventListener("pointermove", function () { mpLast = Date.now(); });
+          mp.addEventListener("pointerleave", function () { mpLast = 0; });
+          rafLoop(function () {
+            if (!inView(mp) || Date.now() - mpLast < 1400) return;
+            var t = Date.now() / 1000, dx = Math.sin(t * 0.6) * 0.32, dy = Math.cos(t * 0.8) * 0.26;
+            if (mpL1) mpL1.style.transform = "translate(" + (dx * 16).toFixed(1) + "px," + (dy * 12).toFixed(1) + "px)";
+            if (mpL2) mpL2.style.transform = "translate(" + (dx * -22).toFixed(1) + "px," + (dy * -14).toFixed(1) + "px)";
+            if (mpL3) mpL3.style.transform = "translate(" + (dx * 7).toFixed(1) + "px,0)";
+          });
+        }
+        var pxh = $("fxPxh");
+        if (pxh) {
+          var pxhLayers = pxh.querySelectorAll("[data-depth]"), pxhLast = 0;
+          pxh.addEventListener("mousemove", function () { pxhLast = Date.now(); });
+          pxh.addEventListener("mouseleave", function () { pxhLast = 0; });
+          rafLoop(function () {
+            if (!inView(pxh) || Date.now() - pxhLast < 1400) return;
+            var t = Date.now() / 1000, dx = Math.sin(t * 0.55) * 0.5, dy = Math.cos(t * 0.75) * 0.4;
+            pxhLayers.forEach(function (l) {
+              var d = parseFloat(l.getAttribute("data-depth")) || 8;
+              l.style.transform = "translate(" + (dx * d).toFixed(1) + "px," + (dy * d).toFixed(1) + "px)";
+            });
+          });
+        }
+        var magZone = $("fxMagZone"), magBtn = $("fxMagBtn");
+        if (magZone && magBtn) {
+          var magIn = false, magLast = 0;
+          magZone.addEventListener("mouseenter", function () { magIn = true; });
+          magZone.addEventListener("mousemove", function () { magLast = Date.now(); });
+          magZone.addEventListener("mouseleave", function () { magIn = false; magLast = 0; });
+          rafLoop(function () {
+            if (!inView(magBtn) || magIn || Date.now() - magLast < 1400) return;
+            var t = Date.now() / 1000;
+            magBtn.style.transform = "translate(" + (Math.sin(t * 0.9) * 6).toFixed(1) + "px," + (Math.cos(t * 1.1) * 5).toFixed(1) + "px)";
+          });
+        }
+        var tilt = $("fxTiltCard");
+        if (tilt) {
+          var tiltIn = false, tiltLast = 0;
+          tilt.addEventListener("mouseenter", function () { tiltIn = true; });
+          tilt.addEventListener("mousemove", function () { tiltLast = Date.now(); });
+          tilt.addEventListener("mouseleave", function () { tiltIn = false; tiltLast = 0; });
+          rafLoop(function () {
+            if (!inView(tilt) || tiltIn || Date.now() - tiltLast < 1200) return;
+            var t = Date.now() / 1000;
+            tilt.style.transform = "translateY(-3px) rotateX(" + (Math.sin(t * 0.7) * 4).toFixed(1) + "deg) rotateY(" + (Math.cos(t * 0.9) * 5).toFixed(1) + "deg)";
+          });
+        }
+        var glowZone = $("fxGlowZone"), glowEl = $("fxGlow");
+        if (glowZone && glowEl) {
+          var glowLast = 0;
+          glowZone.addEventListener("mousemove", function () { glowLast = Date.now(); });
+          glowZone.addEventListener("mouseleave", function () { glowLast = 0; });
+          rafLoop(function () {
+            if (!inView(glowZone) || Date.now() - glowLast < 1300) return;
+            var r = glowZone.getBoundingClientRect(), t = Date.now() / 1000;
+            glowEl.style.left = ((0.5 + Math.sin(t * 0.5) * 0.32) * r.width).toFixed(1) + "px";
+            glowEl.style.top = ((0.5 + Math.cos(t * 0.7) * 0.3) * r.height).toFixed(1) + "px";
+          });
+        }
+        var zoomBox = document.querySelector(".fx-zoom");
+        if (zoomBox) {
+          var zoomImg = zoomBox.querySelector(".fx-zoom-img"), zoomIn = false, zoomOn = false;
+          zoomBox.addEventListener("mouseenter", function () { zoomIn = true; });
+          zoomBox.addEventListener("mouseleave", function () { zoomIn = false; });
+          every(2800, function () {
+            if (!zoomImg || !inView(zoomBox) || zoomIn || !idle(3000)) return;
+            zoomOn = !zoomOn;
+            zoomImg.style.transform = zoomOn ? "scale(1.12)" : "scale(1)";
+          });
+        }
+        var ripBtn = $("fxRippleBtn");
+        if (ripBtn) every(3000, function () {
+          if (!inView(ripBtn) || !idle(3500)) return;
+          var r = ripBtn.getBoundingClientRect(), d = Math.max(r.width, r.height);
+          var s = document.createElement("span");
+          s.className = "fx-ripple";
+          s.style.width = s.style.height = d + "px";
+          s.style.left = (r.width / 2 - d / 2) + "px";
+          s.style.top = (r.height / 2 - d / 2) + "px";
+          ripBtn.appendChild(s);
+          setTimeout(function () { s.remove(); }, 700);
+        });
+
+        /* --- 3D Transform tự xoay khi không kéo thanh trượt; Draggable tự dạo khi không kéo --- */
+        var c3d = $("fg3dCard");
+        if (c3d) {
+          var c3dTimer = null;
+          var armSway = function () {
+            clearTimeout(c3dTimer);
+            c3dTimer = setTimeout(function () { c3d.classList.add("auto-sway"); }, 2600);
+          };
+          ["fg3dY", "fg3dX"].forEach(function (id) {
+            var rg = $(id);
+            if (rg) rg.addEventListener("input", function () { c3d.classList.remove("auto-sway"); armSway(); });
+          });
+          armSway();
+        }
+        var dragFrame = $("fgDrag"), dragChip = $("fgDragChip");
+        if (dragFrame && dragChip) {
+          var dragging = false, nudgeIdx = 0;
+          var spots = [[0.06, 0.12], [0.55, 0.15], [0.5, 0.58], [0.08, 0.52]];
+          dragChip.addEventListener("pointerdown", function () { dragging = true; dragChip.classList.remove("nudging"); });
+          ["pointerup", "pointercancel"].forEach(function (ev) { dragChip.addEventListener(ev, function () { dragging = false; }); });
+          every(3200, function () {
+            if (!inView(dragFrame) || dragging || !idle(5000)) return;
+            var fr = dragFrame.getBoundingClientRect();
+            var sp = spots[nudgeIdx % spots.length];
+            nudgeIdx++;
+            dragChip.classList.add("nudging");
+            dragChip.style.left = Math.max(0, (fr.width - dragChip.offsetWidth) * sp[0]) + "px";
+            dragChip.style.top = Math.max(0, (fr.height - dragChip.offsetHeight) * sp[1]) + "px";
+          });
+        }
       })();
     </script>
   </body>
