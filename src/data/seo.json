@@ -1,0 +1,26 @@
+{
+  "title": "Thành Phần Web Thường Gặp — Tra cứu thành phần web, hiệu ứng chuyển động và bảng màu",
+  "metaDescription": "Tra cứu nhanh 175 thành phần thường gặp trên website với demo trực tiếp, tên tiếng Anh – tiếng Việt và mô tả chức năng, cùng 67 hiệu ứng chuyển động và công cụ đổi màu xem trước.",
+  "og": {
+    "og:title": "Thành Phần Web Thường Gặp — Tra cứu thành phần web, hiệu ứng chuyển động và bảng màu",
+    "og:description": "Tra cứu nhanh 175 thành phần thường gặp trên website với demo trực tiếp, tên tiếng Anh – tiếng Việt và mô tả chức năng, cùng 67 hiệu ứng chuyển động và công cụ đổi màu xem trước.",
+    "og:type": "website",
+    "og:url": "https://thanh-phan-web.vercel.app/",
+    "og:locale": "vi_VN",
+    "og:image": "https://thanh-phan-web.vercel.app/og-image.png",
+    "og:image:width": "1200",
+    "og:image:height": "630",
+    "og:image:alt": "Thành Phần Web Thường Gặp"
+  },
+  "twitter": {
+    "twitter:card": "summary_large_image",
+    "twitter:title": "Thành Phần Web Thường Gặp — Tra cứu thành phần web, hiệu ứng chuyển động và bảng màu",
+    "twitter:description": "Tra cứu nhanh 175 thành phần thường gặp trên website với demo trực tiếp, tên tiếng Anh – tiếng Việt và mô tả chức năng, cùng 67 hiệu ứng chuyển động và công cụ đổi màu xem trước.",
+    "twitter:image": "https://thanh-phan-web.vercel.app/og-image.png"
+  },
+  "canonical": "https://thanh-phan-web.vercel.app/",
+  "jsonLd": [
+    "{\n      \"@context\": \"https://schema.org\",\n      \"@type\": \"WebSite\",\n      \"name\": \"Thành Phần Web Thường Gặp\",\n      \"description\": \"Tra cứu nhanh 175 thành phần thường gặp trên website với demo trực tiếp, tên tiếng Anh – tiếng Việt và mô tả chức năng, cùng 67 hiệu ứng chuyển động và công cụ đổi màu xem trước.\",\n      \"inLanguage\": \"vi\"\n    }",
+    "{\n      \"@context\": \"https://schema.org\",\n      \"@type\": \"ItemList\",\n      \"name\": \"Các mục chính của Thành Phần Web Thường Gặp\",\n      \"inLanguage\": \"vi\",\n      \"itemListElement\": [\n        { \"@type\": \"ListItem\", \"position\": 1, \"name\": \"Thành phần web\" },\n        { \"@type\": \"ListItem\", \"position\": 2, \"name\": \"Hiệu ứng chuyển động\" },\n        { \"@type\": \"ListItem\", \"position\": 3, \"name\": \"Đổi Màu cho Web\" }\n      ]\n    }"
+  ]
+}
