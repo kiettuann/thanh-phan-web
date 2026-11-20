@@ -1,0 +1,159 @@
+---
+import Layout from '../layouts/Layout.astro';
+import DemoIsland from '../components/DemoIsland';
+import ColorTool from '../components/ColorTool';
+import components from '../data/components.json';
+import effects from '../data/effects.json';
+import groups from '../data/groups.json';
+import { CAT_OPEN, CAT_WINK, CAT_BLINK } from '../data/cat-images';
+import refsComponents from '../data/refs-components.html?raw';
+import refsEffects from '../data/refs-effects.html?raw';
+
+const compGroups = groups.filter((g) => g.type === 'components');
+const fxGroups = groups.filter((g) => g.type === 'effects');
+const shortName = (n: string) => n.replace(/^Nhóm /, '');
+const itemsOf = (gid: string, list: typeof components) => list.filter((it) => it.groupId === gid);
+// descStore entries exactly like the source: desc HTML verbatim (src-badges already
+// inside desc for 49 items — the separate `sources` array is NOT rendered again)
+// + the diff as a .diff-line span, which the popup splits out again.
+const descStoreHtml = [...components, ...effects]
+  .map(
+    (item) =>
+      `<div class="src-desc" data-desc-for="${item.id}">${item.desc}${item.diff ? `<span class="diff-line">${item.diff}</span>` : ''}</div>`,
+  )
+  .join('');
+const panels = [
+  {
+    id: 'panel-components',
+    label: 'Danh sách thành phần web',
+    hidden: false,
+    groups: compGroups,
+    items: components,
+    kind: 'comp',
+    grid: 'cgrid',
+    groupbarLabel: 'Nhảy nhanh tới nhóm thành phần',
+    unit: 'thành phần',
+    noresult: { id: 'noresult', text: 'Không tìm thấy thành phần nào khớp. Thử từ khoá khác, ví dụ: “nút”, “menu”, “tải”…' },
+    refs: refsComponents,
+  },
+  {
+    id: 'panel-effects',
+    label: 'Danh sách hiệu ứng chuyển động',
+    hidden: true,
+    groups: fxGroups,
+    items: effects,
+    kind: 'fx',
+    grid: 'cgrid fxgrid',
+    groupbarLabel: 'Nhảy nhanh tới nhóm hiệu ứng',
+    unit: 'hiệu ứng',
+    noresult: { id: 'noresultFx', text: 'Không tìm thấy hiệu ứng nào khớp. Thử từ khoá khác, ví dụ: “parallax”, “marquee”, “pháo giấy”…' },
+    refs: refsEffects,
+  },
+];
+---
+
+<Layout>
+  <div class="wrap">
+    <header class="intro">
+      <div class="brand">
+        <span class="brand-logo brand-cat">
+          <img class="brand-cat-img" src={CAT_OPEN} alt="Logo mèo của Thành Phần Web Thường Gặp" width="863" height="767" />
+          <img class="brand-cat-img brand-cat-state brand-cat-wink" src={CAT_WINK} alt="" aria-hidden="true" width="863" height="767" />
+          <img class="brand-cat-img brand-cat-state brand-cat-blink" src={CAT_BLINK} alt="" aria-hidden="true" width="863" height="767" />
+        </span>
+        <h1>Thành Phần Web Thường Gặp</h1>
+      </div>
+      <p class="seo-lead">
+        Đây là trang tra cứu tiếng Việt dành cho <strong>người làm web, chủ shop và người mới học thiết kế giao diện</strong> — giúp bạn gọi đúng tên và hiểu nhanh chức năng của từng thành phần trên website. Trang tổng hợp <span class="seo-num">175 thành phần</span> có demo trực tiếp kèm tên tiếng Anh – tiếng Việt và mô tả ngắn gọn, cùng <span class="seo-num">67 hiệu ứng chuyển động</span> xem thử ngay. Ngoài ra còn có công cụ <strong>Đổi Màu cho Web</strong> để phối bảng màu và xem trước trên các mẫu giao diện thật trước khi áp dụng.
+      </p>
+    </header>
+    <div class="toolbar">
+      <div class="toprow">
+        <div class="ptabs" role="tablist" aria-label="Chọn mục tra cứu">
+          <button type="button" role="tab" id="tabComp" aria-selected="true" aria-controls="panel-components"><span class="tab-ic" aria-hidden="true"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="8" height="8" rx="2" /><rect x="13" y="3" width="8" height="5" rx="2" /><rect x="13" y="10" width="8" height="11" rx="2" /><rect x="3" y="13" width="8" height="8" rx="2" /></svg></span><span class="tab-label">Thành phần web</span> <span class="pcount" id="tabCompCount"></span></button>
+          <button type="button" role="tab" id="tabFx" aria-selected="false" aria-controls="panel-effects"><span class="tab-ic" aria-hidden="true"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l1.7 4.6L18 9.2l-4.3 1.6L12 15.4l-1.7-4.6L6 9.2l4.3-1.6z" /><path d="M19 15l.8 2.2L22 18l-2.2.8L19 21l-.8-2.2L16 18l2.2-.8z" /><path d="M5 16l.6 1.7L7.3 18.3l-1.7.6L5 20.6l-.6-1.7L2.7 18.3l1.7-.6z" /></svg></span><span class="tab-label">Hiệu ứng chuyển động</span> <span class="pcount">67</span></button>
+          <button type="button" role="tab" id="tabColor" aria-selected="false" aria-controls="panel-color"><span class="tab-ic" aria-hidden="true"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22a10 10 0 1 1 10-10c0 2.2-1.8 4-4 4h-2.2a2.3 2.3 0 0 0-1.8 3.6c.4.5.6 1 .6 1.4 0 .6-.4 1-2.6 1Z" /><circle cx="7.5" cy="10.5" r="1.15" fill="currentColor" stroke="none" /><circle cx="12" cy="7.5" r="1.15" fill="currentColor" stroke="none" /><circle cx="16.5" cy="10.5" r="1.15" fill="currentColor" stroke="none" /></svg></span><span class="tab-label">Đổi Màu cho Web</span></button>
+        </div>
+        <div class="searchbar">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><circle cx="11" cy="11" r="7" /><path d="m20 20-3.8-3.8" /></svg>
+          <input id="search" type="search" placeholder="Tìm nhanh…" aria-label="Tìm thành phần" />
+          <span class="count" id="countLabel"></span>
+        </div>
+      </div>
+    </div>
+    <div class="pinbar" id="pinbar" hidden>
+      <span class="pinbar-label">Đã ghim <b id="pinCount">0</b> mẫu</span>
+      <button type="button" class="pin-act" id="pinViewBtn">Xem &amp; xuất yêu cầu</button>
+      <button type="button" class="pin-act ghost" id="pinClearBtn">Bỏ ghim tất cả</button>
+    </div>
+    <div class="pin-panel" id="pinPanel" hidden>
+      <div class="pin-panel-head"><b>Danh sách mẫu đã ghim</b><button type="button" class="pin-act ghost" id="pinCloseBtn">Đóng</button></div>
+      <div id="pinList"></div>
+      <textarea id="pinOutput" readonly rows="9" aria-label="Nội dung yêu cầu để sao chép"></textarea>
+      <div class="pin-panel-actions">
+        <button type="button" class="pin-act" id="pinCopyBtn">Copy danh sách yêu cầu</button>
+        <button type="button" class="pin-act ghost" id="pinDownloadBtn">Tải file .md</button>
+        <button type="button" class="pin-act ghost" id="pinPalBtn" aria-pressed="false">Thêm bảng màu đang dùng</button>
+      </div>
+    </div>
+    {panels.map((p) => (
+      <section class="panel" id={p.id} hidden={p.hidden || undefined} aria-label={p.label}>
+        <nav class="groupbar" data-kind={p.kind} aria-label={p.groupbarLabel}>
+          <span class="groupbar-label">Nhóm:</span>{p.groups.map((g) => <button type="button" class="gchip" data-target={g.id}>{shortName(g.name)}</button>)}
+        </nav>
+        {p.groups.map((g) => (
+          <section class="grpsec" id={g.id} aria-label={g.name}>
+            <h3 class="grp-title"><span class="grp-name">{shortName(g.name)}</span><span class="gcnt">{g.count} {p.unit}</span></h3>
+            <div class={p.grid}>
+              {itemsOf(g.id, p.items).map((item) => (
+                <article class={`card citem ${p.kind === 'comp' ? 'comp' : 'fxcomp'}`} id={item.id} data-search={item.aliases} tabindex="0" role="button" aria-haspopup="dialog" aria-label={`Xem chi tiết ${item.en}`}>
+                  <span class="pin-badge" hidden><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a7 7 0 0 0-7 7c0 5.2 7 13 7 13s7-7.8 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z" /></svg>Đã ghim</span>
+                  <DemoIsland demoHtml={item.demoHtml} client:visible />
+                  <div class="card-body">
+                    <div class="name-row"><span class="name">{item.en}</span><button type="button" class="copy-name-icon" data-name={item.en} aria-label={`Copy tên tiếng Anh: ${item.en}`} title="Copy tên tiếng Anh"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="12" height="12" rx="2" /><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" /></svg><span class="copy-tip">Đã copy</span></button></div>
+                    <p class="vi-name">{item.vi}</p>
+                  </div>
+                  <span class="row-actions" hidden><button type="button" class="copy-btn" data-copy={item.en}>Copy tên</button><button type="button" class="copy-btn" data-copy={item.prompt}>Copy prompt</button></span>
+                  {p.kind === 'fx' && (<button type="button" class="fx-card-expand" aria-label={`Phóng to xem chi tiết: ${item.en}`} title="Phóng to xem chi tiết"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 3h6v6" /><path d="M9 21H3v-6" /><path d="M21 3l-7 7" /><path d="M3 21l7-7" /></svg></button>)}
+                </article>
+              ))}
+            </div>
+          </section>
+        ))}
+        <div class="noresult" id={p.noresult.id}>{p.noresult.text}</div>
+        <Fragment set:html={p.refs} />
+      </section>
+    ))}
+    <section class="panel" id="panel-color" hidden aria-label="Đổi màu cho web">
+      <ColorTool client:visible />
+    </section>
+    <footer class="note">Mẹo: <b>bấm thử trực tiếp</b> vào các demo — công tắc, hộp tick, sao đánh giá, tab, accordion… đều thao tác được như trên web thật.</footer>
+  </div>
+
+  <div class="fx-overlay" id="fxOverlay" hidden role="dialog" aria-modal="true" aria-labelledby="fxOverlayTitle">
+    <div class="fx-overlay-backdrop" id="fxOverlayBackdrop"></div>
+    <div class="fx-overlay-box">
+      <div class="fx-overlay-head">
+        <div>
+          <div class="pop-title-row"><div class="fx-overlay-title" id="fxOverlayTitle"></div><button type="button" class="copy-name-icon pop-copy-icon" id="popCopyIcon" aria-label="Copy tên tiếng Anh" title="Copy tên tiếng Anh"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="12" height="12" rx="2" /><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" /></svg><span class="copy-tip">Đã copy</span></button></div>
+          <div class="fx-overlay-sub" id="fxOverlaySub"></div>
+        </div>
+        <button type="button" class="fx-overlay-close" id="fxOverlayClose" aria-label="Đóng chế độ mở rộng"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="M5 5l14 14M19 5L5 19" /></svg> Đóng</button>
+      </div>
+      <div class="fx-overlay-stage" id="fxOverlayStage"></div>
+      <div class="pop-desc" id="popDesc"></div>
+      <p class="pop-diff" id="popDiff" hidden></p>
+      <div class="pop-actions">
+        <button type="button" class="pop-act" id="popCopyName">Copy tên</button>
+        <button type="button" class="pop-act" id="popCopyPrompt">Copy prompt</button>
+        <button type="button" class="pop-act" id="popPin" aria-pressed="false">Ghim mẫu</button>
+      </div>
+      <p class="fx-overlay-hint">Đang xem ở cỡ lớn — rê chuột, cuộn và bấm thử ngay trong khung này. Bấm Đóng, bấm ra ngoài hoặc nhấn Esc để quay lại.</p>
+    </div>
+  </div>
+  <div id="descStore" hidden aria-hidden="true" set:html={descStoreHtml}></div>
+  <script>
+    import { initShell } from '../lib/shell';
+    initShell();
+  </script>
+</Layout>
