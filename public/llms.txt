@@ -1,0 +1,15 @@
+# Thành Phần Web Thường Gặp
+
+> Trang tra cứu tiếng Việt về các thành phần thường gặp trên website: 158 thành phần có demo trực tiếp kèm tên tiếng Anh – tiếng Việt và mô tả chức năng ngắn gọn, 64 hiệu ứng chuyển động xem thử ngay, và công cụ Đổi Màu cho Web để phối bảng màu và xem trước trên các mẫu giao diện thật trước khi áp dụng. Dành cho người làm web, chủ shop và người mới học thiết kế giao diện.
+
+## Thành phần web
+
+- [Thành Phần Web Thường Gặp](https://thanh-phan-web.vercel.app/): tra cứu 158 thành phần web thường gặp — nút bấm, form nhập liệu, điều hướng, bảng, hộp thoại, thông báo — mỗi thành phần có demo trực tiếp, tên tiếng Anh, tên tiếng Việt và mô tả chức năng.
+
+## Hiệu ứng chuyển động
+
+- [Hiệu ứng chuyển động](https://thanh-phan-web.vercel.app/): 64 hiệu ứng chuyển động cho web — hiệu ứng cuộn, hover, chuyển trang, chữ, nền, phản hồi — mỗi hiệu ứng có demo trực tiếp và ghi chú mức độ an toàn trên điện thoại.
+
+## Đổi Màu cho Web
+
+- [Đổi Màu cho Web](https://thanh-phan-web.vercel.app/): công cụ xem trước bảng màu trên 3 khung mẫu (trang chủ, trang chức năng, bảng màu) với 12 bảng màu sẵn có, chỉnh từng màu, chép mã HEX, tạo bảng ngẫu nhiên, sinh bảng từ 1 màu hoặc từ ảnh, kiểm tra tương phản WCAG, gợi ý theo chủ đề và phong cách, và 6 mẫu website thật (quán cà phê, nhà hàng, shop thời trang, spa, trường mầm non, homestay).
