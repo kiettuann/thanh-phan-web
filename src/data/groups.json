@@ -1,0 +1,80 @@
+[
+  {
+    "id": "grp-nut-dieu-khien",
+    "name": "Nhóm Nút & điều khiển",
+    "type": "components",
+    "count": 18
+  },
+  {
+    "id": "grp-nhap-lieu-form",
+    "name": "Nhóm Nhập liệu & form",
+    "type": "components",
+    "count": 38
+  },
+  {
+    "id": "grp-dieu-huong",
+    "name": "Nhóm Điều hướng",
+    "type": "components",
+    "count": 17
+  },
+  {
+    "id": "grp-hien-thi-thong-bao",
+    "name": "Nhóm Hiển thị & thông báo",
+    "type": "components",
+    "count": 49
+  },
+  {
+    "id": "grp-lop-phu-bang-truot",
+    "name": "Nhóm Lớp phủ & bảng trượt",
+    "type": "components",
+    "count": 15
+  },
+  {
+    "id": "grp-du-lieu-nang-cao",
+    "name": "Nhóm Dữ liệu & hiển thị nâng cao",
+    "type": "components",
+    "count": 21
+  },
+  {
+    "id": "grp-khu-vuc-trang",
+    "name": "Nhóm Khu vực trang (khối nội dung lớn)",
+    "type": "components",
+    "count": 17
+  },
+  {
+    "id": "fxg-cuon",
+    "name": "Nhóm Hiệu ứng cuộn",
+    "type": "effects",
+    "count": 7
+  },
+  {
+    "id": "fxg-hover-tuong-tac",
+    "name": "Nhóm Hover & tương tác nhỏ",
+    "type": "effects",
+    "count": 18
+  },
+  {
+    "id": "fxg-chuyen-trang",
+    "name": "Nhóm Chuyển trang & hiện nội dung",
+    "type": "effects",
+    "count": 15
+  },
+  {
+    "id": "fxg-chu",
+    "name": "Nhóm Hiệu ứng chữ",
+    "type": "effects",
+    "count": 5
+  },
+  {
+    "id": "fxg-nen-trang-tri",
+    "name": "Nhóm Nền & trang trí",
+    "type": "effects",
+    "count": 9
+  },
+  {
+    "id": "fxg-phan-hoi-so-lieu",
+    "name": "Nhóm Phản hồi & số liệu",
+    "type": "effects",
+    "count": 13
+  }
+]
