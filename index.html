@@ -3359,6 +3359,51 @@
         .ax-tc-btn .spin { animation-duration: 2.4s; }
         .ax-sheet, .ax-sheet.s2, .ax-ad-sheet, .ax-gp-pop { transition-duration: .18s; }
       }
+
+      /* ---------- Khung demo CỐ ĐỊNH ở mức lớn nhất: demo vẫn chạy bên trong, khung ngoài không đổi -> trang không nhảy ---------- */
+      .stage:has(.acc) { height: 136px; }
+      .stage:has(.fx-acc) { height: 142px; }
+      .stage:has(.n5-coll) { height: 112px; }
+      .stage:has(.tree) { height: 146px; align-items: flex-start; }
+      .stage:has(.tree) .tree { margin-top: 2px; }
+      .stage:has(.fg-smart) { height: 182px; }
+      .stage:has(#n7Think) { height: 172px; }
+      .stage:has(#n7Cot) { height: 190px; }
+      .stage:has(.n7-tool) { height: 218px; }
+      .stage:has(.n7-tool) .n7-box { width: 100%; max-height: 100%; overflow-y: auto; scrollbar-width: thin; }
+      .stage:has(.ax-tc) { height: 238px; }
+      .stage:has(.ax-tc) .ax-wrap { width: 100%; max-height: 100%; overflow-y: auto; scrollbar-width: thin; }
+      .stage:has(#n7Ckpt) { height: 224px; }
+      .stage:has(#n7SugMsgs) { height: 296px; }
+      #n7SugMsgs { height: 118px; max-height: 118px; }
+      .stage:has(.multi) { height: 92px; }
+      .multi { min-height: 62px; align-content: flex-start; }
+      .stage:has(.ax-ps-bar) { height: 204px; }
+      .ax-ps-bar { min-height: 66px; align-content: flex-start; }
+      .stage:has(.ax-tk-field) { height: 156px; }
+      .ax-tk-field { min-height: 40px; align-content: flex-start; }
+      .stage:has(.ax-pt) { height: 196px; }
+      .stage:has(.ax-bs-frame) { height: 208px; }
+      .stage:has(.ax-ad-frame) { height: 176px; }
+      .stage:has(.kb) { height: 184px; align-items: flex-start; }
+      .kb { align-items: flex-start; }
+      .kb-col { min-height: 154px; }
+      .stage:has(.n6-quiz) { height: 264px; }
+      .n6-quiz { display: flex; flex-direction: column; min-height: 238px; width: 100%; }
+      .n6-quiz-done { margin: auto 0; }
+      .stage:has(#fxSkel) { height: 122px; }
+      .stage:has(.tabs-demo) { height: 110px; }
+      .stage:has(.n8-form) { height: 262px; }
+      .tabs-body { min-height: 42px; }
+      .stage:has(.n5-mention) { height: 152px; }
+      .stage:has(.chat) { height: 154px; }
+      /* Khung xem mở rộng (overlay) không bị khoá chiều cao như khung thường */
+      .fx-overlay-stage .stage { height: auto !important; }
+      .fx-overlay-stage #n7SugMsgs { height: auto; max-height: 118px; }
+      .fx-overlay-stage .n7-box, .fx-overlay-stage .ax-wrap { max-height: none; overflow: visible; }
+      @media (max-width: 720px) {
+        .fx-overlay-stage .stage { height: 100% !important; }
+      }
     </style>
   </head>
   <body>
@@ -3496,7 +3541,7 @@
             </tr>
 
             <tr class="comp" data-search="split button nút tách đôi nút chia đôi mũi tên xổ xuống dropdown button lựa chọn phụ lưu">
-              <td class="demo"><div class="stage"><div class="split" id="splitDemo"><div class="split-row"><button type="button" class="split-main" id="splitMain">Lưu hồ sơ</button><button type="button" class="split-chev" id="splitChev" aria-label="Mở thêm lựa chọn lưu">▾</button></div><div class="split-menu" id="splitMenu"><div>Lưu &amp; đóng</div><div>Lưu bản nháp</div><div>Nhân bản hồ sơ</div></div><div class="split-msg" id="splitMsg">Bấm mũi tên ▾ để xem thêm lựa chọn</div></div></div></td>
+              <td class="demo"><div class="stage"><div class="split" id="splitDemo"><div class="split-row"><button type="button" class="split-main" id="splitMain">Lưu đơn hàng</button><button type="button" class="split-chev" id="splitChev" aria-label="Mở thêm lựa chọn lưu">▾</button></div><div class="split-menu" id="splitMenu"><div>Lưu &amp; đóng</div><div>Lưu bản nháp</div><div>Nhân bản đơn</div></div><div class="split-msg" id="splitMsg">Bấm mũi tên ▾ để xem thêm lựa chọn</div></div></div></td>
               <td class="name-cell"><span class="name">Split Button</span><span class="vi-name">Nút tách đôi</span></td>
               <td class="desc"><b>Nút chính kèm mũi tên xổ xuống ở cạnh bên</b>: bấm phần nút thì chạy ngay hành động chính, bấm mũi tên thì mở thêm các lựa chọn khác liên quan. Bấm thử cả hai phần nhé.</td>
             </tr>
@@ -3545,7 +3590,7 @@
                 <div class="dd-menu"><div>Hà Nội</div><div>TP. Hồ Chí Minh</div><div>Đà Nẵng</div></div>
               </div></div></td>
               <td class="name-cell"><span class="name">Dropdown / Select</span><span class="vi-name">Danh sách thả xuống</span></td>
-              <td class="desc">Bấm vào thì <b>xổ xuống một danh sách</b> để chọn 1 giá trị có sẵn: tỉnh/thành, quốc gia, loại visa… tiết kiệm diện tích form.</td>
+              <td class="desc">Bấm vào thì <b>xổ xuống một danh sách</b> để chọn 1 giá trị có sẵn: tỉnh/thành, danh mục áo, size, màu… tiết kiệm diện tích form.</td>
             </tr>
 
             <tr class="comp" data-search="date picker ô chọn ngày lịch calendar ngày tháng">
@@ -3569,13 +3614,13 @@
             </tr>
 
             <tr class="comp" data-search="autocomplete combobox ô nhập gợi ý gợi ý tìm kiếm chọn nhanh typeahead">
-              <td class="demo"><div class="stage"><div class="combo"><div class="combo-field">visa úc<span class="caret"></span></div><div class="combo-list-wrap"><div class="combo-list"><div class="hl">Visa Úc du lịch</div><div>Visa Úc thăm thân</div><div>Visa Úc công tác</div></div></div></div></div></td>
+              <td class="demo"><div class="stage"><div class="combo"><div class="combo-field">áo khoác<span class="caret"></span></div><div class="combo-list-wrap"><div class="combo-list"><div class="hl">Áo khoác dạ dài</div><div>Áo khoác dạ ngắn</div><div>Áo khoác jean</div></div></div></div></div></td>
               <td class="name-cell"><span class="name">Autocomplete / Combobox</span><span class="vi-name">Ô nhập gợi ý (tìm kiếm và chọn)</span></td>
               <td class="desc"><b>Vừa gõ vừa gợi ý</b> các lựa chọn phù hợp để người dùng chọn nhanh thay vì gõ hết — hay gặp ở ô tìm chuyến bay, chọn quốc gia, tìm sản phẩm.</td>
             </tr>
 
             <tr class="comp" data-search="multi-select multi select chọn nhiều giá trị nhiều mục thẻ đã chọn">
-              <td class="demo"><div class="stage"><div class="multi" id="multiDemo"><span class="mchip">Hà Nội <button type="button" aria-label="Bỏ Hà Nội">✕</button></span><span class="mchip">Visa Mỹ <button type="button" aria-label="Bỏ Visa Mỹ">✕</button></span><span class="mchip">Du lịch <button type="button" aria-label="Bỏ Du lịch">✕</button></span><span class="madd">+ Thêm…</span></div></div></td>
+              <td class="demo"><div class="stage"><div class="multi" id="multiDemo"><span class="mchip">Áo khoác <button type="button" aria-label="Bỏ Áo khoác">✕</button></span><span class="mchip">Size M <button type="button" aria-label="Bỏ Size M">✕</button></span><span class="mchip">Màu be <button type="button" aria-label="Bỏ Màu be">✕</button></span><span class="madd">+ Thêm…</span></div></div></td>
               <td class="name-cell"><span class="name">Multi-select</span><span class="vi-name">Chọn nhiều giá trị</span></td>
               <td class="desc">Cho phép <b>chọn đồng thời nhiều mục</b> trong một danh sách, thường hiển thị dưới dạng các thẻ đã chọn có dấu ✕ để gỡ bỏ. Bấm ✕ thử nhé.</td>
             </tr>
@@ -3605,7 +3650,7 @@
             </tr>
 
             <tr class="comp" data-search="tags input ô nhập thẻ từ khóa tag keyword nhập nhãn tags">
-              <td class="demo"><div class="stage"><div class="multi"><span class="mchip">visa <button type="button" aria-label="Bỏ thẻ visa">✕</button></span><span class="mchip">du lịch <button type="button" aria-label="Bỏ thẻ du lịch">✕</button></span><span class="tags-hint">gõ thẻ mới…<span class="caret"></span></span></div></div></td>
+              <td class="demo"><div class="stage"><div class="multi"><span class="mchip">áo len <button type="button" aria-label="Bỏ thẻ áo len">✕</button></span><span class="mchip">váy hoa <button type="button" aria-label="Bỏ thẻ váy hoa">✕</button></span><span class="tags-hint">gõ thẻ mới…<span class="caret"></span></span></div></div></td>
               <td class="name-cell"><span class="name">Tags Input</span><span class="vi-name">Ô nhập thẻ (từ khóa)</span></td>
               <td class="desc">Ô nhập biến <b>mỗi từ khóa thành một thẻ nhỏ</b> ngay trong ô, bấm ✕ để gỡ — dùng khi gắn thẻ bài viết, kỹ năng, sở thích. Bấm ✕ thử nhé.</td>
             </tr>
@@ -3677,7 +3722,7 @@
             </tr>
 
             <tr class="comp" data-search="mentions nhắc tên mention gắn thẻ người dùng bình luận nhắc ai đó">
-              <td class="demo"><div class="stage"><div class="n5-mention"><div class="fld">Nhờ <b>@hu</b> xem giúp hồ sơ này…</div><div class="n5-mention-list"><div>@huong — Chị Hương</div><div>@hung — Anh Hùng</div><div>@huy — Bạn Huy</div></div></div></div></td>
+              <td class="demo"><div class="stage"><div class="n5-mention"><div class="fld">Nhờ <b>@hu</b> xem giúp đơn này…</div><div class="n5-mention-list"><div>@huong — Chị Hương</div><div>@hung — Anh Hùng</div><div>@huy — Bạn Huy</div></div></div></div></td>
               <td class="name-cell"><span class="name">Mentions</span><span class="vi-name">Nhắc tên (@mention)</span></td>
               <td class="desc">Ô nhập văn bản <b>gợi ý danh sách người hoặc thẻ khi gõ ký tự @ (hoặc #)</b>, để nhắc tên ai đó trong bình luận hay bài viết. <i>(Nguồn: Ant Design)</i></td>
             </tr>
@@ -3755,7 +3800,7 @@
             </tr>
 
             <tr class="comp" data-search="suggestion gợi ý câu hỏi nhanh nút gợi ý prompt suggestion chips câu hỏi mẫu ai">
-              <td class="demo"><div class="stage"><div class="n7-box"><div class="n7-msgs" id="n7SugMsgs"><div class="n7-msg ai">Bạn muốn hỏi gì? Bấm một gợi ý bên dưới thử xem.</div></div><div class="n7-chips" id="n7SugChips"><button type="button" class="n7-chip" data-a="Visa Úc du lịch thường xử lý khoảng 3–4 tuần làm việc nhé.">Hồ sơ visa Úc mất bao lâu?</button><button type="button" class="n7-chip" data-a="Bạn cần hộ chiếu còn hạn 6 tháng, ảnh 3.5×4.5 và giấy tờ chứng minh công việc.">Cần giấy tờ gì?</button><button type="button" class="n7-chip" data-a="Phí dịch vụ từ 990.000đ, đã gồm tư vấn và kiểm tra hồ sơ trọn gói.">Phí dịch vụ bao nhiêu?</button></div><div class="n7-minirow"><input type="text" id="n7SugInput" placeholder="Hoặc tự gõ câu hỏi…" aria-label="Tự gõ câu hỏi" autocomplete="off" /><button type="button" class="go" id="n7SugSend">Gửi</button></div></div></div></td>
+              <td class="demo"><div class="stage"><div class="n7-box"><div class="n7-msgs" id="n7SugMsgs"><div class="n7-msg ai">Bạn muốn hỏi gì? Bấm một gợi ý bên dưới thử xem.</div></div><div class="n7-chips" id="n7SugChips"><button type="button" class="n7-chip" data-a="Đơn nội thành giao trong 1–2 ngày, tỉnh khác 2–4 ngày nhé.">Đơn hàng giao mất bao lâu?</button><button type="button" class="n7-chip" data-a="Bạn xem bảng size nhé: S dưới 48kg, M từ 48–55kg, L từ 55–62kg.">Chọn size thế nào?</button><button type="button" class="n7-chip" data-a="Áo khoác dạ đang giảm còn 890.000đ, freeship cho đơn từ 500.000đ nhé.">Áo khoác dạ giá bao nhiêu?</button></div><div class="n7-minirow"><input type="text" id="n7SugInput" placeholder="Hoặc tự gõ câu hỏi…" aria-label="Tự gõ câu hỏi" autocomplete="off" /><button type="button" class="go" id="n7SugSend">Gửi</button></div></div></div></td>
               <td class="name-cell"><span class="name">Suggestion</span><span class="vi-name">Gợi ý câu hỏi nhanh</span></td>
               <td class="desc">Hàng <b>nút gợi ý câu hỏi đặt phía trên ô nhập</b> trong khung chat AI — bấm một nút là gửi ngay câu hỏi đó, không cần gõ. Bấm thử một gợi ý nhé.</td>
             </tr>
@@ -3778,9 +3823,9 @@
             </tr>
 
             <tr class="comp" data-search="power search powersearch thanh lọc nâng cao bộ lọc token trường toán tử giá trị lọc phức tạp nhiều điều kiện astryx meta structured filter">
-              <td class="demo"><div class="stage"><div class="ax-wrap"><div class="ax-ps-bar" id="axPsBar"><span class="ax-token"><b>Trạng thái:</b> Đang xử lý <button type="button" data-axtok aria-label="Xoá điều kiện trạng thái">×</button></span><span class="ax-token"><b>Nước:</b> Úc <button type="button" data-axtok aria-label="Xoá điều kiện nước">×</button></span><span class="ax-ps-hint" id="axPsHint">Gõ để lọc…</span></div><div class="ax-row"><button type="button" class="ax-mini-btn" data-axadd="Giá: Dưới 2 triệu">+ Giá</button><button type="button" class="ax-mini-btn" data-axadd="Loại: Du lịch">+ Loại</button><button type="button" class="ax-mini-btn" data-axadd="Hạn: Tuần này">+ Hạn nộp</button></div><div class="ax-note" id="axPsCount">Đang lọc theo 2 điều kiện</div></div></div></td>
+              <td class="demo"><div class="stage"><div class="ax-wrap"><div class="ax-ps-bar" id="axPsBar"><span class="ax-token"><b>Trạng thái:</b> Đang xử lý <button type="button" data-axtok aria-label="Xoá điều kiện trạng thái">×</button></span><span class="ax-token"><b>Loại:</b> Áo khoác <button type="button" data-axtok aria-label="Xoá điều kiện loại">×</button></span><span class="ax-ps-hint" id="axPsHint">Gõ để lọc…</span></div><div class="ax-row"><button type="button" class="ax-mini-btn" data-axadd="Giá: Dưới 2 triệu">+ Giá</button><button type="button" class="ax-mini-btn" data-axadd="Màu: Be">+ Màu</button><button type="button" class="ax-mini-btn" data-axadd="Size: M">+ Size</button></div><div class="ax-note" id="axPsCount">Đang lọc theo 2 điều kiện</div></div></div></td>
               <td class="name-cell"><span class="name">PowerSearch</span><span class="vi-name">Thanh lọc nâng cao</span></td>
-              <td class="desc">Mỗi <b>token trong thanh lọc là một trường + một toán tử + một giá trị</b> (ví dụ “Trạng thái: Đang xử lý”), giúp kết hợp <b>nhiều điều kiện lọc phức tạp</b> mà vẫn đọc được ngay trên thanh tìm kiếm — hợp với danh sách hồ sơ, đơn hàng nhiều tiêu chí. Bấm + để thêm điều kiện, bấm × để gỡ. <i>(Nguồn: Astryx của Meta — astryx.atmeta.com)</i></td>
+              <td class="desc">Mỗi <b>token trong thanh lọc là một trường + một toán tử + một giá trị</b> (ví dụ “Trạng thái: Đang xử lý”), giúp kết hợp <b>nhiều điều kiện lọc phức tạp</b> mà vẫn đọc được ngay trên thanh tìm kiếm — hợp với danh sách sản phẩm, đơn hàng nhiều tiêu chí. Bấm + để thêm điều kiện, bấm × để gỡ. <i>(Nguồn: Astryx của Meta — astryx.atmeta.com)</i></td>
             </tr>
 
             <tr class="comp" data-search="tokenizer ô nhập thẻ đa lựa chọn dán tách danh sách email chips tokens paste split astryx meta nhiều mục">
@@ -3852,7 +3897,7 @@
             </tr>
 
             <tr class="comp" data-search="navigation menu mega menu menu điều hướng bảng lớn danh mục con">
-              <td class="demo"><div class="stage"><div class="mega"><div class="mega-bar"><span>Trang chủ</span><span class="act">Dịch vụ ▾</span><span>Liên hệ</span></div><div class="mega-panel-wrap"><div class="mega-panel"><b>Visa đi Mỹ</b><b>Visa đi Úc</b><span>Du lịch B1/B2</span><span>Du lịch 600</span><span>Thăm thân</span><span>Thăm thân</span></div></div></div></div></td>
+              <td class="demo"><div class="stage"><div class="mega"><div class="mega-bar"><span>Trang chủ</span><span class="act">Danh mục ▾</span><span>Liên hệ</span></div><div class="mega-panel-wrap"><div class="mega-panel"><b>Áo khoác</b><b>Váy đầm</b><span>Áo khoác dạ</span><span>Váy hoa nhí</span><span>Áo len</span><span>Đầm dạ hội</span></div></div></div></div></td>
               <td class="name-cell"><span class="name">Navigation Menu</span><span class="vi-name">Menu điều hướng (mega menu)</span></td>
               <td class="desc">Menu ngang ở đầu trang, khi di chuột sẽ <b>mở bảng lớn chứa nhiều liên kết và danh mục con</b> — hay thấy ở các web thương mại điện tử nhiều ngành hàng.</td>
             </tr>
@@ -3875,10 +3920,10 @@
               <td class="desc">Menu bên tự <b>tô sáng mục tương ứng với đoạn nội dung đang xem</b> khi cuộn trang, hay gặp ở trang tài liệu và trang giới thiệu dài.</td>
             </tr>
 
-            <tr class="comp" data-search="user menu menu người dùng tài khoản avatar menu hồ sơ đăng xuất profile menu account">
-              <td class="demo"><div class="stage"><div class="umenu" id="umenuDemo"><button class="umenu-btn" type="button" id="umenuBtn"><span class="um-ava">K</span><span>Kalvin</span><span class="chev">▾</span></button><div class="umenu-list" id="umenuList"><div>Hồ sơ của tôi</div><div>Cài đặt</div><div class="danger">Đăng xuất</div></div></div></div></td>
+            <tr class="comp" data-search="user menu menu người dùng tài khoản avatar menu đơn hàng đăng xuất profile menu account">
+              <td class="demo"><div class="stage"><div class="umenu" id="umenuDemo"><button class="umenu-btn" type="button" id="umenuBtn"><span class="um-ava">K</span><span>Kalvin</span><span class="chev">▾</span></button><div class="umenu-list" id="umenuList"><div>Đơn hàng của tôi</div><div>Cài đặt</div><div class="danger">Đăng xuất</div></div></div></div></td>
               <td class="name-cell"><span class="name">User Menu</span><span class="vi-name">Menu người dùng</span></td>
-              <td class="desc">Bấm vào <b>ảnh đại diện hoặc tên người dùng</b> sẽ xổ xuống menu tài khoản: hồ sơ, cài đặt, đăng xuất. Bấm thử nhé.</td>
+              <td class="desc">Bấm vào <b>ảnh đại diện hoặc tên người dùng</b> sẽ xổ xuống menu tài khoản: đơn hàng, cài đặt, đăng xuất. Bấm thử nhé.</td>
             </tr>
 
             <tr class="comp" data-search="anchor liên kết neo trong trang mục lục trong trang nhảy tới mục anchor link cuộn tới mục">
@@ -3974,7 +4019,7 @@
             <tr class="comp" data-search="progress bar thanh tiến trình phần trăm loading tải">
               <td class="demo"><div class="stage"><div class="prog-demo"><div class="prog-track"><div class="prog-fill"></div></div><div class="prog-label"><span>Đang tải lên…</span><span>92%</span></div></div></div></td>
               <td class="name-cell"><span class="name">Progress Bar</span><span class="vi-name">Thanh tiến trình</span></td>
-              <td class="desc">Thanh ngang <b>đầy dần theo % hoàn thành</b> của một việc: tải file, cài đặt, hoàn thiện hồ sơ… giúp người dùng biết phải chờ bao lâu.</td>
+              <td class="desc">Thanh ngang <b>đầy dần theo % hoàn thành</b> của một việc: tải file, cài đặt, hoàn thiện đơn hàng… giúp người dùng biết phải chờ bao lâu.</td>
             </tr>
 
             <tr class="comp" data-search="spinner loading vòng xoay tải vòng tròn chờ">
@@ -4007,19 +4052,19 @@
               <td class="desc">Viên nhãn bo tròn nhỏ dùng làm <b>bộ lọc nhanh hoặc thẻ phân loại</b>; loại có dấu ✕ thì bấm để gỡ bỏ lựa chọn đó.</td>
             </tr>
             <tr class="comp" data-search="empty state trạng thái trống chưa có dữ liệu no data rỗng">
-              <td class="demo"><div class="stage"><div class="empty"><div class="box-ic"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-6l-2 3h-4l-2-3H2"/><path d="M5.45 5.11 2 12v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-6l-3.45-6.89A2 2 0 0 0 16.76 4H7.24a2 2 0 0 0-1.79 1.11z"/></svg></div><p>Chưa có hồ sơ nào</p><span class="add">+ Thêm mới</span></div></div></td>
+              <td class="demo"><div class="stage"><div class="empty"><div class="box-ic"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-6l-2 3h-4l-2-3H2"/><path d="M5.45 5.11 2 12v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-6l-3.45-6.89A2 2 0 0 0 16.76 4H7.24a2 2 0 0 0-1.79 1.11z"/></svg></div><p>Chưa có đơn hàng nào</p><span class="add">+ Thêm mới</span></div></div></td>
               <td class="name-cell"><span class="name">Empty State</span><span class="vi-name">Trạng thái trống</span></td>
               <td class="desc">Hiển thị <b>hình minh họa và hướng dẫn khi danh sách hoặc trang chưa có dữ liệu</b>, thay vì để một khoảng trắng khó hiểu — kèm nút để bắt đầu tạo dữ liệu đầu tiên.</td>
             </tr>
 
             <tr class="comp" data-search="timeline dòng thời gian sự kiện lịch sử trục thời gian">
-              <td class="demo"><div class="stage"><div class="tline"><div class="tl-item"><span class="tl-dot"></span><span><b>Đã nộp hồ sơ</b><small>09:15 · Hôm nay</small></span></div><div class="tl-item"><span class="tl-dot"></span><span><b>Đang xử lý</b><small>Chờ bổ sung giấy tờ</small></span></div><div class="tl-item dim"><span class="tl-dot"></span><span><b>Hoàn thành</b><small>Dự kiến 20/11/2026</small></span></div></div></div></td>
+              <td class="demo"><div class="stage"><div class="tline"><div class="tl-item"><span class="tl-dot"></span><span><b>Đã đặt hàng</b><small>09:15 · Hôm nay</small></span></div><div class="tl-item"><span class="tl-dot"></span><span><b>Đang xử lý</b><small>Shop đang gói hàng</small></span></div><div class="tl-item dim"><span class="tl-dot"></span><span><b>Hoàn thành</b><small>Dự kiến giao 20/11/2026</small></span></div></div></div></td>
               <td class="name-cell"><span class="name">Timeline</span><span class="vi-name">Dòng thời gian</span></td>
-              <td class="desc">Sắp xếp <b>các sự kiện theo thứ tự thời gian</b> trên một trục dọc hoặc ngang, như theo dõi trạng thái đơn hàng, lịch sử hồ sơ.</td>
+              <td class="desc">Sắp xếp <b>các sự kiện theo thứ tự thời gian</b> trên một trục dọc hoặc ngang, như theo dõi trạng thái đơn hàng, lịch sử mua hàng.</td>
             </tr>
 
             <tr class="comp" data-search="tree view cây thư mục phân cấp folder file mở rộng thu gọn">
-              <td class="demo"><div class="stage"><div class="tree" id="treeDemo"><div class="trow"><button class="tchev" type="button" aria-label="Đóng hoặc mở thư mục">▾</button>📁 Hồ sơ visa</div><div class="kids"><div class="trow file">📄 Hộ chiếu.pdf</div><div class="trow file">📄 Ảnh 4x6.jpg</div><div class="trow file">📄 Sao kê.pdf</div></div><div class="trow"><span style="display:inline-block;width:22px"></span>📁 Ảnh du lịch</div></div></div></td>
+              <td class="demo"><div class="stage"><div class="tree" id="treeDemo"><div class="trow"><button class="tchev" type="button" aria-label="Đóng hoặc mở thư mục">▾</button>📁 BST Thu Đông</div><div class="kids"><div class="trow file">📄 Lookbook.pdf</div><div class="trow file">📄 Ảnh sản phẩm.jpg</div><div class="trow file">📄 Bảng size.pdf</div></div><div class="trow"><span style="display:inline-block;width:22px"></span>📁 Ảnh mẫu mặc</div></div></div></td>
               <td class="name-cell"><span class="name">Tree View</span><span class="vi-name">Cây thư mục</span></td>
               <td class="desc">Hiển thị <b>dữ liệu phân cấp dạng cây</b> có thể mở rộng/thu gọn từng nhánh, như cây thư mục trong máy tính. Bấm mũi tên ▾ thử nhé.</td>
             </tr>
@@ -4043,7 +4088,7 @@
             </tr>
 
             <tr class="comp" data-search="list group danh sách mục nhóm danh sách list danh sách dọc">
-              <td class="demo"><div class="stage"><div class="lgroup"><div>Hồ sơ mới <span class="cnt2">5</span></div><div>Đang xử lý <span class="cnt2">3</span></div><div>Đã hoàn thành <span class="cnt2">12</span></div></div></div></td>
+              <td class="demo"><div class="stage"><div class="lgroup"><div>Đơn mới <span class="cnt2">5</span></div><div>Đang xử lý <span class="cnt2">3</span></div><div>Đã hoàn thành <span class="cnt2">12</span></div></div></div></td>
               <td class="name-cell"><span class="name">List Group</span><span class="vi-name">Danh sách mục</span></td>
               <td class="desc">Các mục <b>xếp dọc thành danh sách có khung viền liền nhau</b>, mỗi hàng bấm được và có thể kèm số lượng ở cuối hàng — hay dùng cho menu cài đặt, danh mục, hộp thư.</td>
             </tr>
@@ -4066,10 +4111,10 @@
               <td class="desc">Vòng tròn <b>chạy theo phần trăm</b> để báo tiến độ hoặc tỉ lệ hoàn thành — gọn hơn thanh ngang và thường đặt kèm con số ở giữa.</td>
             </tr>
 
-            <tr class="comp" data-search="descriptions danh sách mô tả nhãn giá trị chi tiết hồ sơ thông tin detail list">
-              <td class="demo"><div class="stage"><div class="desc-list"><div><span>Tên khách</span><b>Nguyễn Văn A</b></div><div><span>Loại visa</span><b>Úc 600</b></div><div><span>Trạng thái</span><b class="ok-t">Đã đậu</b></div></div></div></td>
+            <tr class="comp" data-search="descriptions danh sách mô tả nhãn giá trị chi tiết đơn hàng thông tin detail list">
+              <td class="demo"><div class="stage"><div class="desc-list"><div><span>Tên khách</span><b>Nguyễn Văn A</b></div><div><span>Sản phẩm</span><b>Áo khoác dạ</b></div><div><span>Trạng thái</span><b class="ok-t">Đã giao</b></div></div></div></td>
               <td class="name-cell"><span class="name">Descriptions</span><span class="vi-name">Danh sách mô tả</span></td>
-              <td class="desc">Bảng <b>nhãn – giá trị</b> để trình bày thông tin chi tiết dạng chỉ đọc, ví dụ hồ sơ khách hàng hoặc thông số sản phẩm.</td>
+              <td class="desc">Bảng <b>nhãn – giá trị</b> để trình bày thông tin chi tiết dạng chỉ đọc, ví dụ chi tiết đơn hàng hoặc thông số sản phẩm.</td>
             </tr>
 
             <tr class="comp" data-search="masonry lưới xếp gạch lưới thác nước pinterest thẻ cao thấp waterfall grid">
@@ -4079,7 +4124,7 @@
             </tr>
 
             <tr class="comp" data-search="banner băng rôn thông báo dải thông báo đầu trang khuyến mãi bảo trì cập nhật announcement bar top banner">
-              <td class="demo"><div class="stage"><div class="banner-frame" id="bannerFrame"><div class="banner-bar" id="bannerBar"><span>Giảm 20% phí dịch vụ visa — chỉ tuần này!</span><button type="button" class="banner-x" id="bannerClose" aria-label="Đóng băng rôn">✕</button></div><button type="button" class="banner-show" id="bannerShow">Hiện lại băng rôn</button><div class="banner-lines"><i style="width:62%"></i><i style="width:84%"></i><i style="width:48%"></i></div></div></div></td>
+              <td class="demo"><div class="stage"><div class="banner-frame" id="bannerFrame"><div class="banner-bar" id="bannerBar"><span>Giảm 20% BST Thu Đông — chỉ tuần này!</span><button type="button" class="banner-x" id="bannerClose" aria-label="Đóng băng rôn">✕</button></div><button type="button" class="banner-show" id="bannerShow">Hiện lại băng rôn</button><div class="banner-lines"><i style="width:62%"></i><i style="width:84%"></i><i style="width:48%"></i></div></div></div></td>
               <td class="name-cell"><span class="name">Banner</span><span class="vi-name">Băng rôn thông báo</span></td>
               <td class="desc"><b>Dải màu ngang ở đầu trang</b> để báo tin quan trọng: khuyến mãi, bảo trì, cập nhật mới — thường có nút ✕ để đóng. Khác Thanh thông báo cookie (Cookie Banner) ở chỗ băng rôn này nằm trên cùng trang và báo tin chung. Bấm ✕ thử nhé.</td>
             </tr>
@@ -4115,13 +4160,13 @@
             </tr>
 
             <tr class="comp" data-search="link liên kết chữ liên kết hyperlink anchor text bấm vào liên kết đường link">
-              <td class="demo"><div class="stage"><div class="n5-link">Xem thêm <a href="#" onclick="return false">hướng dẫn làm visa Úc</a> hoặc <a href="#" onclick="return false">bảng giá dịch vụ</a> mới nhất của chúng tôi.</div></div></td>
+              <td class="demo"><div class="stage"><div class="n5-link">Xem thêm <a href="#" onclick="return false">hướng dẫn chọn size</a> hoặc <a href="#" onclick="return false">bảng giá BST mới</a> mới nhất của chúng tôi.</div></div></td>
               <td class="name-cell"><span class="name">Link</span><span class="vi-name">Liên kết</span></td>
               <td class="desc">Hiển thị <b>liên kết văn bản có màu và gạch chân theo theme</b>, dùng để điều hướng tới trang khác hoặc mở nội dung liên quan. <i>(Nguồn: MUI)</i></td>
             </tr>
 
             <tr class="comp" data-search="collapsible nội dung thu gọn mở rộng thu mở collapse ẩn hiện nội dung xem thêm thu gọn">
-              <td class="demo"><div class="stage"><div class="n5-coll" id="n5Coll"><button type="button" class="n5-coll-btn" id="n5CollBtn"><span>Cài đặt nâng cao</span><span class="chev">▾</span></button><div class="n5-coll-body"><p>Bật gửi email nhắc lịch, tự động sao lưu hồ sơ mỗi ngày…</p></div></div></div></td>
+              <td class="demo"><div class="stage"><div class="n5-coll" id="n5Coll"><button type="button" class="n5-coll-btn" id="n5CollBtn"><span>Cài đặt nâng cao</span><span class="chev">▾</span></button><div class="n5-coll-body"><p>Bật gửi email nhắc lịch, tự động sao lưu dữ liệu cửa hàng mỗi ngày…</p></div></div></div></td>
               <td class="name-cell"><span class="name">Collapsible</span><span class="vi-name">Nội dung thu gọn / mở rộng</span></td>
               <td class="desc">Cho phép <b>ẩn hoặc hiện một khối nội dung bằng nút bấm</b> — khác Accordion ở chỗ chỉ có một vùng duy nhất chứ không xếp chồng nhiều mục. Bấm thử nút trong demo nhé. <i>(Nguồn: shadcn/ui)</i></td>
             </tr>
@@ -4194,9 +4239,9 @@
 
             <tr class="comp" data-search="chain of thought chuỗi bước suy luận các bước ai đã làm tóm tắt bước cot">
               <td class="demo"><div class="stage"><div class="n7-box"><div class="n7-think" id="n7Cot"><button type="button" class="n7-think-head" id="n7CotHead"><span>Đã tìm hiểu trong <b>3 bước</b></span><span class="chev">▾</span></button><div class="n7-think-lines" style="border-left:0;margin-left:0;padding-left:0">
-                <div class="n7-step"><span class="st">✓</span><span><b>Đọc câu hỏi</b><small>Xác định bạn hỏi về điều kiện visa Úc du lịch.</small></span></div>
-                <div class="n7-step"><span class="st">✓</span><span><b>Tra cứu nguồn chính thức</b><small>Kiểm tra trang của Bộ Nội vụ Úc (Home Affairs).</small></span></div>
-                <div class="n7-step"><span class="st">✓</span><span><b>Soạn câu trả lời</b><small>Tóm tắt điều kiện và giấy tờ cần chuẩn bị.</small></span></div>
+                <div class="n7-step"><span class="st">✓</span><span><b>Đọc câu hỏi</b><small>Xác định bạn hỏi về size của áo khoác dạ.</small></span></div>
+                <div class="n7-step"><span class="st">✓</span><span><b>Tra cứu nguồn chính thức</b><small>Kiểm tra bảng size và tồn kho trên web shop.</small></span></div>
+                <div class="n7-step"><span class="st">✓</span><span><b>Soạn câu trả lời</b><small>Tóm tắt size phù hợp và gợi ý phối đồ.</small></span></div>
               </div></div></div></div></td>
               <td class="name-cell"><span class="name">Chain of Thought</span><span class="vi-name">Chuỗi bước suy luận</span></td>
               <td class="desc">Dòng tóm tắt kiểu <b>“Đã tìm hiểu trong 3 bước”</b>; bấm vào sẽ mở ra <b>từng bước AI đã làm</b>, mỗi bước có dấu tick trạng thái hoàn thành. Bấm vào dòng tóm tắt thử nhé.</td>
@@ -4204,7 +4249,7 @@
 
             <tr class="comp" data-search="tool lời gọi công cụ tool call ai gọi công cụ tham số kết quả function calling trạng thái công cụ">
               <td class="demo"><div class="stage"><div class="n7-box">
-                <div class="n7-tool" data-tool><button type="button" class="n7-tool-head"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.8-3.8"/></svg><b>tim_kiem_web</b><span class="n7-badge ok">Hoàn thành</span><span class="chev">▾</span></button><div class="n7-tool-body"><span class="k">Tham số</span><code>{ "tu_khoa": "điều kiện visa Úc 600" }</code><span class="k">Kết quả</span><p>Tìm thấy 5 nguồn, đã chọn 2 nguồn chính thức để trích dẫn.</p></div></div>
+                <div class="n7-tool" data-tool><button type="button" class="n7-tool-head"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.8-3.8"/></svg><b>tim_kiem_web</b><span class="n7-badge ok">Hoàn thành</span><span class="chev">▾</span></button><div class="n7-tool-body"><span class="k">Tham số</span><code>{ "tu_khoa": "áo khoác dạ size M" }</code><span class="k">Kết quả</span><p>Tìm thấy 5 nguồn, đã chọn 2 nguồn chính thức để trích dẫn.</p></div></div>
                 <div class="n7-tool" data-tool><button type="button" class="n7-tool-head"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="2" width="16" height="20" rx="2"/><path d="M8 6h8M8 11h.01M12 11h.01M16 11h.01M8 15h.01M12 15h.01M16 15h.01M8 19h.01M12 19h.01M16 19h.01"/></svg><b>tinh_toan</b><span class="n7-badge err">Lỗi</span><span class="chev">▾</span></button><div class="n7-tool-body"><span class="k">Tham số</span><code>{ "bieu_thuc": "1299000 * 2 nguoi" }</code><span class="k">Kết quả</span><p>Lỗi: biểu thức có đơn vị “nguoi” không hợp lệ — AI sẽ sửa lại và gọi lại công cụ.</p></div></div>
               </div></div></td>
               <td class="name-cell"><span class="name">Tool</span><span class="vi-name">Lời gọi công cụ</span></td>
@@ -4213,31 +4258,31 @@
 
             <tr class="comp" data-search="checkpoint điểm khôi phục hội thoại mốc khôi phục quay lại lượt chat rewind ai">
               <td class="demo"><div class="stage"><div class="n7-box"><div id="n7Ckpt">
-                <div class="n7-msg me" style="display:block;max-width:88%;margin-left:auto">Tư vấn visa Úc giúp mình nhé</div>
-                <div class="n7-msg ai" style="margin-top:5px">Được ạ, bạn đi du lịch hay thăm thân?</div>
+                <div class="n7-msg me" style="display:block;max-width:88%;margin-left:auto">Tư vấn áo khoác dạ giúp mình nhé</div>
+                <div class="n7-msg ai" style="margin-top:5px">Được ạ, bạn cao bao nhiêu, nặng bao nhiêu để mình chọn size?</div>
                 <div class="n7-ckpt"><span class="tag">⚑ Điểm khôi phục · Lượt 2</span></div>
                 <div style="text-align:center;margin:2px 0 4px"><button type="button" class="n7-restore" id="n7Restore">Khôi phục</button></div>
-                <div data-after><div class="n7-msg me" style="display:block;max-width:88%;margin-left:auto">Mình đi du lịch 10 ngày</div></div>
-                <div data-after style="margin-top:5px"><div class="n7-msg ai">Vậy bạn cần hộ chiếu, ảnh và giấy tờ công việc…</div></div>
+                <div data-after><div class="n7-msg me" style="display:block;max-width:88%;margin-left:auto">Mình cao 1m60, nặng 52kg</div></div>
+                <div data-after style="margin-top:5px"><div class="n7-msg ai">Vậy bạn mặc size M là vừa đẹp, có 2 màu be và đen…</div></div>
               </div><div class="n7-count" id="n7CkptOut"></div></div></div></td>
               <td class="name-cell"><span class="name">Checkpoint</span><span class="vi-name">Điểm khôi phục hội thoại</span></td>
               <td class="desc"><b>Mốc đánh dấu trong đoạn chat</b> kèm nút Khôi phục: bấm vào sẽ <b>quay lại đúng lượt đó và xoá các tin nhắn phía sau mốc</b> — hữu ích khi AI trả lời lạc hướng. Bấm thử nút Khôi phục nhé.</td>
             </tr>
 
                         <tr class="comp" data-search="chat tool calls nhật ký lệnh gọi ai công cụ ai tool calls diff số dòng thêm xoá sandbox thời gian chạy astryx meta llm">
-              <td class="demo"><div class="stage"><div class="ax-wrap"><div class="ax-tc"><div class="ax-tc-head">🔧 3 lệnh gọi công cụ<span class="dur">tổng 1,2 giây</span></div><div class="ax-tc-row"><button type="button" class="ax-tc-btn" data-axtc><span class="st-ic st-ok">✓</span><code>read_file</code><span class="env">cli:local</span><span class="diff"><span class="add">+12</span> <span class="del">−3</span></span></button><div class="ax-tc-body">Mục tiêu: ho-so-visa.pdf · chạy 0,4 giây<code>Đã đọc 4 trang, trích xuất họ tên, số hộ chiếu và ngày hết hạn.</code></div></div><div class="ax-tc-row"><button type="button" class="ax-tc-btn" data-axtc><span class="st-ic"><span class="spin"></span></span><code>web_search</code><span class="env">sandbox</span><span class="diff">đang chạy…</span></button><div class="ax-tc-body">Mục tiêu: “điều kiện visa Úc 600” · đang tra cứu nguồn chính thức…</div></div><div class="ax-tc-row"><button type="button" class="ax-tc-btn" data-axtc><span class="st-ic st-err">✕</span><code>edit_file</code><span class="env">cli:local</span><span class="diff">lỗi · 0,1 giây</span></button><div class="ax-tc-body">Mục tiêu: bang-gia.html<code>Lỗi: không tìm thấy đoạn cần sửa — AI sẽ đọc lại file rồi thử lại.</code></div></div></div><div class="ax-note">Bấm từng dòng để xem chi tiết kết quả</div></div></div></td>
+              <td class="demo"><div class="stage"><div class="ax-wrap"><div class="ax-tc"><div class="ax-tc-head">🔧 3 lệnh gọi công cụ<span class="dur">tổng 1,2 giây</span></div><div class="ax-tc-row"><button type="button" class="ax-tc-btn" data-axtc><span class="st-ic st-ok">✓</span><code>read_file</code><span class="env">cli:local</span><span class="diff"><span class="add">+12</span> <span class="del">−3</span></span></button><div class="ax-tc-body">Mục tiêu: lookbook-thu-dong.pdf · chạy 0,4 giây<code>Đã đọc 4 trang, trích xuất tên sản phẩm, size và giá bán.</code></div></div><div class="ax-tc-row"><button type="button" class="ax-tc-btn" data-axtc><span class="st-ic"><span class="spin"></span></span><code>web_search</code><span class="env">sandbox</span><span class="diff">đang chạy…</span></button><div class="ax-tc-body">Mục tiêu: “áo khoác dạ size M còn hàng” · đang tra cứu tồn kho…</div></div><div class="ax-tc-row"><button type="button" class="ax-tc-btn" data-axtc><span class="st-ic st-err">✕</span><code>edit_file</code><span class="env">cli:local</span><span class="diff">lỗi · 0,1 giây</span></button><div class="ax-tc-body">Mục tiêu: bang-size.html<code>Lỗi: không tìm thấy đoạn cần sửa — AI sẽ đọc lại file rồi thử lại.</code></div></div></div><div class="ax-note">Bấm từng dòng để xem chi tiết kết quả</div></div></div></td>
               <td class="name-cell"><span class="name">Chat Tool Calls</span><span class="vi-name">Nhật ký lệnh gọi của AI</span></td>
               <td class="desc">Hiển thị <b>từng công cụ AI đã gọi</b> kèm tên dạng monospace, <b>môi trường chạy (sandbox)</b>, mục tiêu, <b>số dòng thêm/xoá</b>, thời gian chạy và trạng thái chờ / đang chạy / xong / lỗi — giúp người dùng <b>hiểu và kiểm chứng những gì AI đã làm</b> thay vì chỉ thấy kết quả cuối. Khác mục Tool ở chỗ đây là nhật ký gộp nhiều lệnh gọi của cả bộ công cụ chat AI trong Astryx. <i>(Nguồn: Astryx của Meta — astryx.atmeta.com)</i></td>
             </tr>
 
             <tr class="comp" data-search="overflow list danh sách tự thu gọn tràn ẩn mục thừa +n more thanh công cụ tag astryx meta overflow">
-              <td class="demo"><div class="stage"><div class="ax-wrap"><div class="ax-of-box"><div class="ax-of-row" id="axOfRow"><span class="ax-of-tag">Visa Úc</span><span class="ax-of-tag">Visa Mỹ</span><span class="ax-of-tag">Visa Hàn</span><span class="ax-of-tag">Visa Nhật</span><span class="ax-of-tag">Visa Canada</span><span class="ax-of-tag">Visa Anh</span><span class="ax-of-badge" id="axOfBadge">+3</span></div></div><label style="font-size:11px;font-weight:700;color:var(--muted)">Kéo để thu hẹp khung <input type="range" class="ax-range" id="axOfRange" min="96" max="190" value="190" aria-label="Chỉnh độ rộng khung danh sách" /></label></div></div></td>
+              <td class="demo"><div class="stage"><div class="ax-wrap"><div class="ax-of-box"><div class="ax-of-row" id="axOfRow"><span class="ax-of-tag">Áo khoác</span><span class="ax-of-tag">Váy đầm</span><span class="ax-of-tag">Áo len</span><span class="ax-of-tag">Quần jeans</span><span class="ax-of-tag">Chân váy</span><span class="ax-of-tag">Đầm dạ hội</span><span class="ax-of-badge" id="axOfBadge">+3</span></div></div><label style="font-size:11px;font-weight:700;color:var(--muted)">Kéo để thu hẹp khung <input type="range" class="ax-range" id="axOfRange" min="96" max="190" value="190" aria-label="Chỉnh độ rộng khung danh sách" /></label></div></div></td>
               <td class="name-cell"><span class="name">Overflow List</span><span class="vi-name">Danh sách tự thu gọn</span></td>
               <td class="desc"><b>Hàng ngang tự ẩn các mục thừa khi hết chỗ</b> và gom chúng vào huy hiệu <b>“+N”</b> hoặc menu thả xuống — thanh công cụ, dãy thẻ tag không bao giờ bị tràn hay vỡ bố cục khi màn hình hẹp. Kéo thanh trượt trong demo để thu hẹp khung xem thử. <i>(Nguồn: Astryx của Meta — astryx.atmeta.com)</i></td>
             </tr>
 
             <tr class="comp" data-search="timestamp mốc thời gian tự động 2 giờ trước relative time ngày đầy đủ múi giờ tự cập nhật astryx meta thời gian tương đối">
-              <td class="demo"><div class="stage"><div class="ax-wrap"><div class="ax-ts-list"><div><b>Hồ sơ Úc vừa nộp</b><time data-axts="5" title="">…</time></div><div><b>Tin nhắn của khách</b><time data-axts="120" title="">…</time></div><div><b>Đơn hàng tháng trước</b><time data-axts="43200" title="">…</time></div><div><b>Bình luận mới nhất</b><time data-axts="live" title="">…</time></div></div><div class="ax-note">Mục mới hiện “x phút/giờ trước”, mục cũ hiện ngày đầy đủ — dòng cuối tự đếm giây trực tiếp</div></div></div></td>
+              <td class="demo"><div class="stage"><div class="ax-wrap"><div class="ax-ts-list"><div><b>Đơn hàng mới vừa đặt</b><time data-axts="5" title="">…</time></div><div><b>Tin nhắn của khách</b><time data-axts="120" title="">…</time></div><div><b>Đơn hàng tháng trước</b><time data-axts="43200" title="">…</time></div><div><b>Bình luận mới nhất</b><time data-axts="live" title="">…</time></div></div><div class="ax-note">Mục mới hiện “x phút/giờ trước”, mục cũ hiện ngày đầy đủ — dòng cuối tự đếm giây trực tiếp</div></div></div></td>
               <td class="name-cell"><span class="name">Timestamp</span><span class="vi-name">Mốc thời gian tự động</span></td>
               <td class="desc">Mốc thời gian <b>tự chọn cách hiển thị</b>: mục mới hiện dạng tương đối “2 giờ trước”, mục cũ chuyển sang <b>ngày đầy đủ</b>; rê chuột vào thấy ngày giờ chính xác, và chế độ <b>trực tiếp (live)</b> tự cập nhật mà không cần tải lại trang. <i>(Nguồn: Astryx của Meta — astryx.atmeta.com)</i></td>
             </tr>
@@ -4257,7 +4302,7 @@
             </tr>
 
             <tr class="comp" data-search="popover hộp nổi popover bấm hiện thông tin thêm">
-              <td class="demo"><div class="stage"><div class="pop-wrap"><div class="pop-card"><b>Chi tiết nhanh</b><small>Hồ sơ #128 · Visa Úc · Đang xử lý</small></div><button class="pop-btn" type="button">Xem hồ sơ</button></div></div></td>
+              <td class="demo"><div class="stage"><div class="pop-wrap"><div class="pop-card"><b>Chi tiết nhanh</b><small>Đơn #128 · Áo khoác dạ · Đang giao</small></div><button class="pop-btn" type="button">Xem đơn</button></div></div></td>
               <td class="name-cell"><span class="name">Popover</span><span class="vi-name">Hộp nổi (popover)</span></td>
               <td class="desc"><b>Hộp nhỏ nổi cạnh phần tử khi bấm</b>, chứa thêm thông tin hoặc thao tác liên quan — to hơn Tooltip (chỉ có chữ) và ít “chặn” người dùng hơn Modal.</td>
             </tr>
@@ -4269,37 +4314,37 @@
             </tr>
 
             <tr class="comp" data-search="command palette bảng lệnh tìm kiếm nhanh phím tắt cmdk command menu spotlight">
-              <td class="demo"><div class="stage"><div class="cmdk"><div class="cmdk-head"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.8-3.8"/></svg>Gõ lệnh hoặc tìm kiếm…</div><div class="cmdk-list"><div>Tạo hồ sơ mới <span class="k">Ctrl N</span></div><div>Tìm khách hàng <span class="k">Ctrl K</span></div><div>Xuất báo cáo <span class="k">Ctrl E</span></div></div></div></div></td>
+              <td class="demo"><div class="stage"><div class="cmdk"><div class="cmdk-head"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.8-3.8"/></svg>Gõ lệnh hoặc tìm kiếm…</div><div class="cmdk-list"><div>Tạo đơn hàng mới <span class="k">Ctrl N</span></div><div>Tìm khách hàng <span class="k">Ctrl K</span></div><div>Xuất báo cáo <span class="k">Ctrl E</span></div></div></div></div></td>
               <td class="name-cell"><span class="name">Command Palette</span><span class="vi-name">Bảng lệnh tìm kiếm nhanh</span></td>
               <td class="desc"><b>Hộp tìm kiếm mở bằng phím tắt</b> (thường là Ctrl + K) để gõ lệnh và nhảy nhanh tới trang hoặc chức năng, không cần mò qua menu.</td>
             </tr>
 
             <tr class="comp" data-search="alert dialog hộp thoại xác nhận confirm xoá cảnh báo confirm dialog">
-              <td class="demo"><div class="stage"><div class="modal-stage"><div class="modal-dim"></div><div class="modal-box adlg"><b>Xoá hồ sơ này?</b><small>Dữ liệu sẽ mất vĩnh viễn, không khôi phục được.</small><div class="adlg-btns"><span class="cancel">Huỷ</span><span class="del">Xoá</span></div></div></div></div></td>
+              <td class="demo"><div class="stage"><div class="modal-stage"><div class="modal-dim"></div><div class="modal-box adlg"><b>Xoá đơn hàng này?</b><small>Dữ liệu sẽ mất vĩnh viễn, không khôi phục được.</small><div class="adlg-btns"><span class="cancel">Huỷ</span><span class="del">Xoá</span></div></div></div></div></td>
               <td class="name-cell"><span class="name">Alert Dialog</span><span class="vi-name">Hộp thoại xác nhận</span></td>
               <td class="desc">Hộp thoại <b>bắt buộc người dùng xác nhận hoặc hủy</b> trước khi thực hiện hành động quan trọng, như xoá dữ liệu — khác Modal thường ở chỗ không bấm ra ngoài để tắt được.</td>
             </tr>
 
-            <tr class="comp" data-search="hover card thẻ nổi di chuột xem trước hồ sơ profile preview">
+            <tr class="comp" data-search="hover card thẻ nổi di chuột xem trước sản phẩm profile preview">
               <td class="demo"><div class="stage"><div class="pop-wrap"><div class="pop-card"><b>Nguyễn Văn A</b><small>Quản trị viên · Đang online</small><small>Tham gia từ năm 2023</small></div><span class="hover-anchor"><span class="ava2">NA</span>@nguyenvana</span></div></div></td>
               <td class="name-cell"><span class="name">Hover Card</span><span class="vi-name">Thẻ nổi khi di chuột</span></td>
-              <td class="desc"><b>Thẻ xem trước hiện ra khi di chuột</b> lên một mục, ví dụ hồ sơ người dùng hoặc liên kết — như rê chuột lên tên người dùng trên Facebook, X.</td>
+              <td class="desc"><b>Thẻ xem trước hiện ra khi di chuột</b> lên một mục, ví dụ thẻ sản phẩm hoặc liên kết — như rê chuột lên tên người dùng trên Facebook, X.</td>
             </tr>
 
             <tr class="comp" data-search="tour guided tour hướng dẫn từng bước giới thiệu tính năng onboarding bước hướng dẫn spotlight">
-              <td class="demo"><div class="stage"><div class="frame s1" id="tourDemo"><i class="bg-line" style="top:10px;width:52%"></i><i class="bg-line" style="top:24px;width:70%"></i><span class="tour-ava"></span><span class="tour-btn"></span><span class="tour-target"></span><div class="tour-tip"><b id="tourTitle">Bước 1 / 2</b><span id="tourText">Bấm nút này để tạo hồ sơ mới.</span></div></div></div></td>
+              <td class="demo"><div class="stage"><div class="frame s1" id="tourDemo"><i class="bg-line" style="top:10px;width:52%"></i><i class="bg-line" style="top:24px;width:70%"></i><span class="tour-ava"></span><span class="tour-btn"></span><span class="tour-target"></span><div class="tour-tip"><b id="tourTitle">Bước 1 / 2</b><span id="tourText">Bấm nút này để tạo đơn hàng mới.</span></div></div></div></td>
               <td class="name-cell"><span class="name">Tour</span><span class="vi-name">Hướng dẫn từng bước</span></td>
               <td class="desc">Chuỗi <b>bong bóng hướng dẫn</b> lần lượt chỉ vào từng vị trí trên trang để dạy người dùng mới cách dùng tính năng, thường chạy ở lần đầu mở app.</td>
             </tr>
 
             <tr class="comp" data-search="notification center trung tâm thông báo danh sách thông báo tất cả thông báo hộp thư thông báo inbox notifications panel">
-              <td class="demo"><div class="stage"><div class="ncenter" id="notifCenter"><div class="ncenter-head"><span>Tất cả thông báo</span><span class="nbadge" id="ncBadge">3</span></div><button type="button" class="nc-row"><span class="nc-dot"></span><span><b>Đơn hàng mới #129</b><small>Khách vừa đặt dịch vụ visa Úc · 2 phút trước</small></span></button><button type="button" class="nc-row"><span class="nc-dot"></span><span><b>Tin nhắn từ chị Hương</b><small>“Chị gửi thêm giấy tờ nhé” · 15 phút trước</small></span></button><button type="button" class="nc-row"><span class="nc-dot"></span><span><b>Nhắc lịch hẹn 15:00</b><small>Tư vấn hồ sơ tại văn phòng · Hôm nay</small></span></button></div></div></td>
+              <td class="demo"><div class="stage"><div class="ncenter" id="notifCenter"><div class="ncenter-head"><span>Tất cả thông báo</span><span class="nbadge" id="ncBadge">3</span></div><button type="button" class="nc-row"><span class="nc-dot"></span><span><b>Đơn hàng mới #129</b><small>Khách vừa đặt áo khoác dạ · 2 phút trước</small></span></button><button type="button" class="nc-row"><span class="nc-dot"></span><span><b>Tin nhắn từ chị Hương</b><small>“Chị đổi sang size M nhé” · 15 phút trước</small></span></button><button type="button" class="nc-row"><span class="nc-dot"></span><span><b>Nhắc lịch hẹn 15:00</b><small>Livestream BST mới tại cửa hàng · Hôm nay</small></span></button></div></div></td>
               <td class="name-cell"><span class="name">Notification Center</span><span class="vi-name">Trung tâm thông báo</span></td>
               <td class="desc"><b>Bảng liệt kê tất cả thông báo</b>: đơn mới, tin nhắn, nhắc lịch… — bấm vào một dòng thì mở đúng nội dung đó và đánh dấu đã đọc. Khác Chuông thông báo (Notification Bell) vốn chỉ là biểu tượng chuông mở ra danh sách rút gọn. Bấm thử từng dòng nhé.</td>
             </tr>
 
             <tr class="comp" data-search="popconfirm hộp xác nhận nhỏ xác nhận xóa bong bóng xác nhận confirm nhỏ pop confirm hỏi lại trước khi xóa">
-              <td class="demo"><div class="stage"><div class="n5-popc"><div class="n5-popc-bubble" id="n5PopBubble"><b>Xoá mục này chứ?</b><div class="n5-popc-btns"><button type="button" class="no" id="n5PopNo">Huỷ</button><button type="button" class="yes" id="n5PopYes">Đồng ý xoá</button></div></div><button type="button" class="n5-popc-del" id="n5PopBtn">🗑 Xoá hồ sơ</button><span class="n5-popc-msg" id="n5PopMsg">Đã xoá ✓</span></div></div></td>
+              <td class="demo"><div class="stage"><div class="n5-popc"><div class="n5-popc-bubble" id="n5PopBubble"><b>Xoá mục này chứ?</b><div class="n5-popc-btns"><button type="button" class="no" id="n5PopNo">Huỷ</button><button type="button" class="yes" id="n5PopYes">Đồng ý xoá</button></div></div><button type="button" class="n5-popc-del" id="n5PopBtn">🗑 Xoá sản phẩm</button><span class="n5-popc-msg" id="n5PopMsg">Đã xoá ✓</span></div></div></td>
               <td class="name-cell"><span class="name">Popconfirm</span><span class="vi-name">Hộp xác nhận nhỏ</span></td>
               <td class="desc">Hiển thị <b>bong bóng xác nhận gọn nhẹ với nút Đồng ý/Huỷ ngay cạnh nút bấm</b>, dùng trước các thao tác nguy hiểm như xóa. Bấm thử nút Xoá trong demo nhé. <i>(Nguồn: Ant Design)</i></td>
             </tr>
@@ -4313,7 +4358,7 @@
             <tr class="comp" data-search="action bar thanh hành động nổi bulk action thao tác hàng loạt chọn nhiều mục xóa chia sẻ tải xuống thanh công cụ nổi">
               <td class="demo"><div class="stage"><div class="n6-abar-wrap">
                 <div class="n6-abar-list" id="n6AbarList">
-                  <label><input type="checkbox" /> ho-so-visa.pdf</label>
+                  <label><input type="checkbox" /> lookbook-thu-dong.pdf</label>
                   <label><input type="checkbox" /> anh-chan-dung.jpg</label>
                   <label><input type="checkbox" /> bang-gia.xlsx</label>
                   <label><input type="checkbox" /> hop-dong.docx</label>
@@ -4332,7 +4377,7 @@
             </tr>
 
             <tr class="comp" data-search="bottom sheet detents stacking tấm trượt nhiều nấc xếp chồng vuốt nhanh flick bàn phím astryx meta điện thoại từng bước">
-              <td class="demo"><div class="stage"><div class="ax-wrap"><div class="ax-bs-frame"><i class="bgline" style="top:10px;width:52%"></i><i class="bgline" style="top:24px;width:70%"></i><div class="ax-sheet" id="axSheet" style="height:38%"><div class="grip"></div><b>Bộ lọc hồ sơ</b><i style="width:78%"></i><i style="width:58%"></i><i style="width:66%"></i></div><div class="ax-sheet s2" id="axSheet2" style="height:52%"><div class="grip"></div><b>Bước 2: chọn quốc gia</b><i style="width:70%"></i><i style="width:50%"></i></div></div><div class="ax-row"><button type="button" class="ax-mini-btn" data-axdet="38">Nấc thấp</button><button type="button" class="ax-mini-btn" data-axdet="64">Nấc giữa</button><button type="button" class="ax-mini-btn" data-axdet="94">Nấc cao</button><button type="button" class="ax-mini-btn acc" id="axSheetStack">Mở tấm 2</button></div></div></div></td>
+              <td class="demo"><div class="stage"><div class="ax-wrap"><div class="ax-bs-frame"><i class="bgline" style="top:10px;width:52%"></i><i class="bgline" style="top:24px;width:70%"></i><div class="ax-sheet" id="axSheet" style="height:38%"><div class="grip"></div><b>Bộ lọc sản phẩm</b><i style="width:78%"></i><i style="width:58%"></i><i style="width:66%"></i></div><div class="ax-sheet s2" id="axSheet2" style="height:52%"><div class="grip"></div><b>Bước 2: chọn danh mục</b><i style="width:70%"></i><i style="width:50%"></i></div></div><div class="ax-row"><button type="button" class="ax-mini-btn" data-axdet="38">Nấc thấp</button><button type="button" class="ax-mini-btn" data-axdet="64">Nấc giữa</button><button type="button" class="ax-mini-btn" data-axdet="94">Nấc cao</button><button type="button" class="ax-mini-btn acc" id="axSheetStack">Mở tấm 2</button></div></div></div></td>
               <td class="name-cell"><span class="name">Bottom Sheet — Detents &amp; Stacking</span><span class="vi-name">Tấm trượt nhiều nấc &amp; xếp chồng</span></td>
               <td class="desc">Bản nâng cao của Bảng trượt dưới kiểu Astryx: tấm trượt <b>dừng ở nhiều nấc</b> (thấp / giữa / cao), <b>vuốt nhanh là đóng hoặc nhảy nấc</b>, mở tấm thứ hai thì <b>xếp chồng lên tấm đầu</b> mà tấm đầu vẫn giữ nguyên trạng thái — hợp với quy trình nhiều bước trên điện thoại, kèm khả năng tự nâng theo bàn phím. Bấm các nấc và nút Mở tấm 2 để thử. <i>(Nguồn: Astryx của Meta — astryx.atmeta.com)</i></td>
             </tr>
@@ -4394,9 +4439,9 @@
             </tr>
 
             <tr class="comp" data-search="statistic số liệu thống kê con số đếm kpi dashboard chỉ số">
-              <td class="demo"><div class="stage"><div class="stat"><div class="num" id="statNum">0</div><div class="lbl">Hồ sơ đã xử lý <span class="delta">▲ 12%</span></div></div></div></td>
+              <td class="demo"><div class="stage"><div class="stat"><div class="num" id="statNum">0</div><div class="lbl">Đơn hàng đã giao <span class="delta">▲ 12%</span></div></div></div></td>
               <td class="name-cell"><span class="name">Statistic</span><span class="vi-name">Số liệu thống kê</span></td>
-              <td class="desc">Một <b>con số lớn kèm nhãn</b> để nêu bật chỉ số quan trọng trên trang tổng quan (dashboard): doanh thu, số hồ sơ, khách hàng… thường kèm % tăng/giảm.</td>
+              <td class="desc">Một <b>con số lớn kèm nhãn</b> để nêu bật chỉ số quan trọng trên trang tổng quan (dashboard): doanh thu, số đơn hàng, khách hàng… thường kèm % tăng/giảm.</td>
             </tr>
 
             <tr class="comp" data-search="video player trình phát video xem video play pause phát dừng">
@@ -4412,7 +4457,7 @@
             </tr>
 
             <tr class="comp" data-search="map bản đồ nhúng ghim vị trí google maps địa chỉ đường đi location pin">
-              <td class="demo"><div class="stage"><div class="map-demo"><span class="map-pin"></span><span class="map-label">VISA NOW — Quận 1</span></div></div></td>
+              <td class="demo"><div class="stage"><div class="map-demo"><span class="map-pin"></span><span class="map-label">Shop Thời Trang — Quận 1</span></div></div></td>
               <td class="name-cell"><span class="name">Map</span><span class="vi-name">Bản đồ nhúng</span></td>
               <td class="desc">Bản đồ nhúng ngay trong trang kèm <b>ghim vị trí</b>, giúp khách tìm đường tới cửa hàng, văn phòng mà không phải rời khỏi web.</td>
             </tr>
@@ -4424,7 +4469,7 @@
             </tr>
 
             <tr class="comp" data-search="kanban board bảng kanban cột trạng thái kéo thả thẻ công việc quản lý công việc tiến độ chờ làm đang làm xong">
-              <td class="demo"><div class="stage"><div class="kb" id="kbDemo"><div class="kb-col"><div class="kb-head">Chờ làm</div><div class="kb-card" draggable="true">Nộp hồ sơ Úc</div><div class="kb-card" draggable="true">Đặt lịch hẹn</div></div><div class="kb-col"><div class="kb-head">Đang làm</div><div class="kb-card" draggable="true">Dịch giấy tờ</div></div><div class="kb-col"><div class="kb-head">Xong</div><div class="kb-card" draggable="true">Tư vấn khách</div></div></div></div></td>
+              <td class="demo"><div class="stage"><div class="kb" id="kbDemo"><div class="kb-col"><div class="kb-head">Chờ làm</div><div class="kb-card" draggable="true">Nhập hàng Thu Đông</div><div class="kb-card" draggable="true">Chụp ảnh sản phẩm</div></div><div class="kb-col"><div class="kb-head">Đang làm</div><div class="kb-card" draggable="true">Gói đơn #128</div></div><div class="kb-col"><div class="kb-head">Xong</div><div class="kb-card" draggable="true">Trả lời tin nhắn khách</div></div></div></div></td>
               <td class="name-cell"><span class="name">Kanban Board</span><span class="vi-name">Bảng Kanban</span></td>
               <td class="desc">Bảng gồm <b>nhiều cột trạng thái (Chờ làm → Đang làm → Xong)</b>, mỗi việc là một thẻ để <b>kéo thả qua lại giữa các cột</b> và theo dõi tiến độ bằng mắt. Kéo thử một thẻ sang cột khác, hoặc bấm vào thẻ để chuyển nó sang cột kế tiếp.</td>
             </tr>
@@ -4436,7 +4481,7 @@
             </tr>
 
             <tr class="comp" data-search="virtual list danh sách ảo ảo hoá danh sách dài hàng nghìn mục cuộn mượt virtualized listy hiệu năng">
-              <td class="demo"><div class="stage"><div class="n5-virt"><div class="n5-virt-win"><div class="n5-virt-track"><div><span class="no">#1</span>Hồ sơ visa Úc</div><div><span class="no">#2</span>Hồ sơ visa Mỹ</div><div><span class="no">#3</span>Hồ sơ visa Hàn</div><div><span class="no">#4</span>Hồ sơ visa Nhật</div><div><span class="no">#5</span>Hồ sơ visa Canada</div><div><span class="no">#6</span>Hồ sơ visa Anh</div><div><span class="no">#7</span>Hồ sơ visa Pháp</div><div><span class="no">#8</span>Hồ sơ visa Đức</div><div><span class="no">#9</span>Hồ sơ visa Ý</div></div></div><div class="n5-virt-lbl">10.000 mục — chỉ vẽ phần đang xem</div></div></div></td>
+              <td class="demo"><div class="stage"><div class="n5-virt"><div class="n5-virt-win"><div class="n5-virt-track"><div><span class="no">#1</span>Áo khoác dạ — 890k</div><div><span class="no">#2</span>Váy hoa nhí — 450k</div><div><span class="no">#3</span>Áo len cổ lọ — 320k</div><div><span class="no">#4</span>Quần jeans ống rộng — 390k</div><div><span class="no">#5</span>Chân váy xếp ly — 280k</div><div><span class="no">#6</span>Đầm dạ hội — 1,2tr</div><div><span class="no">#7</span>Áo sơ mi lụa — 350k</div><div><span class="no">#8</span>Set blazer — 990k</div><div><span class="no">#9</span>Áo thun basic — 150k</div></div></div><div class="n5-virt-lbl">10.000 mục — chỉ vẽ phần đang xem</div></div></div></td>
               <td class="name-cell"><span class="name">Virtual List</span><span class="vi-name">Danh sách ảo</span></td>
               <td class="desc"><b>Chỉ hiển thị các mục đang nằm trong khung nhìn</b> của danh sách dài hàng nghìn mục, giúp trang cuộn mượt và không bị nặng. Lưu ý: bản Listy của Ant Design mới có từ bản 6.6.0. <i>(Nguồn: Ant Design — Listy)</i></td>
             </tr>
@@ -4448,7 +4493,7 @@
             </tr>
 
             <tr class="comp" data-search="table plugins bảng dữ liệu lắp ghép plugin hooks sắp xếp nhiều cột chọn hàng đổi kích thước cột cây dữ liệu cuộn vô hạn astryx meta useTable">
-              <td class="demo"><div class="stage"><div class="ax-wrap"><div class="ax-pt-toggles"><label><input type="checkbox" class="switch" id="axPtSort" checked />Sắp xếp</label><label><input type="checkbox" class="switch" id="axPtSel" />Chọn hàng</label><label><input type="checkbox" class="switch" id="axPtSt" checked />Trạng thái</label></div><div class="ax-pt show-sort show-st" id="axPtTable"><table><thead><tr><th class="col-sel">✓</th><th>Khách <span class="sortarw">↕1</span></th><th>Giá <span class="sortarw">↕2</span></th><th class="col-st">Trạng thái</th></tr></thead><tbody><tr><td class="col-sel"><input type="checkbox" aria-label="Chọn hàng 1" /></td><td>Chị Hương</td><td>1,9tr</td><td class="col-st st-ok">Đã đậu</td></tr><tr><td class="col-sel"><input type="checkbox" aria-label="Chọn hàng 2" /></td><td>Anh Quyền</td><td>2,4tr</td><td class="col-st st-wait">Đang xử lý</td></tr><tr><td class="col-sel"><input type="checkbox" aria-label="Chọn hàng 3" /></td><td>Chị Bích</td><td>1,9tr</td><td class="col-st st-ok">Đã đậu</td></tr></tbody></table></div><div class="ax-note">Bật/tắt từng “plugin” để bảng đổi theo — số ↕1 ↕2 là thứ tự ưu tiên khi sắp xếp nhiều cột</div></div></div></td>
+              <td class="demo"><div class="stage"><div class="ax-wrap"><div class="ax-pt-toggles"><label><input type="checkbox" class="switch" id="axPtSort" checked />Sắp xếp</label><label><input type="checkbox" class="switch" id="axPtSel" />Chọn hàng</label><label><input type="checkbox" class="switch" id="axPtSt" checked />Trạng thái</label></div><div class="ax-pt show-sort show-st" id="axPtTable"><table><thead><tr><th class="col-sel">✓</th><th>Khách <span class="sortarw">↕1</span></th><th>Giá <span class="sortarw">↕2</span></th><th class="col-st">Trạng thái</th></tr></thead><tbody><tr><td class="col-sel"><input type="checkbox" aria-label="Chọn hàng 1" /></td><td>Chị Hương</td><td>1,9tr</td><td class="col-st st-ok">Đã giao</td></tr><tr><td class="col-sel"><input type="checkbox" aria-label="Chọn hàng 2" /></td><td>Anh Quyền</td><td>2,4tr</td><td class="col-st st-wait">Đang xử lý</td></tr><tr><td class="col-sel"><input type="checkbox" aria-label="Chọn hàng 3" /></td><td>Chị Bích</td><td>1,9tr</td><td class="col-st st-ok">Đã giao</td></tr></tbody></table></div><div class="ax-note">Bật/tắt từng “plugin” để bảng đổi theo — số ↕1 ↕2 là thứ tự ưu tiên khi sắp xếp nhiều cột</div></div></div></td>
               <td class="name-cell"><span class="name">Table Plugins</span><span class="vi-name">Bảng dữ liệu lắp ghép tính năng</span></td>
               <td class="desc">Bảng dữ liệu kiểu Astryx: mỗi tính năng là một <b>plugin (hook) bật tắt riêng</b> — sắp xếp nhiều cột có số thứ tự ưu tiên, chọn hàng, đổi kích thước cột, cây dữ liệu, cuộn tải thêm… — nên <b>một bảng dùng được cho nhiều màn hình</b> mà không phải viết lại. Bật/tắt 3 công tắc trong demo để xem bảng thay đổi. <i>(Nguồn: Astryx của Meta — astryx.atmeta.com)</i></td>
             </tr>
@@ -4468,19 +4513,19 @@
             </tr>
 
             <tr class="comp" data-search="hero section khu vực mở đầu đầu trang chủ banner lớn tiêu đề chính hero">
-              <td class="demo"><div class="stage"><div class="hero-mini"><div class="h-title">Làm visa nhanh, tỉ lệ đậu cao</div><div class="h-sub">Tư vấn miễn phí — chuẩn bị hồ sơ trọn gói từ A đến Z</div><span class="h-btn">Đăng ký tư vấn</span></div></div></td>
+              <td class="demo"><div class="stage"><div class="hero-mini"><div class="h-title">BST Thu Đông — giảm đến 40%</div><div class="h-sub">Freeship đơn từ 500k — đổi size miễn phí trong 30 ngày</div><span class="h-btn">Mua sắm ngay</span></div></div></td>
               <td class="name-cell"><span class="name">Hero Section</span><span class="vi-name">Khu vực mở đầu (hero)</span></td>
               <td class="desc">Khối lớn <b>đầu tiên đập vào mắt</b> khi mở trang chủ: tiêu đề chính, một câu mô tả và nút hành động — quyết định người xem có ở lại đọc tiếp hay không.</td>
             </tr>
 
             <tr class="comp" data-search="pricing table bảng giá gói dịch vụ so sánh gói price plans">
-              <td class="demo"><div class="stage"><div class="price3"><div class="col"><b>Cơ bản</b><span class="p">990k</span><small>1 lần nộp hồ sơ</small></div><div class="col hot"><b>Tiêu chuẩn</b><span class="p">1,9tr</span><small>Được chọn nhiều nhất</small></div><div class="col"><b>Cao cấp</b><span class="p">3,9tr</span><small>Hỗ trợ ưu tiên</small></div></div></div></td>
+              <td class="demo"><div class="stage"><div class="price3"><div class="col"><b>Cơ bản</b><span class="p">990k</span><small>1 set đồ cơ bản</small></div><div class="col hot"><b>Tiêu chuẩn</b><span class="p">1,9tr</span><small>Được chọn nhiều nhất</small></div><div class="col"><b>Cao cấp</b><span class="p">3,9tr</span><small>Tặng kèm phụ kiện</small></div></div></div></td>
               <td class="name-cell"><span class="name">Pricing Table</span><span class="vi-name">Bảng giá</span></td>
               <td class="desc">Các cột gói dịch vụ <b>đặt cạnh nhau để so sánh giá và quyền lợi</b>; gói ở giữa thường được làm nổi bật là gói “được chọn nhiều nhất”.</td>
             </tr>
 
             <tr class="comp" data-search="testimonial lời nhận xét khách hàng đánh giá chứng thực review khách">
-              <td class="demo"><div class="stage"><div class="testi"><span class="st">★★★★★</span><div class="q">“Hồ sơ được chuẩn bị rất kỹ, đậu visa ngay lần đầu!”</div><div class="who"><span class="av">TH</span><small>Chị Hương — khách làm visa Úc</small></div></div></div></td>
+              <td class="demo"><div class="stage"><div class="testi"><span class="st">★★★★★</span><div class="q">“Áo khoác dạ mặc lên form rất đẹp, giao hàng nhanh!”</div><div class="who"><span class="av">TH</span><small>Chị Hương — khách mua áo khoác dạ</small></div></div></div></td>
               <td class="name-cell"><span class="name">Testimonial</span><span class="vi-name">Lời nhận xét của khách hàng</span></td>
               <td class="desc">Trích <b>lời khen thật của khách hàng</b> kèm tên, ảnh và số sao để tạo niềm tin cho người mới — thường xếp thành dãy nhiều thẻ trượt qua lại.</td>
             </tr>
@@ -4510,7 +4555,7 @@
             </tr>
 
             <tr class="comp" data-search="chat bubble bong bóng trò chuyện tin nhắn chat messenger hộp chat">
-              <td class="demo"><div class="stage"><div class="chat"><div class="cb in">Chào bạn, mình cần tư vấn visa Úc ạ</div><div class="cb out">Chào bạn! Bạn đi du lịch hay thăm thân?</div><div class="cb in"><span class="typing"><i></i><i></i><i></i></span></div></div></div></td>
+              <td class="demo"><div class="stage"><div class="chat"><div class="cb in">Chào bạn, áo khoác dạ còn size M không ạ</div><div class="cb out">Chào bạn! Còn nhé, bạn muốn màu be hay đen?</div><div class="cb in"><span class="typing"><i></i><i></i><i></i></span></div></div></div></td>
               <td class="name-cell"><span class="name">Chat Bubble</span><span class="vi-name">Bong bóng trò chuyện</span></td>
               <td class="desc">Mỗi tin nhắn nằm trong một <b>bong bóng bo góc</b>: tin của người kia nằm bên trái, tin của mình nằm bên phải và khác màu — kèm hiệu ứng “đang gõ…” ba chấm nhảy.</td>
             </tr>
@@ -4522,12 +4567,12 @@
             </tr>
 
             <tr class="comp" data-search="filter panel bảng bộ lọc panel lọc sidebar lọc tìm kiếm nâng cao bộ lọc">
-              <td class="demo"><div class="stage"><div class="filter-mini"><div class="f-title">Lọc theo loại visa</div><label><input type="checkbox" checked /> Du lịch</label><label><input type="checkbox" checked /> Thăm thân</label><label><input type="checkbox" /> Công tác</label><div class="f-range"><i></i></div></div></div></td>
+              <td class="demo"><div class="stage"><div class="filter-mini"><div class="f-title">Lọc theo danh mục</div><label><input type="checkbox" checked /> Áo khoác</label><label><input type="checkbox" checked /> Váy đầm</label><label><input type="checkbox" /> Áo len</label><div class="f-range"><i></i></div></div></div></td>
               <td class="name-cell"><span class="name">Filter Panel</span><span class="vi-name">Bảng bộ lọc</span></td>
               <td class="desc">Bảng gom <b>nhiều tiêu chí lọc</b> (ô tick, thanh trượt giá, danh sách chọn) ở cột bên hoặc trượt ra trên điện thoại, giúp thu hẹp kết quả tìm kiếm/sản phẩm.</td>
             </tr>
             <tr class="comp" data-search="feature section khu vực tính năng điểm mạnh features lưới tính năng ưu điểm">
-              <td class="demo"><div class="stage"><div class="feat-grid"><div><span class="fic" style="background:#fc7a01">✓</span><b>Hồ sơ nhanh</b><small>Xử lý trong ngày</small></div><div><span class="fic" style="background:#0a4177">☎</span><b>Hỗ trợ 24/7</b><small>Tư vấn miễn phí</small></div><div><span class="fic" style="background:#1d9e6c">★</span><b>Tỉ lệ đậu cao</b><small>4.9/5 từ khách hàng</small></div><div><span class="fic" style="background:#d6336c">✉</span><b>Báo tiến độ</b><small>Qua email mỗi bước</small></div></div></div></td>
+              <td class="demo"><div class="stage"><div class="feat-grid"><div><span class="fic" style="background:#fc7a01">✓</span><b>Giao hàng nhanh</b><small>Xử lý trong ngày</small></div><div><span class="fic" style="background:#0a4177">☎</span><b>Hỗ trợ 24/7</b><small>Tư vấn miễn phí</small></div><div><span class="fic" style="background:#1d9e6c">★</span><b>Đổi size miễn phí</b><small>4.9/5 từ khách hàng</small></div><div><span class="fic" style="background:#d6336c">✉</span><b>Báo tiến độ</b><small>Qua email mỗi bước</small></div></div></div></td>
               <td class="name-cell"><span class="name">Feature Section</span><span class="vi-name">Khu vực tính năng</span></td>
               <td class="desc">Khu vực liệt kê <b>các tính năng hoặc điểm mạnh</b> dạng lưới gồm icon, tiêu đề và mô tả ngắn — thường nằm ở giữa trang giới thiệu sản phẩm, dịch vụ.</td>
             </tr>
@@ -4736,7 +4781,7 @@
               <tr class="fxgroup"><td colspan="3">Chuyển trang &amp; hiện nội dung <span class="gcnt">15 hiệu ứng</span></td></tr>
 
               <tr class="fxcomp" data-search="smart animate hoạt ảnh thông minh nội suy morph chuyển trạng thái figma prototyping">
-                <td class="demo"><div class="stage"><div class="fg-smart" id="fgSmart"><div class="fg-smart-box"><div class="hd"><span class="av"></span><div><b>Thẻ hồ sơ</b><div class="sub">Bấm nút để mở rộng</div></div></div><div class="more">Phần nội dung thêm tự hiện ra trong lúc thẻ biến hình — không nhảy cắt cảnh.</div></div><div class="fg-row"><button type="button" class="fg-mini-btn" id="fgSmartBtn">Mở rộng / Thu gọn</button></div></div></div></td>
+                <td class="demo"><div class="stage"><div class="fg-smart" id="fgSmart"><div class="fg-smart-box"><div class="hd"><span class="av"></span><div><b>Thẻ sản phẩm</b><div class="sub">Bấm nút để mở rộng</div></div></div><div class="more">Phần nội dung thêm tự hiện ra trong lúc thẻ biến hình — không nhảy cắt cảnh.</div></div><div class="fg-row"><button type="button" class="fg-mini-btn" id="fgSmartBtn">Mở rộng / Thu gọn</button></div></div></div></td>
                 <td class="name-cell"><span class="name">Smart Animate</span><span class="vi-name">Hoạt ảnh thông minh giữa hai trạng thái</span></td>
                 <td class="desc">Hệ thống <b>tự nội suy chuyển động giữa hai trạng thái</b> của cùng một vật (vị trí, kích thước, màu) nên chuyển cảnh mượt như biến hình thay vì cắt bụp — cơ chế Smart Animate nổi tiếng của Figma Prototyping. <i>(Nguồn: Figma Prototyping — figma.com/prototyping)</i><div class="fx-meta"><span class="fx-badge tech">CSS · transition đa thuộc tính</span><span class="fx-badge mob-ok">Mobile: An toàn</span></div></td>
               </tr>
@@ -4783,20 +4828,20 @@
                 <td class="desc">Nội dung <b>mở rộng dần theo chiều cao</b> (accordion) hoặc panel mới mờ/trượt vào thay panel cũ (tab) — dùng cho FAQ, chi tiết sản phẩm khi cần đổi nội dung mà không tải lại trang.<div class="fx-meta"><span class="fx-badge tech">CSS + JS nhẹ · grid-template-rows</span><span class="fx-badge mob-ok">Mobile: An toàn</span></div></td>
               </tr>
 
-              <tr class="fxcomp" data-search="flip card 3d thẻ lật 3d lật 180 độ hai mặt flashcard bảng giá hồ sơ nhân sự preserve-3d">
+              <tr class="fxcomp" data-search="flip card 3d thẻ lật 3d lật 180 độ hai mặt flashcard bảng giá thẻ sản phẩm nhân sự preserve-3d">
                 <td class="demo"><div class="stage"><div class="fx-flip" id="fxFlip" role="button" tabindex="0" aria-label="Thẻ lật 3D, bấm hoặc rê chuột để lật"><div class="fx-flip-inner"><div class="fx-flip-face fx-flip-front"><span>An Nhiên<small>Design Lead — mặt trước</small></span></div><div class="fx-flip-face fx-flip-back"><span>8 năm kinh nghiệm<small>UI/UX · Branding — mặt sau</small></span></div></div></div></div></td>
                 <td class="name-cell"><span class="name">Flip Card 3D</span><span class="vi-name">Thẻ lật 3D</span></td>
-                <td class="desc">Thẻ hai mặt <b>lật 180° trong không gian 3D</b> khi hover hoặc bấm để lộ mặt sau — dùng cho hồ sơ nhân sự, flashcard, bảng giá và so sánh tính năng. Rê chuột hoặc bấm vào thẻ để lật.<div class="fx-meta"><span class="fx-badge tech">CSS + JS nhẹ · preserve-3d (Motion)</span><span class="fx-badge mob-warn">Mobile: Cẩn trọng · cảm ứng bấm để lật</span></div></td>
+                <td class="desc">Thẻ hai mặt <b>lật 180° trong không gian 3D</b> khi hover hoặc bấm để lộ mặt sau — dùng cho thẻ sản phẩm, flashcard, bảng giá và so sánh tính năng. Rê chuột hoặc bấm vào thẻ để lật.<div class="fx-meta"><span class="fx-badge tech">CSS + JS nhẹ · preserve-3d (Motion)</span><span class="fx-badge mob-warn">Mobile: Cẩn trọng · cảm ứng bấm để lật</span></div></td>
               </tr>
 
               <tr class="fxcomp" data-search="carousel autoplay carousel tự chạy slide tự chuyển banner testimonial swiper autoplay tạm dừng hover">
-                <td class="demo"><div class="stage"><div class="fx-car2" id="fxCar2"><div class="fx-car2-view"><div class="fx-car2-track" id="fxCar2Track"><div style="background:#0a4177">Ưu đãi visa Mỹ −20%</div><div style="background:#fc7a01">Tour Hàn Quốc 5 ngày</div><div style="background:#1d9e6c">Đậu visa Úc — tỉ lệ 98%</div></div></div><div class="fx-car2-dots" id="fxCar2Dots"><button type="button" class="dot act" aria-label="Slide 1"></button><button type="button" class="dot" aria-label="Slide 2"></button><button type="button" class="dot" aria-label="Slide 3"></button><button type="button" class="fx-car2-play" id="fxCar2Play">Tạm dừng</button></div></div></div></td>
+                <td class="demo"><div class="stage"><div class="fx-car2" id="fxCar2"><div class="fx-car2-view"><div class="fx-car2-track" id="fxCar2Track"><div style="background:#0a4177">Sale áo khoác −20%</div><div style="background:#fc7a01">BST Thu Đông mới về</div><div style="background:#1d9e6c">Freeship đơn từ 500k</div></div></div><div class="fx-car2-dots" id="fxCar2Dots"><button type="button" class="dot act" aria-label="Slide 1"></button><button type="button" class="dot" aria-label="Slide 2"></button><button type="button" class="dot" aria-label="Slide 3"></button><button type="button" class="fx-car2-play" id="fxCar2Play">Tạm dừng</button></div></div></div></td>
                 <td class="name-cell"><span class="name">Carousel Autoplay</span><span class="vi-name">Carousel tự chạy</span></td>
                 <td class="desc">Các slide <b>tự chuyển sau vài giây theo vòng lặp</b> để giới thiệu nhiều nội dung mà không cần bấm — dùng cho banner khuyến mãi, testimonial và gallery ảnh; tự tạm dừng khi rê chuột hoặc chạm vào.<div class="fx-meta"><span class="fx-badge tech">Thư viện · Swiper / Tiny-Swiper Autoplay</span><span class="fx-badge mob-warn">Mobile: Cẩn trọng · phải dừng khi tương tác</span></div></td>
               </tr>
 
               <tr class="fxcomp" data-search="dropdown slide down menu thả xuống trượt xuống mờ dần menu tài khoản chọn ngôn ngữ bộ lọc flyonui">
-                <td class="demo"><div class="stage"><div class="fx-dd2" id="fxDd2"><button class="fx-dd2-btn" id="fxDd2Btn" type="button" aria-haspopup="true"><span class="ava3">KN</span> Tài khoản ▾</button><div class="fx-dd2-menu"><div>Hồ sơ của tôi</div><div>Đơn hàng</div><div>Cài đặt</div><div class="danger">Đăng xuất</div></div></div></div></td>
+                <td class="demo"><div class="stage"><div class="fx-dd2" id="fxDd2"><button class="fx-dd2-btn" id="fxDd2Btn" type="button" aria-haspopup="true"><span class="ava3">KN</span> Tài khoản ▾</button><div class="fx-dd2-menu"><div>Đơn hàng của tôi</div><div>Đơn hàng</div><div>Cài đặt</div><div class="danger">Đăng xuất</div></div></div></div></td>
                 <td class="name-cell"><span class="name">Dropdown Slide-down</span><span class="vi-name">Menu thả xuống</span></td>
                 <td class="desc">Menu <b>trượt xuống kèm mờ dần từ nút kích hoạt</b> để mở lựa chọn mà không che toàn màn hình — dùng cho menu tài khoản, chọn ngôn ngữ và bộ lọc. Bấm nút Tài khoản thử nhé.<div class="fx-meta"><span class="fx-badge tech">CSS-only · transition transform + opacity</span><span class="fx-badge mob-ok">Mobile: An toàn</span></div></td>
               </tr>
@@ -4808,7 +4853,7 @@
               </tr>
 
               <tr class="fxcomp" data-search="staggered list entrance danh sách hiện lần lượt so le stagger motion delaychildren cascade lưới sản phẩm menu kết quả tìm kiếm">
-                <td class="demo"><div class="stage"><div class="fx-col"><div class="fx-stag" id="fxStag"><div class="fx-stag-item" style="transition-delay:0ms"><span class="dotn">1</span>Tư vấn miễn phí</div><div class="fx-stag-item" style="transition-delay:60ms"><span class="dotn">2</span>Hồ sơ xử lý trong ngày</div><div class="fx-stag-item" style="transition-delay:120ms"><span class="dotn">3</span>Báo tiến độ mỗi bước</div><div class="fx-stag-item" style="transition-delay:180ms"><span class="dotn">4</span>Tỉ lệ đậu 98%</div></div><button class="fx-btn" id="fxStagBtn" type="button">↻ Hiện lại</button></div></div></td>
+                <td class="demo"><div class="stage"><div class="fx-col"><div class="fx-stag" id="fxStag"><div class="fx-stag-item" style="transition-delay:0ms"><span class="dotn">1</span>Tư vấn chọn size miễn phí</div><div class="fx-stag-item" style="transition-delay:60ms"><span class="dotn">2</span>Đơn xử lý trong ngày</div><div class="fx-stag-item" style="transition-delay:120ms"><span class="dotn">3</span>Báo tiến độ đơn mỗi bước</div><div class="fx-stag-item" style="transition-delay:180ms"><span class="dotn">4</span>Đổi size miễn phí 30 ngày</div></div><button class="fx-btn" id="fxStagBtn" type="button">↻ Hiện lại</button></div></div></td>
                 <td class="name-cell"><span class="name">Staggered List Entrance</span><span class="vi-name">Danh sách hiện lần lượt</span></td>
                 <td class="desc">Các mục trong danh sách, lưới thẻ hay menu <b>hiện nối tiếp nhau, mỗi mục lệch nhau khoảng 60–100ms</b> — dùng cho kết quả tìm kiếm, bảng tính năng hay lưới sản phẩm để mắt người xem có thứ tự đọc thay vì mọi thứ ập ra cùng lúc; giữ tổng thời gian so le dưới ~400ms. Bấm Hiện lại thử nhé.<div class="fx-meta"><span class="fx-badge tech">Thư viện · Motion stagger (demo: CSS + JS nhẹ)</span><span class="fx-badge mob-ok">Mobile: An toàn</span></div></td>
               </tr>
@@ -4820,7 +4865,7 @@
               </tr>
 
               <tr class="fxcomp" data-search="toast stack toast xếp chồng sonner thông báo chồng lớp xòe ra vuốt bỏ dismiss nhiều thông báo cùng lúc">
-                <td class="demo"><div class="stage"><div class="fx-tstack-wrap"><button class="fx-btn acc fx-toast-btn-pos" id="fxTstackBtn" type="button">Gửi 3 thông báo</button><div class="fx-tstack" id="fxTstack"><div class="tst"><span class="tick">✓</span>Đã lưu hồ sơ</div><div class="tst"><span class="tick">✓</span>Đã gửi email xác nhận</div><div class="tst"><span class="tick">✓</span>Đã đồng bộ dữ liệu</div></div></div></div></td>
+                <td class="demo"><div class="stage"><div class="fx-tstack-wrap"><button class="fx-btn acc fx-toast-btn-pos" id="fxTstackBtn" type="button">Gửi 3 thông báo</button><div class="fx-tstack" id="fxTstack"><div class="tst"><span class="tick">✓</span>Đã lưu đơn hàng</div><div class="tst"><span class="tick">✓</span>Đã gửi email xác nhận</div><div class="tst"><span class="tick">✓</span>Đã đồng bộ dữ liệu</div></div></div></div></td>
                 <td class="name-cell"><span class="name">Toast Stack</span><span class="vi-name">Toast xếp chồng</span></td>
                 <td class="desc">Nhiều thông báo <b>không xếp thành cột dài mà chồng lên nhau như bộ bài</b> — toast mới ở trước, toast cũ lùi lại và thu nhỏ 5% mỗi lớp — dùng khi nhiều tác vụ xong cùng lúc (lưu, gửi, đồng bộ) để thông báo không che hết màn hình; chỉ hiện tối đa 3 toast, rê chuột/chạm vào xấp để xòe ra. Bấm Gửi thử nhé.<div class="fx-meta"><span class="fx-badge tech">Thư viện · Sonner (demo: CSS + JS nhẹ)</span><span class="fx-badge mob-warn">Mobile: Cẩn trọng</span></div></td>
               </tr>
@@ -4852,7 +4897,7 @@
               </tr>
 
               <tr class="fxcomp" data-search="marquee infinite scrolling text chữ chạy vô hạn dải logo ticker khẩu hiệu">
-                <td class="demo"><div class="stage"><div class="marq"><div class="marq-track"><span>VISA NOW</span><span class="dotsep">•</span><span>ĐẬU VISA</span><span class="dotsep">•</span><span>TƯ VẤN MIỄN PHÍ</span><span class="dotsep">•</span><span>VISA NOW</span><span class="dotsep">•</span><span>ĐẬU VISA</span><span class="dotsep">•</span><span>TƯ VẤN MIỄN PHÍ</span><span class="dotsep">•</span></div></div></div></td>
+                <td class="demo"><div class="stage"><div class="marq"><div class="marq-track"><span>THỜI TRANG MỚI</span><span class="dotsep">•</span><span>GIẢM ĐẾN 40%</span><span class="dotsep">•</span><span>FREESHIP TOÀN QUỐC</span><span class="dotsep">•</span><span>THỜI TRANG MỚI</span><span class="dotsep">•</span><span>GIẢM ĐẾN 40%</span><span class="dotsep">•</span><span>FREESHIP TOÀN QUỐC</span><span class="dotsep">•</span></div></div></div></td>
                 <td class="name-cell"><span class="name">Marquee / Infinite Scrolling Text</span><span class="vi-name">Chữ chạy vô hạn (marquee)</span></td>
                 <td class="desc">Dải chữ/logo <b>lặp lại trôi ngang không ngừng</b> theo vòng lặp liền mạch — dùng cho dải logo đối tác, khẩu hiệu hoặc ticker; nên trôi chậm và dừng khi rê chuột.<div class="fx-meta"><span class="fx-badge tech">CSS-only · @keyframes translateX(-50%)</span><span class="fx-badge mob-ok">Mobile: An toàn khi trôi chậm</span></div></td>
               </tr>
@@ -4928,15 +4973,15 @@
               <tr class="fxgroup"><td colspan="3">Phản hồi &amp; số liệu <span class="gcnt">13 hiệu ứng</span></td></tr>
 
               <tr class="fxcomp" data-search="skeleton shimmer khung chờ lấp lánh đang tải loading placeholder">
-                <td class="demo"><div class="stage"><div class="fx-col"><div class="skel" id="fxSkel"><div class="row"><i></i><div><i style="width:80%"></i><i style="width:55%"></i></div></div><i style="width:92%"></i></div><div class="fx-skel-real" id="fxSkelReal" hidden><b>Hồ sơ visa Úc</b><small>Đã tải xong — nội dung thật thay cho khung chờ.</small></div><button class="fx-btn" id="fxSkelBtn" type="button">Tải xong</button></div></div></td>
+                <td class="demo"><div class="stage"><div class="fx-col"><div class="skel" id="fxSkel"><div class="row"><i></i><div><i style="width:80%"></i><i style="width:55%"></i></div></div><i style="width:92%"></i></div><div class="fx-skel-real" id="fxSkelReal" hidden><b>Áo khoác dạ — size M</b><small>Đã tải xong — nội dung thật thay cho khung chờ.</small></div><button class="fx-btn" id="fxSkelBtn" type="button">Tải xong</button></div></div></td>
                 <td class="name-cell"><span class="name">Skeleton Shimmer</span><span class="vi-name">Khung chờ lấp lánh (skeleton)</span></td>
                 <td class="desc">Khung xám <b>đúng hình dáng nội dung sắp hiện</b>, có dải sáng trượt qua để báo “đang tải” — dùng cho danh sách/card khi tải dữ liệu để người dùng thấy bố cục trước thay vì màn hình trắng.<div class="fx-meta"><span class="fx-badge tech">CSS-only · gradient trên ::after</span><span class="fx-badge mob-ok">Mobile: An toàn</span></div></td>
               </tr>
 
-              <tr class="fxcomp" data-search="skeleton to content morph skeleton biến thành nội dung khung chờ thành nội dung thật swap tải xong không giật layout danh sách thẻ hồ sơ">
-                <td class="demo"><div class="stage"><div class="fx-col"><div class="fx-morph-list" id="fxSwapList"><div class="fx-mcard"><span class="msk"><span class="av"></span><span class="ln"><i style="width:78%"></i><i style="width:52%"></i></span></span><span class="mct"><span class="av2" style="background:#0a4177">HL</span><span><b>Hồ sơ visa Hàn</b><small>Tải xong · 3 giấy tờ</small></span></span></div><div class="fx-mcard"><span class="msk"><span class="av"></span><span class="ln"><i style="width:70%"></i><i style="width:58%"></i></span></span><span class="mct"><span class="av2" style="background:#fc7a01">UC</span><span><b>Hồ sơ visa Úc</b><small>Tải xong · 5 giấy tờ</small></span></span></div><div class="fx-mcard"><span class="msk"><span class="av"></span><span class="ln"><i style="width:82%"></i><i style="width:48%"></i></span></span><span class="mct"><span class="av2" style="background:#1d9e6c">MY</span><span><b>Hồ sơ visa Mỹ</b><small>Tải xong · 4 giấy tờ</small></span></span></div></div><button class="fx-btn" id="fxSwapBtn" type="button">↻ Tải lại</button></div></div></td>
+              <tr class="fxcomp" data-search="skeleton to content morph skeleton biến thành nội dung khung chờ thành nội dung thật swap tải xong không giật layout danh sách thẻ sản phẩm">
+                <td class="demo"><div class="stage"><div class="fx-col"><div class="fx-morph-list" id="fxSwapList"><div class="fx-mcard"><span class="msk"><span class="av"></span><span class="ln"><i style="width:78%"></i><i style="width:52%"></i></span></span><span class="mct"><span class="av2" style="background:#0a4177">AK</span><span><b>Áo khoác dạ</b><small>Tải xong · 3 ảnh</small></span></span></div><div class="fx-mcard"><span class="msk"><span class="av"></span><span class="ln"><i style="width:70%"></i><i style="width:58%"></i></span></span><span class="mct"><span class="av2" style="background:#fc7a01">VH</span><span><b>Váy hoa nhí</b><small>Tải xong · 5 ảnh</small></span></span></div><div class="fx-mcard"><span class="msk"><span class="av"></span><span class="ln"><i style="width:82%"></i><i style="width:48%"></i></span></span><span class="mct"><span class="av2" style="background:#1d9e6c">AL</span><span><b>Áo len cổ lọ</b><small>Tải xong · 4 ảnh</small></span></span></div></div><button class="fx-btn" id="fxSwapBtn" type="button">↻ Tải lại</button></div></div></td>
                 <td class="name-cell"><span class="name">Skeleton to Content Morph</span><span class="vi-name">Skeleton biến thành nội dung</span></td>
-                <td class="desc">Khi dữ liệu tải xong, <b>khung xám skeleton mờ dần và nội dung thật trồi lên thay thế đúng vị trí cũ</b> — dùng cho danh sách bài viết, thẻ sản phẩm hay trang hồ sơ để tránh giật layout; khác Khung chờ lấp lánh (chỉ là lúc đang chờ), đây là khoảnh khắc chuyển đổi. Bấm Tải lại để xem lại nhé.<div class="fx-meta"><span class="fx-badge tech">CSS + JS nhẹ · fade 160ms + trồi 10px/360ms</span><span class="fx-badge mob-ok">Mobile: An toàn</span></div></td>
+                <td class="desc">Khi dữ liệu tải xong, <b>khung xám skeleton mờ dần và nội dung thật trồi lên thay thế đúng vị trí cũ</b> — dùng cho danh sách bài viết, thẻ sản phẩm hay trang chi tiết để tránh giật layout; khác Khung chờ lấp lánh (chỉ là lúc đang chờ), đây là khoảnh khắc chuyển đổi. Bấm Tải lại để xem lại nhé.<div class="fx-meta"><span class="fx-badge tech">CSS + JS nhẹ · fade 160ms + trồi 10px/360ms</span><span class="fx-badge mob-ok">Mobile: An toàn</span></div></td>
               </tr>
 
               <tr class="fxcomp" data-search="loading spinner variations vòng xoay tải nhiều kiểu chấm nhảy tiến trình đang xử lý">
@@ -4987,14 +5032,14 @@
                 <td class="desc">Cột và đường của biểu đồ <b>mọc lên hoặc vẽ dần khi tải xong</b> để người xem theo dõi xu hướng thay vì thấy số liệu khô — dùng cho dashboard, báo cáo và trang thống kê. Bấm Tải lại để xem lại.<div class="fx-meta"><span class="fx-badge tech">Thư viện · Chart.js / D3 (demo: CSS transition)</span><span class="fx-badge mob-warn">Mobile: Cẩn trọng · chỉ chạy khi tải lần đầu</span></div></td>
               </tr>
 
-              <tr class="fxcomp" data-search="progress ring animate vòng tròn tiến độ động phần trăm hoàn thành svg stroke dashoffset tải file hồ sơ mục tiêu circular progress">
-                <td class="demo"><div class="stage"><div class="fx-ring-wrap"><div class="fx-ring-box"><svg class="fx-ring-svg" width="76" height="76" viewBox="0 0 76 76" aria-hidden="true"><circle class="fx-ring-bg" cx="38" cy="38" r="30" fill="none" stroke-width="7"></circle><circle class="fx-ring-val" id="fxRingVal" cx="38" cy="38" r="30" fill="none" stroke-width="7" stroke-linecap="round" stroke-dasharray="188.5" stroke-dashoffset="47.1"></circle></svg><span class="fx-ring-ctr" id="fxRingPct">75%</span></div><div class="fx-ring-side"><label for="fxRingRange">Hoàn thành hồ sơ</label><input type="range" id="fxRingRange" min="0" max="100" value="75" /><small>Kéo để vòng chạy theo %</small></div></div></div></td>
+              <tr class="fxcomp" data-search="progress ring animate vòng tròn tiến độ động phần trăm hoàn thành svg stroke dashoffset tải file đơn hàng mục tiêu circular progress">
+                <td class="demo"><div class="stage"><div class="fx-ring-wrap"><div class="fx-ring-box"><svg class="fx-ring-svg" width="76" height="76" viewBox="0 0 76 76" aria-hidden="true"><circle class="fx-ring-bg" cx="38" cy="38" r="30" fill="none" stroke-width="7"></circle><circle class="fx-ring-val" id="fxRingVal" cx="38" cy="38" r="30" fill="none" stroke-width="7" stroke-linecap="round" stroke-dasharray="188.5" stroke-dashoffset="47.1"></circle></svg><span class="fx-ring-ctr" id="fxRingPct">75%</span></div><div class="fx-ring-side"><label for="fxRingRange">Hoàn thành đơn hàng</label><input type="range" id="fxRingRange" min="0" max="100" value="75" /><small>Kéo để vòng chạy theo %</small></div></div></div></td>
                 <td class="name-cell"><span class="name">Progress Ring Animate</span><span class="vi-name">Vòng tròn tiến độ động</span></td>
-                <td class="desc">Vòng tròn <b>vẽ dần quanh viền theo phần trăm hoàn thành, thường kèm số % ở giữa</b> — dùng cho tiến độ tải file, mức hoàn thành hồ sơ, mục tiêu sức khỏe hay đếm ngược để hiển thị tiến độ gọn trong một ô vuông nhỏ; khác Thanh tiến trình cuộn (theo cuộn trang), vòng này chạy theo giá trị. Kéo thanh trượt thử nhé.<div class="fx-meta"><span class="fx-badge tech">CSS-only · SVG stroke-dashoffset (JS nhẹ để gán %)</span><span class="fx-badge mob-ok">Mobile: An toàn</span></div></td>
+                <td class="desc">Vòng tròn <b>vẽ dần quanh viền theo phần trăm hoàn thành, thường kèm số % ở giữa</b> — dùng cho tiến độ tải file, mức hoàn thành đơn hàng, mục tiêu sức khỏe hay đếm ngược để hiển thị tiến độ gọn trong một ô vuông nhỏ; khác Thanh tiến trình cuộn (theo cuộn trang), vòng này chạy theo giá trị. Kéo thanh trượt thử nhé.<div class="fx-meta"><span class="fx-badge tech">CSS-only · SVG stroke-dashoffset (JS nhẹ để gán %)</span><span class="fx-badge mob-ok">Mobile: An toàn</span></div></td>
               </tr>
 
               <tr class="fxcomp" data-search="stepper progress animate tiến trình nhiều bước đường nối tô dần dấu tick đăng ký thanh toán onboarding các bước">
-                <td class="demo"><div class="stage"><div class="fx-col"><div class="fx-stepper" id="fxStepper"><div class="fx-steps"><span class="fx-steps-fill" id="fxStepsFill"></span><div class="fx-step act"><span class="cir">1</span><span class="slbl">Tài khoản</span></div><div class="fx-step"><span class="cir">2</span><span class="slbl">Hồ sơ</span></div><div class="fx-step"><span class="cir">3</span><span class="slbl">Gói</span></div><div class="fx-step"><span class="cir">4</span><span class="slbl">Xem lại</span></div></div><div class="fx-step-body" id="fxStepBody">Bước 1/4 — Tạo tài khoản</div><div class="fx-step-nav"><button class="fx-btn" id="fxStepPrev" type="button">← Trước</button><button class="fx-btn acc" id="fxStepNext" type="button">Tiếp →</button></div></div></div></div></td>
+                <td class="demo"><div class="stage"><div class="fx-col"><div class="fx-stepper" id="fxStepper"><div class="fx-steps"><span class="fx-steps-fill" id="fxStepsFill"></span><div class="fx-step act"><span class="cir">1</span><span class="slbl">Tài khoản</span></div><div class="fx-step"><span class="cir">2</span><span class="slbl">Sản phẩm</span></div><div class="fx-step"><span class="cir">3</span><span class="slbl">Size</span></div><div class="fx-step"><span class="cir">4</span><span class="slbl">Xem lại</span></div></div><div class="fx-step-body" id="fxStepBody">Bước 1/4 — Tạo tài khoản</div><div class="fx-step-nav"><button class="fx-btn" id="fxStepPrev" type="button">← Trước</button><button class="fx-btn acc" id="fxStepNext" type="button">Tiếp →</button></div></div></div></div></td>
                 <td class="name-cell"><span class="name">Stepper Progress Animate</span><span class="vi-name">Tiến trình nhiều bước</span></td>
                 <td class="desc">Thanh nhiều bước (đăng ký, thanh toán, onboarding) có <b>đường nối tô dần từ trái sang phải, vòng bước hiện tại phồng lên và bước xong bật dấu tick</b> — dùng để người dùng luôn biết mình đang ở bước mấy trên tổng số mấy; đường nối chạy bằng scaleX nên không gây giật layout. Bấm Tiếp thử nhé.<div class="fx-meta"><span class="fx-badge tech">CSS + JS nhẹ · Motion (connector scaleX)</span><span class="fx-badge mob-ok">Mobile: An toàn</span></div></td>
               </tr>
@@ -6147,7 +6192,7 @@
         var tourTitle = document.getElementById("tourTitle");
         var tourText = document.getElementById("tourText");
         var tourSteps = [
-          ["Bước 1 / 2", "Bấm nút này để tạo hồ sơ mới."],
+          ["Bước 1 / 2", "Bấm nút này để tạo đơn hàng mới."],
           ["Bước 2 / 2", "Thông báo mới sẽ hiện ở đây."]
         ];
         var tourIdx = 0;
@@ -6188,7 +6233,7 @@
         function stopSplitAuto() { if (splitTimer) clearInterval(splitTimer); }
         document.getElementById("splitMain").addEventListener("click", function () {
           splitDemo.classList.remove("open");
-          splitMsg.textContent = "Đã lưu hồ sơ ✓";
+          splitMsg.textContent = "Đã lưu đơn hàng ✓";
           stopSplitAuto();
         });
         document.getElementById("splitChev").addEventListener("click", function () {
@@ -7292,7 +7337,7 @@
         var stSteps = Array.prototype.slice.call(stepper.querySelectorAll(".fx-step"));
         var stFill = document.getElementById("fxStepsFill");
         var stBody = document.getElementById("fxStepBody");
-        var stTexts = ["Bước 1/4 — Tạo tài khoản", "Bước 2/4 — Điền hồ sơ", "Bước 3/4 — Chọn gói dịch vụ", "Bước 4/4 — Xem lại & gửi"];
+        var stTexts = ["Bước 1/4 — Tạo tài khoản", "Bước 2/4 — Chọn sản phẩm", "Bước 3/4 — Chọn size & màu", "Bước 4/4 — Xem lại & gửi"];
         var stIdx = 0;
         var stRender = function () {
           stSteps.forEach(function (s, i) {
