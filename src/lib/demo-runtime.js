@@ -2,7 +2,8 @@
    Each block keeps its original IIFE + ids; order matches the source (JS[0] first so its
    setInterval wrapper is installed before any demo creates a timer). JS[12] gates its
    single merged rAF loop + auto-scroll loops on inView() (card .demo-live / popup open).
-   Runs once, lazily, from the first DemoIsland effect (ensureDemoRuntime). */
+   Runs once, eagerly, from the index.astro script (ensureDemoRuntime); the
+   stages are plain SSR HTML, so no per-card island hydration is needed. */
 let __tpwDemoRuntimeDone = false;
 
 export function ensureDemoRuntime() {
