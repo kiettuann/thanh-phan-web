@@ -28,18 +28,10 @@ import '../styles/extra-style.css';
     <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;600;700;800&amp;family=Anton&amp;family=Be+Vietnam+Pro:wght@400;500;600;700;800;900&amp;family=Caveat:wght@500;600;700&amp;family=Comfortaa:wght@400;500;600;700&amp;family=Dancing+Script:wght@500;600;700&amp;family=Great+Vibes&amp;family=Inter:wght@400;600;700;800&amp;family=Itim&amp;family=Josefin+Sans:wght@400;500;600;700&amp;family=Kanit:wght@400;500;600;700;800&amp;family=Lexend:wght@400;500;600;700;800&amp;family=Lobster&amp;family=Manrope:wght@400;600;700;800&amp;family=Montserrat:wght@400;600;700;800;900&amp;family=Mulish:wght@400;600;700;800;900&amp;family=Nunito:wght@400;600;700;800;900&amp;family=Open+Sans:wght@400;600;700;800&amp;family=Oswald:wght@400;500;600;700&amp;family=Pacifico&amp;family=Playfair+Display:wght@500;600;700;800;900&amp;family=Quicksand:wght@400;500;600;700&amp;family=Roboto:wght@400;500;700;900&amp;family=Roboto+Condensed:wght@400;600;700&amp;family=Space+Grotesk:wght@400;500;600;700&amp;family=Work+Sans:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet" />
     <style is:global>
-      /* Astro island wrappers: no box of their own, so the island's child lays out
-         exactly as if the wrapper were not there. The .stage frame rules in
-         extra-style.css use `.card > .stage` (direct child), which the wrapper
-         breaks — these companions restore them with identical declarations.
-         is:global is required: the cards are rendered by index.astro, so a
-         Layout-scoped style (data-astro-cid) would never match them. */
+      /* Astro island wrappers: no box of their own, so the island's child lays
+         out exactly as if the wrapper were not there (used by the ColorTool
+         island; the demo stages are plain SSR HTML, not islands). */
       astro-island { display: contents; }
-      .card > astro-island > .stage { height: 120px; min-height: 0; width: 100%; padding: 10px; border-radius: 12px; pointer-events: none; flex: none; }
-      .fxgrid .card > astro-island > .stage { height: 160px; }
-      .card.citem > astro-island > .stage { content-visibility: auto; contain-intrinsic-size: auto 120px; }
-      .fxgrid .card > astro-island > .stage { contain-intrinsic-size: auto 160px; }
-      .card.fxcomp > astro-island > .stage { pointer-events: auto; }
     </style>
   </head>
   <body>
