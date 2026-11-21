@@ -1,6 +1,5 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import DemoIsland from '../components/DemoIsland';
 import ColorTool from '../components/ColorTool';
 import components from '../data/components.json';
 import effects from '../data/effects.json';
@@ -108,7 +107,7 @@ const panels = [
               {itemsOf(g.id, p.items).map((item) => (
                 <article class={`card citem ${p.kind === 'comp' ? 'comp' : 'fxcomp'}`} id={item.id} data-search={item.aliases} tabindex="0" role="button" aria-haspopup="dialog" aria-label={`Xem chi tiết ${item.en}`}>
                   <span class="pin-badge" hidden><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a7 7 0 0 0-7 7c0 5.2 7 13 7 13s7-7.8 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z" /></svg>Đã ghim</span>
-                  <DemoIsland demoHtml={item.demoHtml} client:visible />
+                  <div class="stage" set:html={item.demoHtml}></div>
                   <div class="card-body">
                     <div class="name-row"><span class="name">{item.en}</span><button type="button" class="copy-name-icon" data-name={item.en} aria-label={`Copy tên tiếng Anh: ${item.en}`} title="Copy tên tiếng Anh"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="12" height="12" rx="2" /><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" /></svg><span class="copy-tip">Đã copy</span></button></div>
                     <p class="vi-name">{item.vi}</p>
@@ -154,6 +153,23 @@ const panels = [
   <div id="descStore" hidden aria-hidden="true" set:html={descStoreHtml}></div>
   <script>
     import { initShell } from '../lib/shell';
+    import { ensureDemoRuntime } from '../lib/demo-runtime';
     initShell();
+    ensureDemoRuntime();
+    /* One shared IntersectionObserver for .demo-live gating (replaces the
+       per-card observer that used to live in the DemoIsland effect): a card
+       only runs its demo while it is near the viewport, so scrolling never
+       pays per-card hydration cost — the stages are plain SSR HTML now. */
+    if ('IntersectionObserver' in window) {
+      const liveObs = new IntersectionObserver(
+        (entries) => {
+          for (const en of entries) en.target.classList.toggle('demo-live', en.isIntersecting);
+        },
+        { rootMargin: '350px 0px 350px 0px', threshold: 0 },
+      );
+      document.querySelectorAll('.card.citem').forEach((c) => liveObs.observe(c));
+    } else {
+      document.querySelectorAll('.card.citem').forEach((c) => c.classList.add('demo-live'));
+    }
   </script>
 </Layout>
