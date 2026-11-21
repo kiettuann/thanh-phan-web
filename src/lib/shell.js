@@ -1,6 +1,7 @@
 /* Shell interactions — ported verbatim from the source single-file site.
    JS[1] search/tabs, JS[3] scroll-reveal + detail popup, JS[9] toolbar/copy/deep-links/
-   groupbar scrollspy (WITHOUT its lazy-render block — DemoIsland owns .demo-live),
+   groupbar scrollspy (WITHOUT its lazy-render block — the shared vanilla
+   observer in index.astro owns .demo-live),
    JS[10] pin/export, JS[11] pin-badge sync + EN-name auto-fit. Runs once from index.astro. */
 let __tpwShellDone = false;
 
@@ -93,6 +94,11 @@ export function initShell() {
               search.setAttribute("aria-label", fx ? "Tìm hiệu ứng chuyển động" : "Tìm thành phần");
               applyFilter();
             }
+            /* Đổi tab thì về đầu trang: nếu không, vị trí cuộn cũ giữ nguyên
+               và tab mới có thể hiện ra ở giữa/cuối trang. behavior:'instant'
+               để thắng CSS html { scroll-behavior: smooth } — phải nhảy ngay,
+               không trượt từ từ. */
+            window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
           }
           tabComp.addEventListener("click", function () { setMainTab("comp"); });
           tabFx.addEventListener("click", function () { setMainTab("fx"); });
